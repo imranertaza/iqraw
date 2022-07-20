@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/system" isTestSource="false" packagePrefix="CodeIgniter\" />
+      <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/AutoReview" isTestSource="true" packagePrefix="CodeIgniter\AutoReview\" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/system" isTestSource="true" packagePrefix="CodeIgniter\" />
+      <sourceFolder url="file://$MODULE_DIR$/utils" isTestSource="true" packagePrefix="Utils\" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

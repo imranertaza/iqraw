@@ -1,0 +1,192 @@
+<?php
+
+namespace App\Controllers\Student;
+use App\Controllers\BaseController;
+use App\Models\Quiz_exam_joinedModel;
+use App\Models\Quiz_questionModel;
+use App\Models\QuizModel;
+use App\Models\StudentModel;
+use App\Models\SubjectModel;
+use CodeIgniter\Database\RawSql;
+
+
+class Quiz extends BaseController
+{
+    protected $validation;
+    protected $session;
+    protected $student;
+    protected $subjectModel;
+    protected $quiz_examModel;
+    protected $quiz_questionModel;
+    protected $quiz_exam_joinedModel;
+
+    public function __construct()
+    {
+        $this->student = new StudentModel();
+        $this->subjectModel = new SubjectModel();
+        $this->quiz_examModel = new QuizModel();
+        $this->quiz_exam_joinedModel = new Quiz_exam_joinedModel();
+        $this->quiz_questionModel = new Quiz_questionModel();
+        $this->validation =  \Config\Services::validation();
+        $this->session = \Config\Services::session();
+    }
+    public function index()
+    {
+        $isLoggedInStudent = $this->session->isLoggedInStudent;
+        if (!isset($isLoggedInStudent) || $isLoggedInStudent != TRUE) {
+            return redirect()->to('/login');
+        } else {
+
+            $data['back_url'] = base_url('/');
+            $data['page_title'] = 'Quiz';
+
+
+            $classId = get_data_by_id('class_id','student','std_id',$this->session->std_id);
+            $data['subject'] = $this->subjectModel->where('class_id',$classId)->findAll();
+
+            echo view('Student/header',$data);
+            echo view('Student/quiz',$data);
+            echo view('Student/footer');
+        }
+    }
+
+    public function exam($subject_id){
+        $isLoggedInStudent = $this->session->isLoggedInStudent;
+        if (!isset($isLoggedInStudent) || $isLoggedInStudent != TRUE) {
+            return redirect()->to('/login');
+        } else {
+
+            $data['back_url'] = base_url('/Student/Quiz');
+            $data['page_title'] = 'Quiz Exam';
+
+            //session unset
+            unset($_SESSION['qe_joined_id']);
+            unset($_SESSION['quiz_exam']);
+
+            $data['quiz_exam'] = $this->quiz_examModel->where('subject_id',$subject_id)->findAll();
+
+            $table = DB()->table('quiz_exam_joined');
+            $data['join_quiz_exam'] =$table->select('*')->join('quiz_exam_info','quiz_exam_info.quiz_exam_info_id = quiz_exam_joined.quiz_exam_info_id')->where('quiz_exam_info.subject_id',$subject_id)->get()->getResult();
+
+
+            echo view('Student/header',$data);
+            echo view('Student/quiz_exam',$data);
+            echo view('Student/footer');
+
+        }
+    }
+
+    public function question($quiz_exam_info_id){
+        $isLoggedInStudent = $this->session->isLoggedInStudent;
+        if (!isset($isLoggedInStudent) || $isLoggedInStudent != TRUE) {
+            return redirect()->to('/login');
+        } else {
+
+            $data['back_url'] = base_url('/Student/Quiz');
+            $data['page_title'] = 'Quiz Question';
+
+            $check = already_join_check($quiz_exam_info_id);
+            if ($check == 0) {
+                $joinData = array(
+                    'quiz_exam_info_id' => $quiz_exam_info_id,
+                    'std_id' => $this->session->std_id,
+                    'createdBy' => $this->session->std_id,
+                );
+                $this->quiz_exam_joinedModel->insert($joinData);
+                $insertId = $this->quiz_exam_joinedModel->getInsertID();
+                $this->session->set('qe_joined_id',$insertId);
+            }
+
+            $data['quiz'] = $this->quiz_questionModel->where('quiz_exam_info_id',$quiz_exam_info_id)->paginate(1);
+            $data['pager'] = $this->quiz_questionModel->pager;
+            $data['quiz_exam_info_id'] = $quiz_exam_info_id;
+
+            echo view('Student/header',$data);
+            echo view('Student/quiz_exam_question',$data);
+            echo view('Student/footer');
+
+        }
+    }
+
+    public function result(){
+        $qId = $this->request->getPost('quizId');
+        $ans = $this->request->getPost('ans');
+
+        $allquizexam = empty($this->session->quiz_exam) ? array() : $this->session->quiz_exam;
+        $quizans = [
+            'quizId'=>$qId,
+            'quizAns'=>$ans,
+        ];
+        array_push($allquizexam,$quizans);
+        $this->session->set('quiz_exam',$allquizexam);
+
+
+
+        $corAns = get_data_by_id('correct_answer','quiz_exam_questions','quiz_question_id',$qId);
+        if ($corAns == $ans){
+            $oldCorAns = get_data_by_id('correct_answers','quiz_exam_joined','qe_joined_id',$this->session->qe_joined_id);
+            $oldPoints = get_data_by_id('earn_points','quiz_exam_joined','qe_joined_id',$this->session->qe_joined_id);
+            $oldCoins = get_data_by_id('earn_coins','quiz_exam_joined','qe_joined_id',$this->session->qe_joined_id);
+
+            $points_semister_mcq = get_data_by_id('value','settings','label','points_semister_mcq');
+
+            $data['qe_joined_id'] = $this->session->qe_joined_id;
+            $data['correct_answers'] = $oldCorAns + 1;
+            $data['earn_points'] = $oldPoints + $points_semister_mcq;
+            $data['earn_coins'] = $oldCoins + $points_semister_mcq;
+            $this->quiz_exam_joinedModel->update($data['qe_joined_id'],$data);
+        }else{
+            $oldInCorAns = get_data_by_id('incorrect_answers','quiz_exam_joined','qe_joined_id',$this->session->qe_joined_id);
+            $data2['qe_joined_id'] = $this->session->qe_joined_id;
+            $data2['incorrect_answers'] = $oldInCorAns + 1;
+            $this->quiz_exam_joinedModel->update($data2['qe_joined_id'],$data2);
+        }
+
+    }
+
+    public function result_view(){
+
+        $isLoggedInStudent = $this->session->isLoggedInStudent;
+        if (!isset($isLoggedInStudent) || $isLoggedInStudent != TRUE) {
+            return redirect()->to('/login');
+        } else {
+
+            if (empty($this->session->qe_joined_id)){
+                return redirect()->to('/Student/Quiz');
+            }
+
+            $data['back_url'] = base_url('/Student/Quiz');
+            $data['page_title'] = 'Quiz Result';
+
+            $table = DB()->table('quiz_exam_joined');
+            $data['result'] = $table->where('qe_joined_id',$this->session->qe_joined_id)->get()->getRow();
+
+            echo view('Student/header',$data);
+            echo view('Student/quiz_exam_result',$data);
+            echo view('Student/footer');
+        }
+
+    }
+
+    public function exam_result($qe_joined_id){
+        $isLoggedInStudent = $this->session->isLoggedInStudent;
+        if (!isset($isLoggedInStudent) || $isLoggedInStudent != TRUE) {
+            return redirect()->to('/login');
+        } else {
+
+            $data['back_url'] = base_url('/Student/Quiz');
+            $data['page_title'] = 'Quiz Result';
+
+            $table = DB()->table('quiz_exam_joined');
+            $data['result'] = $table->where('qe_joined_id',$qe_joined_id)->get()->getRow();
+
+            echo view('Student/header',$data);
+            echo view('Student/exam_result',$data);
+            echo view('Student/footer');
+        }
+    }
+
+
+
+
+}

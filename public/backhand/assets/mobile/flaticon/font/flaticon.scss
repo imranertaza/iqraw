@@ -1,0 +1,137 @@
+$flaticon-font: "flaticon";
+
+@font-face {
+    font-family: $flaticon-font;
+    src: url("./flaticon.ttf?f9c1c93ff0f64bee4a3b881732cc5a23") format("truetype"),
+url("./flaticon.woff?f9c1c93ff0f64bee4a3b881732cc5a23") format("woff"),
+url("./flaticon.woff2?f9c1c93ff0f64bee4a3b881732cc5a23") format("woff2"),
+url("./flaticon.eot?f9c1c93ff0f64bee4a3b881732cc5a23#iefix") format("embedded-opentype"),
+url("./flaticon.svg?f9c1c93ff0f64bee4a3b881732cc5a23#flaticon") format("svg");
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+    font-family: flaticon !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+$flaticon-map: (
+    "checkup": "\f101",
+    "shop": "\f102",
+    "diagnostic": "\f103",
+    "ambulance": "\f104",
+    "chat": "\f105",
+    "suitcase": "\f106",
+    "home": "\f107",
+    "menu": "\f108",
+    "user": "\f109",
+    "right-arrow": "\f10a",
+    "left-arrow": "\f10b",
+    "keyboard-right-arrow-button": "\f10c",
+    "user-1": "\f10d",
+    "checked": "\f10e",
+    "heart": "\f10f",
+    "delete": "\f110",
+    "arrow-down-sign-to-navigate": "\f111",
+    "shopping-cart": "\f112",
+    "pin": "\f113",
+    "envelope": "\f114",
+    "lock": "\f115",
+    "view": "\f116",
+    "pencil": "\f117",
+    "credit-card": "\f118",
+    "credit-card-1": "\f119",
+    "star": "\f11a",
+    "empty": "\f11b",
+    "loupe": "\f11c",
+);
+
+.flaticon-checkup:before {
+    content: map-get($flaticon-map, "checkup");
+}
+.flaticon-shop:before {
+    content: map-get($flaticon-map, "shop");
+}
+.flaticon-diagnostic:before {
+    content: map-get($flaticon-map, "diagnostic");
+}
+.flaticon-ambulance:before {
+    content: map-get($flaticon-map, "ambulance");
+}
+.flaticon-chat:before {
+    content: map-get($flaticon-map, "chat");
+}
+.flaticon-suitcase:before {
+    content: map-get($flaticon-map, "suitcase");
+}
+.flaticon-home:before {
+    content: map-get($flaticon-map, "home");
+}
+.flaticon-menu:before {
+    content: map-get($flaticon-map, "menu");
+}
+.flaticon-user:before {
+    content: map-get($flaticon-map, "user");
+}
+.flaticon-right-arrow:before {
+    content: map-get($flaticon-map, "right-arrow");
+}
+.flaticon-left-arrow:before {
+    content: map-get($flaticon-map, "left-arrow");
+}
+.flaticon-keyboard-right-arrow-button:before {
+    content: map-get($flaticon-map, "keyboard-right-arrow-button");
+}
+.flaticon-user-1:before {
+    content: map-get($flaticon-map, "user-1");
+}
+.flaticon-checked:before {
+    content: map-get($flaticon-map, "checked");
+}
+.flaticon-heart:before {
+    content: map-get($flaticon-map, "heart");
+}
+.flaticon-delete:before {
+    content: map-get($flaticon-map, "delete");
+}
+.flaticon-arrow-down-sign-to-navigate:before {
+    content: map-get($flaticon-map, "arrow-down-sign-to-navigate");
+}
+.flaticon-shopping-cart:before {
+    content: map-get($flaticon-map, "shopping-cart");
+}
+.flaticon-pin:before {
+    content: map-get($flaticon-map, "pin");
+}
+.flaticon-envelope:before {
+    content: map-get($flaticon-map, "envelope");
+}
+.flaticon-lock:before {
+    content: map-get($flaticon-map, "lock");
+}
+.flaticon-view:before {
+    content: map-get($flaticon-map, "view");
+}
+.flaticon-pencil:before {
+    content: map-get($flaticon-map, "pencil");
+}
+.flaticon-credit-card:before {
+    content: map-get($flaticon-map, "credit-card");
+}
+.flaticon-credit-card-1:before {
+    content: map-get($flaticon-map, "credit-card-1");
+}
+.flaticon-star:before {
+    content: map-get($flaticon-map, "star");
+}
+.flaticon-empty:before {
+    content: map-get($flaticon-map, "empty");
+}
+.flaticon-loupe:before {
+    content: map-get($flaticon-map, "loupe");
+}

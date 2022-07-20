@@ -1,0 +1,104 @@
+@font-face {
+    font-family: "flaticon";
+    src: url("./flaticon.ttf?f9c1c93ff0f64bee4a3b881732cc5a23") format("truetype"),
+url("./flaticon.woff?f9c1c93ff0f64bee4a3b881732cc5a23") format("woff"),
+url("./flaticon.woff2?f9c1c93ff0f64bee4a3b881732cc5a23") format("woff2"),
+url("./flaticon.eot?f9c1c93ff0f64bee4a3b881732cc5a23#iefix") format("embedded-opentype"),
+url("./flaticon.svg?f9c1c93ff0f64bee4a3b881732cc5a23#flaticon") format("svg");
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+    font-family: flaticon !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.flaticon-checkup:before {
+    content: "\f101";
+}
+.flaticon-shop:before {
+    content: "\f102";
+}
+.flaticon-diagnostic:before {
+    content: "\f103";
+}
+.flaticon-ambulance:before {
+    content: "\f104";
+}
+.flaticon-chat:before {
+    content: "\f105";
+}
+.flaticon-suitcase:before {
+    content: "\f106";
+}
+.flaticon-home:before {
+    content: "\f107";
+}
+.flaticon-menu:before {
+    content: "\f108";
+}
+.flaticon-user:before {
+    content: "\f109";
+}
+.flaticon-right-arrow:before {
+    content: "\f10a";
+}
+.flaticon-left-arrow:before {
+    content: "\f10b";
+}
+.flaticon-keyboard-right-arrow-button:before {
+    content: "\f10c";
+}
+.flaticon-user-1:before {
+    content: "\f10d";
+}
+.flaticon-checked:before {
+    content: "\f10e";
+}
+.flaticon-heart:before {
+    content: "\f10f";
+}
+.flaticon-delete:before {
+    content: "\f110";
+}
+.flaticon-arrow-down-sign-to-navigate:before {
+    content: "\f111";
+}
+.flaticon-shopping-cart:before {
+    content: "\f112";
+}
+.flaticon-pin:before {
+    content: "\f113";
+}
+.flaticon-envelope:before {
+    content: "\f114";
+}
+.flaticon-lock:before {
+    content: "\f115";
+}
+.flaticon-view:before {
+    content: "\f116";
+}
+.flaticon-pencil:before {
+    content: "\f117";
+}
+.flaticon-credit-card:before {
+    content: "\f118";
+}
+.flaticon-credit-card-1:before {
+    content: "\f119";
+}
+.flaticon-star:before {
+    content: "\f11a";
+}
+.flaticon-empty:before {
+    content: "\f11b";
+}
+.flaticon-loupe:before {
+    content: "\f11c";
+}

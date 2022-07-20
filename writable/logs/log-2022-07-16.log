@@ -1,0 +1,55 @@
+ERROR - 2022-07-16 16:34:13 --> Unknown column 'quiz_exam_joined.subject_id' in 'where clause'
+CRITICAL - 2022-07-16 16:34:13 --> Unknown column 'quiz_exam_joined.subject_id' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 292.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(292): mysqli->query('SELECT *
+FROM `quiz_exam_joined`
+JOIN `quiz_exam_info` ON `quiz_exam_info`.`quiz_exam_info_id` = `quiz_exam_joined`.`quiz_exam_info_id`
+WHERE `quiz_exam_joined`.`subject_id` = \'1\'', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(678): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `quiz_exam_joined`
+JOIN `quiz_exam_info` ON `quiz_exam_info`.`quiz_exam_info_id` = `quiz_exam_joined`.`quiz_exam_info_id`
+WHERE `quiz_exam_joined`.`subject_id` = \'1\'')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `quiz_exam_joined`
+JOIN `quiz_exam_info` ON `quiz_exam_info`.`quiz_exam_info_id` = `quiz_exam_joined`.`quiz_exam_info_id`
+WHERE `quiz_exam_joined`.`subject_id` = \'1\'')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1585): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `quiz_exam_joined`
+JOIN `quiz_exam_info` ON `quiz_exam_info`.`quiz_exam_info_id` = `quiz_exam_joined`.`quiz_exam_info_id`
+WHERE `quiz_exam_joined`.`subject_id` = :quiz_exam_joined.subject_id:', [...], false)
+ 5 APPPATH\Controllers\Student\Quiz.php(69): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Quiz->exam('1')
+ 7 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Quiz))
+ 8 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-16 17:48:30 --> Object of class stdClass could not be converted to string
+in APPPATH\Views\Student\quiz.php on line 13.
+ 1 SYSTEMPATH\View\View.php(213): include()
+ 2 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('Student/quiz', [], true)
+ 4 APPPATH\Controllers\Student\Quiz.php(48): view('Student/quiz', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Quiz->index()
+ 6 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Quiz))
+ 7 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-16 17:49:26 --> Object of class stdClass could not be converted to string
+in APPPATH\Views\Student\quiz.php on line 13.
+ 1 SYSTEMPATH\View\View.php(213): include()
+ 2 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('Student/quiz', [], true)
+ 4 APPPATH\Controllers\Student\Quiz.php(48): view('Student/quiz', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Quiz->index()
+ 6 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Quiz))
+ 7 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-16 17:51:22 --> Call to undefined method CodeIgniter\Database\MySQLi\Result::countAll()
+in APPPATH\Helpers\Helpers_helper.php on line 136.
+ 1 APPPATH\Views\Student\quiz.php(8): get_subID_by_exam('1')
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\Student\\quiz.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('Student/quiz', [], true)
+ 5 APPPATH\Controllers\Student\Quiz.php(48): view('Student/quiz', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Quiz->index()
+ 7 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Quiz))
+ 8 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()

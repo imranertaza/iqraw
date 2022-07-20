@@ -1,0 +1,215 @@
+CRITICAL - 2022-07-19 10:01:00 --> Call to undefined method CodeIgniter\Database\MySQLi\Builder::getInsertID()
+in APPPATH\Controllers\Student\Skill_development.php on line 108.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Skill_development->join_mcq('3')
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Skill_development))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-19 10:02:49 --> Call to undefined method CodeIgniter\Database\MySQLi\Connection::getInsertID()
+in APPPATH\Controllers\Student\Skill_development.php on line 108.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Skill_development->join_mcq('3')
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Skill_development))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-19 10:05:34 --> A non-numeric value encountered
+in APPPATH\Controllers\Student\Skill_development.php on line 147.
+ 1 APPPATH\Controllers\Student\Skill_development.php(147): CodeIgniter\Debug\Exceptions->errorHandler(2, 'A non-numeric value encountered', 'APPPATH\\Controllers\\Student\\Skill_development.php', 147, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Skill_development->ans_quiz()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Skill_development))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-19 10:05:47 --> A non-numeric value encountered
+in APPPATH\Controllers\Student\Skill_development.php on line 139.
+ 1 APPPATH\Controllers\Student\Skill_development.php(139): CodeIgniter\Debug\Exceptions->errorHandler(2, 'A non-numeric value encountered', 'APPPATH\\Controllers\\Student\\Skill_development.php', 139, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Skill_development->ans_quiz()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Skill_development))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-19 10:06:03 --> A non-numeric value encountered
+in APPPATH\Controllers\Student\Skill_development.php on line 147.
+ 1 APPPATH\Controllers\Student\Skill_development.php(147): CodeIgniter\Debug\Exceptions->errorHandler(2, 'A non-numeric value encountered', 'APPPATH\\Controllers\\Student\\Skill_development.php', 147, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Skill_development->ans_quiz()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Skill_development))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-19 10:06:05 --> A non-numeric value encountered
+in APPPATH\Controllers\Student\Skill_development.php on line 139.
+ 1 APPPATH\Controllers\Student\Skill_development.php(139): CodeIgniter\Debug\Exceptions->errorHandler(2, 'A non-numeric value encountered', 'APPPATH\\Controllers\\Student\\Skill_development.php', 139, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Skill_development->ans_quiz()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Skill_development))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-19 10:08:25 --> A non-numeric value encountered
+in APPPATH\Controllers\Student\Skill_development.php on line 148.
+ 1 APPPATH\Controllers\Student\Skill_development.php(148): CodeIgniter\Debug\Exceptions->errorHandler(2, 'A non-numeric value encountered', 'APPPATH\\Controllers\\Student\\Skill_development.php', 148, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Skill_development->ans_quiz()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Skill_development))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-19 10:08:32 --> A non-numeric value encountered
+in APPPATH\Controllers\Student\Skill_development.php on line 148.
+ 1 APPPATH\Controllers\Student\Skill_development.php(148): CodeIgniter\Debug\Exceptions->errorHandler(2, 'A non-numeric value encountered', 'APPPATH\\Controllers\\Student\\Skill_development.php', 148, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Skill_development->ans_quiz()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Skill_development))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-19 10:09:06 --> A non-numeric value encountered
+in APPPATH\Controllers\Student\Skill_development.php on line 148.
+ 1 APPPATH\Controllers\Student\Skill_development.php(148): CodeIgniter\Debug\Exceptions->errorHandler(2, 'A non-numeric value encountered', 'APPPATH\\Controllers\\Student\\Skill_development.php', 148, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Skill_development->ans_quiz()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Skill_development))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-19 10:09:14 --> A non-numeric value encountered
+in APPPATH\Controllers\Student\Skill_development.php on line 148.
+ 1 APPPATH\Controllers\Student\Skill_development.php(148): CodeIgniter\Debug\Exceptions->errorHandler(2, 'A non-numeric value encountered', 'APPPATH\\Controllers\\Student\\Skill_development.php', 148, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Skill_development->ans_quiz()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Skill_development))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-19 10:09:28 --> A non-numeric value encountered
+in APPPATH\Controllers\Student\Skill_development.php on line 148.
+ 1 APPPATH\Controllers\Student\Skill_development.php(148): CodeIgniter\Debug\Exceptions->errorHandler(2, 'A non-numeric value encountered', 'APPPATH\\Controllers\\Student\\Skill_development.php', 148, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Skill_development->ans_quiz()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Skill_development))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-19 10:09:39 --> A non-numeric value encountered
+in APPPATH\Controllers\Student\Skill_development.php on line 140.
+ 1 APPPATH\Controllers\Student\Skill_development.php(140): CodeIgniter\Debug\Exceptions->errorHandler(2, 'A non-numeric value encountered', 'APPPATH\\Controllers\\Student\\Skill_development.php', 140, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Skill_development->ans_quiz()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Skill_development))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-19 10:11:42 --> A non-numeric value encountered
+in APPPATH\Controllers\Student\Skill_development.php on line 140.
+ 1 APPPATH\Controllers\Student\Skill_development.php(140): CodeIgniter\Debug\Exceptions->errorHandler(2, 'A non-numeric value encountered', 'APPPATH\\Controllers\\Student\\Skill_development.php', 140, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Skill_development->ans_quiz()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Skill_development))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-19 10:12:10 --> A non-numeric value encountered
+in APPPATH\Controllers\Student\Skill_development.php on line 140.
+ 1 APPPATH\Controllers\Student\Skill_development.php(140): CodeIgniter\Debug\Exceptions->errorHandler(2, 'A non-numeric value encountered', 'APPPATH\\Controllers\\Student\\Skill_development.php', 140, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Skill_development->ans_quiz()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Skill_development))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-19 10:12:19 --> A non-numeric value encountered
+in APPPATH\Controllers\Student\Skill_development.php on line 140.
+ 1 APPPATH\Controllers\Student\Skill_development.php(140): CodeIgniter\Debug\Exceptions->errorHandler(2, 'A non-numeric value encountered', 'APPPATH\\Controllers\\Student\\Skill_development.php', 140, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Skill_development->ans_quiz()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Skill_development))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-19 10:12:30 --> A non-numeric value encountered
+in APPPATH\Controllers\Student\Skill_development.php on line 148.
+ 1 APPPATH\Controllers\Student\Skill_development.php(148): CodeIgniter\Debug\Exceptions->errorHandler(2, 'A non-numeric value encountered', 'APPPATH\\Controllers\\Student\\Skill_development.php', 148, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Skill_development->ans_quiz()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Skill_development))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-19 10:12:33 --> A non-numeric value encountered
+in APPPATH\Controllers\Student\Skill_development.php on line 140.
+ 1 APPPATH\Controllers\Student\Skill_development.php(140): CodeIgniter\Debug\Exceptions->errorHandler(2, 'A non-numeric value encountered', 'APPPATH\\Controllers\\Student\\Skill_development.php', 140, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Skill_development->ans_quiz()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Skill_development))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-19 10:14:53 --> A non-numeric value encountered
+in APPPATH\Controllers\Student\Skill_development.php on line 148.
+ 1 APPPATH\Controllers\Student\Skill_development.php(148): CodeIgniter\Debug\Exceptions->errorHandler(2, 'A non-numeric value encountered', 'APPPATH\\Controllers\\Student\\Skill_development.php', 148, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Skill_development->ans_quiz()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Skill_development))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-19 10:15:04 --> A non-numeric value encountered
+in APPPATH\Controllers\Student\Skill_development.php on line 140.
+ 1 APPPATH\Controllers\Student\Skill_development.php(140): CodeIgniter\Debug\Exceptions->errorHandler(2, 'A non-numeric value encountered', 'APPPATH\\Controllers\\Student\\Skill_development.php', 140, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Skill_development->ans_quiz()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Skill_development))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-19 10:16:10 --> A non-numeric value encountered
+in APPPATH\Controllers\Student\Skill_development.php on line 148.
+ 1 APPPATH\Controllers\Student\Skill_development.php(148): CodeIgniter\Debug\Exceptions->errorHandler(2, 'A non-numeric value encountered', 'APPPATH\\Controllers\\Student\\Skill_development.php', 148, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Skill_development->ans_quiz()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Skill_development))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-19 10:20:26 --> A non-numeric value encountered
+in APPPATH\Controllers\Student\Skill_development.php on line 148.
+ 1 APPPATH\Controllers\Student\Skill_development.php(148): CodeIgniter\Debug\Exceptions->errorHandler(2, 'A non-numeric value encountered', 'APPPATH\\Controllers\\Student\\Skill_development.php', 148, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Skill_development->ans_quiz()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Skill_development))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-19 10:20:40 --> A non-numeric value encountered
+in APPPATH\Controllers\Student\Skill_development.php on line 140.
+ 1 APPPATH\Controllers\Student\Skill_development.php(140): CodeIgniter\Debug\Exceptions->errorHandler(2, 'A non-numeric value encountered', 'APPPATH\\Controllers\\Student\\Skill_development.php', 140, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Skill_development->ans_quiz()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Skill_development))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-19 10:22:05 --> A non-numeric value encountered
+in APPPATH\Controllers\Student\Skill_development.php on line 150.
+ 1 APPPATH\Controllers\Student\Skill_development.php(150): CodeIgniter\Debug\Exceptions->errorHandler(2, 'A non-numeric value encountered', 'APPPATH\\Controllers\\Student\\Skill_development.php', 150, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Skill_development->ans_quiz()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Skill_development))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-19 10:23:30 --> A non-numeric value encountered
+in APPPATH\Controllers\Student\Skill_development.php on line 150.
+ 1 APPPATH\Controllers\Student\Skill_development.php(150): CodeIgniter\Debug\Exceptions->errorHandler(2, 'A non-numeric value encountered', 'APPPATH\\Controllers\\Student\\Skill_development.php', 150, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Skill_development->ans_quiz()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Skill_development))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-19 10:23:33 --> A non-numeric value encountered
+in APPPATH\Controllers\Student\Skill_development.php on line 140.
+ 1 APPPATH\Controllers\Student\Skill_development.php(140): CodeIgniter\Debug\Exceptions->errorHandler(2, 'A non-numeric value encountered', 'APPPATH\\Controllers\\Student\\Skill_development.php', 140, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Skill_development->ans_quiz()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Skill_development))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-19 10:24:31 --> A non-numeric value encountered
+in APPPATH\Controllers\Student\Skill_development.php on line 151.
+ 1 APPPATH\Controllers\Student\Skill_development.php(151): CodeIgniter\Debug\Exceptions->errorHandler(2, 'A non-numeric value encountered', 'APPPATH\\Controllers\\Student\\Skill_development.php', 151, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Skill_development->ans_quiz()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Skill_development))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-19 10:25:18 --> A non-numeric value encountered
+in APPPATH\Controllers\Student\Skill_development.php on line 150.
+ 1 APPPATH\Controllers\Student\Skill_development.php(150): CodeIgniter\Debug\Exceptions->errorHandler(2, 'A non-numeric value encountered', 'APPPATH\\Controllers\\Student\\Skill_development.php', 150, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Skill_development->ans_quiz()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Skill_development))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-19 10:25:22 --> A non-numeric value encountered
+in APPPATH\Controllers\Student\Skill_development.php on line 140.
+ 1 APPPATH\Controllers\Student\Skill_development.php(140): CodeIgniter\Debug\Exceptions->errorHandler(2, 'A non-numeric value encountered', 'APPPATH\\Controllers\\Student\\Skill_development.php', 140, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Skill_development->ans_quiz()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Skill_development))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-19 10:25:50 --> A non-numeric value encountered
+in APPPATH\Controllers\Student\Skill_development.php on line 151.
+ 1 APPPATH\Controllers\Student\Skill_development.php(151): CodeIgniter\Debug\Exceptions->errorHandler(2, 'A non-numeric value encountered', 'APPPATH\\Controllers\\Student\\Skill_development.php', 151, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Skill_development->ans_quiz()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Skill_development))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-19 10:26:33 --> A non-numeric value encountered
+in APPPATH\Controllers\Student\Skill_development.php on line 152.
+ 1 APPPATH\Controllers\Student\Skill_development.php(152): CodeIgniter\Debug\Exceptions->errorHandler(2, 'A non-numeric value encountered', 'APPPATH\\Controllers\\Student\\Skill_development.php', 152, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Skill_development->ans_quiz()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Skill_development))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-19 10:27:19 --> A non-numeric value encountered
+in APPPATH\Controllers\Student\Skill_development.php on line 152.
+ 1 APPPATH\Controllers\Student\Skill_development.php(152): CodeIgniter\Debug\Exceptions->errorHandler(2, 'A non-numeric value encountered', 'APPPATH\\Controllers\\Student\\Skill_development.php', 152, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Skill_development->ans_quiz()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Skill_development))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()

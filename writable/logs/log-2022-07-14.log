@@ -1,0 +1,22 @@
+CRITICAL - 2022-07-14 12:39:18 --> Invalid argument supplied for foreach()
+in APPPATH\Views\Student\quiz_exam_result.php on line 17.
+ 1 APPPATH\Views\Student\quiz_exam_result.php(17): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Invalid argument supplied for foreach()', 'APPPATH\\Views\\Student\\quiz_exam_result.php', 17, [...])
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\Student\\quiz_exam_result.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('Student/quiz_exam_result', [], true)
+ 5 APPPATH\Controllers\Student\Quiz.php(156): view('Student/quiz_exam_result', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Quiz->result_view()
+ 7 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Quiz))
+ 8 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-14 12:42:32 --> Trying to get property 'quiz_exam_info_id' of non-object
+in APPPATH\Views\Student\quiz_exam_result.php on line 9.
+ 1 APPPATH\Views\Student\quiz_exam_result.php(9): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'quiz_exam_info_id\' of non-object', 'APPPATH\\Views\\Student\\quiz_exam_result.php', 9, [...])
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\Student\\quiz_exam_result.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('Student/quiz_exam_result', [], true)
+ 5 APPPATH\Controllers\Student\Quiz.php(159): view('Student/quiz_exam_result', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Quiz->result_view()
+ 7 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Quiz))
+ 8 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()

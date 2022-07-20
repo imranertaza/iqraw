@@ -1,0 +1,156 @@
+CRITICAL - 2022-06-14 09:51:49 --> Call to undefined function statusView()
+in APPPATH\Views\SignUp\index.php on line 27.
+ 1 SYSTEMPATH\View\View.php(213): include()
+ 2 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('SignUp/index', [], true)
+ 4 APPPATH\Controllers\SignUp.php(25): view('SignUp/index')
+ 5 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\SignUp->index()
+ 6 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SignUp))
+ 7 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-14 09:52:28 --> Call to undefined function statusView()
+in APPPATH\Views\SignUp\index.php on line 27.
+ 1 SYSTEMPATH\View\View.php(213): include()
+ 2 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('SignUp/index', [], true)
+ 4 APPPATH\Controllers\SignUp.php(25): view('SignUp/index')
+ 5 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\SignUp->index()
+ 6 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SignUp))
+ 7 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-14 11:13:37 --> Trying to get property 'name' of non-object
+in APPPATH\Controllers\SignUp.php on line 95.
+ 1 APPPATH\Controllers\SignUp.php(95): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'name\' of non-object', 'APPPATH\\Controllers\\SignUp.php', 95, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\SignUp->login_action()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SignUp))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-14 11:48:26 --> Invalid file: Student/header.php
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Student/header.php')
+ 2 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('Student/header', [], true)
+ 3 APPPATH\Controllers\Student\Dashboard.php(29): view('Student/header')
+ 4 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Dashboard->index()
+ 5 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Dashboard))
+ 6 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-14 12:27:48 --> The namespace delimiter is a backslash (\), not a slash (/). Route handler: \App\Controllers\Admin/Login::index
+in SYSTEMPATH\Router\Router.php on line 466.
+ 1 SYSTEMPATH\Router\Router.php(466): CodeIgniter\Router\Exceptions\RouterException::forInvalidControllerName('\\App\\Controllers\\Admin/Login::index')
+ 2 SYSTEMPATH\Router\Router.php(181): CodeIgniter\Router\Router->checkRoutes('Admin')
+ 3 SYSTEMPATH\CodeIgniter.php(773): CodeIgniter\Router\Router->handle('Admin')
+ 4 SYSTEMPATH\CodeIgniter.php(417): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 5 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-14 12:29:15 --> The namespace delimiter is a backslash (\), not a slash (/). Route handler: \App\Controllers\Admin/Login::index
+in SYSTEMPATH\Router\Router.php on line 466.
+ 1 SYSTEMPATH\Router\Router.php(466): CodeIgniter\Router\Exceptions\RouterException::forInvalidControllerName('\\App\\Controllers\\Admin/Login::index')
+ 2 SYSTEMPATH\Router\Router.php(181): CodeIgniter\Router\Router->checkRoutes('Admin')
+ 3 SYSTEMPATH\CodeIgniter.php(773): CodeIgniter\Router\Router->handle('Admin')
+ 4 SYSTEMPATH\CodeIgniter.php(417): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 5 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-14 12:30:38 --> The namespace delimiter is a backslash (\), not a slash (/). Route handler: \App\Controllers\Admin/Login::index
+in SYSTEMPATH\Router\Router.php on line 466.
+ 1 SYSTEMPATH\Router\Router.php(466): CodeIgniter\Router\Exceptions\RouterException::forInvalidControllerName('\\App\\Controllers\\Admin/Login::index')
+ 2 SYSTEMPATH\Router\Router.php(181): CodeIgniter\Router\Router->checkRoutes('Admin')
+ 3 SYSTEMPATH\CodeIgniter.php(773): CodeIgniter\Router\Router->handle('Admin')
+ 4 SYSTEMPATH\CodeIgniter.php(417): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 5 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-14 12:31:00 --> The namespace delimiter is a backslash (\), not a slash (/). Route handler: \App\Controllers\/Admin/Login::index
+in SYSTEMPATH\Router\Router.php on line 466.
+ 1 SYSTEMPATH\Router\Router.php(466): CodeIgniter\Router\Exceptions\RouterException::forInvalidControllerName('\\App\\Controllers\\/Admin/Login::index')
+ 2 SYSTEMPATH\Router\Router.php(181): CodeIgniter\Router\Router->checkRoutes('Admin')
+ 3 SYSTEMPATH\CodeIgniter.php(773): CodeIgniter\Router\Router->handle('Admin')
+ 4 SYSTEMPATH\CodeIgniter.php(417): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 5 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ERROR - 2022-06-14 13:05:35 --> Table 'iqraw.hospital' doesn't exist
+CRITICAL - 2022-06-14 13:05:35 --> Table 'iqraw.hospital' doesn't exist
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 292.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(292): mysqli->query('SELECT COUNT(*) AS `numrows`
+FROM `hospital`
+WHERE `h_id` IS NULL', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(678): CodeIgniter\Database\MySQLi\Connection->execute('SELECT COUNT(*) AS `numrows`
+FROM `hospital`
+WHERE `h_id` IS NULL')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT COUNT(*) AS `numrows`
+FROM `hospital`
+WHERE `h_id` IS NULL')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1669): CodeIgniter\Database\BaseConnection->query('SELECT COUNT(*) AS `numrows`
+FROM `hospital`
+WHERE `h_id` IS NULL', [], false)
+ 5 APPPATH\Helpers\Helpers_helper.php(99): CodeIgniter\Database\BaseBuilder->countAllResults()
+ 6 APPPATH\Views\Admin\header.php(66): get_data_by_id('hospital_cat_id', 'hospital', 'h_id', null)
+ 7 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\Admin\\header.php')
+ 8 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 9 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('Admin/header', [], true)
+10 APPPATH\Controllers\Admin\Dashboard.php(22): view('Admin/header')
+11 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Dashboard->index()
+12 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Dashboard))
+13 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+14 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-14 13:06:37 --> CodeIgniter\View\View::main(): Failed opening required 'C:\xampp\htdocs\IQraw\app\../public_html/backhand/assets/js/ajaxJs.php' (include_path='C:\xampp\php\PEAR')
+in APPPATH\Views\Admin\footer.php on line 37.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2022-06-14 16:27:39 --> Undefined variable: hospital
+in APPPATH\Views\Admin\student.php on line 79.
+ 1 APPPATH\Views\Admin\student.php(79): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: hospital', 'APPPATH\\Views\\Admin\\student.php', 79, [...])
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\Admin\\student.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('Admin/student', [], true)
+ 5 APPPATH\Controllers\Admin\Student.php(28): view('Admin/student', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Student->index()
+ 7 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Student))
+ 8 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-14 16:28:18 --> Undefined variable: hospital
+in APPPATH\Views\Admin\student.php on line 79.
+ 1 APPPATH\Views\Admin\student.php(79): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: hospital', 'APPPATH\\Views\\Admin\\student.php', 79, [...])
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\Admin\\student.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('Admin/student', [], true)
+ 5 APPPATH\Controllers\Admin\Student.php(28): view('Admin/student', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Student->index()
+ 7 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Student))
+ 8 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-14 16:28:45 --> Undefined variable: hospital
+in APPPATH\Views\Admin\student.php on line 124.
+ 1 APPPATH\Views\Admin\student.php(124): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: hospital', 'APPPATH\\Views\\Admin\\student.php', 124, [...])
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\Admin\\student.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('Admin/student', [], true)
+ 5 APPPATH\Controllers\Admin\Student.php(28): view('Admin/student', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Student->index()
+ 7 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Student))
+ 8 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-14 19:24:40 --> Undefined property: App\Controllers\Admin\Student::$licenseModel
+in APPPATH\Controllers\Admin\Student.php on line 72.
+ 1 APPPATH\Controllers\Admin\Student.php(72): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: App\\Controllers\\Admin\\Student::$licenseModel', 'APPPATH\\Controllers\\Admin\\Student.php', 72, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Student->getOne()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Student))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-14 19:36:09 --> Invalid file: Admin/Student/student_update.php
+in SYSTEMPATH\Exceptions\FrameworkException.php on line 33.
+ 1 SYSTEMPATH\View\View.php(201): CodeIgniter\Exceptions\FrameworkException::forInvalidFile('Admin/Student/student_update.php')
+ 2 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('Admin/Student/student_update', [], true)
+ 3 APPPATH\Controllers\Admin\Student.php(225): view('Admin/Student/student_update', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Student->update()
+ 5 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Student))
+ 6 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-06-14 19:43:48 --> Undefined property: stdClass::$male
+in APPPATH\Views\Admin\Student\student_update.php on line 75.
+ 1 APPPATH\Views\Admin\Student\student_update.php(75): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: stdClass::$male', 'APPPATH\\Views\\Admin\\Student\\student_update.php', 75, [...])
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\Admin\\Student\\student_update.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('Admin/Student/student_update', [], true)
+ 5 APPPATH\Controllers\Admin\Student.php(226): view('Admin/Student/student_update', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Student->update('1')
+ 7 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Student))
+ 8 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
