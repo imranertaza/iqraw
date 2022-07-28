@@ -66,9 +66,9 @@ class Settings extends BaseController
             if ($perm['update'] ==1) {
                 $ops .= '	<button type="button" class="btn btn-sm btn-info" onclick="edit(' . $value->settings_id . ')"><i class="fa fa-edit"></i></button>';
             }
-            if ($perm['delete'] ==1) {
-                $ops .= '	<button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $value->settings_id . ')"><i class="fa fa-trash"></i></button>';
-            }
+//            if ($perm['delete'] ==1) {
+//                $ops .= '	<button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $value->settings_id . ')"><i class="fa fa-trash"></i></button>';
+//            }
             $ops .= '</div>';
 
             $data['data'][$key] = array(
@@ -148,11 +148,11 @@ class Settings extends BaseController
         $response = array();
 
         $fields['settings_id'] = $this->request->getPost('settings_id');
-        $fields['label'] = $this->request->getPost('label');
+        //$fields['label'] = $this->request->getPost('label');
         $fields['value'] = $this->request->getPost('value');
 
         $this->validation->setRules([
-            'label' => ['label' => 'Label', 'rules' => 'required'],
+            //'label' => ['label' => 'Label', 'rules' => 'required'],
             'value' => ['label' => 'Value', 'rules' => 'required'],
         ]);
 

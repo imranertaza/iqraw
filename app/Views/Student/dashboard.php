@@ -20,7 +20,7 @@
             <a href="ranking.html" class="btn d-block btn-st">Ranking</a>
         </div>
         <div class="col-6 h-p-r" >
-            <a href="vocabulary.html" class="btn d-block btn-st">Vocabulary</a>
+            <a href="<?php echo base_url()?>/Student/Vocabulary" class="btn d-block btn-st">Vocabulary</a>
         </div>
     </div>
 </section>

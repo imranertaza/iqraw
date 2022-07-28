@@ -110,7 +110,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="label">Label: </label>
-                                    <input type="text" class="form-control" name="label" id="label" required>
+                                    <input type="text" class="form-control" name="label" id="label" readonly required>
                                     <input type="hidden" class="form-control" name="settings_id" id="settings_id" required>
                                 </div>
                             </div>

@@ -174,3 +174,16 @@ function already_join_chapter_check($chapterId){
 
     return $result;
 }
+
+function already_join_voc_exam_check($voc_exam_id){
+    $tabledta = DB()->table('vocabulary_exam_joined');
+    $data = $tabledta->where('std_id',newSession()->std_id)->where('voc_exam_id',$voc_exam_id)->get()->getRow();
+
+    if (!empty($data)){
+        $result = 1;
+    }else{
+        $result = 0;
+    }
+
+    return $result;
+}

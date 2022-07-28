@@ -1,0 +1,81 @@
+CRITICAL - 2022-07-26 17:57:24 --> Invalid argument supplied for foreach()
+in APPPATH\Controllers\Admin\Vocabulary_exam.php on line 136.
+ 1 APPPATH\Controllers\Admin\Vocabulary_exam.php(136): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Invalid argument supplied for foreach()', 'APPPATH\\Controllers\\Admin\\Vocabulary_exam.php', 136, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Vocabulary_exam->add()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Vocabulary_exam))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-26 17:57:46 --> Invalid argument supplied for foreach()
+in APPPATH\Controllers\Admin\Vocabulary_exam.php on line 136.
+ 1 APPPATH\Controllers\Admin\Vocabulary_exam.php(136): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Invalid argument supplied for foreach()', 'APPPATH\\Controllers\\Admin\\Vocabulary_exam.php', 136, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Vocabulary_exam->add()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Vocabulary_exam))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-26 17:58:01 --> Invalid argument supplied for foreach()
+in APPPATH\Controllers\Admin\Vocabulary_exam.php on line 136.
+ 1 APPPATH\Controllers\Admin\Vocabulary_exam.php(136): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Invalid argument supplied for foreach()', 'APPPATH\\Controllers\\Admin\\Vocabulary_exam.php', 136, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Vocabulary_exam->add()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Vocabulary_exam))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-26 19:30:16 --> Cannot use object of type stdClass as array
+in APPPATH\Controllers\Admin\Vocabulary_exam.php on line 105.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Vocabulary_exam->getOne()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Vocabulary_exam))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-26 19:31:03 --> Cannot use object of type stdClass as array
+in APPPATH\Controllers\Admin\Vocabulary_exam.php on line 105.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Vocabulary_exam->getOne()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Vocabulary_exam))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-26 19:31:22 --> Cannot use object of type stdClass as array
+in APPPATH\Controllers\Admin\Vocabulary_exam.php on line 109.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Vocabulary_exam->getOne()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Vocabulary_exam))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-26 19:32:16 --> Cannot use object of type stdClass as array
+in APPPATH\Controllers\Admin\Vocabulary_exam.php on line 105.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Vocabulary_exam->getOne()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Vocabulary_exam))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-26 19:33:35 --> Cannot use object of type stdClass as array
+in APPPATH\Controllers\Admin\Vocabulary_exam.php on line 108.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Vocabulary_exam->getOne()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Vocabulary_exam))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-26 19:34:25 --> Cannot use object of type stdClass as array
+in APPPATH\Controllers\Admin\Vocabulary_exam.php on line 108.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Vocabulary_exam->getOne()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Vocabulary_exam))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-26 19:34:52 --> Cannot use object of type stdClass as array
+in APPPATH\Controllers\Admin\Vocabulary_exam.php on line 108.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Vocabulary_exam->getOne()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Vocabulary_exam))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-26 19:35:37 --> Cannot use object of type stdClass as array
+in APPPATH\Controllers\Admin\Vocabulary_exam.php on line 108.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Vocabulary_exam->getOne()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Vocabulary_exam))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-26 19:36:01 --> Cannot use object of type stdClass as array
+in APPPATH\Controllers\Admin\Vocabulary_exam.php on line 108.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Vocabulary_exam->getOne()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Vocabulary_exam))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-26 19:36:27 --> Cannot use object of type stdClass as array
+in APPPATH\Controllers\Admin\Vocabulary_exam.php on line 108.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Vocabulary_exam->getOne()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Vocabulary_exam))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()

@@ -33,7 +33,7 @@
         if (agree)
             location.replace(url);
         else
-            return false;
+        return false;
     }
 
     function quizanscatculate(url){
@@ -51,8 +51,6 @@
                     location.replace(url);
                 }
             });
-
-            // location.replace(url);
         }
     }
 
@@ -66,6 +64,24 @@
 
             $.ajax({
                 url: '<?php echo base_url('Student/Skill_development/ans_quiz')?>',
+                type: "Post",
+                data: {quizId: quizId, ans: ans},
+                success: function (data) {
+                    location.replace(url);
+                }
+            });
+        }
+    }
+
+    function vocanscatculate(url){
+        var quizId = $("#voc_quiz_id").val();
+        var ans = $('input[name="btnradio"]:checked').val();
+
+        if (ans == undefined) {
+            $("#mess").html('<p style="color: red;">Please select your answer</p>');
+        }else {
+            $.ajax({
+                url: '<?php echo base_url('Student/Vocabulary/ans_quiz')?>',
                 type: "Post",
                 data: {quizId: quizId, ans: ans},
                 success: function (data) {

@@ -98,6 +98,27 @@
             </li>
 
             <li class="nav-item ">
+                <a href="<?php echo base_url('Admin/Vocabulary')?>" class="nav-link">
+                    <i class="nav-icon fas fa-book"></i>
+                    <p>Vocabulary</p>
+                </a>
+            </li>
+
+            <li class="nav-item ">
+                <a href="<?php echo base_url('Admin/Vocabulary_quiz')?>" class="nav-link">
+                    <i class="nav-icon fas fa-book"></i>
+                    <p>Vocabulary Quiz</p>
+                </a>
+            </li>
+
+            <li class="nav-item ">
+                <a href="<?php echo base_url('Admin/Vocabulary_exam')?>" class="nav-link">
+                    <i class="nav-icon fas fa-book"></i>
+                    <p>Vocabulary Exam</p>
+                </a>
+            </li>
+
+            <li class="nav-item ">
                 <a href="<?php echo base_url('Admin/User')?>" class="nav-link">
                     <i class="nav-icon fas fa-user"></i>
                     <p>User</p>

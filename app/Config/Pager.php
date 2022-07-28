@@ -27,6 +27,7 @@ class Pager extends BaseConfig
         'custom_full'   => 'CodeIgniter\Pager\Views\custom_full',
         'custom_quiz'   => 'CodeIgniter\Pager\Views\custom_quiz',
         'custom_mcq'   => 'CodeIgniter\Pager\Views\custom_mcq',
+        'custom_voc'   => 'CodeIgniter\Pager\Views\custom_voc',
     ];
 
     /**
