@@ -6,6 +6,7 @@ use App\Models\Mcq_exam_joinedModel;
 use App\Models\Skill_quizModel;
 use App\Models\Skill_subjectModel;
 use App\Models\Skill_videoModel;
+use App\Models\StudentModel;
 
 
 class Skill_development extends BaseController
@@ -16,6 +17,7 @@ class Skill_development extends BaseController
     protected $skill_videoModel;
     protected $skill_quizModel;
     protected $mcq_exam_joinedModel;
+    protected $studentModel;
 
     public function __construct()
     {
@@ -23,6 +25,7 @@ class Skill_development extends BaseController
         $this->skill_videoModel = new Skill_videoModel();
         $this->skill_quizModel = new Skill_quizModel();
         $this->mcq_exam_joinedModel = new Mcq_exam_joinedModel();
+        $this->studentModel = new StudentModel();
         $this->validation =  \Config\Services::validation();
         $this->session = \Config\Services::session();
     }
@@ -143,8 +146,16 @@ class Skill_development extends BaseController
             $data['earn_points'] = $oldPoints + $points_video_mcq;
             $data['earn_coins'] = $oldCoins + $points_video_mcq;
 
-
             $this->mcq_exam_joinedModel->update($data['mcq_joined_id'],$data);
+
+
+
+            $myOldPoint = get_data_by_id('point','student','std_id',$this->session->std_id);
+            $myOldCoin = get_data_by_id('coin','student','std_id',$this->session->std_id);
+            $stData['std_id'] = $this->session->std_id;
+            $stData['point'] = $myOldPoint + $points_video_mcq;
+            $stData['coin'] = $myOldCoin + $points_video_mcq;
+            $this->studentModel->update($stData['std_id'],$stData);
 
         }else{
             $oldInCorAns = get_data_by_id('incorrect_answers','mcq_exam_joined','mcq_joined_id',$this->session->mcq_joined_id);

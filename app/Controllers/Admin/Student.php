@@ -60,6 +60,9 @@ class Student extends BaseController
         foreach ($result as $key => $value) {
 
             $ops = '<div class="btn-group">';
+            if ($perm['read'] == 1) {
+                $ops .= '	<a href="' . base_url() . '/Admin/Student/view/' . $value->std_id . '" type="button" class="btn btn-sm btn-primary" ><i class="fa fa-eye"></i></a>';
+            }
             if ($perm['update'] == 1) {
                 $ops .= '	<a href="' . base_url() . '/Admin/Student/update/' . $value->std_id . '" type="button" class="btn btn-sm btn-info" ><i class="fa fa-edit"></i></a>';
             }
@@ -335,7 +338,28 @@ class Student extends BaseController
         return $this->response->setJSON($response);
     }
 
+    public function view($id){
+        $isLoggedIAdmin = $this->session->isLoggedIAdmin;
+        if (!isset($isLoggedIAdmin) || $isLoggedIAdmin != TRUE) {
+            return redirect()->to(site_url("/admin"));
+        }else {
+            $data['student'] = $this->student->where('std_id' ,$id)->first();
+            $data['controller'] = 'Admin/Student';
 
+
+            $role = $this->session->admin_role;
+            //[mod_access] [create] [read] [update] [delete]
+            $perm = $this->permission->module_permission_list($role,$this->module_name);
+            echo view('Admin/header');
+            echo view('Admin/sidebar');
+            if ($perm['read'] ==1) {
+                echo view('Admin/Student/student_red',$data);
+            }else{
+                echo view('no_permission');
+            }
+            echo view('Admin/footer');
+        }
+    }
 
 
 

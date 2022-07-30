@@ -14,7 +14,7 @@ class Quiz extends BaseController
 {
     protected $validation;
     protected $session;
-    protected $student;
+    protected $studentModel;
     protected $subjectModel;
     protected $quiz_examModel;
     protected $quiz_questionModel;
@@ -22,7 +22,7 @@ class Quiz extends BaseController
 
     public function __construct()
     {
-        $this->student = new StudentModel();
+        $this->studentModel = new StudentModel();
         $this->subjectModel = new SubjectModel();
         $this->quiz_examModel = new QuizModel();
         $this->quiz_exam_joinedModel = new Quiz_exam_joinedModel();
@@ -135,6 +135,14 @@ class Quiz extends BaseController
             $data['earn_points'] = $oldPoints + $points_semister_mcq;
             $data['earn_coins'] = $oldCoins + $points_semister_mcq;
             $this->quiz_exam_joinedModel->update($data['qe_joined_id'],$data);
+
+
+            $myOldPoint = get_data_by_id('point','student','std_id',$this->session->std_id);
+            $myOldCoin = get_data_by_id('coin','student','std_id',$this->session->std_id);
+            $stData['std_id'] = $this->session->std_id;
+            $stData['point'] = $myOldPoint + $points_semister_mcq;
+            $stData['coin'] = $myOldCoin + $points_semister_mcq;
+            $this->studentModel->update($stData['std_id'],$stData);
         }else{
             $oldInCorAns = get_data_by_id('incorrect_answers','quiz_exam_joined','qe_joined_id',$this->session->qe_joined_id);
             $data2['qe_joined_id'] = $this->session->qe_joined_id;

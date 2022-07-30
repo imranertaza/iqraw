@@ -7,6 +7,7 @@ use App\Models\Chapter_quizModel;
 use App\Models\Chapter_videoModel;
 use App\Models\ChapterModel;
 use App\Models\School_classModel;
+use App\Models\StudentModel;
 use App\Models\SubjectModel;
 
 
@@ -20,6 +21,7 @@ class VideoQuiz extends BaseController
     protected $chapterVideoModel;
     protected $chapterQuizModel;
     protected $chapter_exam_joinedModel;
+    protected $studentModel;
 
     public function __construct()
     {
@@ -29,6 +31,7 @@ class VideoQuiz extends BaseController
         $this->chapterVideoModel = new Chapter_videoModel();
         $this->chapter_exam_joinedModel = new Chapter_exam_joinedModel();
         $this->chapterQuizModel = new Chapter_quizModel();
+        $this->studentModel = new StudentModel();
         $this->validation =  \Config\Services::validation();
         $this->session = \Config\Services::session();
 
@@ -123,6 +126,14 @@ class VideoQuiz extends BaseController
 
 
             $this->chapter_exam_joinedModel->update($data['chapter_joined_id'],$data);
+
+
+            $myOldPoint = get_data_by_id('point','student','std_id',$this->session->std_id);
+            $myOldCoin = get_data_by_id('coin','student','std_id',$this->session->std_id);
+            $stData['std_id'] = $this->session->std_id;
+            $stData['point'] = $myOldPoint + $points_quiz;
+            $stData['coin'] = $myOldCoin + $points_quiz;
+            $this->studentModel->update($stData['std_id'],$stData);
 
         }else{
             $oldInCorAns = get_data_by_id('incorrect_answers','chapter_exam_joined','chapter_joined_id',$this->session->chapter_joined_id);

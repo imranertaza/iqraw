@@ -1,0 +1,208 @@
+CRITICAL - 2022-07-28 17:56:07 --> Trying to get property 'name' of non-object
+in APPPATH\Views\Student\ranking.php on line 9.
+ 1 APPPATH\Views\Student\ranking.php(9): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'name\' of non-object', 'APPPATH\\Views\\Student\\ranking.php', 9, [...])
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\Student\\ranking.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('Student/ranking', [], true)
+ 5 APPPATH\Controllers\Student\Ranking.php(45): view('Student/ranking', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Ranking->index()
+ 7 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Ranking))
+ 8 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-28 17:56:19 --> Undefined property: stdClass::$name
+in APPPATH\Views\Student\ranking.php on line 9.
+ 1 APPPATH\Views\Student\ranking.php(9): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: stdClass::$name', 'APPPATH\\Views\\Student\\ranking.php', 9, [...])
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\Student\\ranking.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('Student/ranking', [], true)
+ 5 APPPATH\Controllers\Student\Ranking.php(45): view('Student/ranking', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Ranking->index()
+ 7 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Ranking))
+ 8 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-28 17:56:21 --> Undefined property: stdClass::$name
+in APPPATH\Views\Student\ranking.php on line 9.
+ 1 APPPATH\Views\Student\ranking.php(9): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: stdClass::$name', 'APPPATH\\Views\\Student\\ranking.php', 9, [...])
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\Student\\ranking.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('Student/ranking', [], true)
+ 5 APPPATH\Controllers\Student\Ranking.php(45): view('Student/ranking', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Ranking->index()
+ 7 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Ranking))
+ 8 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-28 17:58:09 --> Undefined property: stdClass::$name
+in APPPATH\Views\Student\ranking.php on line 9.
+ 1 APPPATH\Views\Student\ranking.php(9): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: stdClass::$name', 'APPPATH\\Views\\Student\\ranking.php', 9, [...])
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\Student\\ranking.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('Student/ranking', [], true)
+ 5 APPPATH\Controllers\Student\Ranking.php(49): view('Student/ranking', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Ranking->index()
+ 7 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Ranking))
+ 8 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-28 18:01:05 --> Undefined property: stdClass::$name
+in APPPATH\Controllers\Student\Ranking.php on line 46.
+ 1 APPPATH\Controllers\Student\Ranking.php(46): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: stdClass::$name', 'APPPATH\\Controllers\\Student\\Ranking.php', 46, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Ranking->index()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Ranking))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ERROR - 2022-07-28 18:02:58 --> You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '*
+FROM `student`' at line 1
+CRITICAL - 2022-07-28 18:02:58 --> You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '*
+FROM `student`' at line 1
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 292.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(292): mysqli->query('SELECT MAX(`point`) AS `point`, *
+FROM `student`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(678): CodeIgniter\Database\MySQLi\Connection->execute('SELECT MAX(`point`) AS `point`, *
+FROM `student`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT MAX(`point`) AS `point`, *
+FROM `student`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1585): CodeIgniter\Database\BaseConnection->query('SELECT MAX(`point`) AS `point`, *
+FROM `student`', [], false)
+ 5 APPPATH\Controllers\Student\Ranking.php(45): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Ranking->index()
+ 7 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Ranking))
+ 8 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-28 18:05:12 --> You must provide a valid column name not separated by comma.
+in SYSTEMPATH\Database\BaseBuilder.php on line 491.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(491): CodeIgniter\Database\Exceptions\DataException::forInvalidArgument('column name not separated by comma')
+ 2 SYSTEMPATH\Database\BaseBuilder.php(418): CodeIgniter\Database\BaseBuilder->maxMinAvgSum('point , *', 'ROOTPATH\\public')
+ 3 APPPATH\Controllers\Student\Ranking.php(43): CodeIgniter\Database\BaseBuilder->selectMax('point , *')
+ 4 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Ranking->index()
+ 5 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Ranking))
+ 6 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-28 18:05:22 --> You must provide a valid column name not separated by comma.
+in SYSTEMPATH\Database\BaseBuilder.php on line 491.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(491): CodeIgniter\Database\Exceptions\DataException::forInvalidArgument('column name not separated by comma')
+ 2 SYSTEMPATH\Database\BaseBuilder.php(418): CodeIgniter\Database\BaseBuilder->maxMinAvgSum('point , *', 'ROOTPATH\\public')
+ 3 APPPATH\Controllers\Student\Ranking.php(43): CodeIgniter\Database\BaseBuilder->selectMax('point , *')
+ 4 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Ranking->index()
+ 5 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Ranking))
+ 6 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-28 18:05:24 --> You must provide a valid column name not separated by comma.
+in SYSTEMPATH\Database\BaseBuilder.php on line 491.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(491): CodeIgniter\Database\Exceptions\DataException::forInvalidArgument('column name not separated by comma')
+ 2 SYSTEMPATH\Database\BaseBuilder.php(418): CodeIgniter\Database\BaseBuilder->maxMinAvgSum('point , *', 'ROOTPATH\\public')
+ 3 APPPATH\Controllers\Student\Ranking.php(43): CodeIgniter\Database\BaseBuilder->selectMax('point , *')
+ 4 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Ranking->index()
+ 5 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Ranking))
+ 6 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ERROR - 2022-07-28 18:05:35 --> You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '*
+FROM `student`' at line 1
+CRITICAL - 2022-07-28 18:05:35 --> You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '*
+FROM `student`' at line 1
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 292.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(292): mysqli->query('SELECT MAX(`point`) AS *
+FROM `student`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(678): CodeIgniter\Database\MySQLi\Connection->execute('SELECT MAX(`point`) AS *
+FROM `student`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT MAX(`point`) AS *
+FROM `student`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1585): CodeIgniter\Database\BaseConnection->query('SELECT MAX(`point`) AS *
+FROM `student`', [], false)
+ 5 APPPATH\Controllers\Student\Ranking.php(44): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Ranking->index()
+ 7 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Ranking))
+ 8 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ERROR - 2022-07-28 18:05:45 --> You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '*
+FROM `student`' at line 1
+CRITICAL - 2022-07-28 18:05:45 --> You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '*
+FROM `student`' at line 1
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 292.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(292): mysqli->query('SELECT MAX(`point`) AS *
+FROM `student`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(678): CodeIgniter\Database\MySQLi\Connection->execute('SELECT MAX(`point`) AS *
+FROM `student`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT MAX(`point`) AS *
+FROM `student`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1585): CodeIgniter\Database\BaseConnection->query('SELECT MAX(`point`) AS *
+FROM `student`', [], false)
+ 5 APPPATH\Controllers\Student\Ranking.php(44): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Ranking->index()
+ 7 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Ranking))
+ 8 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ERROR - 2022-07-28 18:06:04 --> You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '*
+FROM `student`' at line 1
+CRITICAL - 2022-07-28 18:06:04 --> You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '*
+FROM `student`' at line 1
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 292.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(292): mysqli->query('SELECT MAX(`point`) AS *
+FROM `student`', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(678): CodeIgniter\Database\MySQLi\Connection->execute('SELECT MAX(`point`) AS *
+FROM `student`')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT MAX(`point`) AS *
+FROM `student`')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1585): CodeIgniter\Database\BaseConnection->query('SELECT MAX(`point`) AS *
+FROM `student`', [], false)
+ 5 APPPATH\Controllers\Student\Ranking.php(44): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Ranking->index()
+ 7 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Ranking))
+ 8 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-28 18:06:12 --> Undefined property: stdClass::$name
+in APPPATH\Controllers\Student\Ranking.php on line 46.
+ 1 APPPATH\Controllers\Student\Ranking.php(46): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: stdClass::$name', 'APPPATH\\Controllers\\Student\\Ranking.php', 46, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Ranking->index()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Ranking))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-28 18:07:38 --> Object of class stdClass could not be converted to string
+in SYSTEMPATH\Database\Query.php on line 335.
+ 1 SYSTEMPATH\Database\Query.php(335): strtr('SELECT *
+FROM `student`
+WHERE `point` = :point:
+ LIMIT 1', [...])
+ 2 SYSTEMPATH\Database\Query.php(310): CodeIgniter\Database\Query->matchNamedBinds('SELECT *
+FROM `student`
+WHERE `point` = :point:
+ LIMIT 1', [...])
+ 3 SYSTEMPATH\Database\Query.php(159): CodeIgniter\Database\Query->compileBinds()
+ 4 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\Query->getQuery()
+ 5 SYSTEMPATH\Database\BaseBuilder.php(1585): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `student`
+WHERE `point` = :point:
+ LIMIT 1', [...], false)
+ 6 SYSTEMPATH\Model.php(249): CodeIgniter\Database\BaseBuilder->get()
+ 7 SYSTEMPATH\BaseModel.php(622): CodeIgniter\Model->doFirst()
+ 8 APPPATH\Controllers\Student\Ranking.php(45): CodeIgniter\BaseModel->first()
+ 9 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Ranking->index()
+10 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Ranking))
+11 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ERROR - 2022-07-28 19:55:46 --> Error connecting to the database: No connection could be made because the target machine actively refused it.
+
+CRITICAL - 2022-07-28 19:55:46 --> Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it.
+
+in SYSTEMPATH\Database\BaseConnection.php on line 415.
+ 1 SYSTEMPATH\Database\BaseConnection.php(585): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1585): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `admin`
+WHERE `email` = :email:', [...], false)
+ 3 APPPATH\Controllers\Admin\Login.php(90): CodeIgniter\Database\BaseBuilder->get()
+ 4 APPPATH\Controllers\Admin\Login.php(45): App\Controllers\Admin\Login->loginMe('imranertaza12@gmail.com', '12345678')
+ 5 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Login->action()
+ 6 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Login))
+ 7 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-07-28 19:55:46 --> Uncaught ErrorException: print_r(): Property access is not allowed yet in C:\xampp\htdocs\IQraw\app\Views\errors\html\error_exception.php:96
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'print_r(): Prop...', 'C:\\xampp\\htdocs...', 96, Array)
+#1 C:\xampp\htdocs\IQraw\app\Views\errors\html\error_exception.php(96): print_r(Object(App\Controllers\Admin\Login), true)
+#2 C:\xampp\htdocs\IQraw\system\Debug\Exceptions.php(239): include('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\IQraw\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->CodeIgniter\Debug\{closure}()
+#4 C:\xampp\htdocs\IQraw\system\Debug\Exceptions.php(126): CodeIgniter\Debug\Exceptions->render(Object(CodeIgniter\Database\Exceptions\DatabaseException), 500)
+#5 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(CodeIgniter\Database\Exceptions\DatabaseException))
+#6 {main}
+  thrown
+in APPPATH\Views\errors\html\error_exception.php on line 96.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()

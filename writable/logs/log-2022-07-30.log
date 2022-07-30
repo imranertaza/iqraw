@@ -1,0 +1,7 @@
+CRITICAL - 2022-07-30 09:46:34 --> Undefined variable: std_id
+in APPPATH\Controllers\Admin\Student.php on line 346.
+ 1 APPPATH\Controllers\Admin\Student.php(346): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: std_id', 'APPPATH\\Controllers\\Admin\\Student.php', 346, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Student->view('1')
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Student))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()

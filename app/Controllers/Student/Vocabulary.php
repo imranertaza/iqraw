@@ -18,7 +18,7 @@ class Vocabulary extends BaseController
 {
     protected $validation;
     protected $session;
-    protected $student;
+    protected $studentModel;
     protected $vocabularyModel;
     protected $vocabulary_examModel;
     protected $vocabulary_exam_r_quizModel;
@@ -26,7 +26,7 @@ class Vocabulary extends BaseController
 
     public function __construct()
     {
-        $this->student = new StudentModel();
+        $this->studentModel = new StudentModel();
         $this->vocabularyModel = new VocabularyModel();
         $this->vocabulary_examModel = new Vocabulary_examModel();
         $this->vocabulary_exam_r_quizModel = new Vocabulary_exam_r_quizModel();
@@ -121,6 +121,15 @@ class Vocabulary extends BaseController
             $data['earn_points'] = $oldPoints + $points_vocabulary_mcq;
             $data['earn_coins'] = $oldCoins + $points_vocabulary_mcq;
             $this->vocabulary_exam_joinedModel->update($data['voc_mcq_joined_id'],$data);
+
+
+            $myOldPoint = get_data_by_id('point','student','std_id',$this->session->std_id);
+            $myOldCoin = get_data_by_id('coin','student','std_id',$this->session->std_id);
+            $stData['std_id'] = $this->session->std_id;
+            $stData['point'] = $myOldPoint + $points_vocabulary_mcq;
+            $stData['coin'] = $myOldCoin + $points_vocabulary_mcq;
+            $this->studentModel->update($stData['std_id'],$stData);
+
         }else{
             $oldInCorAns = get_data_by_id('incorrect_answers','vocabulary_exam_joined','voc_mcq_joined_id',$this->session->voc_mcq_joined_id);
             $data2['voc_mcq_joined_id'] = $this->session->voc_mcq_joined_id;
