@@ -1,0 +1,121 @@
+ERROR - 2022-08-02 11:48:44 --> Error connecting to the database: No connection could be made because the target machine actively refused it.
+
+CRITICAL - 2022-08-02 11:48:44 --> Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it.
+
+in SYSTEMPATH\Database\BaseConnection.php on line 415.
+ 1 SYSTEMPATH\Database\BaseConnection.php(585): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1585): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `student`
+WHERE `phone` = :phone:', [...], false)
+ 3 APPPATH\Controllers\SignUp.php(135): CodeIgniter\Database\BaseBuilder->get()
+ 4 APPPATH\Controllers\SignUp.php(115): App\Controllers\SignUp->checkUser('01923121212', '7c222fb2927d828af22f592134e8932480637c0d')
+ 5 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\SignUp->login_action()
+ 6 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SignUp))
+ 7 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-02 11:48:44 --> Uncaught ErrorException: print_r(): Property access is not allowed yet in C:\xampp\htdocs\IQraw\app\Views\errors\html\error_exception.php:96
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'print_r(): Prop...', 'C:\\xampp\\htdocs...', 96, Array)
+#1 C:\xampp\htdocs\IQraw\app\Views\errors\html\error_exception.php(96): print_r(Object(App\Controllers\SignUp), true)
+#2 C:\xampp\htdocs\IQraw\system\Debug\Exceptions.php(239): include('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\IQraw\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->CodeIgniter\Debug\{closure}()
+#4 C:\xampp\htdocs\IQraw\system\Debug\Exceptions.php(126): CodeIgniter\Debug\Exceptions->render(Object(CodeIgniter\Database\Exceptions\DatabaseException), 500)
+#5 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(CodeIgniter\Database\Exceptions\DatabaseException))
+#6 {main}
+  thrown
+in APPPATH\Views\errors\html\error_exception.php on line 96.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2022-08-02 11:49:58 --> Error connecting to the database: MySQL server has gone away
+CRITICAL - 2022-08-02 11:49:58 --> Unable to connect to the database.
+Main connection [MySQLi]: MySQL server has gone away
+in SYSTEMPATH\Database\BaseConnection.php on line 415.
+ 1 SYSTEMPATH\Database\BaseConnection.php(585): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1585): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `student`
+WHERE `phone` = :phone:', [...], false)
+ 3 APPPATH\Controllers\SignUp.php(135): CodeIgniter\Database\BaseBuilder->get()
+ 4 APPPATH\Controllers\SignUp.php(115): App\Controllers\SignUp->checkUser('01923121212', '7c222fb2927d828af22f592134e8932480637c0d')
+ 5 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\SignUp->login_action()
+ 6 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SignUp))
+ 7 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-02 11:49:58 --> Uncaught ErrorException: print_r(): Property access is not allowed yet in C:\xampp\htdocs\IQraw\app\Views\errors\html\error_exception.php:96
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'print_r(): Prop...', 'C:\\xampp\\htdocs...', 96, Array)
+#1 C:\xampp\htdocs\IQraw\app\Views\errors\html\error_exception.php(96): print_r(Object(App\Controllers\SignUp), true)
+#2 C:\xampp\htdocs\IQraw\system\Debug\Exceptions.php(239): include('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\IQraw\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->CodeIgniter\Debug\{closure}()
+#4 C:\xampp\htdocs\IQraw\system\Debug\Exceptions.php(126): CodeIgniter\Debug\Exceptions->render(Object(CodeIgniter\Database\Exceptions\DatabaseException), 500)
+#5 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(CodeIgniter\Database\Exceptions\DatabaseException))
+#6 {main}
+  thrown
+in APPPATH\Views\errors\html\error_exception.php on line 96.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2022-08-02 11:50:23 --> Error connecting to the database: No connection could be made because the target machine actively refused it.
+
+CRITICAL - 2022-08-02 11:50:23 --> Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it.
+
+in SYSTEMPATH\Database\BaseConnection.php on line 415.
+ 1 SYSTEMPATH\Database\BaseConnection.php(585): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1585): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `student`
+WHERE `phone` = :phone:', [...], false)
+ 3 APPPATH\Controllers\SignUp.php(135): CodeIgniter\Database\BaseBuilder->get()
+ 4 APPPATH\Controllers\SignUp.php(115): App\Controllers\SignUp->checkUser('01923121212', '7c222fb2927d828af22f592134e8932480637c0d')
+ 5 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\SignUp->login_action()
+ 6 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SignUp))
+ 7 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-02 11:50:23 --> Uncaught ErrorException: print_r(): Property access is not allowed yet in C:\xampp\htdocs\IQraw\app\Views\errors\html\error_exception.php:96
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'print_r(): Prop...', 'C:\\xampp\\htdocs...', 96, Array)
+#1 C:\xampp\htdocs\IQraw\app\Views\errors\html\error_exception.php(96): print_r(Object(App\Controllers\SignUp), true)
+#2 C:\xampp\htdocs\IQraw\system\Debug\Exceptions.php(239): include('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\IQraw\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->CodeIgniter\Debug\{closure}()
+#4 C:\xampp\htdocs\IQraw\system\Debug\Exceptions.php(126): CodeIgniter\Debug\Exceptions->render(Object(CodeIgniter\Database\Exceptions\DatabaseException), 500)
+#5 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(CodeIgniter\Database\Exceptions\DatabaseException))
+#6 {main}
+  thrown
+in APPPATH\Views\errors\html\error_exception.php on line 96.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+ERROR - 2022-08-02 11:51:29 --> Error connecting to the database: No connection could be made because the target machine actively refused it.
+
+CRITICAL - 2022-08-02 11:51:29 --> Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it.
+
+in SYSTEMPATH\Database\BaseConnection.php on line 415.
+ 1 SYSTEMPATH\Database\BaseConnection.php(585): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1585): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `student`
+WHERE `phone` = :phone:', [...], false)
+ 3 APPPATH\Controllers\SignUp.php(135): CodeIgniter\Database\BaseBuilder->get()
+ 4 APPPATH\Controllers\SignUp.php(115): App\Controllers\SignUp->checkUser('01923121212', '7c222fb2927d828af22f592134e8932480637c0d')
+ 5 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\SignUp->login_action()
+ 6 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\SignUp))
+ 7 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-02 11:51:30 --> Uncaught ErrorException: print_r(): Property access is not allowed yet in C:\xampp\htdocs\IQraw\app\Views\errors\html\error_exception.php:96
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'print_r(): Prop...', 'C:\\xampp\\htdocs...', 96, Array)
+#1 C:\xampp\htdocs\IQraw\app\Views\errors\html\error_exception.php(96): print_r(Object(App\Controllers\SignUp), true)
+#2 C:\xampp\htdocs\IQraw\system\Debug\Exceptions.php(239): include('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\IQraw\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->CodeIgniter\Debug\{closure}()
+#4 C:\xampp\htdocs\IQraw\system\Debug\Exceptions.php(126): CodeIgniter\Debug\Exceptions->render(Object(CodeIgniter\Database\Exceptions\DatabaseException), 500)
+#5 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(CodeIgniter\Database\Exceptions\DatabaseException))
+#6 {main}
+  thrown
+in APPPATH\Views\errors\html\error_exception.php on line 96.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()
+CRITICAL - 2022-08-02 17:33:46 --> Undefined property: stdClass::$title
+in APPPATH\Views\Admin\Student\student_test.php on line 113.
+ 1 APPPATH\Views\Admin\Student\student_test.php(113): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: stdClass::$title', 'APPPATH\\Views\\Admin\\Student\\student_test.php', 113, [...])
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\Admin\\Student\\student_test.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('Admin/Student/student_test', [], true)
+ 5 APPPATH\Controllers\Admin\Student.php(396): view('Admin/Student/student_test', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Student->test('4')
+ 7 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Student))
+ 8 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()

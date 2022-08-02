@@ -3,7 +3,11 @@
 namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 use App\Libraries\Permission;
+use App\Models\Chapter_exam_joinedModel;
+use App\Models\Mcq_exam_joinedModel;
+use App\Models\Quiz_exam_joinedModel;
 use App\Models\StudentModel;
+use App\Models\Vocabulary_exam_joinedModel;
 
 
 class Student extends BaseController
@@ -11,12 +15,20 @@ class Student extends BaseController
     protected $validation;
     protected $session;
     protected $student;
+    protected $chapter_exam_joinedModel;
+    protected $mcq_exam_joinedModel;
+    protected $vocabulary_exam_joinedModel;
+    protected $quiz_exam_joinedModel;
     protected $crop;
     protected $permission;
     private $module_name = 'Student';
     public function __construct()
     {
         $this->student = new StudentModel();
+        $this->chapter_exam_joinedModel = new Chapter_exam_joinedModel();
+        $this->mcq_exam_joinedModel = new Mcq_exam_joinedModel();
+        $this->vocabulary_exam_joinedModel = new Vocabulary_exam_joinedModel();
+        $this->quiz_exam_joinedModel = new Quiz_exam_joinedModel();
         $this->permission = new Permission();
         $this->validation =  \Config\Services::validation();
         $this->session = \Config\Services::session();
@@ -354,6 +366,34 @@ class Student extends BaseController
             echo view('Admin/sidebar');
             if ($perm['read'] ==1) {
                 echo view('Admin/Student/student_red',$data);
+            }else{
+                echo view('no_permission');
+            }
+            echo view('Admin/footer');
+        }
+    }
+
+    public function test($id){
+        $isLoggedIAdmin = $this->session->isLoggedIAdmin;
+        if (!isset($isLoggedIAdmin) || $isLoggedIAdmin != TRUE) {
+            return redirect()->to(site_url("/admin"));
+        }else {
+            $data['student'] = $this->student->where('std_id' ,$id)->first();
+            $data['controller'] = 'Admin/Student';
+
+            $data['chapExam'] = $this->chapter_exam_joinedModel->where('std_id',$id)->findAll();
+            $data['mcqExam'] = $this->mcq_exam_joinedModel->where('std_id',$id)->findAll();
+            $data['vocExam'] = $this->vocabulary_exam_joinedModel->where('std_id',$id)->findAll();
+            $data['quizExam'] = $this->quiz_exam_joinedModel->where('std_id',$id)->findAll();
+
+
+            $role = $this->session->admin_role;
+            //[mod_access] [create] [read] [update] [delete]
+            $perm = $this->permission->module_permission_list($role,$this->module_name);
+            echo view('Admin/header');
+            echo view('Admin/sidebar');
+            if ($perm['read'] ==1) {
+                echo view('Admin/Student/student_test',$data);
             }else{
                 echo view('no_permission');
             }

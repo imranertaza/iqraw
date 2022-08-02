@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>ikraw</title>
+    <title>iqraw</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="<?php base_url();?>/assets/css/bootstrap.min.css" rel="stylesheet">
@@ -18,7 +18,8 @@
 <section class="header">
     <div class="header-bac">
         <div style="width: 30%;float: left; margin-top: 10px;">
-            <a href="<?php echo base_url()?>/Student/Profile"><img src="<?php base_url();?>/assets/upload/profile/<?php echo $student->std_id;?>/<?php echo $student->pic;?>" alt="banner" class="img-pro"></a>
+            <?php $proImg = (empty($student->pic))?'noimage.png':$student->std_id.'/'.$student->pic; ?>
+            <a href="<?php echo base_url()?>/Student/Profile"><img src="<?php base_url();?>/assets/upload/profile/<?php echo $proImg;?>"  alt="banner" class="img-pro"></a>
         </div>
         <div style="width: 40%;float: left;text-align: center; margin-top: 10px;color: #ffffff;line-height: 30px; ">
             <p class="c-h">My Coin</p>

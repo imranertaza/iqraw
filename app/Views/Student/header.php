@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>ikraw</title>
+    <title>iqraw</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="<?php base_url();?>/assets/css/bootstrap.min.css" rel="stylesheet">
