@@ -1,0 +1,613 @@
+CRITICAL - 2022-08-07 09:43:48 --> syntax error, unexpected 'view' (T_STRING)
+in APPPATH\Controllers\Student\Shopping.php on line 43.
+ 1 SYSTEMPATH\Router\Router.php(499): CodeIgniter\Router\AutoRouter->getRoute('Student/Shopping')
+ 2 SYSTEMPATH\Router\Router.php(205): CodeIgniter\Router\Router->autoRoute('Student/Shopping')
+ 3 SYSTEMPATH\CodeIgniter.php(773): CodeIgniter\Router\Router->handle('Student/Shopping')
+ 4 SYSTEMPATH\CodeIgniter.php(417): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 5 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 09:43:55 --> syntax error, unexpected 'view' (T_STRING)
+in APPPATH\Controllers\Student\Shopping.php on line 43.
+ 1 SYSTEMPATH\Router\Router.php(499): CodeIgniter\Router\AutoRouter->getRoute('Student/Shopping')
+ 2 SYSTEMPATH\Router\Router.php(205): CodeIgniter\Router\Router->autoRoute('Student/Shopping')
+ 3 SYSTEMPATH\CodeIgniter.php(773): CodeIgniter\Router\Router->handle('Student/Shopping')
+ 4 SYSTEMPATH\CodeIgniter.php(417): CodeIgniter\CodeIgniter->tryToRouteIt(Object(CodeIgniter\Router\RouteCollection))
+ 5 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 10:10:00 --> Undefined variable: pro
+in APPPATH\Views\Student\product_details.php on line 3.
+ 1 APPPATH\Views\Student\product_details.php(3): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: pro', 'APPPATH\\Views\\Student\\product_details.php', 3, [...])
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\Student\\product_details.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('Student/product_details', [], true)
+ 5 APPPATH\Controllers\Student\Shopping.php(65): view('Student/product_details', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->details('1')
+ 7 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 8 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 10:37:14 --> Call to a member function insert() on null
+in APPPATH\Controllers\Student\Shopping.php on line 77.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 10:37:26 --> Call to a member function insert() on null
+in APPPATH\Controllers\Student\Shopping.php on line 77.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 10:39:59 --> Call to a member function insert() on null
+in APPPATH\Controllers\Student\Shopping.php on line 77.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 10:40:02 --> Call to a member function insert() on null
+in APPPATH\Controllers\Student\Shopping.php on line 77.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 10:42:26 --> Call to a member function insert() on null
+in APPPATH\Controllers\Student\Shopping.php on line 83.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 10:42:29 --> Trying to get property 'prod_id' of non-object
+in APPPATH\Controllers\Student\Shopping.php on line 78.
+ 1 APPPATH\Controllers\Student\Shopping.php(78): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'prod_id\' of non-object', 'APPPATH\\Controllers\\Student\\Shopping.php', 78, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 10:43:44 --> Call to a member function insert() on null
+in APPPATH\Controllers\Student\Shopping.php on line 83.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 10:43:46 --> Trying to get property 'prod_id' of non-object
+in APPPATH\Controllers\Student\Shopping.php on line 78.
+ 1 APPPATH\Controllers\Student\Shopping.php(78): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'prod_id\' of non-object', 'APPPATH\\Controllers\\Student\\Shopping.php', 78, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 10:44:08 --> Call to a member function insert() on null
+in APPPATH\Controllers\Student\Shopping.php on line 83.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 10:44:10 --> Trying to get property 'price' of non-object
+in APPPATH\Controllers\Student\Shopping.php on line 80.
+ 1 APPPATH\Controllers\Student\Shopping.php(80): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'price\' of non-object', 'APPPATH\\Controllers\\Student\\Shopping.php', 80, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 10:44:59 --> Call to a member function insert() on null
+in APPPATH\Controllers\Student\Shopping.php on line 83.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 10:45:01 --> Trying to get property 'prod_id' of non-object
+in APPPATH\Controllers\Student\Shopping.php on line 78.
+ 1 APPPATH\Controllers\Student\Shopping.php(78): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'prod_id\' of non-object', 'APPPATH\\Controllers\\Student\\Shopping.php', 78, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 10:45:56 --> Call to a member function insert() on null
+in APPPATH\Controllers\Student\Shopping.php on line 83.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 10:46:01 --> Trying to get property 'prod_id' of non-object
+in APPPATH\Controllers\Student\Shopping.php on line 78.
+ 1 APPPATH\Controllers\Student\Shopping.php(78): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'prod_id\' of non-object', 'APPPATH\\Controllers\\Student\\Shopping.php', 78, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 10:51:14 --> Call to a member function insert() on null
+in APPPATH\Controllers\Student\Shopping.php on line 83.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 10:51:17 --> Trying to get property 'prod_id' of non-object
+in APPPATH\Controllers\Student\Shopping.php on line 78.
+ 1 APPPATH\Controllers\Student\Shopping.php(78): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'prod_id\' of non-object', 'APPPATH\\Controllers\\Student\\Shopping.php', 78, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 10:55:17 --> Call to a member function insert() on null
+in APPPATH\Controllers\Student\Shopping.php on line 84.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 10:55:18 --> Trying to get property 'prod_id' of non-object
+in APPPATH\Controllers\Student\Shopping.php on line 79.
+ 1 APPPATH\Controllers\Student\Shopping.php(79): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'prod_id\' of non-object', 'APPPATH\\Controllers\\Student\\Shopping.php', 79, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 10:55:37 --> Trying to get property 'prod_id' of non-object
+in APPPATH\Controllers\Student\Shopping.php on line 79.
+ 1 APPPATH\Controllers\Student\Shopping.php(79): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'prod_id\' of non-object', 'APPPATH\\Controllers\\Student\\Shopping.php', 79, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 10:55:45 --> Trying to get property 'prod_id' of non-object
+in APPPATH\Controllers\Student\Shopping.php on line 79.
+ 1 APPPATH\Controllers\Student\Shopping.php(79): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'prod_id\' of non-object', 'APPPATH\\Controllers\\Student\\Shopping.php', 79, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 10:55:57 --> Trying to get property 'prod_id' of non-object
+in APPPATH\Controllers\Student\Shopping.php on line 79.
+ 1 APPPATH\Controllers\Student\Shopping.php(79): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'prod_id\' of non-object', 'APPPATH\\Controllers\\Student\\Shopping.php', 79, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 10:56:01 --> Trying to get property 'prod_id' of non-object
+in APPPATH\Controllers\Student\Shopping.php on line 79.
+ 1 APPPATH\Controllers\Student\Shopping.php(79): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'prod_id\' of non-object', 'APPPATH\\Controllers\\Student\\Shopping.php', 79, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 10:56:19 --> Trying to get property 'prod_id' of non-object
+in APPPATH\Controllers\Student\Shopping.php on line 79.
+ 1 APPPATH\Controllers\Student\Shopping.php(79): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'prod_id\' of non-object', 'APPPATH\\Controllers\\Student\\Shopping.php', 79, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 10:58:40 --> Call to a member function insert() on null
+in APPPATH\Controllers\Student\Shopping.php on line 84.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 10:58:42 --> Trying to get property 'prod_id' of non-object
+in APPPATH\Controllers\Student\Shopping.php on line 79.
+ 1 APPPATH\Controllers\Student\Shopping.php(79): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'prod_id\' of non-object', 'APPPATH\\Controllers\\Student\\Shopping.php', 79, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 11:03:13 --> Call to a member function contents() on null
+in APPPATH\Controllers\Student\Shopping.php on line 86.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 11:05:06 --> Call to a member function contents() on null
+in APPPATH\Controllers\Student\Shopping.php on line 86.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 11:05:08 --> Trying to get property 'prod_id' of non-object
+in APPPATH\Controllers\Student\Shopping.php on line 79.
+ 1 APPPATH\Controllers\Student\Shopping.php(79): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'prod_id\' of non-object', 'APPPATH\\Controllers\\Student\\Shopping.php', 79, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 11:05:23 --> Call to a member function contents() on null
+in APPPATH\Controllers\Student\Shopping.php on line 86.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 11:05:27 --> Call to a member function contents() on null
+in APPPATH\Controllers\Student\Shopping.php on line 86.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 11:05:30 --> Call to a member function contents() on null
+in APPPATH\Controllers\Student\Shopping.php on line 86.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 11:05:57 --> Call to a member function insert() on null
+in APPPATH\Controllers\Student\Shopping.php on line 84.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 11:06:00 --> Trying to get property 'prod_id' of non-object
+in APPPATH\Controllers\Student\Shopping.php on line 79.
+ 1 APPPATH\Controllers\Student\Shopping.php(79): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'prod_id\' of non-object', 'APPPATH\\Controllers\\Student\\Shopping.php', 79, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 11:06:09 --> Trying to get property 'prod_id' of non-object
+in APPPATH\Controllers\Student\Shopping.php on line 79.
+ 1 APPPATH\Controllers\Student\Shopping.php(79): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'prod_id\' of non-object', 'APPPATH\\Controllers\\Student\\Shopping.php', 79, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 11:06:57 --> Call to a member function insert() on null
+in APPPATH\Controllers\Student\Shopping.php on line 84.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 11:06:59 --> Trying to get property 'prod_id' of non-object
+in APPPATH\Controllers\Student\Shopping.php on line 79.
+ 1 APPPATH\Controllers\Student\Shopping.php(79): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'prod_id\' of non-object', 'APPPATH\\Controllers\\Student\\Shopping.php', 79, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 11:08:17 --> Call to a member function insert() on null
+in APPPATH\Controllers\Student\Shopping.php on line 84.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 11:08:20 --> Trying to get property 'prod_id' of non-object
+in APPPATH\Controllers\Student\Shopping.php on line 79.
+ 1 APPPATH\Controllers\Student\Shopping.php(79): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'prod_id\' of non-object', 'APPPATH\\Controllers\\Student\\Shopping.php', 79, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 11:11:50 --> Call to a member function insert() on null
+in APPPATH\Controllers\Student\Shopping.php on line 78.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 11:11:52 --> Call to a member function insert() on null
+in APPPATH\Controllers\Student\Shopping.php on line 78.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 11:12:13 --> Call to a member function insert() on null
+in APPPATH\Controllers\Student\Shopping.php on line 78.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 11:12:15 --> Call to a member function insert() on null
+in APPPATH\Controllers\Student\Shopping.php on line 78.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 11:12:56 --> Call to a member function insert() on null
+in APPPATH\Controllers\Student\Shopping.php on line 78.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 11:12:58 --> Call to a member function insert() on null
+in APPPATH\Controllers\Student\Shopping.php on line 78.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 11:15:03 --> Call to a member function insert() on null
+in APPPATH\Controllers\Student\Shopping.php on line 78.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 11:15:05 --> Call to a member function insert() on null
+in APPPATH\Controllers\Student\Shopping.php on line 78.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 11:17:37 --> Call to a member function insert() on null
+in APPPATH\Controllers\Student\Shopping.php on line 78.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 11:17:57 --> Call to a member function insert() on null
+in APPPATH\Controllers\Student\Shopping.php on line 78.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 11:18:04 --> Call to a member function insert() on null
+in APPPATH\Controllers\Student\Shopping.php on line 78.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 11:20:02 --> Call to a member function insert() on null
+in APPPATH\Controllers\Student\Shopping.php on line 78.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 11:20:17 --> Call to a member function insert() on null
+in APPPATH\Controllers\Student\Shopping.php on line 78.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 11:20:45 --> Call to a member function insert() on null
+in APPPATH\Controllers\Student\Shopping.php on line 84.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 11:21:27 --> Call to a member function insert() on null
+in APPPATH\Controllers\Student\Shopping.php on line 84.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 11:26:52 --> Access to undeclared static property: Kint\Kint::$depth_limit
+in SYSTEMPATH\CodeIgniter.php on line 264.
+ 1 SYSTEMPATH\CodeIgniter.php(198): CodeIgniter\CodeIgniter->initializeKint()
+ 2 FCPATH\index.php(43): CodeIgniter\CodeIgniter->initialize()
+CRITICAL - 2022-08-07 11:26:58 --> Access to undeclared static property: Kint\Kint::$depth_limit
+in SYSTEMPATH\CodeIgniter.php on line 264.
+ 1 SYSTEMPATH\CodeIgniter.php(198): CodeIgniter\CodeIgniter->initializeKint()
+ 2 FCPATH\index.php(43): CodeIgniter\CodeIgniter->initialize()
+CRITICAL - 2022-08-07 11:27:03 --> Access to undeclared static property: Kint\Kint::$depth_limit
+in SYSTEMPATH\CodeIgniter.php on line 264.
+ 1 SYSTEMPATH\CodeIgniter.php(198): CodeIgniter\CodeIgniter->initializeKint()
+ 2 FCPATH\index.php(43): CodeIgniter\CodeIgniter->initialize()
+CRITICAL - 2022-08-07 11:27:11 --> Access to undeclared static property: Kint\Kint::$depth_limit
+in SYSTEMPATH\CodeIgniter.php on line 264.
+ 1 SYSTEMPATH\CodeIgniter.php(198): CodeIgniter\CodeIgniter->initializeKint()
+ 2 FCPATH\index.php(43): CodeIgniter\CodeIgniter->initialize()
+CRITICAL - 2022-08-07 11:27:12 --> Access to undeclared static property: Kint\Kint::$depth_limit
+in SYSTEMPATH\CodeIgniter.php on line 264.
+ 1 SYSTEMPATH\CodeIgniter.php(198): CodeIgniter\CodeIgniter->initializeKint()
+ 2 FCPATH\index.php(43): CodeIgniter\CodeIgniter->initialize()
+CRITICAL - 2022-08-07 11:27:15 --> Access to undeclared static property: Kint\Kint::$depth_limit
+in SYSTEMPATH\CodeIgniter.php on line 264.
+ 1 SYSTEMPATH\CodeIgniter.php(198): CodeIgniter\CodeIgniter->initializeKint()
+ 2 FCPATH\index.php(43): CodeIgniter\CodeIgniter->initialize()
+CRITICAL - 2022-08-07 11:27:19 --> Access to undeclared static property: Kint\Kint::$depth_limit
+in SYSTEMPATH\CodeIgniter.php on line 264.
+ 1 SYSTEMPATH\CodeIgniter.php(198): CodeIgniter\CodeIgniter->initializeKint()
+ 2 FCPATH\index.php(43): CodeIgniter\CodeIgniter->initialize()
+CRITICAL - 2022-08-07 11:27:46 --> Access to undeclared static property: Kint\Kint::$depth_limit
+in SYSTEMPATH\CodeIgniter.php on line 264.
+ 1 SYSTEMPATH\CodeIgniter.php(198): CodeIgniter\CodeIgniter->initializeKint()
+ 2 FCPATH\index.php(43): CodeIgniter\CodeIgniter->initialize()
+CRITICAL - 2022-08-07 11:28:57 --> Access to undeclared static property: Kint\Kint::$depth_limit
+in SYSTEMPATH\CodeIgniter.php on line 264.
+ 1 SYSTEMPATH\CodeIgniter.php(198): CodeIgniter\CodeIgniter->initializeKint()
+ 2 FCPATH\index.php(43): CodeIgniter\CodeIgniter->initialize()
+CRITICAL - 2022-08-07 11:28:58 --> Access to undeclared static property: Kint\Kint::$depth_limit
+in SYSTEMPATH\CodeIgniter.php on line 264.
+ 1 SYSTEMPATH\CodeIgniter.php(198): CodeIgniter\CodeIgniter->initializeKint()
+ 2 FCPATH\index.php(43): CodeIgniter\CodeIgniter->initialize()
+CRITICAL - 2022-08-07 11:29:31 --> Access to undeclared static property: Kint\Kint::$depth_limit
+in SYSTEMPATH\CodeIgniter.php on line 264.
+ 1 SYSTEMPATH\CodeIgniter.php(198): CodeIgniter\CodeIgniter->initializeKint()
+ 2 FCPATH\index.php(43): CodeIgniter\CodeIgniter->initialize()
+CRITICAL - 2022-08-07 11:41:26 --> Access to undeclared static property: Kint\Kint::$depth_limit
+in SYSTEMPATH\CodeIgniter.php on line 264.
+ 1 SYSTEMPATH\CodeIgniter.php(198): CodeIgniter\CodeIgniter->initializeKint()
+ 2 FCPATH\index.php(43): CodeIgniter\CodeIgniter->initialize()
+CRITICAL - 2022-08-07 11:41:35 --> Access to undeclared static property: Kint\Kint::$depth_limit
+in SYSTEMPATH\CodeIgniter.php on line 264.
+ 1 SYSTEMPATH\CodeIgniter.php(198): CodeIgniter\CodeIgniter->initializeKint()
+ 2 FCPATH\index.php(43): CodeIgniter\CodeIgniter->initialize()
+CRITICAL - 2022-08-07 11:45:12 --> Call to a member function insert() on null
+in APPPATH\Controllers\Student\Shopping.php on line 84.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 11:46:04 --> Call to a member function insert() on null
+in APPPATH\Controllers\Student\Shopping.php on line 84.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 12:42:34 --> Call to a member function insert() on null
+in APPPATH\Controllers\Student\Shopping.php on line 84.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 12:42:38 --> Trying to get property 'prod_id' of non-object
+in APPPATH\Controllers\Student\Shopping.php on line 79.
+ 1 APPPATH\Controllers\Student\Shopping.php(79): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'prod_id\' of non-object', 'APPPATH\\Controllers\\Student\\Shopping.php', 79, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 12:45:04 --> Call to a member function insert() on null
+in APPPATH\Controllers\Student\Shopping.php on line 84.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 12:50:04 --> Call to a member function insert() on null
+in APPPATH\Controllers\Student\Shopping.php on line 84.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 12:50:12 --> Call to a member function insert() on null
+in APPPATH\Controllers\Student\Shopping.php on line 84.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 12:54:18 --> Call to a member function insert() on null
+in APPPATH\Controllers\Student\Shopping.php on line 84.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 13:00:59 --> Access to undeclared static property: Kint\Kint::$depth_limit
+in SYSTEMPATH\CodeIgniter.php on line 264.
+ 1 SYSTEMPATH\CodeIgniter.php(198): CodeIgniter\CodeIgniter->initializeKint()
+ 2 FCPATH\index.php(43): CodeIgniter\CodeIgniter->initialize()
+CRITICAL - 2022-08-07 13:01:00 --> Access to undeclared static property: Kint\Kint::$depth_limit
+in SYSTEMPATH\CodeIgniter.php on line 264.
+ 1 SYSTEMPATH\CodeIgniter.php(198): CodeIgniter\CodeIgniter->initializeKint()
+ 2 FCPATH\index.php(43): CodeIgniter\CodeIgniter->initialize()
+CRITICAL - 2022-08-07 13:01:07 --> Access to undeclared static property: Kint\Kint::$depth_limit
+in SYSTEMPATH\CodeIgniter.php on line 264.
+ 1 SYSTEMPATH\CodeIgniter.php(198): CodeIgniter\CodeIgniter->initializeKint()
+ 2 FCPATH\index.php(43): CodeIgniter\CodeIgniter->initialize()
+CRITICAL - 2022-08-07 16:56:28 --> Call to a member function insert() on null
+in APPPATH\Controllers\Student\Shopping.php on line 84.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->addToCart()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 17:46:39 --> Argument 1 passed to CodeIgniter\BaseModel::findAll() must be of the type int, string given, called in C:\xampp\htdocs\IQraw\app\Controllers\Student\Shopping.php on line 96
+in SYSTEMPATH\BaseModel.php on line 567.
+ 1 APPPATH\Controllers\Student\Shopping.php(96): CodeIgniter\BaseModel->findAll('b')
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->search()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 17:46:43 --> Argument 1 passed to CodeIgniter\BaseModel::findAll() must be of the type int, string given, called in C:\xampp\htdocs\IQraw\app\Controllers\Student\Shopping.php on line 96
+in SYSTEMPATH\BaseModel.php on line 567.
+ 1 APPPATH\Controllers\Student\Shopping.php(96): CodeIgniter\BaseModel->findAll('ROOTPATH\\public_html')
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->search()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 18:40:59 --> Array to string conversion
+in APPPATH\Controllers\Student\Shopping.php on line 69.
+ 1 APPPATH\Controllers\Student\Shopping.php(69): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Array to string conversion', 'APPPATH\\Controllers\\Student\\Shopping.php', 69, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->category('2')
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 18:41:40 --> Cannot use [] for reading
+in APPPATH\Controllers\Student\Shopping.php on line 73.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->category('2')
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 18:45:41 --> Array to string conversion
+in APPPATH\Controllers\Student\Shopping.php on line 69.
+ 1 APPPATH\Controllers\Student\Shopping.php(69): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Array to string conversion', 'APPPATH\\Controllers\\Student\\Shopping.php', 69, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->category('1')
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 19:45:33 --> syntax error, unexpected '}', expecting ';' or ','
+in APPPATH\Views\Student\shopping.php on line 83.
+ 1 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 2 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('Student/shopping', [], true)
+ 3 APPPATH\Controllers\Student\Shopping.php(75): view('Student/shopping', [...])
+ 4 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->category('3')
+ 5 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 6 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 7 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 19:45:45 --> Trying to get property 'prod_id' of non-object
+in APPPATH\Views\Student\shopping.php on line 75.
+ 1 APPPATH\Views\Student\shopping.php(75): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'prod_id\' of non-object', 'APPPATH\\Views\\Student\\shopping.php', 75, [...])
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\Student\\shopping.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('Student/shopping', [], true)
+ 5 APPPATH\Controllers\Student\Shopping.php(75): view('Student/shopping', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->category('2')
+ 7 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 8 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 19:46:17 --> Trying to get property 'prod_id' of non-object
+in APPPATH\Views\Student\shopping.php on line 75.
+ 1 APPPATH\Views\Student\shopping.php(75): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'prod_id\' of non-object', 'APPPATH\\Views\\Student\\shopping.php', 75, [...])
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\Student\\shopping.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('Student/shopping', [], true)
+ 5 APPPATH\Controllers\Student\Shopping.php(72): view('Student/shopping', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->category('2')
+ 7 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 8 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 19:47:09 --> Trying to get property 'prod_id' of non-object
+in APPPATH\Views\Student\shopping.php on line 75.
+ 1 APPPATH\Views\Student\shopping.php(75): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'prod_id\' of non-object', 'APPPATH\\Views\\Student\\shopping.php', 75, [...])
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\Student\\shopping.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('Student/shopping', [], true)
+ 5 APPPATH\Controllers\Student\Shopping.php(74): view('Student/shopping', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->category('2')
+ 7 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 8 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 19:47:21 --> Trying to get property 'prod_id' of non-object
+in APPPATH\Views\Student\shopping.php on line 75.
+ 1 APPPATH\Views\Student\shopping.php(75): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'prod_id\' of non-object', 'APPPATH\\Views\\Student\\shopping.php', 75, [...])
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\Student\\shopping.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('Student/shopping', [], true)
+ 5 APPPATH\Controllers\Student\Shopping.php(74): view('Student/shopping', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->category('2')
+ 7 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 8 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 20:13:32 --> Trying to get property 'prod_id' of non-object
+in APPPATH\Views\Student\shopping.php on line 75.
+ 1 APPPATH\Views\Student\shopping.php(75): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'prod_id\' of non-object', 'APPPATH\\Views\\Student\\shopping.php', 75, [...])
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\Student\\shopping.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('Student/shopping', [], true)
+ 5 APPPATH\Controllers\Student\Shopping.php(74): view('Student/shopping', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->category('1')
+ 7 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 8 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 20:13:36 --> Trying to get property 'prod_id' of non-object
+in APPPATH\Views\Student\shopping.php on line 75.
+ 1 APPPATH\Views\Student\shopping.php(75): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'prod_id\' of non-object', 'APPPATH\\Views\\Student\\shopping.php', 75, [...])
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\Student\\shopping.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('Student/shopping', [], true)
+ 5 APPPATH\Controllers\Student\Shopping.php(74): view('Student/shopping', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->category('3')
+ 7 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 8 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 20:13:44 --> Trying to get property 'prod_id' of non-object
+in APPPATH\Views\Student\shopping.php on line 75.
+ 1 APPPATH\Views\Student\shopping.php(75): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'prod_id\' of non-object', 'APPPATH\\Views\\Student\\shopping.php', 75, [...])
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\Student\\shopping.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('Student/shopping', [], true)
+ 5 APPPATH\Controllers\Student\Shopping.php(74): view('Student/shopping', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->category('1')
+ 7 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 8 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-07 20:13:47 --> Trying to get property 'prod_id' of non-object
+in APPPATH\Views\Student\shopping.php on line 75.
+ 1 APPPATH\Views\Student\shopping.php(75): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'prod_id\' of non-object', 'APPPATH\\Views\\Student\\shopping.php', 75, [...])
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\Student\\shopping.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('Student/shopping', [], true)
+ 5 APPPATH\Controllers\Student\Shopping.php(74): view('Student/shopping', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->category('3')
+ 7 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 8 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()

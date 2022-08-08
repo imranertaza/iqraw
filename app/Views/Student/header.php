@@ -12,6 +12,7 @@
     <script src="https://kit.fontawesome.com/b4655c4a4e.js" crossorigin="anonymous"></script>
 
     <script src="<?php base_url();?>/assets/js/jquery.min.js"></script>
+    <script src="<?php echo base_url()?>/assets/js/sweetalert2@11.js"></script>
 
 </head>
 <body>

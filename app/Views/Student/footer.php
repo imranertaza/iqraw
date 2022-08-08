@@ -91,6 +91,153 @@
         }
     }
 
+    function addToCart(id){
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('/Student/Shopping/addToCart') ?>",
+            dataType: "text",
+            data: {proId: id},
+
+            beforeSend: function () {
+                $('#upazila').html('<img src="<?php print base_url(); ?>/assets/images/loading.gif" width="20" alt="loading"/> Progressing...');
+            },
+            success: function (msg) {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+                Toast.fire({
+                    icon: 'success',
+                    title: msg
+                })
+                $('#reloadCart').load(location.href + " #reloadCart");
+                $('#reloadtable').load(location.href + " #reloadtable");
+            }
+
+        });
+    }
+
+    function updatePlus(id){
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('/Student/Shopping/updatePlus') ?>",
+            dataType: "text",
+            data: {proId: id},
+
+            beforeSend: function () {
+                $('#upazila').html('<img src="<?php print base_url(); ?>/assets/images/loading.gif" width="20" alt="loading"/> Progressing...');
+            },
+            success: function (msg) {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+                Toast.fire({
+                    icon: 'success',
+                    title: msg
+                })
+                $('#reloadCart').load(location.href + " #reloadCart");
+                $('#reloadtable').load(location.href + " #reloadtable");
+            }
+
+        });
+    }
+    function updateMinus(id){
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('/Student/Shopping/updateMinus') ?>",
+            dataType: "text",
+            data: {proId: id},
+
+            beforeSend: function () {
+                $('#upazila').html('<img src="<?php print base_url(); ?>/assets/images/loading.gif" width="20" alt="loading"/> Progressing...');
+            },
+            success: function (msg) {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+                Toast.fire({
+                    icon: 'success',
+                    title: msg
+                })
+                $('#reloadCart').load(location.href + " #reloadCart");
+                $('#reloadtable').load(location.href + " #reloadtable");
+            }
+
+        });
+    }
+
+    function searchPro(keyWord){
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('/Student/Shopping/search') ?>",
+            dataType: "text",
+            data: {keyWord: keyWord},
+            beforeSend: function () {
+                $('#upazila').html('<img src="<?php print base_url(); ?>/assets/images/loading.gif" width="20" alt="loading"/> Progressing...');
+            },
+            success: function (msg) {
+                $('#resultProduct').html(msg);
+            }
+
+        });
+    }
+
+    function coinAdd(){
+        var sub_total = $('#sub_total').val();
+        var myCoin = $('#myCoin').val();
+
+        if (sub_total <= myCoin){
+            $('#titlePay').html('Coin');
+            $('#titleAmo').html('-' +sub_total+'৳');
+            $('#due_total').val('0');
+            $('#dueData').html('0৳');
+        }else{
+            $('input[name="btnradio"]').attr('checked', false);
+            $('#coinDiv').load(location.href + " #coinDiv");
+
+            var msg = 'Not enough coin';
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+            Toast.fire({
+                icon: 'error',
+                title: msg
+            })
+        }
+
+    }
+
 
 </script>
 </body>
