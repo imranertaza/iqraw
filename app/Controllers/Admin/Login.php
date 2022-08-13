@@ -20,7 +20,7 @@ class Login extends BaseController
     public function index(){
         $isLoggedIAdmin = $this->session->isLoggedIAdmin;
         if (!isset($isLoggedIAdmin) || $isLoggedIAdmin != TRUE) {
-            echo view('admin/login');
+            echo view('Admin/login');
 
         }else {
             return redirect()->to(site_url("/Admin/Dashboard"));

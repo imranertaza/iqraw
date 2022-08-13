@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/IQraw.iml" filepath="$PROJECT_DIR$/.idea/IQraw.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/iqraw.dn.iml" filepath="$PROJECT_DIR$/.idea/iqraw.dn.iml" />
     </modules>
   </component>
 </project>
