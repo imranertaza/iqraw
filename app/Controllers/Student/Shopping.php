@@ -3,10 +3,12 @@
 namespace App\Controllers\Student;
 
 use App\Controllers\BaseController;
+use App\Models\History_user_coin_Model;
 use App\Models\OrderItemModel;
 use App\Models\OrderModel;
 use App\Models\ProductCategoryModel;
 use App\Models\ProductModel;
+use App\Models\StudentModel;
 
 
 class Shopping extends BaseController
@@ -18,12 +20,16 @@ class Shopping extends BaseController
     protected $cart;
     protected $orderModel;
     protected $orderItemModel;
+    protected $studentModel;
+    protected $history_user_coin_Model;
 
     public function __construct()
     {
         $this->productModel = new ProductModel();
         $this->orderModel = new OrderModel();
         $this->orderItemModel = new OrderItemModel();
+        $this->studentModel = new StudentModel();
+        $this->history_user_coin_Model = new History_user_coin_Model();
         $this->cart = \Config\Services::cart();
         $this->productCategoryModel = new ProductCategoryModel();
         $this->validation = \Config\Services::validation();
@@ -41,6 +47,7 @@ class Shopping extends BaseController
             $data['cart_url'] = base_url('/Student/Shopping/cart');
             $data['category_url'] = base_url('/Student/Shopping/category');
             $data['page_title'] = 'Shopping';
+            $data['footer_icon'] = 'Shopping';
 
             $gen = get_data_by_id('gender', 'student', 'std_id', $this->session->std_id);
             $gender = ($gen == 'Male') ? 'Women' : 'Man';
@@ -65,6 +72,7 @@ class Shopping extends BaseController
             $data['cart_url'] = base_url('/Student/Shopping/cart');
             $data['category_url'] = base_url('/Student/Shopping/category');
             $data['page_title'] = 'Shopping';
+            $data['footer_icon'] = 'Shopping';
 
             $gen = get_data_by_id('gender', 'student', 'std_id', $this->session->std_id);
             $gender = ($gen == 'Male') ? 'Women' : 'Man';
@@ -94,6 +102,7 @@ class Shopping extends BaseController
             $data['back_url'] = base_url('/Student/Shopping');
             $data['cart_url'] = base_url('/Student/Shopping/cart');
             $data['page_title'] = 'Product';
+            $data['footer_icon'] = 'Shopping';
 
             $data['product'] = $this->productModel->where('prod_id', $id)->first();
 
@@ -198,7 +207,7 @@ class Shopping extends BaseController
 
             $data['back_url'] = base_url('/Student/Shopping');
             $data['cart_url'] = base_url('/Student/Shopping/cart');
-
+            $data['footer_icon'] = 'Shopping';
 
             echo view('Student/shopping_header', $data);
             echo view('Student/cart', $data);
@@ -215,6 +224,7 @@ class Shopping extends BaseController
 
             $data['back_url'] = base_url('/Student/Shopping/cart');
             $data['cart_url'] = base_url('/Student/Shopping/cart');
+            $data['footer_icon'] = 'Shopping';
 
             echo view('Student/shopping_header', $data);
             echo view('Student/checkout', $data);
@@ -227,16 +237,19 @@ class Shopping extends BaseController
         $payment = $this->request->getPost('btnradio');
         $cart = $this->cart->contents();
 
-        $total = $cart->total();
+        $total = $this->cart->total();
         $std_id = $this->session->std_id;
 
         DB()->transStart();
-//            if (!empty($payment)){
-//
-//            }
+
+        if ( !empty($payment) && $payment == 1){
+            $pymnt_method_id = 1;
+        }else{
+            $pymnt_method_id = 2;
+        }
             $orData = [
                 'std_id' => $std_id,
-                'pymnt_method_id' => '2',
+                'pymnt_method_id' => $pymnt_method_id,
                 'amount' => $total,
                 'final_amount' => $total,
                 'status' => '2',
@@ -267,10 +280,76 @@ class Shopping extends BaseController
 
             }
 
+        if ( !empty($payment) && $payment == 1){
+
+            $oldcoin = get_data_by_id('coin','student','std_id',$std_id);
+            $restCoin = $oldcoin - $total;
+
+            //coin update
+            $coinData = array('coin' => $restCoin,);
+            $this->studentModel->update($std_id,$coinData);
+
+            //history coin insert
+            $historyData = array(
+                'std_id' => $std_id,
+                'order_id' => $orderId,
+                'particulars' => 'Order product cost',
+                'trangaction_type' => 'Dr.',
+                'amount' => $total,
+                'rest_balance' => $restCoin,
+            );
+            $this->history_user_coin_Model->insert($historyData);
+        }
 
         DB()->transComplete();
 
+        $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">Your order has been confirmed <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>');
+        $this->cart->destroy();
+        return redirect()->to(site_url('/Student/Shopping/invoice/'.$orderId));
+
+    }
+
+    public function invoice($id){
+        $isLoggedInStudent = $this->session->isLoggedInStudent;
+        if (!isset($isLoggedInStudent) || $isLoggedInStudent != TRUE) {
+            return redirect()->to('/login');
+        } else {
+
+            $data['back_url'] = base_url('/Student/Shopping/order_list');
+            $data['cart_url'] = base_url('/Student/Shopping/cart');
+            $data['page_title'] = 'Invoice';
+            $data['footer_icon'] = 'Shopping';
+
+            $data['order'] = $this->orderModel->find($id);
+            $data['orderItem'] = $this->orderItemModel->where('order_id',$id)->findAll();
+
+            echo view('Student/header', $data);
+            echo view('Student/invoice', $data);
+            echo view('Student/footer');
+        }
+    }
+
+    public function order_list(){
+        $isLoggedInStudent = $this->session->isLoggedInStudent;
+        if (!isset($isLoggedInStudent) || $isLoggedInStudent != TRUE) {
+            return redirect()->to('/login');
+        } else {
+
+            $data['back_url'] = base_url('/Student/Shopping/');
+            $data['cart_url'] = base_url('/Student/Shopping/cart');
+            $data['page_title'] = 'Order list';
+            $data['footer_icon'] = 'Shopping';
+
+            $data['order'] = $this->orderModel->findAll();
+
+            echo view('Student/header', $data);
+            echo view('Student/order_list', $data);
+            echo view('Student/footer');
+        }
     }
 
 
 }
+
+

@@ -1,0 +1,43 @@
+CRITICAL - 2022-08-09 09:47:50 --> Call to a member function total() on array
+in APPPATH\Controllers\Student\Shopping.php on line 230.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->buy_action()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-09 10:06:05 --> Call to undefined function priceSymbol()
+in APPPATH\Views\Student\invoice.php on line 44.
+ 1 SYSTEMPATH\View\View.php(213): include()
+ 2 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('Student/invoice', [], true)
+ 4 APPPATH\Controllers\Student\Shopping.php(293): view('Student/invoice', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->invoice('2')
+ 6 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 7 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-09 10:07:01 --> Call to undefined function priceSymbol()
+in APPPATH\Views\Student\invoice.php on line 44.
+ 1 SYSTEMPATH\View\View.php(213): include()
+ 2 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('Student/invoice', [], true)
+ 4 APPPATH\Controllers\Student\Shopping.php(293): view('Student/invoice', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->invoice('2')
+ 6 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 7 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-09 10:07:19 --> Call to undefined function priceSymbol()
+in APPPATH\Views\Student\invoice.php on line 46.
+ 1 SYSTEMPATH\View\View.php(213): include()
+ 2 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('Student/invoice', [], true)
+ 4 APPPATH\Controllers\Student\Shopping.php(293): view('Student/invoice', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Student\Shopping->invoice('2')
+ 6 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Student\Shopping))
+ 7 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-09 10:20:56 --> Undefined property: stdClass::$name
+in APPPATH\Controllers\Admin\Order.php on line 74.
+ 1 APPPATH\Controllers\Admin\Order.php(74): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined property: stdClass::$name', 'APPPATH\\Controllers\\Admin\\Order.php', 74, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Order->getAll()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Order))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()

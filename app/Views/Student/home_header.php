@@ -4,6 +4,7 @@
     <title>iqraw</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="<?php echo base_url() ?>/assets/image/faveiocn.png" type="image/x-icon">
     <link href="<?php base_url();?>/assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php base_url();?>/assets/css/style.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">

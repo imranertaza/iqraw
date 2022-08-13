@@ -23,7 +23,8 @@
         </div>
 
         <div class="col-4 mt-4" >
-            <p class="coin-div">Coin <?php echo get_data_by_id('coin', 'student', 'std_id', newSession()->std_id) ?>৳</p>
+<!--            <p class="coin-div">Coin --><?php //echo get_data_by_id('coin', 'student', 'std_id', newSession()->std_id) ?><!--৳</p>-->
+            <img src="<?php echo base_url() ?>/assets/image/coin.png" alt="wallet" class="wallet">
             <div id="coinDiv">
             <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" value="1" >
             <label class="btn btn-outline-success d-block mt-3 shadow-none" onclick="coinAdd()"  for="btnradio4">Select</label>

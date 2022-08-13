@@ -847,6 +847,116 @@ iframe{
     margin-left: 3px;
 }
 
+
+.top-tit{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    color: #393939;
+    margin-top: 12px;
+}
+.top-div-in{
+    background-color: #39AA35;
+    border-radius: 15px;
+}
+.back-color-inv{
+    background-color: #FFFFFF;
+    border-radius: 9px;
+    padding: 10px;
+    height: 145px;
+}
+.inv-top-ti{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #393939;
+}
+.p-l-r{
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+}
+.inv-top-text{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #393939;
+}
+.table-cus{
+    border: 1px solid #D8D8D8 !important;
+}
+table thead{
+    background-color: #39AA35;
+    color: #FFFFFF;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+
+}
+table ,td{
+    border-bottom: 1px solid #D8D8D8 !important;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+}
+
+table tr:last-child th:first-child {
+    border-top-left-radius: 10px;
+}
+table tr:last-child th:last-child {
+    border-top-right-radius: 10px;
+}
+
+table th{
+    padding: 15px  10px!important;
+}
+.bu-ti-fot{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    color: #393939;
+}
+.bu-cen-hr{
+    border-bottom: 1px solid #B9B0B0;
+    width: 32px;
+    margin-bottom: 8px;
+}
+
+.or-ti{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #393939;
+}
+.or-ti-sub{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    color: #393939;
+}
+.view-btn-or{
+    background: #39AA35;
+    border-radius: 12px;
+    color: #FFFFFF !important;
+    padding: 2px 18px;
+}
+
+
 /*@media only screen and (max-width: 425px){*/
 /*    !*Small smartphones [325px -> 425px]*!*/
 /*}*/

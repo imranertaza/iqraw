@@ -23,6 +23,7 @@ class Dashboard extends BaseController
         if (!isset($isLoggedInStudent) || $isLoggedInStudent != TRUE) {
             return redirect()->to('/login');
         } else {
+            $data['footer_icon'] = 'Home';
             unset($_SESSION['quiz']);
             unset($_SESSION['result_submit']);
             $query = $this->student->where('std_id',$this->session->std_id)->get();

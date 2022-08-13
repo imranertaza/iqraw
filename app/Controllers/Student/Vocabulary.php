@@ -2,16 +2,13 @@
 
 namespace App\Controllers\Student;
 use App\Controllers\BaseController;
-use App\Models\Quiz_exam_joinedModel;
-use App\Models\Quiz_questionModel;
-use App\Models\QuizModel;
+use App\Models\History_user_coin_Model;
+use App\Models\History_user_point_Model;
 use App\Models\StudentModel;
-use App\Models\SubjectModel;
 use App\Models\Vocabulary_exam_joinedModel;
 use App\Models\Vocabulary_exam_r_quizModel;
 use App\Models\Vocabulary_examModel;
 use App\Models\VocabularyModel;
-use CodeIgniter\Database\RawSql;
 
 
 class Vocabulary extends BaseController
@@ -23,6 +20,8 @@ class Vocabulary extends BaseController
     protected $vocabulary_examModel;
     protected $vocabulary_exam_r_quizModel;
     protected $vocabulary_exam_joinedModel;
+    protected $history_user_point_Model;
+    protected $history_user_coin_Model;
 
     public function __construct()
     {
@@ -31,6 +30,8 @@ class Vocabulary extends BaseController
         $this->vocabulary_examModel = new Vocabulary_examModel();
         $this->vocabulary_exam_r_quizModel = new Vocabulary_exam_r_quizModel();
         $this->vocabulary_exam_joinedModel = new Vocabulary_exam_joinedModel();
+        $this->history_user_point_Model = new History_user_point_Model();
+        $this->history_user_coin_Model = new History_user_coin_Model();
         $this->validation =  \Config\Services::validation();
         $this->session = \Config\Services::session();
     }
@@ -43,6 +44,7 @@ class Vocabulary extends BaseController
 
             $data['back_url'] = base_url('/');
             $data['page_title'] = 'Vocabulary';
+            $data['footer_icon'] = 'Home';
 
             //session unset
             unset($_SESSION['voc_mcq_joined_id']);
@@ -68,6 +70,7 @@ class Vocabulary extends BaseController
 
             $data['back_url'] = base_url('/Student/Vocabulary');
             $data['page_title'] = 'Vocabulary Quiz Exam';
+            $data['footer_icon'] = 'Home';
 
 
             $check = already_join_voc_exam_check($voc_exam_id);
@@ -130,6 +133,31 @@ class Vocabulary extends BaseController
             $stData['coin'] = $myOldCoin + $points_vocabulary_mcq;
             $this->studentModel->update($stData['std_id'],$stData);
 
+
+            //point history create
+            $point_history = array(
+                'std_id' => $this->session->std_id,
+                'mcq_joined_id' => $this->session->voc_mcq_joined_id,
+                'particulars' => 'Vocabulary quiz point get',
+                'trangaction_type' => 'Cr.',
+                'amount' => $points_vocabulary_mcq,
+                'rest_balance' => $myOldPoint + $points_vocabulary_mcq,
+            );
+            $this->history_user_point_Model->insert($point_history);
+
+
+
+            //coin history create
+            $coin_history = array(
+                'std_id' => $this->session->std_id,
+                'mcq_joined_id' => $this->session->voc_mcq_joined_id,
+                'particulars' => 'Vocabulary quiz coin get',
+                'trangaction_type' => 'Cr.',
+                'amount' => $points_vocabulary_mcq,
+                'rest_balance' => $myOldCoin + $points_vocabulary_mcq,
+            );
+            $this->history_user_coin_Model->insert($coin_history);
+
         }else{
             $oldInCorAns = get_data_by_id('incorrect_answers','vocabulary_exam_joined','voc_mcq_joined_id',$this->session->voc_mcq_joined_id);
             $data2['voc_mcq_joined_id'] = $this->session->voc_mcq_joined_id;
@@ -150,6 +178,7 @@ class Vocabulary extends BaseController
 
             $data['back_url'] = base_url('/Student/Vocabulary');
             $data['page_title'] = 'Vocabulary Quiz Result';
+            $data['footer_icon'] = 'Home';
 
             $data['result'] = $this->vocabulary_exam_joinedModel->where('voc_mcq_joined_id',$this->session->voc_mcq_joined_id)->first();
 

@@ -1,13 +1,31 @@
 <!--    footer-->
-<nav class="navbar navbar-expand-md navbar-dark fixed-bottom p-2 footer">
+<nav class="navbar navbar-expand-md navbar-dark fixed-bottom p-2 footer" id="reloadCart">
     <a class="navbar-brand" href="#"><img src="<?php base_url(); ?>/assets/image/icon-w.svg" alt=""></a>
-    <a class="navbar-brand" href="#"><img src="<?php base_url(); ?>/assets/image/icon-shopping.svg" alt=""></a>
+    <?php if ($footer_icon == 'Shopping'){ ?>
+        <a class="navbar-brand" href="<?php echo $cart_url;?>"><div class="h-icon-bg"><img src="<?php base_url(); ?>/assets/image/icon-shopping-w.svg" alt="" style="margin-top: 13px;"></div> <?php if (!empty(Cart()->totalItems())){?>
+                <span class="position-absolute translate-middle badge rounded-pill bg-danger " style="top:20px;" ><?php echo Cart()->totalItems();?></span>
+            <?php } ?></a>
+
+    <?php }else{ ?>
+    <a class="navbar-brand" href="<?php echo base_url() ?>/Student/Shopping"><img src="<?php base_url(); ?>/assets/image/icon-shopping.svg" alt=""></a>
+    <?php } ?>
+
+    <?php if ($footer_icon == 'Home'){ ?>
     <a class="navbar-brand" href="<?php echo base_url() ?>/Student/Dashboard">
         <div class="h-icon-bg"><img src="<?php base_url(); ?>/assets/image/icon-home-alt.svg" alt=""
                                     style="margin-top: 11px;"></div>
     </a>
+    <?php }else{ ?>
+        <a class="navbar-brand" href="<?php echo base_url() ?>/Student/Dashboard"><img src="<?php base_url(); ?>/assets/image/icon-home-alt-w.svg" alt="">
+        </a>
+    <?php } ?>
     <a class="navbar-brand" href="#"><img src="<?php base_url(); ?>/assets/image/icon-notification.svg" alt=""></a>
-    <a class="navbar-brand" href="#"><img src="<?php base_url(); ?>/assets/image/icon-badge-rank.svg" alt=""></a>
+
+    <?php if ($footer_icon == 'Ranking'){ ?>
+        <a class="navbar-brand" href="<?php echo base_url() ?>/Student/Ranking"><div class="h-icon-bg"><img src="<?php base_url(); ?>/assets/image/icon-badge-rank-w.svg" alt="" style="margin-top: 11px;"></div></a>
+    <?php }else{ ?>
+        <a class="navbar-brand" href="<?php echo base_url() ?>/Student/Ranking"><img src="<?php base_url(); ?>/assets/image/icon-badge-rank.svg" alt=""></a>
+    <?php } ?>
 </nav>
 
 <script>

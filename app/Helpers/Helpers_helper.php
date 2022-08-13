@@ -46,6 +46,40 @@ function globalStatus($selected = 'sel')
     return $row;
 }
 
+
+function invoiceStatusView($selected = '1')
+{
+    $status = [
+        '0' => 'Unpaid',
+        '1' => 'Paid',
+        '2' => 'Pending',
+        '3' => 'cancel',
+    ];
+
+    $row = '';
+    foreach ($status as $key => $option) {
+        $row .= ($selected == $key) ? $option : '';
+    }
+    return $row;
+}
+
+function orderStatusInOption($sel = '0')
+{
+    $status = [
+        0 => 'unpaid',
+        1 => 'paid',
+        2 => 'Pending',
+        3 => 'cancel'
+    ];
+    $row = '<option value="">Please select</option>';
+    foreach ($status as $key => $option) {
+        $s = ($key == $sel)?'selected':'';
+        $row .= '<option value="'.$key.'" '.$s.'>'.$option.'</option>';
+    }
+    return $row;
+}
+
+
 function getListInOption($selected, $tblId, $needCol, $table)
 {
     $db = \Config\Database::connect();

@@ -31,6 +31,7 @@ class Subject extends BaseController
         } else {
             $data['back_url'] = base_url('/');
             $data['page_title'] = 'My Subject';
+            $data['footer_icon'] = 'Home';
 
             $classId = get_data_by_id('class_id','student','std_id',$this->session->std_id);
 
@@ -53,6 +54,7 @@ class Subject extends BaseController
             $subject = get_data_by_id('name','subject','subject_id',$subjectId);
             $data['back_url'] = base_url('/Student/Subject');
             $data['page_title'] = $subject;
+            $data['footer_icon'] = 'Home';
 
 
             $data['chapter'] = $this->chapterModel->where('subject_id',$subjectId)->findAll();

@@ -2,6 +2,8 @@
 
 namespace App\Controllers\Student;
 use App\Controllers\BaseController;
+use App\Models\History_user_coin_Model;
+use App\Models\History_user_point_Model;
 use App\Models\Mcq_exam_joinedModel;
 use App\Models\Skill_quizModel;
 use App\Models\Skill_subjectModel;
@@ -18,6 +20,8 @@ class Skill_development extends BaseController
     protected $skill_quizModel;
     protected $mcq_exam_joinedModel;
     protected $studentModel;
+    protected $history_user_point_Model;
+    protected $history_user_coin_Model;
 
     public function __construct()
     {
@@ -26,6 +30,8 @@ class Skill_development extends BaseController
         $this->skill_quizModel = new Skill_quizModel();
         $this->mcq_exam_joinedModel = new Mcq_exam_joinedModel();
         $this->studentModel = new StudentModel();
+        $this->history_user_point_Model = new History_user_point_Model();
+        $this->history_user_coin_Model = new History_user_coin_Model();
         $this->validation =  \Config\Services::validation();
         $this->session = \Config\Services::session();
     }
@@ -37,6 +43,7 @@ class Skill_development extends BaseController
         } else {
             $data['back_url'] = base_url('/');
             $data['page_title'] = 'Skill Development';
+            $data['footer_icon'] = 'Home';
 
             $data['subject'] = $this->skill_subjectModel->findAll();
 
@@ -54,6 +61,7 @@ class Skill_development extends BaseController
         } else {
             $data['back_url'] = base_url('/Student/Skill_development');
             $data['page_title'] = 'Skill Development Video';
+            $data['footer_icon'] = 'Home';
 
             unset($_SESSION['mcq_joined_id']);
             unset($_SESSION['mcq_exam']);
@@ -75,6 +83,7 @@ class Skill_development extends BaseController
 
             $data['back_url'] = base_url('/Student/Skill_development/video_list/'.$data['video']->skill_subject_id);
             $data['page_title'] = 'Video View';
+            $data['footer_icon'] = 'Home';
 
             $data['check'] = already_join_mcq_check($skill_video_id);
             $data['checkMCQ'] = $this->skill_quizModel->where('skill_video_id',$skill_video_id)->countAllResults();
@@ -94,6 +103,7 @@ class Skill_development extends BaseController
 
             $data['back_url'] = base_url('/Student/Skill_development/video/'.$skill_video_id);
             $data['page_title'] = 'Video MCQ';
+            $data['footer_icon'] = 'Home';
 
             $data['video'] = get_data_by_id('URL','skill_video','skill_video_id',$skill_video_id);
 
@@ -157,6 +167,32 @@ class Skill_development extends BaseController
             $stData['coin'] = $myOldCoin + $points_video_mcq;
             $this->studentModel->update($stData['std_id'],$stData);
 
+
+
+            //point history create
+            $point_history = array(
+                'std_id' => $this->session->std_id,
+                'mcq_joined_id' => $this->session->mcq_joined_id,
+                'particulars' => 'Skill development quiz point get',
+                'trangaction_type' => 'Cr.',
+                'amount' => $points_video_mcq,
+                'rest_balance' => $myOldPoint + $points_video_mcq,
+            );
+            $this->history_user_point_Model->insert($point_history);
+
+
+
+            //coin history create
+            $coin_history = array(
+                'std_id' => $this->session->std_id,
+                'mcq_joined_id' => $this->session->mcq_joined_id,
+                'particulars' => 'Skill development quiz coin get',
+                'trangaction_type' => 'Cr.',
+                'amount' => $points_video_mcq,
+                'rest_balance' => $myOldCoin + $points_video_mcq,
+            );
+            $this->history_user_coin_Model->insert($coin_history);
+
         }else{
             $oldInCorAns = get_data_by_id('incorrect_answers','mcq_exam_joined','mcq_joined_id',$this->session->mcq_joined_id);
             $data2['mcq_joined_id'] = $this->session->mcq_joined_id;
@@ -173,6 +209,7 @@ class Skill_development extends BaseController
 
             $data['back_url'] = base_url('/Student/Skill_development');
             $data['page_title'] = 'Skill Development MCQ Result';
+            $data['footer_icon'] = 'Home';
 
             if (empty($this->session->mcq_joined_id)){
                 return redirect()->to('/Student/Skill_development');
