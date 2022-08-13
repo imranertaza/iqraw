@@ -2,6 +2,8 @@
 
 namespace App\Controllers\Student;
 use App\Controllers\BaseController;
+use App\Models\History_user_coin_Model;
+use App\Models\History_user_point_Model;
 use App\Models\Quiz_exam_joinedModel;
 use App\Models\Quiz_questionModel;
 use App\Models\QuizModel;
@@ -19,6 +21,8 @@ class Quiz extends BaseController
     protected $quiz_examModel;
     protected $quiz_questionModel;
     protected $quiz_exam_joinedModel;
+    protected $history_user_point_Model;
+    protected $history_user_coin_Model;
 
     public function __construct()
     {
@@ -27,6 +31,8 @@ class Quiz extends BaseController
         $this->quiz_examModel = new QuizModel();
         $this->quiz_exam_joinedModel = new Quiz_exam_joinedModel();
         $this->quiz_questionModel = new Quiz_questionModel();
+        $this->history_user_point_Model = new History_user_point_Model();
+        $this->history_user_coin_Model = new History_user_coin_Model();
         $this->validation =  \Config\Services::validation();
         $this->session = \Config\Services::session();
     }
@@ -39,7 +45,7 @@ class Quiz extends BaseController
 
             $data['back_url'] = base_url('/');
             $data['page_title'] = 'Quiz';
-
+            $data['footer_icon'] = 'Home';
 
             $classId = get_data_by_id('class_id','student','std_id',$this->session->std_id);
             $data['subject'] = $this->subjectModel->where('class_id',$classId)->findAll();
@@ -58,6 +64,7 @@ class Quiz extends BaseController
 
             $data['back_url'] = base_url('/Student/Quiz');
             $data['page_title'] = 'Quiz Exam';
+            $data['footer_icon'] = 'Home';
 
             //session unset
             unset($_SESSION['qe_joined_id']);
@@ -84,6 +91,7 @@ class Quiz extends BaseController
 
             $data['back_url'] = base_url('/Student/Quiz');
             $data['page_title'] = 'Quiz Question';
+            $data['footer_icon'] = 'Home';
 
             $check = already_join_check($quiz_exam_info_id);
             if ($check == 0) {
@@ -137,12 +145,41 @@ class Quiz extends BaseController
             $this->quiz_exam_joinedModel->update($data['qe_joined_id'],$data);
 
 
+            //point-coin update
             $myOldPoint = get_data_by_id('point','student','std_id',$this->session->std_id);
             $myOldCoin = get_data_by_id('coin','student','std_id',$this->session->std_id);
             $stData['std_id'] = $this->session->std_id;
             $stData['point'] = $myOldPoint + $points_semister_mcq;
             $stData['coin'] = $myOldCoin + $points_semister_mcq;
             $this->studentModel->update($stData['std_id'],$stData);
+
+
+            //point history create
+            $point_history = array(
+                'std_id' => $this->session->std_id,
+                'qe_joined_id' => $this->session->qe_joined_id,
+                'particulars' => 'Quiz point get',
+                'trangaction_type' => 'Cr.',
+                'amount' => $points_semister_mcq,
+                'rest_balance' => $myOldPoint + $points_semister_mcq,
+            );
+            $this->history_user_point_Model->insert($point_history);
+
+
+
+            //coin history create
+            $coin_history = array(
+                'std_id' => $this->session->std_id,
+                'qe_joined_id' => $this->session->qe_joined_id,
+                'particulars' => 'Quiz coin get',
+                'trangaction_type' => 'Cr.',
+                'amount' => $points_semister_mcq,
+                'rest_balance' => $myOldCoin + $points_semister_mcq,
+            );
+            $this->history_user_coin_Model->insert($coin_history);
+
+
+
         }else{
             $oldInCorAns = get_data_by_id('incorrect_answers','quiz_exam_joined','qe_joined_id',$this->session->qe_joined_id);
             $data2['qe_joined_id'] = $this->session->qe_joined_id;
@@ -165,6 +202,7 @@ class Quiz extends BaseController
 
             $data['back_url'] = base_url('/Student/Quiz');
             $data['page_title'] = 'Quiz Result';
+            $data['footer_icon'] = 'Home';
 
             $table = DB()->table('quiz_exam_joined');
             $data['result'] = $table->where('qe_joined_id',$this->session->qe_joined_id)->get()->getRow();
@@ -184,6 +222,7 @@ class Quiz extends BaseController
 
             $data['back_url'] = base_url('/Student/Quiz');
             $data['page_title'] = 'Quiz Result';
+            $data['footer_icon'] = 'Home';
 
             $table = DB()->table('quiz_exam_joined');
             $data['result'] = $table->where('qe_joined_id',$qe_joined_id)->get()->getRow();

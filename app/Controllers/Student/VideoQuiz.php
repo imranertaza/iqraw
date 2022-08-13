@@ -6,6 +6,8 @@ use App\Models\Chapter_exam_joinedModel;
 use App\Models\Chapter_quizModel;
 use App\Models\Chapter_videoModel;
 use App\Models\ChapterModel;
+use App\Models\History_user_coin_Model;
+use App\Models\History_user_point_Model;
 use App\Models\School_classModel;
 use App\Models\StudentModel;
 use App\Models\SubjectModel;
@@ -22,6 +24,8 @@ class VideoQuiz extends BaseController
     protected $chapterQuizModel;
     protected $chapter_exam_joinedModel;
     protected $studentModel;
+    protected $history_user_point_Model;
+    protected $history_user_coin_Model;
 
     public function __construct()
     {
@@ -32,6 +36,8 @@ class VideoQuiz extends BaseController
         $this->chapter_exam_joinedModel = new Chapter_exam_joinedModel();
         $this->chapterQuizModel = new Chapter_quizModel();
         $this->studentModel = new StudentModel();
+        $this->history_user_point_Model = new History_user_point_Model();
+        $this->history_user_coin_Model = new History_user_coin_Model();
         $this->validation =  \Config\Services::validation();
         $this->session = \Config\Services::session();
 
@@ -48,6 +54,7 @@ class VideoQuiz extends BaseController
             $subjectId = get_data_by_id('subject_id','chapter','chapter_id',$chapterId);
             $data['back_url'] = base_url('/Student/Subject/chapter/'.$subjectId);
             $data['page_title'] = $chapter;
+            $data['footer_icon'] = 'Home';
 
 
 
@@ -72,6 +79,7 @@ class VideoQuiz extends BaseController
             $subjectId = get_data_by_id('subject_id','chapter','chapter_id',$chapterId);
             $data['back_url'] = base_url('/Student/Subject/chapter/'.$subjectId);
             $data['page_title'] = $chapter.' quiz';
+            $data['footer_icon'] = 'Home';
 
             $data['quiz'] = $this->chapterQuizModel->where('chapter_id',$chapterId)->paginate(1);
             $data['pager'] = $this->chapterQuizModel->pager;
@@ -135,6 +143,31 @@ class VideoQuiz extends BaseController
             $stData['coin'] = $myOldCoin + $points_quiz;
             $this->studentModel->update($stData['std_id'],$stData);
 
+
+            //point history create
+            $point_history = array(
+                'std_id' => $this->session->std_id,
+                'chapter_joined_id' => $this->session->chapter_joined_id,
+                'particulars' => 'Video quiz point get',
+                'trangaction_type' => 'Cr.',
+                'amount' => $points_quiz,
+                'rest_balance' => $myOldPoint + $points_quiz,
+            );
+            $this->history_user_point_Model->insert($point_history);
+
+
+
+            //coin history create
+            $coin_history = array(
+                'std_id' => $this->session->std_id,
+                'chapter_joined_id' => $this->session->chapter_joined_id,
+                'particulars' => 'Video quiz coin get',
+                'trangaction_type' => 'Cr.',
+                'amount' => $points_quiz,
+                'rest_balance' => $myOldCoin + $points_quiz,
+            );
+            $this->history_user_coin_Model->insert($coin_history);
+
         }else{
             $oldInCorAns = get_data_by_id('incorrect_answers','chapter_exam_joined','chapter_joined_id',$this->session->chapter_joined_id);
             $data2['chapter_joined_id'] = $this->session->chapter_joined_id;
@@ -153,6 +186,7 @@ class VideoQuiz extends BaseController
 
             $data['back_url'] = base_url('/Student/Dashboard');
             $data['page_title'] = 'Result';
+            $data['footer_icon'] = 'Home';
 
             $data['result'] = $this->chapter_exam_joinedModel->where('chapter_joined_id',$this->session->chapter_joined_id)->first();
 

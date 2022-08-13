@@ -1,0 +1,343 @@
+CRITICAL - 2022-08-03 12:03:52 --> Undefined variable: create
+in APPPATH\Views\Admin\Store\store.php on line 31.
+ 1 APPPATH\Views\Admin\Store\store.php(31): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: create', 'APPPATH\\Views\\Admin\\Store\\store.php', 31, [...])
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\Admin\\Store\\store.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('Admin/Store/store', [], true)
+ 5 APPPATH\Controllers\Admin\Store.php(41): view('Admin/Store/store', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Store->index()
+ 7 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Store))
+ 8 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-03 12:04:13 --> Call to a member function select() on null
+in APPPATH\Controllers\Admin\Store.php on line 56.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Store->getAll()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Store))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-03 12:55:14 --> Undefined variable: create
+in APPPATH\Views\Admin\ProductCategory\productCategory.php on line 31.
+ 1 APPPATH\Views\Admin\ProductCategory\productCategory.php(31): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: create', 'APPPATH\\Views\\Admin\\ProductCategory\\productCategory.php', 31, [...])
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\Admin\\ProductCategory\\productCategory.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('Admin/ProductCategory/productCategory', [], true)
+ 5 APPPATH\Controllers\Admin\ProductCategory.php(45): view('Admin/ProductCategory/productCategory', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\ProductCategory->index()
+ 7 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProductCategory))
+ 8 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ERROR - 2022-08-03 12:55:51 --> Column 'createdBy' cannot be null
+CRITICAL - 2022-08-03 12:55:51 --> Column 'createdBy' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 292.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(292): mysqli->query('INSERT INTO `product_category` (`parent_pro_cat_id`, `product_category`, `status`, `createdBy`) VALUES (\'\', \'Ram\', \'1\', NULL)', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(678): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `product_category` (`parent_pro_cat_id`, `product_category`, `status`, `createdBy`) VALUES (\'\', \'Ram\', \'1\', NULL)')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `product_category` (`parent_pro_cat_id`, `product_category`, `status`, `createdBy`) VALUES (\'\', \'Ram\', \'1\', NULL)')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1904): CodeIgniter\Database\BaseConnection->query('INSERT INTO `product_category` (`parent_pro_cat_id`, `product_category`, `status`, `createdBy`) VALUES (:parent_pro_cat_id:, :product_category:, :status:, :createdBy:)', [...], false)
+ 5 SYSTEMPATH\Model.php(278): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(738): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(666): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Controllers\Admin\ProductCategory.php(127): CodeIgniter\Model->insert([...])
+ 9 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\ProductCategory->add()
+10 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProductCategory))
+11 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ERROR - 2022-08-03 12:58:04 --> Column 'createdBy' cannot be null
+CRITICAL - 2022-08-03 12:58:04 --> Column 'createdBy' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 292.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(292): mysqli->query('INSERT INTO `product_category` (`parent_pro_cat_id`, `product_category`, `status`, `createdBy`) VALUES (\'\', \'jholj\', \'1\', NULL)', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(678): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `product_category` (`parent_pro_cat_id`, `product_category`, `status`, `createdBy`) VALUES (\'\', \'jholj\', \'1\', NULL)')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `product_category` (`parent_pro_cat_id`, `product_category`, `status`, `createdBy`) VALUES (\'\', \'jholj\', \'1\', NULL)')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1904): CodeIgniter\Database\BaseConnection->query('INSERT INTO `product_category` (`parent_pro_cat_id`, `product_category`, `status`, `createdBy`) VALUES (:parent_pro_cat_id:, :product_category:, :status:, :createdBy:)', [...], false)
+ 5 SYSTEMPATH\Model.php(278): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(738): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(666): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Controllers\Admin\ProductCategory.php(127): CodeIgniter\Model->insert([...])
+ 9 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\ProductCategory->add()
+10 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProductCategory))
+11 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ERROR - 2022-08-03 12:58:13 --> Column 'createdBy' cannot be null
+CRITICAL - 2022-08-03 12:58:13 --> Column 'createdBy' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 292.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(292): mysqli->query('INSERT INTO `product_category` (`parent_pro_cat_id`, `product_category`, `status`, `createdBy`) VALUES (\'\', \'product_category\', \'1\', NULL)', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(678): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `product_category` (`parent_pro_cat_id`, `product_category`, `status`, `createdBy`) VALUES (\'\', \'product_category\', \'1\', NULL)')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `product_category` (`parent_pro_cat_id`, `product_category`, `status`, `createdBy`) VALUES (\'\', \'product_category\', \'1\', NULL)')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1904): CodeIgniter\Database\BaseConnection->query('INSERT INTO `product_category` (`parent_pro_cat_id`, `product_category`, `status`, `createdBy`) VALUES (:parent_pro_cat_id:, :product_category:, :status:, :createdBy:)', [...], false)
+ 5 SYSTEMPATH\Model.php(278): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(738): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(666): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Controllers\Admin\ProductCategory.php(127): CodeIgniter\Model->insert([...])
+ 9 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\ProductCategory->add()
+10 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProductCategory))
+11 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ERROR - 2022-08-03 12:59:00 --> Column 'createdBy' cannot be null
+CRITICAL - 2022-08-03 12:59:00 --> Column 'createdBy' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 292.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(292): mysqli->query('INSERT INTO `product_category` (`parent_pro_cat_id`, `product_category`, `status`, `createdBy`) VALUES (\'\', \'product_category\', \'1\', NULL)', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(678): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `product_category` (`parent_pro_cat_id`, `product_category`, `status`, `createdBy`) VALUES (\'\', \'product_category\', \'1\', NULL)')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `product_category` (`parent_pro_cat_id`, `product_category`, `status`, `createdBy`) VALUES (\'\', \'product_category\', \'1\', NULL)')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1904): CodeIgniter\Database\BaseConnection->query('INSERT INTO `product_category` (`parent_pro_cat_id`, `product_category`, `status`, `createdBy`) VALUES (:parent_pro_cat_id:, :product_category:, :status:, :createdBy:)', [...], false)
+ 5 SYSTEMPATH\Model.php(278): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(738): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(666): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Controllers\Admin\ProductCategory.php(127): CodeIgniter\Model->insert([...])
+ 9 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\ProductCategory->add()
+10 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProductCategory))
+11 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ERROR - 2022-08-03 13:00:30 --> Column 'createdBy' cannot be null
+CRITICAL - 2022-08-03 13:00:30 --> Column 'createdBy' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 292.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(292): mysqli->query('INSERT INTO `product_category` (`parent_pro_cat_id`, `product_category`, `status`, `createdBy`) VALUES (\'\', \'product_category\', \'1\', NULL)', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(678): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `product_category` (`parent_pro_cat_id`, `product_category`, `status`, `createdBy`) VALUES (\'\', \'product_category\', \'1\', NULL)')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `product_category` (`parent_pro_cat_id`, `product_category`, `status`, `createdBy`) VALUES (\'\', \'product_category\', \'1\', NULL)')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1904): CodeIgniter\Database\BaseConnection->query('INSERT INTO `product_category` (`parent_pro_cat_id`, `product_category`, `status`, `createdBy`) VALUES (:parent_pro_cat_id:, :product_category:, :status:, :createdBy:)', [...], false)
+ 5 SYSTEMPATH\Model.php(278): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(738): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(666): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Controllers\Admin\ProductCategory.php(127): CodeIgniter\Model->insert([...])
+ 9 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\ProductCategory->add()
+10 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProductCategory))
+11 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ERROR - 2022-08-03 13:01:26 --> Column 'createdBy' cannot be null
+CRITICAL - 2022-08-03 13:01:26 --> Column 'createdBy' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 292.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(292): mysqli->query('INSERT INTO `product_category` (`parent_pro_cat_id`, `product_category`, `status`, `createdBy`) VALUES (\'\', \'l]\\\\[\', \'1\', NULL)', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(678): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `product_category` (`parent_pro_cat_id`, `product_category`, `status`, `createdBy`) VALUES (\'\', \'l]\\\\[\', \'1\', NULL)')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `product_category` (`parent_pro_cat_id`, `product_category`, `status`, `createdBy`) VALUES (\'\', \'l]\\\\[\', \'1\', NULL)')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1904): CodeIgniter\Database\BaseConnection->query('INSERT INTO `product_category` (`parent_pro_cat_id`, `product_category`, `status`, `createdBy`) VALUES (:parent_pro_cat_id:, :product_category:, :status:, :createdBy:)', [...], false)
+ 5 SYSTEMPATH\Model.php(278): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(738): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(666): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Controllers\Admin\ProductCategory.php(127): CodeIgniter\Model->insert([...])
+ 9 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\ProductCategory->add()
+10 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProductCategory))
+11 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ERROR - 2022-08-03 13:02:47 --> Column 'createdBy' cannot be null
+CRITICAL - 2022-08-03 13:02:47 --> Column 'createdBy' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 292.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(292): mysqli->query('INSERT INTO `product_category` (`parent_pro_cat_id`, `product_category`, `status`, `createdBy`) VALUES (\'\', \'product_category\', \'1\', NULL)', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(678): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `product_category` (`parent_pro_cat_id`, `product_category`, `status`, `createdBy`) VALUES (\'\', \'product_category\', \'1\', NULL)')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `product_category` (`parent_pro_cat_id`, `product_category`, `status`, `createdBy`) VALUES (\'\', \'product_category\', \'1\', NULL)')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1904): CodeIgniter\Database\BaseConnection->query('INSERT INTO `product_category` (`parent_pro_cat_id`, `product_category`, `status`, `createdBy`) VALUES (:parent_pro_cat_id:, :product_category:, :status:, :createdBy:)', [...], false)
+ 5 SYSTEMPATH\Model.php(278): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(738): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(666): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Controllers\Admin\ProductCategory.php(127): CodeIgniter\Model->insert([...])
+ 9 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\ProductCategory->add()
+10 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProductCategory))
+11 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ERROR - 2022-08-03 16:23:42 --> Column 'createdBy' cannot be null
+CRITICAL - 2022-08-03 16:23:42 --> Column 'createdBy' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 292.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(292): mysqli->query('INSERT INTO `product_category` (`parent_pro_cat_id`, `product_category`, `status`, `createdBy`) VALUES (\'\', \'sdssd\', \'1\', NULL)', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(678): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `product_category` (`parent_pro_cat_id`, `product_category`, `status`, `createdBy`) VALUES (\'\', \'sdssd\', \'1\', NULL)')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `product_category` (`parent_pro_cat_id`, `product_category`, `status`, `createdBy`) VALUES (\'\', \'sdssd\', \'1\', NULL)')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1904): CodeIgniter\Database\BaseConnection->query('INSERT INTO `product_category` (`parent_pro_cat_id`, `product_category`, `status`, `createdBy`) VALUES (:parent_pro_cat_id:, :product_category:, :status:, :createdBy:)', [...], false)
+ 5 SYSTEMPATH\Model.php(278): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(738): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(666): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Controllers\Admin\ProductCategory.php(127): CodeIgniter\Model->insert([...])
+ 9 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\ProductCategory->add()
+10 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProductCategory))
+11 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ERROR - 2022-08-03 16:24:37 --> Column 'createdBy' cannot be null
+CRITICAL - 2022-08-03 16:24:37 --> Column 'createdBy' cannot be null
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 292.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(292): mysqli->query('INSERT INTO `product_category` (`parent_pro_cat_id`, `product_category`, `status`, `createdBy`) VALUES (\'\', \'gjhhg\', \'1\', NULL)', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(678): CodeIgniter\Database\MySQLi\Connection->execute('INSERT INTO `product_category` (`parent_pro_cat_id`, `product_category`, `status`, `createdBy`) VALUES (\'\', \'gjhhg\', \'1\', NULL)')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('INSERT INTO `product_category` (`parent_pro_cat_id`, `product_category`, `status`, `createdBy`) VALUES (\'\', \'gjhhg\', \'1\', NULL)')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1904): CodeIgniter\Database\BaseConnection->query('INSERT INTO `product_category` (`parent_pro_cat_id`, `product_category`, `status`, `createdBy`) VALUES (:parent_pro_cat_id:, :product_category:, :status:, :createdBy:)', [...], false)
+ 5 SYSTEMPATH\Model.php(278): CodeIgniter\Database\BaseBuilder->insert()
+ 6 SYSTEMPATH\BaseModel.php(738): CodeIgniter\Model->doInsert([...])
+ 7 SYSTEMPATH\Model.php(666): CodeIgniter\BaseModel->insert([...], true)
+ 8 APPPATH\Controllers\Admin\ProductCategory.php(127): CodeIgniter\Model->insert([...])
+ 9 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\ProductCategory->add()
+10 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProductCategory))
+11 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+12 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-03 16:25:39 --> Call to undefined function App\Controllers\Admin\pro_parent_category_by_category_id()
+in APPPATH\Controllers\Admin\ProductCategory.php on line 72.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\ProductCategory->getAll()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProductCategory))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-03 16:25:43 --> Call to undefined function App\Controllers\Admin\pro_parent_category_by_category_id()
+in APPPATH\Controllers\Admin\ProductCategory.php on line 72.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\ProductCategory->getAll()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProductCategory))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-03 16:26:41 --> Call to undefined function App\Controllers\Admin\pro_parent_category_by_category_id()
+in APPPATH\Controllers\Admin\ProductCategory.php on line 72.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\ProductCategory->getAll()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\ProductCategory))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-03 17:36:49 --> Class 'App\Models\Super_admin\BrandModel' not found
+in APPPATH\Controllers\Admin\Brand.php on line 22.
+ 1 SYSTEMPATH\CodeIgniter.php(860): App\Controllers\Admin\Brand->__construct()
+ 2 SYSTEMPATH\CodeIgniter.php(459): CodeIgniter\CodeIgniter->createController()
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-03 17:37:09 --> Undefined variable: create
+in APPPATH\Views\Admin\Brand\brand.php on line 32.
+ 1 APPPATH\Views\Admin\Brand\brand.php(32): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: create', 'APPPATH\\Views\\Admin\\Brand\\brand.php', 32, [...])
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\Admin\\Brand\\brand.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('Admin/Brand/brand', [], true)
+ 5 APPPATH\Controllers\Admin\Brand.php(43): view('Admin/Brand/brand', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Brand->index()
+ 7 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Brand))
+ 8 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-03 17:39:58 --> Call to undefined function App\Controllers\Admin\no_image_view()
+in APPPATH\Controllers\Admin\Brand.php on line 62.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Brand->getAll()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Brand))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-03 17:41:49 --> Call to undefined function App\Controllers\Admin\no_image_view()
+in APPPATH\Controllers\Admin\Brand.php on line 62.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Brand->getAll()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Brand))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-03 17:42:40 --> Call to undefined function App\Controllers\Admin\no_image_view()
+in APPPATH\Controllers\Admin\Brand.php on line 62.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Brand->getAll()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Brand))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-03 17:43:23 --> Call to undefined function App\Controllers\Admin\no_image_view()
+in APPPATH\Controllers\Admin\Brand.php on line 62.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Brand->getAll()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Brand))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-03 17:43:59 --> Call to undefined function App\Controllers\Admin\no_image_view()
+in APPPATH\Controllers\Admin\Brand.php on line 62.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Brand->getAll()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Brand))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-03 17:44:09 --> Call to undefined function App\Controllers\Admin\no_image_view()
+in APPPATH\Controllers\Admin\Brand.php on line 62.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Brand->getAll()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Brand))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-03 17:59:38 --> Undefined variable: create
+in APPPATH\Views\Admin\Product\product.php on line 31.
+ 1 APPPATH\Views\Admin\Product\product.php(31): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: create', 'APPPATH\\Views\\Admin\\Product\\product.php', 31, [...])
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\Admin\\Product\\product.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('Admin/Product/product', [], true)
+ 5 APPPATH\Controllers\Admin\Product.php(58): view('Admin/Product/product', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Product->index()
+ 7 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Product))
+ 8 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-03 17:59:59 --> Undefined variable: proCategory
+in APPPATH\Views\Admin\Product\product.php on line 88.
+ 1 APPPATH\Views\Admin\Product\product.php(88): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: proCategory', 'APPPATH\\Views\\Admin\\Product\\product.php', 88, [...])
+ 2 SYSTEMPATH\View\View.php(213): include('APPPATH\\Views\\Admin\\Product\\product.php')
+ 3 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('Admin/Product/product', [], true)
+ 5 APPPATH\Controllers\Admin\Product.php(58): view('Admin/Product/product', [...])
+ 6 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Product->index()
+ 7 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Product))
+ 8 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-03 18:00:17 --> Call to undefined function unitInOptionArray()
+in APPPATH\Views\Admin\Product\product.php on line 116.
+ 1 SYSTEMPATH\View\View.php(213): include()
+ 2 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('Admin/Product/product', [], true)
+ 4 APPPATH\Controllers\Admin\Product.php(58): view('Admin/Product/product', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Product->index()
+ 6 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Product))
+ 7 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-03 18:00:49 --> Call to undefined function productTypeInOption()
+in APPPATH\Views\Admin\Product\product.php on line 180.
+ 1 SYSTEMPATH\View\View.php(213): include()
+ 2 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('Admin/Product/product', [], true)
+ 4 APPPATH\Controllers\Admin\Product.php(58): view('Admin/Product/product', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Product->index()
+ 6 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Product))
+ 7 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-03 18:08:00 --> Call to undefined function App\Controllers\Admin\showUnitName()
+in APPPATH\Controllers\Admin\Product.php on line 130.
+ 1 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Product->getAll()
+ 2 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Product))
+ 3 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 4 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-03 18:09:05 --> Call to undefined function unitArray()
+in APPPATH\Helpers\Helpers_helper.php on line 251.
+ 1 APPPATH\Controllers\Admin\Product.php(130): showUnitName('1')
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Product->getAll()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Product))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-03 18:09:54 --> Call to undefined function unitArray()
+in APPPATH\Helpers\Helpers_helper.php on line 251.
+ 1 APPPATH\Controllers\Admin\Product.php(130): showUnitName('1')
+ 2 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Product->getAll()
+ 3 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Product))
+ 4 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-03 18:12:17 --> Trying to get property 'permission' of non-object
+in APPPATH\Libraries\Permission.php on line 15.
+ 1 APPPATH\Libraries\Permission.php(15): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'permission\' of non-object', 'APPPATH\\Libraries\\Permission.php', 15, [...])
+ 2 APPPATH\Controllers\Admin\Product.php(87): App\Libraries\Permission->module_permission_list(null, 'Product')
+ 3 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Product->update('1')
+ 4 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Product))
+ 5 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-03 18:14:57 --> Call to undefined function proSubCatListInOption()
+in APPPATH\Views\Admin\Product\update.php on line 64.
+ 1 SYSTEMPATH\View\View.php(213): include()
+ 2 SYSTEMPATH\View\View.php(216): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 3 SYSTEMPATH\Common.php(1135): CodeIgniter\View\View->render('Admin/Product/update', [], true)
+ 4 APPPATH\Controllers\Admin\Product.php(86): view('Admin/Product/update', [...])
+ 5 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Product->update('1')
+ 6 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Product))
+ 7 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+ERROR - 2022-08-03 20:09:29 --> Error connecting to the database: No connection could be made because the target machine actively refused it.
+
+CRITICAL - 2022-08-03 20:09:30 --> Unable to connect to the database.
+Main connection [MySQLi]: No connection could be made because the target machine actively refused it.
+
+in SYSTEMPATH\Database\BaseConnection.php on line 415.
+ 1 SYSTEMPATH\Database\BaseConnection.php(585): CodeIgniter\Database\BaseConnection->initialize()
+ 2 SYSTEMPATH\Database\BaseBuilder.php(1585): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `product_category`
+WHERE `parent_pro_cat_id` = :parent_pro_cat_id:', [...], false)
+ 3 SYSTEMPATH\Model.php(222): CodeIgniter\Database\BaseBuilder->get()
+ 4 SYSTEMPATH\BaseModel.php(584): CodeIgniter\Model->doFindAll(0, 0)
+ 5 APPPATH\Controllers\Admin\Product.php(48): CodeIgniter\BaseModel->findAll()
+ 6 SYSTEMPATH\CodeIgniter.php(898): App\Controllers\Admin\Product->index()
+ 7 SYSTEMPATH\CodeIgniter.php(468): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Admin\Product))
+ 8 SYSTEMPATH\CodeIgniter.php(351): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 FCPATH\index.php(55): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2022-08-03 20:09:31 --> Uncaught ErrorException: print_r(): Property access is not allowed yet in C:\xampp\htdocs\IQraw\app\Views\errors\html\error_exception.php:96
+Stack trace:
+#0 [internal function]: CodeIgniter\Debug\Exceptions->errorHandler(2, 'print_r(): Prop...', 'C:\\xampp\\htdocs...', 96, Array)
+#1 C:\xampp\htdocs\IQraw\app\Views\errors\html\error_exception.php(96): print_r(Object(App\Controllers\Admin\Product), true)
+#2 C:\xampp\htdocs\IQraw\system\Debug\Exceptions.php(239): include('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\IQraw\system\Debug\Exceptions.php(242): CodeIgniter\Debug\Exceptions->CodeIgniter\Debug\{closure}()
+#4 C:\xampp\htdocs\IQraw\system\Debug\Exceptions.php(126): CodeIgniter\Debug\Exceptions->render(Object(CodeIgniter\Database\Exceptions\DatabaseException), 500)
+#5 [internal function]: CodeIgniter\Debug\Exceptions->exceptionHandler(Object(CodeIgniter\Database\Exceptions\DatabaseException))
+#6 {main}
+  thrown
+in APPPATH\Views\errors\html\error_exception.php on line 96.
+ 1 [internal function]: CodeIgniter\Debug\Exceptions->shutdownHandler()

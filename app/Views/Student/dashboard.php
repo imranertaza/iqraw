@@ -12,7 +12,7 @@
             <a href="<?php echo base_url() ?>/Student/Quiz" class="btn d-block btn-st">Quiz</a>
         </div>
         <div class="col-6 h-p-r">
-            <a href="shopping.html" class="btn d-block btn-st">Shopping</a>
+            <a href="<?php echo base_url() ?>/Student/Shopping" class="btn d-block btn-st">Shopping</a>
         </div>
 
         <div class="col-6 h-p-r">

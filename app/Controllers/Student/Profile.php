@@ -38,7 +38,7 @@ class Profile extends BaseController
 
             $data['back_url'] = base_url('/');
             $data['page_title'] = 'Profile';
-
+            $data['footer_icon'] = 'Home';
 
             $query = $this->student->where('std_id',$this->session->std_id)->get();
             $data['user'] = $query->getRow();

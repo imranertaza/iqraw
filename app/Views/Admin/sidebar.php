@@ -119,6 +119,43 @@
             </li>
 
             <li class="nav-item ">
+                <a href="<?php echo base_url('Admin/Product')?>" class="nav-link">
+                    <i class="nav-icon fas fa-user"></i>
+                    <p>Product</p>
+                </a>
+            </li>
+
+            <li class="nav-item ">
+                <a href="<?php echo base_url('Admin/ProductCategory')?>" class="nav-link">
+                    <i class="nav-icon fas fa-user"></i>
+                    <p>Product Category</p>
+                </a>
+            </li>
+
+            <li class="nav-item ">
+                <a href="<?php echo base_url('Admin/Brand')?>" class="nav-link">
+                    <i class="nav-icon fas fa-user"></i>
+                    <p>Brand</p>
+                </a>
+            </li>
+
+
+            <li class="nav-item ">
+                <a href="<?php echo base_url('Admin/Store')?>" class="nav-link">
+                    <i class="nav-icon fas fa-user"></i>
+                    <p>Store</p>
+                </a>
+            </li>
+
+            <li class="nav-item ">
+                <a href="<?php echo base_url('Admin/Order')?>" class="nav-link">
+                    <i class="nav-icon fas fa-user"></i>
+                    <p>Order</p>
+                </a>
+            </li>
+
+
+            <li class="nav-item ">
                 <a href="<?php echo base_url('Admin/User')?>" class="nav-link">
                     <i class="nav-icon fas fa-user"></i>
                     <p>User</p>

@@ -36,6 +36,7 @@ class Ranking extends BaseController
 
             $data['back_url'] = base_url('/');
             $data['page_title'] = 'Ranking';
+            $data['footer_icon'] = 'Ranking';
 
             $data['student'] = $this->studentModel->findAll();
 

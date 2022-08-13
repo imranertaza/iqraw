@@ -4,6 +4,10 @@ function DB()
     $db = \Config\Database::connect();
     return $db;
 }
+function Cart(){
+    $ca = \Config\Services::cart();
+    return $ca;
+}
 
 function newSession()
 {
@@ -41,6 +45,40 @@ function globalStatus($selected = 'sel')
     }
     return $row;
 }
+
+
+function invoiceStatusView($selected = '1')
+{
+    $status = [
+        '0' => 'Unpaid',
+        '1' => 'Paid',
+        '2' => 'Pending',
+        '3' => 'cancel',
+    ];
+
+    $row = '';
+    foreach ($status as $key => $option) {
+        $row .= ($selected == $key) ? $option : '';
+    }
+    return $row;
+}
+
+function orderStatusInOption($sel = '0')
+{
+    $status = [
+        0 => 'unpaid',
+        1 => 'paid',
+        2 => 'Pending',
+        3 => 'cancel'
+    ];
+    $row = '<option value="">Please select</option>';
+    foreach ($status as $key => $option) {
+        $s = ($key == $sel)?'selected':'';
+        $row .= '<option value="'.$key.'" '.$s.'>'.$option.'</option>';
+    }
+    return $row;
+}
+
 
 function getListInOption($selected, $tblId, $needCol, $table)
 {
@@ -187,3 +225,109 @@ function already_join_voc_exam_check($voc_exam_id){
 
     return $result;
 }
+
+function pro_parent_category_by_category_id($id)
+{
+    $session = newSession();
+    $table = DB()->table('product_category');
+    $query = $table->where('parent_pro_cat_id', $id);
+    $row = $query->countAllResults();
+    if (!empty($row)) {
+        $prId = get_data_by_id('parent_pro_cat_id', 'product_category', 'parent_pro_cat_id', $id);
+        $table2 = DB()->table('product_category');
+        $query2 = $table2->where('prod_cat_id', $prId);
+        $catName = $query2->get()->getRow();
+        $view = (!empty($catName)) ? $catName->product_category : 'No parent';
+    } else {
+        $view = "No parent";
+    }
+    return $view;
+}
+
+function no_image_view($image_path,$no_image_path,$imageName = '1'){
+    $imgPathcheck = FCPATH.$image_path;
+    if ((empty($imageName))||(!file_exists($imgPathcheck))){
+        return base_url().$no_image_path;
+    }else{
+        return base_url().$image_path;
+    }
+}
+
+function unitInOptionArray($selec = '1')
+{
+    $status = [
+        '1' => 'Piece',
+        '2' => 'KG',
+        '3' => 'LETTER',
+        '4' => 'TON'
+    ];
+    $options = '';
+    foreach ($status as $key => $value) {
+        $options .= '<option value="' . $key . '" ';
+        $options .= ($key == $selec) ? ' selected="selected"' : '';
+        $options .= '>' . $value . '</option>';
+    }
+    return $options;
+}
+
+function productTypeInOption($selec = '0')
+{
+    $status = [
+        '1' => 'Regular',
+        '2' => 'Temporary',
+    ];
+    $options = '';
+    foreach ($status as $key => $value) {
+        $options .= '<option value="' . $key . '" ';
+        $options .= ($key == $selec) ? ' selected="selected"' : '';
+        $options .= '>' . $value . '</option>';
+    }
+    return $options;
+}
+function unitArray()
+{
+    $status = [
+        '1' => 'Piece',
+        '2' => 'KG',
+        '3' => 'LETTER',
+        '4' => 'TON'
+    ];
+    return $status;
+}
+function showUnitName($selected = '1')
+{
+    $status = unitArray();
+    $row = $status[$selected];
+    return $row;
+}
+
+function  proSubCatListInOption($categoryId,$selected){
+    $table = DB()->table('product_category');
+    $query = $table->where('prod_cat_id', $categoryId);
+    $row = $query->countAllResults();
+    $view = '<option value="" >Please Select</option>';
+    if (!empty($row)) {
+        $table2 = DB()->table('product_category');
+        $query2 = $table2->where('parent_pro_cat_id', $categoryId)->get()->getResult();
+        foreach ($query2 as $item) {
+            $sel = ($item->prod_cat_id == $selected)?'selected':'';
+            $view .= '<option value="'.$item->prod_cat_id.'" '.$sel.'>'.$item->product_category.'</option>';
+        }
+    }
+    return $view;
+}
+
+function get_category_link_by_name($name,$url){
+
+    $table = DB()->table('product_category');
+    $table->where('product_category', $name);
+    $data = $table->get()->getRow();
+
+    if (!empty($data)){
+        $link = $url.'/'.$data->prod_cat_id;
+    }else{
+        $link = '#';
+    }
+    return $link;
+}
+
