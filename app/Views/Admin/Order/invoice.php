@@ -100,10 +100,10 @@
                             <!-- accepted payments column -->
                             <div class="col-6">
                                 <p class="lead">Payment Methods:</p>
-                                <img src="<?php echo base_url()?>/backhand/assets/dist/img/credit/visa.png" alt="Visa">
-                                <img src="<?php echo base_url()?>/backhand/assets/dist/img/credit/mastercard.png" alt="Mastercard">
-                                <img src="<?php echo base_url()?>/backhand/assets/dist/img/credit/american-express.png" alt="American Express">
-                                <img src="<?php echo base_url()?>/backhand/assets/dist/img/credit/paypal2.png" alt="Paypal">
+                                <img src="<?php echo base_url()?>/backend/assets/dist/img/credit/visa.png" alt="Visa">
+                                <img src="<?php echo base_url()?>/backend/assets/dist/img/credit/mastercard.png" alt="Mastercard">
+                                <img src="<?php echo base_url()?>/backend/assets/dist/img/credit/american-express.png" alt="American Express">
+                                <img src="<?php echo base_url()?>/backend/assets/dist/img/credit/paypal2.png" alt="Paypal">
 
                                 <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
                                     Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem plugg

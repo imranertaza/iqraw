@@ -5,6 +5,8 @@ namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 use App\Libraries\Permission;
 use App\Models\Chapter_videoModel;
+use App\Models\ChapterModel;
+use App\Models\SubjectModel;
 
 
 class Chapter_video extends BaseController
@@ -12,6 +14,8 @@ class Chapter_video extends BaseController
     protected $validation;
     protected $session;
     protected $chapterVideoModel;
+    protected $subjectModel;
+    protected $chapterModel;
     protected $crop;
     protected $permission;
     private $module_name = 'Chapter_video';
@@ -19,6 +23,8 @@ class Chapter_video extends BaseController
     public function __construct()
     {
         $this->chapterVideoModel = new Chapter_videoModel();
+        $this->subjectModel = new SubjectModel();
+        $this->chapterModel = new ChapterModel();
         $this->permission = new Permission();
         $this->validation = \Config\Services::validation();
         $this->session = \Config\Services::session();
@@ -94,6 +100,11 @@ class Chapter_video extends BaseController
         if ($this->validation->check($id, 'required|numeric')) {
 
             $data = $this->chapterVideoModel->where('video_id', $id)->first();
+
+            $subject_id = get_data_by_id('subject_id','chapter','chapter_id',$data->chapter_id);
+            $class_id = get_data_by_id('class_id','subject','subject_id',$subject_id);
+            $data->class_id = $class_id;
+            $data->subject_id = $subject_id;
 
             return $this->response->setJSON($data);
 
@@ -208,6 +219,28 @@ class Chapter_video extends BaseController
         }
 
         return $this->response->setJSON($response);
+    }
+
+    public function get_subject(){
+        $id = $this->request->getPost('class_id');
+        $data = $this->subjectModel->where('class_id',$id)->findAll();
+        $view = '<option value="">Please select</option>';
+        foreach ($data as $val){
+            $view .= '<option value="'.$val->subject_id.'">'.$val->name.'</option>';
+        }
+
+        print $view;
+    }
+
+    public function get_chapter(){
+        $id = $this->request->getPost('subject_id');
+        $data = $this->chapterModel->where('subject_id',$id)->findAll();
+        $view = '<option value="">Please select</option>';
+        foreach ($data as $val){
+            $view .= '<option value="'.$val->chapter_id.'">'.$val->name.'</option>';
+        }
+
+        print $view;
     }
 
 

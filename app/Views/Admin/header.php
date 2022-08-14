@@ -8,25 +8,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="<?php echo base_url() ?>/assets/image/faveiocn.png" type="image/x-icon">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="<?php echo base_url()?>/backhand/assets/css/all.min.css">
+    <link rel="stylesheet" href="<?php echo base_url()?>/backend/assets/css/all.min.css">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="<?php echo base_url()?>/backhand/assets/css/ionicons.min.css">
+    <link rel="stylesheet" href="<?php echo base_url()?>/backend/assets/css/ionicons.min.css">
     <!-- SweetAlert2 -->
-    <link rel="stylesheet" href="<?php echo base_url()?>/backhand/assets/css/bootstrap-4.min.css">
+    <link rel="stylesheet" href="<?php echo base_url()?>/backend/assets/css/bootstrap-4.min.css">
     <!-- DataTables -->
-    <link rel="stylesheet" href="<?php echo base_url()?>/backhand/assets/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="<?php echo base_url()?>/backhand/assets/css/responsive.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?php echo base_url()?>/backend/assets/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="<?php echo base_url()?>/backend/assets/css/responsive.bootstrap4.min.css">
     <!-- Theme style -->
-    <link rel="stylesheet" href="<?php echo base_url()?>/backhand/assets/css/adminlte.min.css">
-    <link rel="stylesheet" href="<?php echo base_url()?>/backhand/assets/css/css.css">
+    <link rel="stylesheet" href="<?php echo base_url()?>/backend/assets/css/adminlte.min.css">
+    <link rel="stylesheet" href="<?php echo base_url()?>/backend/assets/css/css.css">
 
-    <link rel="stylesheet" href="<?php echo base_url()?>/backhand/assets/css/richtext.min.css">
+    <link rel="stylesheet" href="<?php echo base_url()?>/backend/assets/css/richtext.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <link href="<?php echo base_url()?>/backhand/assets/fontawesome/css/all.css" rel="stylesheet">
+    <link href="<?php echo base_url()?>/backend/assets/fontawesome/css/all.css" rel="stylesheet">
     <!-- jQuery -->
-    <script src="<?php echo base_url()?>/backhand/assets/js/jquery.min.js"></script>
-    <script type="text/javascript" src="<?php echo base_url()?>/backhand/assets/js/jquery.richtext.js"></script>
+    <script src="<?php echo base_url()?>/backend/assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="<?php echo base_url()?>/backend/assets/js/jquery.richtext.js"></script>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -112,6 +112,6 @@
         <!-- Brand Logo -->
         <a href="#" class="brand-link text-center">
             iQraw
-<!--            --><?php //$logoside = no_image_view('/backhand/assets/upload/hospital/'.newSession()->h_Id.'/'. hospitalLogo(),'/backhand/assets//upload/hospital/no_image.jpg',$imageName = '1')?>
+<!--            --><?php //$logoside = no_image_view('/backend/assets/upload/hospital/'.newSession()->h_Id.'/'. hospitalLogo(),'/backend/assets//upload/hospital/no_image.jpg',$imageName = '1')?>
 <!--            <img src="--><?php //echo $logoside;?><!--" alt="--><?php //echo hospitalName();?><!--" class=" elevation-3" style="opacity: .8;width: 200px;">-->
         </a>

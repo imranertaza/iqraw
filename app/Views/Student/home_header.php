@@ -27,8 +27,12 @@
             <p class="c-t" style="margin-top: -5px;"><?php echo numberView($student->coin);?></p>
         </div>
         <div style="width: 30%;float: left;text-align: right; margin-top: 10px;">
-            <a href="<?php echo base_url('/SignUp/logout')?>"><img src="<?php base_url();?>/assets/image/icon-settings.svg" alt="banner" class="h-ico"></a>
-
+            <a href="" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><img src="<?php base_url();?>/assets/image/icon-settings.svg" alt="banner" class="h-ico"></a>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="<?php echo base_url('/SignUp/logout')?>">LogOut</a></li>
+<!--                <li><a class="dropdown-item" href="#">Another action</a></li>-->
+<!--                <li><a class="dropdown-item" href="#">Something else here</a></li>-->
+            </ul>
         </div>
     </div>
     <img src="<?php base_url();?>/assets/image/home-img.svg" alt="banner" class="home-banner">

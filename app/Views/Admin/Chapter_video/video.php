@@ -69,11 +69,29 @@
                     <form id="add-form" class="pl-3 pr-3">
                         <div class="row">
                             <div class="col-md-12">
+                                <div class="form-group ">
+                                    <label for="chapter_id">Class: </label>
+                                    <select class="form-control text-capitalize" onchange="get_subject(this.value)" name="class_id" required>
+                                        <option value="">Please select</option>
+                                        <?php echo getListInOption('','class_id','name','class') ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="chapter_id">Subject: </label>
+                                    <select class="form-control" onchange="get_chapter(this.value)" name="subject_id" id="subject_id" required>
+                                        <option value="">Please select</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="chapter_id">Chapter: </label>
-                                    <select class="form-control" name="chapter_id" required>
+                                    <select class="form-control" name="chapter_id" id="chapter_id" required>
                                         <option value="">Please select</option>
-                                        <?php echo getListInOption('','chapter_id','name','chapter') ?>
                                     </select>
                                 </div>
                             </div>
@@ -91,10 +109,6 @@
                                     <input type="text" class="form-control" name="URL" required>
                                 </div>
                             </div>
-
-
-
-
                         </div>
 
 
@@ -122,8 +136,28 @@
                     <form id="edit-form" class="pl-3 pr-3">
                         <div class="row">
                             <div class="col-md-6">
+                                <div class="form-group ">
+                                    <label for="chapter_id">Class: </label>
+                                    <select class="form-control text-capitalize" onchange="get_subject(this.value)" id="class_id" required>
+                                        <option value="">Please select</option>
+                                        <?php echo getListInOption('','class_id','name','class') ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="video_id">Chapter: </label>
+                                    <label for="chapter_id">Subject: </label>
+                                    <select class="form-control" onchange="get_chapter(this.value)"  id="subject_id" required>
+                                        <option value="">Please select</option>
+                                        <?php echo getListInOption('','subject_id','name','subject') ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="quiz_id">Chapter: </label>
                                     <select class="form-control" name="chapter_id" id="chapter_id" required>
                                         <option value="">Please select</option>
                                         <?php echo getListInOption('','chapter_id','name','chapter') ?>
@@ -305,6 +339,8 @@
 
                 $("#edit-form #video_id").val(response.video_id);
                 $("#edit-form #chapter_id").val(response.chapter_id);
+                $("#edit-form #class_id").val(response.class_id);
+                $("#edit-form #subject_id").val(response.subject_id);
                 $("#edit-form #name").val(response.name);
                 $("#edit-form #URL").val(response.URL);
                 $("#edit-form #status").val(response.status);
@@ -445,6 +481,34 @@
                 });
             }
         })
+    }
+
+    function get_subject(class_id){
+        $.ajax({
+            url: '<?php echo base_url($controller . '/get_subject') ?>',
+            type: 'post',
+            data: {
+                class_id: class_id
+            },
+            success: function (response){
+                $("#subject_id").html(response);
+                $("#edit-form #subject_id").html(response);
+            }
+        });
+    }
+
+    function get_chapter(subject_id){
+        $.ajax({
+            url: '<?php echo base_url($controller . '/get_chapter') ?>',
+            type: 'post',
+            data: {
+                subject_id: subject_id
+            },
+            success: function (response){
+                $("#chapter_id").html(response);
+                $("#edit-form #chapter_id").html(response);
+            }
+        });
     }
 
 

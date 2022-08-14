@@ -955,7 +955,9 @@ table th{
     color: #FFFFFF !important;
     padding: 2px 18px;
 }
-
+.dropdown-menu{
+    top: 30px !important;
+}
 
 /*@media only screen and (max-width: 425px){*/
 /*    !*Small smartphones [325px -> 425px]*!*/

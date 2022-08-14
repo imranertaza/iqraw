@@ -5,6 +5,7 @@ namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 use App\Libraries\Permission;
 use App\Models\ChapterModel;
+use App\Models\SubjectModel;
 
 
 class Chapter extends BaseController
@@ -12,6 +13,7 @@ class Chapter extends BaseController
     protected $validation;
     protected $session;
     protected $chapterModel;
+    protected $subjectModel;
     protected $crop;
     protected $permission;
     private $module_name = 'Chapter';
@@ -19,6 +21,7 @@ class Chapter extends BaseController
     public function __construct()
     {
         $this->chapterModel = new ChapterModel();
+        $this->subjectModel = new SubjectModel();
         $this->permission = new Permission();
         $this->validation = \Config\Services::validation();
         $this->session = \Config\Services::session();
@@ -92,6 +95,8 @@ class Chapter extends BaseController
         if ($this->validation->check($id, 'required|numeric')) {
 
             $data = $this->chapterModel->where('chapter_id', $id)->first();
+            $class_id = get_data_by_id('class_id','subject','subject_id',$data->subject_id);
+            $data->class_id = $class_id;
 
             return $this->response->setJSON($data);
 
@@ -205,6 +210,17 @@ class Chapter extends BaseController
         }
 
         return $this->response->setJSON($response);
+    }
+
+    public function get_subject(){
+        $id = $this->request->getPost('class_id');
+        $data = $this->subjectModel->where('class_id',$id)->findAll();
+        $view = '<option value="">Please select</option>';
+        foreach ($data as $val){
+            $view .= '<option value="'.$val->subject_id.'">'.$val->name.'</option>';
+        }
+
+        print $view;
     }
 
 
