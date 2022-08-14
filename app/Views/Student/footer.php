@@ -226,7 +226,8 @@
     function coinAdd(){
         var sub_total = $('#sub_total').val();
         var myCoin = $('#myCoin').val();
-
+        alert(sub_total);
+        alert(myCoin);
         if (sub_total <= myCoin){
             $('#titlePay').html('Coin');
             $('#titleAmo').html('-' +sub_total+'৳');
