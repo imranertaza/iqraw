@@ -70,13 +70,6 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="name">Subject Name: </label>
-                                    <input type="text" class="form-control" name="name" required>
-                                </div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <div class="form-group">
                                     <label for="class_id">Class: </label>
                                     <select class="form-control" name="class_id" required>
                                         <option value="">Please select</option>
@@ -84,6 +77,25 @@
                                     </select>
                                 </div>
                             </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="class_group_id">Class Group: </label>
+                                    <select class="form-control" name="class_group_id" >
+                                        <option value="">Please select</option>
+                                        <?php echo getListInOption('','class_group_id','group_name','class_group') ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="name">Subject Name: </label>
+                                    <input type="text" class="form-control" name="name" required>
+                                </div>
+                            </div>
+
+
 
                         </div>
 
@@ -111,13 +123,7 @@
                 <div class="modal-body">
                     <form id="edit-form" class="pl-3 pr-3">
                         <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label for="name">Class Name: </label>
-                                    <input type="text" class="form-control" name="name" id="name" required>
-                                    <input type="hidden" class="form-control" name="subject_id" id="subject_id" required>
-                                </div>
-                            </div>
+
 
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -126,6 +132,24 @@
                                         <option value="">Please select</option>
                                         <?php echo getListInOption('','class_id','name','class') ?>
                                     </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="class_group_id">Class Group: </label>
+                                    <select class="form-control" name="class_group_id" id="class_group_id" >
+                                        <option value="">Please select</option>
+                                        <?php echo getListInOption('','class_group_id','group_name','class_group') ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="name">Class Name: </label>
+                                    <input type="text" class="form-control" name="name" id="name" required>
+                                    <input type="hidden" class="form-control" name="subject_id" id="subject_id" required>
                                 </div>
                             </div>
 
@@ -285,6 +309,7 @@
 
                 $("#edit-form #subject_id").val(response.subject_id);
                 $("#edit-form #class_id").val(response.class_id);
+                $("#edit-form #class_group_id").val(response.class_group_id);
                 $("#edit-form #name").val(response.name);
                 $("#edit-form #status").val(response.status);
 

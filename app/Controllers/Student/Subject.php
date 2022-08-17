@@ -3,8 +3,10 @@
 namespace App\Controllers\Student;
 use App\Controllers\BaseController;
 use App\Models\ChapterModel;
+use App\Models\Group_classModel;
 use App\Models\School_classModel;
 use App\Models\SubjectModel;
+use mysql_xdevapi\Table;
 
 
 class Subject extends BaseController
@@ -14,12 +16,14 @@ class Subject extends BaseController
     protected $schoolClassModel;
     protected $subjectModel;
     protected $chapterModel;
+    protected $group_classModel;
 
     public function __construct()
     {
         $this->schoolClassModel = new School_classModel();
         $this->subjectModel = new SubjectModel();
         $this->chapterModel = new ChapterModel();
+        $this->group_classModel = new Group_classModel();
         $this->validation =  \Config\Services::validation();
         $this->session = \Config\Services::session();
     }
@@ -34,8 +38,10 @@ class Subject extends BaseController
             $data['footer_icon'] = 'Home';
 
             $classId = get_data_by_id('class_id','student','std_id',$this->session->std_id);
+            $classGroupId = get_data_by_id('class_group_id','student','std_id',$this->session->std_id);
 
-            $data['subject'] = $this->subjectModel->where('class_id',$classId)->findAll();
+            $data['subject'] = $this->subjectModel->where('class_id',$classId)->where('class_group_id', NULL)->Orwhere('class_group_id', $classGroupId)->findAll();
+
             unset($_SESSION['quiz']);
             unset($_SESSION['chapter_joined_id']);
 

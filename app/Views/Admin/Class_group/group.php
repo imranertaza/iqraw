@@ -5,12 +5,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Student</h1>
+                    <h1>Class Group</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Student</li>
+                        <li class="breadcrumb-item active">Class Group</li>
                     </ol>
                 </div>
             </div>
@@ -25,12 +25,12 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-8 mt-2">
-                                <h3 class="card-title">Student List</h3>
+                                <h3 class="card-title">Class Group List</h3>
                             </div>
                             <div class="col-md-4">
-                                <button type="button" class="btn btn-block btn-success" onclick="add()" title="Add"><i
-                                            class="fa fa-plus"></i> Add
-                                </button>
+<!--                                <button type="button" class="btn btn-block btn-success" onclick="add()" title="Add"><i-->
+<!--                                        class="fa fa-plus"></i> Add-->
+<!--                                </button>-->
 
                             </div>
                         </div>
@@ -42,9 +42,6 @@
                             <tr>
                                 <th width="60">Id</th>
                                 <th>Name</th>
-                                <th>Phone</th>
-                                <th>School Name</th>
-                                <th>Class</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -62,7 +59,7 @@
     <!-- Add modal content -->
     <div id="add-modal" class="modal fade" tabindex="-1" role="dialog"
          aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="text-center bg-info p-3">
                     <h4 class="modal-title text-white" id="info-header-modalLabel">Add</h4>
@@ -70,113 +67,17 @@
                 <div class="modal-body text-capitalize">
                     <form id="add-form" class="pl-3 pr-3">
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="name"> Name: </label>
-                                    <input type="text" class="form-control" name="name" required>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="father_name"> Father Name: </label>
-                                    <input type="text" class="form-control" name="father_name" required>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="address">Address: </label>
-                                    <input type="text" class="form-control" name="address" required>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="school_name"> School Name: </label>
-                                    <input type="text" class="form-control" name="school_name" required>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <div class="form-group col-md-6">
-                                        <label for="gender"> Gender: </label>
-                                        <select class="form-control" name="gender" id="gender"
-                                                style="margin-right: 5px;" required>
-                                            <option value="">Select</option>
-                                            <option value="male">Male</option>
-                                            <option value="female">Female</option>
-                                            <option value="Unisex">Unisex</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="religion"> Religion: </label>
-                                        <select class="form-control" name="religion" id="religion"
-                                                style="margin-left: 5px;" required>
-                                            <option value="">Select</option>
-                                            <option value="Islam">Islam</option>
-                                            <option value="Hindu">Hindu</option>
-                                            <option value="Christian">Christian</option>
-                                            <option value="Buddhism">Buddhism</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="row">
-                                    <div class="form-group col-md-6">
-                                        <label for="class_id"> Class: </label>
-                                        <select class="form-control" name="class_id" id="class_id" onchange="viewGroup(this.value)" required>
-                                            <option value="">Please select</option>
-                                            <?php echo getListInOption('', 'class_id', 'name', 'class'); ?>
-                                        </select>
-                                    </div>
-
-                                    <div class="form-group col-md-6">
-                                        <label for="age"> Age: </label>
-                                        <input type="number" class="form-control" name="age" required>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="phone"> Phone: </label>
-                                    <input type="number" class="form-control" name="phone" required>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="password"> Password: </label>
-                                    <input type="number" class="form-control" name="password" required>
-                                </div>
-                            </div>
-
                             <div class="col-md-12">
-                                <!-- Nav tabs -->
-                                <ul class="nav nav-tabs nav-fill sut-t">
-                                    <li class="nav-item ">
-                                        <input type="radio" class="d-none"  name="institute" id="btnr1"   value="School" />
-                                        <a class="nav-link active" data-toggle="tab" onclick="checkInst()" href="#home">School</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <input type="radio" class="d-none" name="institute" id="btnr2"   value="Madrasha" />
-                                        <a class="nav-link " data-toggle="tab" onclick="checkInst2()" href="#menu1">Madrasah</a>
-                                    </li>
-
-                                </ul>
-
-                                <!-- Tab panes -->
-                                <div class="tab-content mt-4" id="gorupview">
-
+                                <div class="form-group">
+                                    <label for="name">Class Group Name: </label>
+                                    <input type="text" class="form-control" name="group_name" required>
                                 </div>
                             </div>
 
                         </div>
 
-                        <div class="form-group text-center mt-3">
+
+                        <div class="form-group text-center">
                             <div class="btn-group">
                                 <button type="submit" class="btn btn-success" id="add-form-btn">Add</button>
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
@@ -188,7 +89,50 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
+    <!-- Add modal content -->
+    <div id="edit-modal" class="modal fade" tabindex="-1" role="dialog"
+         aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="text-center bg-info p-3">
+                    <h4 class="modal-title text-white" id="info-header-modalLabel">Update</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="edit-form" class="pl-3 pr-3">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="name">Class Group Name: </label>
+                                    <input type="text" class="form-control" name="group_name" id="group_name" required>
+                                    <input type="hidden" class="form-control" name="class_group_id" id="class_group_id" required>
+                                </div>
+                            </div>
 
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="status">Status: </label>
+                                    <select class="form-control" name="status" id="status" required>
+                                        <option value="">please select</option>
+                                        <option value="Active">Active</option>
+                                        <option value="Inactive">Inactive</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group text-center">
+                            <div class="btn-group">
+                                <button type="submit" class="btn btn-success" id="edit-form-btn">Update</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
 <script>
@@ -304,18 +248,115 @@
         $('#add-form').validate();
     }
 
-    function viewGroup(class_id){
+    function edit(class_group_id) {
         $.ajax({
-            url: '<?php echo base_url($controller . '/classGroup') ?>',
+            url: '<?php echo base_url($controller . '/getOne') ?>',
             type: 'post',
-            data: {class_id:class_id},
+            data: {
+                class_group_id: class_group_id
+            },
+            //dataType: 'json',
             success: function (response) {
-                $("#gorupview").html(response);
+                // reset the form
+                $("#edit-form")[0].reset();
+                $(".form-control").removeClass('is-invalid').removeClass('is-valid');
+                $('#edit-modal').modal('show');
+
+
+                $("#edit-form #class_group_id").val(response.class_group_id);
+                $("#edit-form #group_name").val(response.group_name);
+                $("#edit-form #status").val(response.status);
+
+                // submit the edit from
+                $.validator.setDefaults({
+                    highlight: function (element) {
+                        $(element).addClass('is-invalid').removeClass('is-valid');
+                    },
+                    unhighlight: function (element) {
+                        $(element).removeClass('is-invalid').addClass('is-valid');
+                    },
+                    errorElement: 'div ',
+                    errorClass: 'invalid-feedback',
+                    errorPlacement: function (error, element) {
+                        if (element.parent('.input-group').length) {
+                            error.insertAfter(element.parent());
+                        } else if ($(element).is('.select')) {
+                            element.next().after(error);
+                        } else if (element.hasClass('select2')) {
+                            //error.insertAfter(element);
+                            error.insertAfter(element.next());
+                        } else if (element.hasClass('selectpicker')) {
+                            error.insertAfter(element.next());
+                        } else {
+                            error.insertAfter(element);
+                        }
+                    },
+
+                    submitHandler: function (form) {
+                        var form = $('#edit-form');
+                        $(".text-danger").remove();
+                        $.ajax({
+                            url: '<?php echo base_url($controller . '/edit') ?>',
+                            type: 'post',
+                            data: form.serialize(),
+                            dataType: 'json',
+                            beforeSend: function () {
+                                $('#edit-form-btn').html('<i class="fa fa-spinner fa-spin"></i>');
+                            },
+                            success: function (response) {
+
+                                if (response.success === true) {
+
+                                    Swal.fire({
+                                        position: 'bottom-end',
+                                        icon: 'success',
+                                        title: response.messages,
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    }).then(function () {
+                                        $('#data_table').DataTable().ajax.reload(null, false).draw(false);
+                                        $('#edit-modal').modal('hide');
+                                    })
+
+                                } else {
+
+                                    if (response.messages instanceof Object) {
+                                        $.each(response.messages, function (index, value) {
+                                            var id = $("#" + index);
+
+                                            id.closest('.form-control')
+                                                .removeClass('is-invalid')
+                                                .removeClass('is-valid')
+                                                .addClass(value.length > 0 ? 'is-invalid' : 'is-valid');
+
+                                            id.after(value);
+
+                                        });
+                                    } else {
+                                        Swal.fire({
+                                            position: 'bottom-end',
+                                            icon: 'error',
+                                            title: response.messages,
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        })
+
+                                    }
+                                }
+                                $('#edit-form-btn').html('Update');
+                            }
+                        });
+
+                        return false;
+                    }
+                });
+                $('#edit-form').validate();
+
             }
         });
     }
 
-    function remove(std_id) {
+    function remove(class_group_id) {
         Swal.fire({
             title: 'Are you sure of the deleting process?',
             text: "You cannot back after confirmation",
@@ -332,7 +373,7 @@
                     url: '<?php echo base_url($controller . '/remove') ?>',
                     type: 'post',
                     data: {
-                        std_id: std_id
+                        class_group_id: class_group_id
                     },
                     dataType: 'json',
                     success: function (response) {
@@ -363,19 +404,6 @@
             }
         })
     }
-
-    function checkInst(){
-        $("#btnr2").attr('checked', false);
-        $("#btnr1").attr('checked', true);
-    }
-    function checkInst2(){
-        $("#btnr1").attr('checked', false);
-        $("#btnr2").attr('checked', true);
-    }
-    $( document ).ready(function() {
-        $("#btnr1").attr('checked', true);
-    });
-
 
 
 </script>

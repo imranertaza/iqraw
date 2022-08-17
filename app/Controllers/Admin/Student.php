@@ -4,8 +4,10 @@ namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 use App\Libraries\Permission;
 use App\Models\Chapter_exam_joinedModel;
+use App\Models\Group_classModel;
 use App\Models\Mcq_exam_joinedModel;
 use App\Models\Quiz_exam_joinedModel;
+use App\Models\School_classModel;
 use App\Models\StudentModel;
 use App\Models\Vocabulary_exam_joinedModel;
 
@@ -19,6 +21,8 @@ class Student extends BaseController
     protected $mcq_exam_joinedModel;
     protected $vocabulary_exam_joinedModel;
     protected $quiz_exam_joinedModel;
+    protected $school_classModel;
+    protected $group_classModel;
     protected $crop;
     protected $permission;
     private $module_name = 'Student';
@@ -29,6 +33,8 @@ class Student extends BaseController
         $this->mcq_exam_joinedModel = new Mcq_exam_joinedModel();
         $this->vocabulary_exam_joinedModel = new Vocabulary_exam_joinedModel();
         $this->quiz_exam_joinedModel = new Quiz_exam_joinedModel();
+        $this->school_classModel = new School_classModel();
+        $this->group_classModel = new Group_classModel();
         $this->permission = new Permission();
         $this->validation =  \Config\Services::validation();
         $this->session = \Config\Services::session();
@@ -135,7 +141,7 @@ class Student extends BaseController
         $fields['phone'] = $this->request->getPost('phone');
         $fields['password'] = SHA1($this->request->getPost('password'));
         $fields['institute'] = $this->request->getPost('institute');
-        $fields['class_group'] = $this->request->getPost('class_group');
+        $fields['class_group_id'] = $this->request->getPost('class_group');
         $fields['createdBy'] = '1';
 
         $this->validation->setRules([
@@ -150,7 +156,6 @@ class Student extends BaseController
             'phone' => ['label' => 'Phone', 'rules' => 'required'],
             'password' => ['label' => 'Password', 'rules' => 'required'],
             'institute' => ['label' => 'Institute', 'rules' => 'required'],
-            'class_group' => ['label' => 'Class Group', 'rules' => 'required'],
 
         ]);
 
@@ -176,51 +181,6 @@ class Student extends BaseController
         }
 
         return $this->response->setJSON($response);
-    }
-
-    public function edit()
-    {
-
-        $response = array();
-
-        $h_id = $this->request->getPost('h_id');
-
-        $fields['lic_id'] = $this->request->getPost('lic_id');
-        $fields['h_id'] = $this->request->getPost('h_id');
-        $fields['start_date'] = $this->request->getPost('start_date');
-        $fields['end_date'] = $this->request->getPost('end_date');
-
-
-        $this->validation->setRules([
-            'h_id' => ['label' => 'h_id', 'rules' => 'required'],
-            'start_date' => ['label' => 'Start Date', 'rules' => 'required'],
-            'end_date' => ['label' => 'End Date', 'rules' => 'required'],
-        ]);
-
-        if ($this->validation->run($fields) == FALSE) {
-            $response['success'] = false;
-            $response['messages'] = $this->validation->listErrors();
-        } else {
-            if ($this->licenseModel->update($fields['lic_id'], $fields)) {
-
-                $status = [
-                    'status'=>'1',
-                ];
-                $tableUser = DB()->table('users');
-                $tableUser->where('h_id',$h_id)->update($status);
-
-                $tableHosp = DB()->table('hospital');
-                $tableHosp->where('h_id',$h_id)->update($status);
-
-                $response['success'] = true;
-                $response['messages'] = 'Successfully updated';
-            } else {
-                $response['success'] = false;
-                $response['messages'] = 'Update error!';
-            }
-        }
-        return $this->response->setJSON($response);
-
     }
 
     public function remove()
@@ -258,7 +218,7 @@ class Student extends BaseController
         }else {
             $data['student'] = $this->student->where('std_id' ,$std_id)->first();
             $data['controller'] = 'Admin/Student';
-
+            $data['group'] = $this->group_classModel->findAll();
 
             $role = $this->session->admin_role;
             //[mod_access] [create] [read] [update] [delete]
@@ -293,7 +253,7 @@ class Student extends BaseController
         $fields['age'] = $this->request->getPost('age');
         $fields['phone'] = $this->request->getPost('phone');
         $fields['institute'] = $this->request->getPost('institute');
-        $fields['class_group'] = $this->request->getPost('class_group');
+        $fields['class_group_id'] = $this->request->getPost('class_group');
         $fields['status'] = $this->request->getPost('status');
 
 
@@ -331,7 +291,6 @@ class Student extends BaseController
             'age' => ['label' => 'Age', 'rules' => 'required'],
             'phone' => ['label' => 'Phone', 'rules' => 'required'],
             'institute' => ['label' => 'Institute', 'rules' => 'required'],
-            'class_group' => ['label' => 'Class Group', 'rules' => 'required'],
 
         ]);
 
@@ -399,6 +358,26 @@ class Student extends BaseController
             }
             echo view('Admin/footer');
         }
+    }
+
+    public function classGroup(){
+        $classId = $this->request->getPost('class_id');
+        $class = $this->school_classModel->where('class_id',$classId)->first();
+        $group = $this->group_classModel->findAll();
+        $view = '';
+        $i=1;
+        $j=1;
+        if (!empty($class->group_id)){
+            $view .='<h4>Class Group</h4> <div class="btn-group mt-4 required">';
+                foreach ($group as $val) {
+                    $ch = ($i == 1)?'checked':'';
+                    $view .='<input  type="radio" class="btn-check" name="class_group" id="option_'.$i++.'" autocomplete="off"'.$ch.'  value="'.$val->class_group_id.'"/>
+                <label class=" btn-css" for="option_'.$j++.'">'.$val->group_name.'</label>';
+                }
+            $view .='</div>';
+        }
+
+        print $view;
     }
 
 

@@ -3,24 +3,21 @@
 namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
-use App\Libraries\Permission;
 use App\Models\Group_classModel;
-use App\Models\School_classModel;
+use App\Libraries\Permission;
 
 
-class School_class extends BaseController
+class Class_group extends BaseController
 {
     protected $validation;
     protected $session;
-    protected $classModel;
     protected $group_classModel;
     protected $crop;
     protected $permission;
-    private $module_name = 'Class';
+    private $module_name = 'Class_group';
 
     public function __construct()
     {
-        $this->classModel = new School_classModel();
         $this->group_classModel = new Group_classModel();
         $this->permission = new Permission();
         $this->validation = \Config\Services::validation();
@@ -34,8 +31,7 @@ class School_class extends BaseController
         if (!isset($isLoggedIAdmin) || $isLoggedIAdmin != TRUE) {
             return redirect()->to(site_url("/admin"));
         } else {
-            $data['controller'] = 'Admin/School_class';
-            $data['group'] = $this->group_classModel->findAll();
+            $data['controller'] = 'Admin/Class_group';
 
 
             $role = $this->session->admin_role;
@@ -44,7 +40,7 @@ class School_class extends BaseController
             echo view('Admin/header');
             echo view('Admin/sidebar');
             if ($perm['mod_access'] == 1) {
-                echo view('Admin/School_class/class', $data);
+                echo view('Admin/Class_group/group', $data);
             } else {
                 echo view('no_permission');
             }
@@ -62,23 +58,23 @@ class School_class extends BaseController
 
         $data['data'] = array();
 
-        $result = $this->classModel->findAll();
+        $result = $this->group_classModel->findAll();
 
         foreach ($result as $key => $value) {
 
             $ops = '<div class="btn-group">';
             if ($perm['update'] ==1) {
-                $ops .= '<a href="'.base_url('Admin/School_class/update/'.$value->class_id).'" type="button" class="btn btn-sm btn-info" onclick="edit(' . $value->class_id . ')"><i class="fa fa-edit"></i></a>';
+                $ops .= '<button type="button" class="btn btn-sm btn-info" onclick="edit(' . $value->class_group_id . ')"><i class="fa fa-edit"></i></button>';
             }
-            if ($perm['delete'] ==1) {
-                $ops .= '<button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $value->class_id . ')"><i class="fa fa-trash"></i></button>';
-            }
+//            if ($perm['delete'] ==1) {
+//                $ops .= '<button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $value->class_group_id . ')"><i class="fa fa-trash"></i></button>';
+//            }
             $ops .= '</div>';
 
             $data['data'][$key] = array(
-                $value->class_id,
-                $value->name,
-                statusView($value->status),
+                $value->class_group_id,
+                $value->group_name,
+                $value->status,
                 $ops,
             );
         }
@@ -91,11 +87,11 @@ class School_class extends BaseController
     {
         $response = array();
 
-        $id = $this->request->getPost('class_id');
+        $id = $this->request->getPost('class_group_id');
 
         if ($this->validation->check($id, 'required|numeric')) {
 
-            $data = $this->classModel->where('class_id', $id)->first();
+            $data = $this->group_classModel->where('class_group_id', $id)->first();
 
             return $this->response->setJSON($data);
 
@@ -113,15 +109,11 @@ class School_class extends BaseController
         $response = array();
 
 
-        $fields['name'] = $this->request->getPost('name');
+        $fields['group_name'] = $this->request->getPost('group_name');
         $fields['createdBy'] = $this->session->user_id;
-        $group_id = $this->request->getPost('group_id[]');
-        if (!empty($group_id)) {
-            $fields['group_id'] = json_encode($group_id);
-        }
 
         $this->validation->setRules([
-            'name' => ['label' => 'Name', 'rules' => 'required'],
+            'group_name' => ['label' => 'Name', 'rules' => 'required'],
         ]);
 
         if ($this->validation->run($fields) == FALSE) {
@@ -131,7 +123,7 @@ class School_class extends BaseController
 
         } else {
 
-            if ($this->classModel->insert($fields)) {
+            if ($this->group_classModel->insert($fields)) {
 
                 $response['success'] = true;
                 $response['messages'] = 'Data has been inserted successfully';
@@ -153,20 +145,16 @@ class School_class extends BaseController
 
         $response = array();
 
-        $class_id = $this->request->getPost('class_id');
+        $class_group_id = $this->request->getPost('class_group_id');
 
-        $fields['class_id'] = $this->request->getPost('class_id');
-        $fields['name'] = $this->request->getPost('name');
-        $group_id = $this->request->getPost('group_id[]');
-        if (!empty($group_id)) {
-            $fields['group_id'] = json_encode($group_id);
-        }
+        $fields['class_group_id'] = $this->request->getPost('class_group_id');
+        $fields['group_name'] = $this->request->getPost('group_name');
         $fields['status'] = $this->request->getPost('status');
 
 
         $this->validation->setRules([
-            'class_id' => ['label' => 'Class', 'rules' => 'required'],
-            'name' => ['label' => 'Name', 'rules' => 'required'],
+            'class_group_id' => ['label' => 'Class', 'rules' => 'required'],
+            'group_name' => ['label' => 'Name', 'rules' => 'required'],
             'status' => ['label' => 'Status', 'rules' => 'required'],
         ]);
 
@@ -174,7 +162,7 @@ class School_class extends BaseController
             $response['success'] = false;
             $response['messages'] = $this->validation->listErrors();
         } else {
-            if ($this->classModel->update($fields['class_id'], $fields)) {
+            if ($this->group_classModel->update($fields['class_group_id'], $fields)) {
 
                 $response['success'] = true;
                 $response['messages'] = 'Successfully updated';
@@ -191,7 +179,7 @@ class School_class extends BaseController
     {
         $response = array();
 
-        $id = $this->request->getPost('class_id');
+        $id = $this->request->getPost('class_group_id');
 
         if (!$this->validation->check($id, 'required|numeric')) {
 
@@ -199,7 +187,7 @@ class School_class extends BaseController
 
         } else {
 
-            if ($this->classModel->where('class_id', $id)->delete()) {
+            if ($this->group_classModel->where('class_group_id', $id)->delete()) {
 
                 $response['success'] = true;
                 $response['messages'] = 'Deletion succeeded';
@@ -213,29 +201,6 @@ class School_class extends BaseController
         }
 
         return $this->response->setJSON($response);
-    }
-
-    public function update($id){
-        $isLoggedIAdmin = $this->session->isLoggedIAdmin;
-        if (!isset($isLoggedIAdmin) || $isLoggedIAdmin != TRUE) {
-            return redirect()->to(site_url("/admin"));
-        } else {
-            $data['controller'] = 'Admin/School_class';
-            $data['group'] = $this->group_classModel->findAll();
-            $data['class'] = $this->classModel->where('class_id', $id)->first();
-
-            $role = $this->session->admin_role;
-            //[mod_access] [create] [read] [update] [delete]
-            $perm = $this->permission->module_permission_list($role, $this->module_name);
-            echo view('Admin/header');
-            echo view('Admin/sidebar');
-            if ($perm['update'] == 1) {
-                echo view('Admin/School_class/update', $data);
-            } else {
-                echo view('no_permission');
-            }
-            echo view('Admin/footer');
-        }
     }
 
 

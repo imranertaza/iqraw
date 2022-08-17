@@ -4,6 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use App\Libraries\Permission;
+use App\Models\Group_classModel;
 use App\Models\SubjectModel;
 
 
@@ -12,6 +13,7 @@ class Subject extends BaseController
     protected $validation;
     protected $session;
     protected $subjectModel;
+    protected $group_classModel;
     protected $crop;
     protected $permission;
     private $module_name = 'Subject';
@@ -19,6 +21,7 @@ class Subject extends BaseController
     public function __construct()
     {
         $this->subjectModel = new SubjectModel();
+        $this->group_classModel = new Group_classModel();
         $this->permission = new Permission();
         $this->validation = \Config\Services::validation();
         $this->session = \Config\Services::session();
@@ -32,6 +35,7 @@ class Subject extends BaseController
             return redirect()->to(site_url("/admin"));
         } else {
             $data['controller'] = 'Admin/Subject';
+            $data['group'] = $this->group_classModel->findAll();
 
             $role = $this->session->admin_role;
             //[mod_access] [create] [read] [update] [delete]
@@ -112,6 +116,7 @@ class Subject extends BaseController
 
         $fields['name'] = $this->request->getPost('name');
         $fields['class_id'] = $this->request->getPost('class_id');
+        $fields['class_group_id'] = $this->request->getPost('class_group_id');
         $fields['createdBy'] = $this->session->user_id;
 
         $this->validation->setRules([
@@ -153,6 +158,7 @@ class Subject extends BaseController
         $fields['subject_id'] = $this->request->getPost('subject_id');
         $fields['name'] = $this->request->getPost('name');
         $fields['class_id'] = $this->request->getPost('class_id');
+        $fields['class_group_id'] = $this->request->getPost('class_group_id');
         $fields['status'] = $this->request->getPost('status');
 
 

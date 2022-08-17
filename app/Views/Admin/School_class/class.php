@@ -74,10 +74,24 @@
                                 </div>
                             </div>
 
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="name">Class Group: </label>
+                                </div>
+                            </div>
+                            <?php $i=1; $j=1; foreach ($group as $val){ ?>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="group_id[]" value="<?php echo $val->class_group_id?>" id="flexCheckDefault_<?php echo $i++?>">
+                                    <label class="form-check-label" for="flexCheckDefault_<?php echo $j++?>"><?php echo $val->group_name?></label>
+                                </div>
+                            </div>
+                            <?php } ?>
+
                         </div>
 
 
-                        <div class="form-group text-center">
+                        <div class="form-group text-center mt-5">
                             <div class="btn-group">
                                 <button type="submit" class="btn btn-success" id="add-form-btn">Add</button>
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>

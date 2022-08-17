@@ -61,8 +61,10 @@
                                 </select>
                                 <select class="form-control" name="religion" id="religion" style="margin-left: 5px;" required>
                                     <option value="">Religion</option>
-                                    <option value="islam">Islam</option>
-                                    <option value="hindu">Hindu</option>
+                                    <option value="Islam">Islam</option>
+                                    <option value="Hindu">Hindu</option>
+                                    <option value="Christian">Christian</option>
+                                    <option value="Buddhism">Buddhism</option>
                                 </select>
                             </div>
 
@@ -82,7 +84,7 @@
                                 <input type="password" class="form-control" name="password" id="password" placeholder="Password" >
                             </div>
                             <div class="input-group mb-3">
-                                <select class="form-control" name="class_id" id="class_id" required>
+                                <select class="form-control" name="class_id" id="class_id" onchange="viewGroup(this.value)" required>
                                     <option>Please select</option>
                                     <?php echo getListInOption('', 'class_id', 'name', 'class');?>
                                 </select>
@@ -90,44 +92,19 @@
                             <!-- Tabs navs -->
                             <ul class="nav nav-tabs card-header-tabs sc-sel" role="group" aria-label="Basic radio toggle button group" data-bs-tabs="tabs">
                                 <li class="nav-item">
-                                    <input type="radio" class="btn-check" name="institute" id="btnr1" autocomplete="off" value="Madrasha" >
-                                    <a class="nav-link " aria-current="true" data-bs-toggle="tab" onclick="checkInst()" href="#dhcp">Madrasah</a>
+                                    <input type="radio" class="btn-check" name="institute" id="btnr2" autocomplete="off" value="School"  checked>
+                                    <a class="nav-link active" data-bs-toggle="tab" onclick="checkInst2()" href="#static">School</a>
                                 </li>
                                 <li class="nav-item">
-                                    <input type="radio" class="btn-check" name="institute" id="btnr2" autocomplete="off" value="School" >
-                                    <a class="nav-link" data-bs-toggle="tab" onclick="checkInst2()" href="#static">School</a>
+                                    <input type="radio" class="btn-check" name="institute" id="btnr1" autocomplete="off" value="Madrasha" >
+                                    <a class="nav-link " aria-current="true" data-bs-toggle="tab" onclick="checkInst()" href="#dhcp">Madrasah</a>
                                 </li>
                             </ul>
                             <!-- Tabs navs -->
 
                             <!-- Tabs content -->
-                            <div class="tab-content mt-4 mb-4">
-                                <div class="tab-pane " id="dhcp">
-                                    <div class="btn-group sel-redio" role="group" aria-label="Basic radio toggle button group">
-                                        <input type="radio" class="btn-check" name="class_group" id="btnradio1" autocomplete="off" value="science" >
-                                        <label class="btn btn-outline-success" for="btnradio1">Science</label>
+                            <div class="tab-content mt-4 mb-4" id="gorupview">
 
-                                        <input type="radio" class="btn-check" name="class_group" id="btnradio2" autocomplete="off" value="commerce">
-                                        <label class="btn btn-outline-success" for="btnradio2">Commerce</label>
-
-                                        <input type="radio" class="btn-check" name="class_group" id="btnradio3" autocomplete="off" value="arts">
-                                        <label class="btn btn-outline-success" for="btnradio3">Arts</label>
-                                    </div>
-                                </div>
-
-
-                                <div class="tab-pane" id="static">
-                                    <div class="btn-group sel-redio" role="group" aria-label="Basic radio toggle button group">
-                                        <input type="radio" class="btn-check" name="class_group" id="btnradio4" autocomplete="off" value="science" >
-                                        <label class="btn btn-outline-success" for="btnradio4">Science</label>
-
-                                        <input type="radio" class="btn-check" name="class_group" id="btnradio5" autocomplete="off" value="commerce">
-                                        <label class="btn btn-outline-success" for="btnradio5">Commerce</label>
-
-                                        <input type="radio" class="btn-check" name="class_group" id="btnradio6" autocomplete="off" value="arts">
-                                        <label class="btn btn-outline-success" for="btnradio6">Arts</label>
-                                    </div>
-                                </div>
                             </div>
                             <!-- Tabs content -->
 

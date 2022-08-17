@@ -62,7 +62,7 @@
                             <div class="col-md-4 mt-4 text-center">
                                 <div class="form-group">
                                     <label for="name"> Group</label>
-                                    <p><?php echo $student->class_group?></p>
+                                    <p><?php echo get_data_by_id('group_name','class_group','class_group_id',$student->class_group_id)?></p>
                                 </div>
                             </div>
 

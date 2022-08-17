@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\Group_classModel;
+use App\Models\School_classModel;
 use App\Models\StudentModel;
 
 
@@ -11,10 +13,14 @@ class SignUp extends BaseController
     protected $validation;
     protected $session;
     protected $student;
+    protected $school_classModel;
+    protected $group_classModel;
 
     public function __construct()
     {
         $this->student = new StudentModel();
+        $this->school_classModel = new School_classModel();
+        $this->group_classModel = new Group_classModel();
         $this->validation = \Config\Services::validation();
         $this->session = \Config\Services::session();
     }
@@ -44,7 +50,8 @@ class SignUp extends BaseController
         $data['password'] = SHA1($this->request->getPost('password'));
         $data['class_id'] = $this->request->getPost('class_id');
         $data['institute'] = $this->request->getPost('institute');
-        $data['class_group'] = $this->request->getPost('class_group');
+        $data['class_group_id'] = $this->request->getPost('class_group');
+        $data['createdBy'] = 1;
 
 
         $this->validation->setRules([
@@ -59,7 +66,6 @@ class SignUp extends BaseController
             'age' => ['label' => 'Age', 'rules' => 'required|numeric'],
             'class_id' => ['label' => 'Class', 'rules' => 'required'],
             'institute' => ['label' => 'Institute', 'rules' => 'required'],
-            'class_group' => ['label' => 'Class Group', 'rules' => 'required'],
 
         ]);
 
@@ -155,6 +161,26 @@ class SignUp extends BaseController
 
         $this->session->destroy();
         return redirect()->to('/login');
+    }
+
+    public function classGroup(){
+        $classId = $this->request->getPost('class_id');
+        $class = $this->school_classModel->where('class_id',$classId)->first();
+        $group = $this->group_classModel->findAll();
+        $view = '';
+        $i=1;
+        $j=1;
+        if (!empty($class->group_id)){
+            $view .='<div class="btn-group sel-redio" role="group" aria-label="Basic radio toggle button group">';
+            foreach ($group as $val) {
+                $ch = ($i == 1)?'checked':'';
+                $view .='<input  type="radio" class="btn-check" name="class_group" id="option_'.$i++.'" autocomplete="off"'.$ch.'  value="'.$val->class_group_id.'"/>
+                <label class="btn btn-outline-success" for="option_'.$j++.'">'.$val->group_name.'</label>';
+            }
+            $view .='</div>';
+        }
+
+        print $view;
     }
 
 }

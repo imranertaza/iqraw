@@ -28,6 +28,13 @@
             </li>
 
             <li class="nav-item ">
+                <a href="<?php echo base_url('Admin/Class_group')?>" class="nav-link">
+                    <i class="nav-icon fas fa-school"></i>
+                    <p>Class Group</p>
+                </a>
+            </li>
+
+            <li class="nav-item ">
                 <a href="<?php echo base_url('Admin/School_class')?>" class="nav-link">
                     <i class="nav-icon fas fa-school"></i>
                     <p>Class</p>

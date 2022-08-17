@@ -79,7 +79,7 @@
 
     function conformValidation3rd(){
         var result = 0;
-        if ($('input[name="class_group"]:checked').val()){ result = 0;}else{ result = 1;}
+        // if ($('input[name="class_group"]:checked').val()){ result = 0;}else{ result = 1;}
         if ($('input[name="institute"]:checked').val()){ result = 0;}else{ result = 1;}
         if ($('#phone').val() == ''){ result = 1;}
         if ($('#password').val() == ''){ result = 1;}
@@ -112,6 +112,17 @@
         }else{
             $('#signIn').submit();
         }
+    }
+
+    function viewGroup(class_id){
+        $.ajax({
+            url: '<?php echo base_url('SignUp/classGroup') ?>',
+            type: 'post',
+            data: {class_id:class_id},
+            success: function (response) {
+                $("#gorupview").html(response);
+            }
+        });
     }
 
 
