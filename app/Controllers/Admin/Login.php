@@ -108,7 +108,7 @@ class Login extends BaseController
         unset($_SESSION['adminName']);
         unset($_SESSION['isLoggedIAdmin']);
 
-        $this->session->destroy();
+//        $this->session->destroy();
         return redirect()->to('/admin');
     }
 

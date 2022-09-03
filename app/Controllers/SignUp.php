@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\Class_group_joinedModel;
 use App\Models\Group_classModel;
 use App\Models\School_classModel;
 use App\Models\StudentModel;
@@ -15,12 +16,14 @@ class SignUp extends BaseController
     protected $student;
     protected $school_classModel;
     protected $group_classModel;
+    protected $class_group_joinedModel;
 
     public function __construct()
     {
         $this->student = new StudentModel();
         $this->school_classModel = new School_classModel();
         $this->group_classModel = new Group_classModel();
+        $this->class_group_joinedModel = new Class_group_joinedModel();
         $this->validation = \Config\Services::validation();
         $this->session = \Config\Services::session();
     }
@@ -159,23 +162,24 @@ class SignUp extends BaseController
         unset($_SESSION['name']);
         unset($_SESSION['isLoggedInStudent']);
 
-        $this->session->destroy();
+//        $this->session->destroy();
         return redirect()->to('/login');
     }
 
     public function classGroup(){
         $classId = $this->request->getPost('class_id');
-        $class = $this->school_classModel->where('class_id',$classId)->first();
-        $group = $this->group_classModel->findAll();
+        $classGroJoin = $this->class_group_joinedModel->where('class_id',$classId)->findAll();
+
         $view = '';
         $i=1;
         $j=1;
-        if (!empty($class->group_id)){
+        if (!empty($classGroJoin)){
             $view .='<div class="btn-group sel-redio" role="group" aria-label="Basic radio toggle button group">';
-            foreach ($group as $val) {
+            foreach ($classGroJoin as $val) {
+                $clName = get_data_by_id('group_name','class_group','class_group_id',$val->class_group_id);
                 $ch = ($i == 1)?'checked':'';
                 $view .='<input  type="radio" class="btn-check" name="class_group" id="option_'.$i++.'" autocomplete="off"'.$ch.'  value="'.$val->class_group_id.'"/>
-                <label class="btn btn-outline-success" for="option_'.$j++.'">'.$val->group_name.'</label>';
+                <label class="btn btn-outline-success" for="option_'.$j++.'">'.$clName.'</label>';
             }
             $view .='</div>';
         }

@@ -161,6 +161,27 @@
                 </a>
             </li>
 
+            <li class="nav-item ">
+                <a href="<?php echo base_url('Admin/Course')?>" class="nav-link">
+                    <i class="nav-icon fas fa-user"></i>
+                    <p>Course</p>
+                </a>
+            </li>
+
+            <li class="nav-item ">
+                <a href="<?php echo base_url('Admin/Course_video')?>" class="nav-link">
+                    <i class="nav-icon fas fa-user"></i>
+                    <p>Course Video</p>
+                </a>
+            </li>
+
+            <li class="nav-item ">
+                <a href="<?php echo base_url('Admin/Subscribe')?>" class="nav-link">
+                    <i class="nav-icon fas fa-user"></i>
+                    <p>Course Subscribe</p>
+                </a>
+            </li>
+
 
             <li class="nav-item ">
                 <a href="<?php echo base_url('Admin/User')?>" class="nav-link">

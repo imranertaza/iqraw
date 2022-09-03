@@ -62,11 +62,11 @@
                                         <label for="name">Class Group: </label>
                                     </div>
                                 </div>
-                                <?php $i = 1; $j = 1; $grou = json_decode($class->group_id); foreach ($group as $key => $val) { ?>
+                                <?php $i = 1; $j = 1;  foreach ($group as $key => $val) { ?>
                                     <div class="col-md-4">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" name="group_id[]"
-                                                   value="<?php echo $val->class_group_id ?>" <?php if (!empty($grou)){ foreach ($grou as $gr){ echo ($val->class_group_id == $gr)?'checked':''; }} ?> id="flexCheckDefault_<?php echo $i++ ?>">
+                                                   value="<?php echo $val->class_group_id ?>" <?php if (!empty($classGroup)){ foreach ($classGroup as $gr){ echo ($val->class_group_id == $gr->class_group_id)?'checked':''; }} ?> id="flexCheckDefault_<?php echo $i++ ?>">
                                             <label class="form-check-label"
                                                    for="flexCheckDefault_<?php echo $j++ ?>"><?php echo $val->group_name ?></label>
                                         </div>

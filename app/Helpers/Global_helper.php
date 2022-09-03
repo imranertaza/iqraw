@@ -331,3 +331,20 @@ function get_category_link_by_name($name,$url){
     return $link;
 }
 
+function check_subscribe_by_course_id($course_id){
+    $std_id = newSession()->std_id;
+    $table = DB()->table('course_subscribe');
+    $table->where('course_id', $course_id);
+    $table->where('std_id', $std_id);
+    $table->where('status', '1');
+    $data = $table->get()->getRow();
+
+    if (!empty($data)){
+        $result = 1;
+    }else{
+        $result = 0;
+    }
+    return $result;
+
+}
+

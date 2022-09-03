@@ -5,24 +5,25 @@ namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 use App\Libraries\Permission;
 use App\Models\Class_group_joinedModel;
+use App\Models\CourseModel;
 use App\Models\Group_classModel;
-use App\Models\School_classModel;
+use App\Models\SubjectModel;
 
 
-class School_class extends BaseController
+class Course extends BaseController
 {
     protected $validation;
     protected $session;
-    protected $classModel;
+    protected $courseModel;
     protected $group_classModel;
     protected $class_group_joinedModel;
     protected $crop;
     protected $permission;
-    private $module_name = 'Class';
+    private $module_name = 'Course';
 
     public function __construct()
     {
-        $this->classModel = new School_classModel();
+        $this->courseModel = new CourseModel();
         $this->group_classModel = new Group_classModel();
         $this->class_group_joinedModel = new Class_group_joinedModel();
         $this->permission = new Permission();
@@ -37,9 +38,7 @@ class School_class extends BaseController
         if (!isset($isLoggedIAdmin) || $isLoggedIAdmin != TRUE) {
             return redirect()->to(site_url("/admin"));
         } else {
-            $data['controller'] = 'Admin/School_class';
-            $data['group'] = $this->group_classModel->findAll();
-
+            $data['controller'] = 'Admin/Course';
 
             $role = $this->session->admin_role;
             //[mod_access] [create] [read] [update] [delete]
@@ -47,7 +46,7 @@ class School_class extends BaseController
             echo view('Admin/header');
             echo view('Admin/sidebar');
             if ($perm['mod_access'] == 1) {
-                echo view('Admin/School_class/class', $data);
+                echo view('Admin/Course/course', $data);
             } else {
                 echo view('no_permission');
             }
@@ -60,28 +59,30 @@ class School_class extends BaseController
     {
         $role = $this->session->admin_role;
         //[mod_access] [create] [read] [update] [delete]
-        $perm = $this->permission->module_permission_list($role,$this->module_name);
+        $perm = $this->permission->module_permission_list($role, $this->module_name);
+
         $response = array();
 
         $data['data'] = array();
 
-        $result = $this->classModel->findAll();
+        $result = $this->courseModel->findAll();
 
         foreach ($result as $key => $value) {
 
             $ops = '<div class="btn-group">';
             if ($perm['update'] ==1) {
-                $ops .= '<a href="'.base_url('Admin/School_class/update/'.$value->class_id).'" type="button" class="btn btn-sm btn-info" ><i class="fa fa-edit"></i></a>';
+                $ops .= '	<button type="button" class="btn btn-sm btn-info" onclick="edit(' . $value->course_id . ')"><i class="fa fa-edit"></i></button>';
             }
             if ($perm['delete'] ==1) {
-                $ops .= '<button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $value->class_id . ')"><i class="fa fa-trash"></i></button>';
+                $ops .= '	<button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $value->course_id . ')"><i class="fa fa-trash"></i></button>';
             }
             $ops .= '</div>';
 
             $data['data'][$key] = array(
-                $value->class_id,
-                $value->name,
-                statusView($value->status),
+                $value->course_id,
+                $value->course_name,
+                $value->price,
+                $value->description,
                 $ops,
             );
         }
@@ -94,11 +95,11 @@ class School_class extends BaseController
     {
         $response = array();
 
-        $id = $this->request->getPost('class_id');
+        $id = $this->request->getPost('course_id');
 
         if ($this->validation->check($id, 'required|numeric')) {
 
-            $data = $this->classModel->where('class_id', $id)->first();
+            $data = $this->courseModel->where('course_id', $id)->first();
 
             return $this->response->setJSON($data);
 
@@ -116,13 +117,17 @@ class School_class extends BaseController
         $response = array();
 
 
-        $fields['name'] = $this->request->getPost('name');
+        $fields['course_name'] = $this->request->getPost('course_name');
+        $fields['price'] = $this->request->getPost('price');
+        $fields['description'] = $this->request->getPost('description');
+        $fields['class_id'] = $this->request->getPost('class_id');
+        $fields['class_group_id'] = $this->request->getPost('class_group_id');
         $fields['createdBy'] = $this->session->user_id;
-        $group_id = $this->request->getPost('group_id[]');
-
 
         $this->validation->setRules([
-            'name' => ['label' => 'Name', 'rules' => 'required'],
+            'course_name' => ['label' => 'Name', 'rules' => 'required'],
+            'price' => ['label' => 'Price', 'rules' => 'required'],
+            'description' => ['label' => 'description', 'rules' => 'required'],
         ]);
 
         if ($this->validation->run($fields) == FALSE) {
@@ -132,16 +137,7 @@ class School_class extends BaseController
 
         } else {
 
-            if ($this->classModel->insert($fields)) {
-                $classId = $this->classModel->getInsertID();
-                if (!empty($group_id)) {
-                    foreach ($group_id as $v) {
-                        $dat['class_id'] = $classId;
-                        $dat['class_group_id'] = $v;
-                        $dat['createdBy'] = $this->session->user_id;
-                        $this->class_group_joinedModel->insert($dat);
-                    }
-                }
+            if ($this->courseModel->insert($fields)) {
 
                 $response['success'] = true;
                 $response['messages'] = 'Data has been inserted successfully';
@@ -163,36 +159,26 @@ class School_class extends BaseController
 
         $response = array();
 
-        $class_id = $this->request->getPost('class_id');
+        $course_id = $this->request->getPost('course_id');
 
-        $fields['class_id'] = $this->request->getPost('class_id');
-        $fields['name'] = $this->request->getPost('name');
-        $group_id = $this->request->getPost('group_id[]');
-        if (!empty($group_id)) {
-            $this->class_group_joinedModel->where('class_id', $class_id)->delete();
-
-            foreach ($group_id as $v) {
-                $dat['class_id'] = $class_id;
-                $dat['class_group_id'] = $v;
-                $dat['createdBy'] = $this->session->user_id;
-                $this->class_group_joinedModel->insert($dat);
-            }
-
-        }
-        $fields['status'] = $this->request->getPost('status');
+        $fields['course_id'] = $this->request->getPost('course_id');
+        $fields['course_name'] = $this->request->getPost('course_name');
+        $fields['price'] = $this->request->getPost('price');
+        $fields['description'] = $this->request->getPost('description');
 
 
         $this->validation->setRules([
-            'class_id' => ['label' => 'Class', 'rules' => 'required'],
-            'name' => ['label' => 'Name', 'rules' => 'required'],
-            'status' => ['label' => 'Status', 'rules' => 'required'],
+            'course_id' => ['label' => 'Class', 'rules' => 'required'],
+            'course_name' => ['label' => 'Name', 'rules' => 'required'],
+            'price' => ['label' => 'Price', 'rules' => 'required'],
+            'description' => ['label' => 'description', 'rules' => 'required'],
         ]);
 
         if ($this->validation->run($fields) == FALSE) {
             $response['success'] = false;
             $response['messages'] = $this->validation->listErrors();
         } else {
-            if ($this->classModel->update($fields['class_id'], $fields)) {
+            if ($this->courseModel->update($fields['course_id'], $fields)) {
 
                 $response['success'] = true;
                 $response['messages'] = 'Successfully updated';
@@ -209,7 +195,7 @@ class School_class extends BaseController
     {
         $response = array();
 
-        $id = $this->request->getPost('class_id');
+        $id = $this->request->getPost('course_id');
 
         if (!$this->validation->check($id, 'required|numeric')) {
 
@@ -217,7 +203,7 @@ class School_class extends BaseController
 
         } else {
 
-            if ($this->classModel->where('class_id', $id)->delete()) {
+            if ($this->courseModel->where('course_id', $id)->delete()) {
 
                 $response['success'] = true;
                 $response['messages'] = 'Deletion succeeded';
@@ -233,28 +219,16 @@ class School_class extends BaseController
         return $this->response->setJSON($response);
     }
 
-    public function update($id){
-        $isLoggedIAdmin = $this->session->isLoggedIAdmin;
-        if (!isset($isLoggedIAdmin) || $isLoggedIAdmin != TRUE) {
-            return redirect()->to(site_url("/admin"));
-        } else {
-            $data['controller'] = 'Admin/School_class';
-            $data['group'] = $this->group_classModel->findAll();
-            $data['class'] = $this->classModel->where('class_id', $id)->first();
-            $data['classGroup'] = $this->class_group_joinedModel->where('class_id', $id)->findAll();
-
-            $role = $this->session->admin_role;
-            //[mod_access] [create] [read] [update] [delete]
-            $perm = $this->permission->module_permission_list($role, $this->module_name);
-            echo view('Admin/header');
-            echo view('Admin/sidebar');
-            if ($perm['update'] == 1) {
-                echo view('Admin/School_class/update', $data);
-            } else {
-                echo view('no_permission');
-            }
-            echo view('Admin/footer');
+    public function get_group(){
+        $id = $this->request->getPost('class_id');
+        $data = $this->class_group_joinedModel->where('class_id',$id)->findAll();
+        $view = '<option value="">Please select</option>';
+        foreach ($data as $val){
+            $name = get_data_by_id('group_name','class_group','class_group_id',$val->class_group_id);
+            $view .= '<option value="'.$val->class_group_id.'">'.$name.'</option>';
         }
+
+        print $view;
     }
 
 

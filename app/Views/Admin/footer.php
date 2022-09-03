@@ -42,6 +42,7 @@
 <script>
     $(document).ready(function() {
         $('#description').richText();
+        $('#description2').richText();
     });
 </script>
 
