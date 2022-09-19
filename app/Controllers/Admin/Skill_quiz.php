@@ -6,6 +6,7 @@ use App\Controllers\BaseController;
 use App\Libraries\Permission;
 use App\Models\Quiz_questionModel;
 use App\Models\Skill_quizModel;
+use App\Models\Skill_videoModel;
 
 
 class Skill_quiz extends BaseController
@@ -13,6 +14,7 @@ class Skill_quiz extends BaseController
     protected $validation;
     protected $session;
     protected $skill_quizModel;
+    protected $skill_videoModel;
     protected $crop;
     protected $permission;
     private $module_name = 'Skill_quiz';
@@ -20,6 +22,7 @@ class Skill_quiz extends BaseController
     public function __construct()
     {
         $this->skill_quizModel = new Skill_quizModel();
+        $this->skill_videoModel = new Skill_videoModel();
         $this->permission = new Permission();
         $this->validation = \Config\Services::validation();
         $this->session = \Config\Services::session();
@@ -99,7 +102,7 @@ class Skill_quiz extends BaseController
         if ($this->validation->check($id, 'required|numeric')) {
 
             $data = $this->skill_quizModel->where('skill_question_id', $id)->first();
-
+            $data->skill_subject_id = get_data_by_id('skill_subject_id','skill_video','skill_video_id',$data->skill_video_id);
             return $this->response->setJSON($data);
 
         } else {
@@ -225,6 +228,19 @@ class Skill_quiz extends BaseController
         }
 
         return $this->response->setJSON($response);
+    }
+
+    public function skill_video(){
+        $skill_subject_id = $this->request->getPost('skill_subject_id');
+        $result = $this->skill_videoModel->where('skill_subject_id',$skill_subject_id)->findAll();
+        $view = '<option value="">Please select</option>';
+        if (!empty($result)){
+            foreach ($result as $val) {
+                $view .= '<option value="'.$val->skill_video_id.'">'.$val->title.'</option>';
+            }
+        }
+
+        print $view;
     }
 
 

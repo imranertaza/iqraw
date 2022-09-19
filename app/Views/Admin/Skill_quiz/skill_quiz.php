@@ -75,10 +75,19 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
+                                    <label for="name">Subject: </label>
+                                    <select class="form-control" name="skill_subject_id" id="skill_subject_id" onchange="skill_video(this.value)" required>
+                                        <option value="">please select</option>
+                                        <?php echo getListInOption('','skill_subject_id','name','skill_subject') ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
                                     <label for="subject_id">Skill Video: </label>
-                                    <select class="form-control" name="skill_video_id"  required>
+                                    <select class="form-control" name="skill_video_id" id="skill_video_id"  required>
                                         <option value="">Please select</option>
-                                        <?php echo getListInOption('','skill_video_id','title','skill_video') ?>
+                                        <?php //echo getListInOption('','skill_video_id','title','skill_video') ?>
                                     </select>
                                 </div>
                             </div>
@@ -158,6 +167,16 @@
                 <div class="modal-body">
                     <form id="edit-form" class="pl-3 pr-3">
                         <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="name">Subject: </label>
+                                    <select class="form-control" name="skill_subject_id" id="skill_subject_id" onchange="skill_video(this.value)" required>
+                                        <option value="">please select</option>
+                                        <?php echo getListInOption('','skill_subject_id','name','skill_subject') ?>
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="subject_id">Skill Video: </label>
@@ -374,6 +393,7 @@
 
                 $("#edit-form #skill_question_id").val(response.skill_question_id);
                 $("#edit-form #skill_video_id").val(response.skill_video_id);
+                $("#edit-form #skill_subject_id").val(response.skill_subject_id);
                 $("#edit-form #question").val(response.question);
                 $("#edit-form #one").val(response.one);
                 $("#edit-form #two").val(response.two);
@@ -520,5 +540,19 @@
         })
     }
 
+    function skill_video(skill_subject_id){
+        $.ajax({
+            url: '<?php echo base_url($controller . '/skill_video') ?>',
+            type: 'post',
+            data: {
+                skill_subject_id: skill_subject_id
+            },
+            success: function (val) {
+                $("#skill_video_id").html(val);
+                $("#edit-form #skill_video_id").html(val);
+
+            }
+        });
+    }
 
 </script>

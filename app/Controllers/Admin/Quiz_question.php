@@ -5,6 +5,7 @@ namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 use App\Libraries\Permission;
 use App\Models\Quiz_questionModel;
+use App\Models\SubjectModel;
 
 
 class Quiz_question extends BaseController
@@ -12,6 +13,7 @@ class Quiz_question extends BaseController
     protected $validation;
     protected $session;
     protected $quiz_questionModel;
+    protected $subjectModel;
     protected $crop;
     protected $permission;
     private $module_name = 'Quiz_question';
@@ -19,6 +21,7 @@ class Quiz_question extends BaseController
     public function __construct()
     {
         $this->quiz_questionModel = new Quiz_questionModel();
+        $this->subjectModel = new SubjectModel();
         $this->permission = new Permission();
         $this->validation = \Config\Services::validation();
         $this->session = \Config\Services::session();
@@ -98,7 +101,8 @@ class Quiz_question extends BaseController
         if ($this->validation->check($id, 'required|numeric')) {
 
             $data = $this->quiz_questionModel->where('quiz_question_id', $id)->first();
-
+            $data->class_id = get_data_by_id('class_id','quiz_exam_info','quiz_exam_info_id',$data->quiz_exam_info_id);
+            $data->subject_id = get_data_by_id('subject_id','quiz_exam_info','quiz_exam_info_id',$data->quiz_exam_info_id);
             return $this->response->setJSON($data);
 
         } else {
@@ -140,17 +144,24 @@ class Quiz_question extends BaseController
 
         } else {
 
-            if ($this->quiz_questionModel->insert($fields)) {
+            $quizQuesQty = get_data_by_id('total_questions','quiz_exam_info','quiz_exam_info_id',$fields['quiz_exam_info_id']);
+            $quizQuesCreQty = $this->quiz_questionModel->where('quiz_exam_info_id',$fields['quiz_exam_info_id'])->countAllResults();
 
-                $response['success'] = true;
-                $response['messages'] = 'Data has been inserted successfully';
-
-            } else {
-
+            if($quizQuesQty > $quizQuesCreQty){
+                if ($this->quiz_questionModel->insert($fields)) {
+                    $response['success'] = true;
+                    $response['messages'] = 'Data has been inserted successfully';
+                } else {
+                    $response['success'] = false;
+                    $response['messages'] = 'Insertion error!';
+                }
+            }else{
                 $response['success'] = false;
-                $response['messages'] = 'Insertion error!';
-
+                $response['messages'] = 'This Quiz Exam Already Question created  done';
             }
+
+
+
 
         }
 
@@ -224,6 +235,61 @@ class Quiz_question extends BaseController
         }
 
         return $this->response->setJSON($response);
+    }
+
+    public function subject_get(){
+        $class_id = $this->request->getPost('class_id');
+
+        $subject = $this->subjectModel->where('class_id',$class_id)->findAll();
+
+        $view = '<option value="">Please select</option>';
+        if (!empty($subject)){
+            foreach ($subject as $val) {
+                $view .='<option value="'.$val->subject_id.'">'.$val->name.'</option>';
+            }
+        }
+        print $view;
+    }
+
+    public function exam_info(){
+        $subject_id = $this->request->getPost('subject_id');
+        $table = DB()->table('quiz_exam_info');
+        $quizInfo = $table->where('subject_id',$subject_id)->get()->getResult();
+
+        $view = '<option value="">Please select</option>';
+        if (!empty($quizInfo)){
+            foreach ($quizInfo as $val) {
+                $view .='<option value="'.$val->quiz_exam_info_id.'">'.$val->quiz_name.'</option>';
+            }
+        }
+        print $view;
+    }
+
+    public function quiz_question(){
+        $quiz_exam_info_id = $this->request->getPost('quiz_exam_info_id');
+        $result = $this->quiz_questionModel->where('quiz_exam_info_id',$quiz_exam_info_id)->findAll();
+        $view = '';
+        foreach ($result as $value){
+            $ops = '<div class="btn-group">';
+            $ops .= '	<button type="button" class="btn btn-sm btn-info" onclick="edit(' . $value->quiz_question_id . ')"><i class="fa fa-edit"></i></button>';
+            $ops .= '	<button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $value->quiz_question_id . ')"><i class="fa fa-trash"></i></button>';
+            $ops .= '</div>';
+
+            $view.='<tr>
+                        <td>'.$value->quiz_question_id.'</td>
+                        <td>'.get_data_by_id('quiz_name', 'quiz_exam_info', 'quiz_exam_info_id', $value->quiz_exam_info_id).'</td>
+                        <td>'.$value->question.'</td>
+                        <td>'.$value->one.'</td>
+                        <td>'.$value->two.'</td>
+                        <td>'.$value->three.'</td>
+                        <td>'.$value->four.'</td>
+                        <td>'.$value->correct_answer.'</td>
+                        <td>'.statusView($value->status).'</td>
+                        <td>'.$ops.'</td>
+                    </tr>';
+        }
+
+        print $view;
     }
 
 

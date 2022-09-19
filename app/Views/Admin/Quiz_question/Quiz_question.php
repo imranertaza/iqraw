@@ -37,6 +37,35 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="class_id">Class: </label>
+                                    <select class="form-control" name="class_id" onchange="subject_get(this.value)"  required>
+                                        <option value="">Please select</option>
+                                        <?php echo getListInOption('','class_id','name','class') ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="subject_id">Subject: </label>
+                                    <select class="form-control" name="subject_id" id="subjectId" onchange="exam_info(this.value)" required>
+                                        <option value="">Please select</option>
+                                        <?php //echo getListInOption('','subject_id','name','subject') ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="subject_id">Quiz Exam: </label>
+                                    <select class="form-control" name="quiz_exam_info_id" id="quiz_exam_infoId" onchange="quiz_question(this.value)"  required>
+                                        <option value="">Please select</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3"></div>
+                        </div>
                         <table id="data_table" class="table table-bordered table-striped text-capitalize ">
                             <thead>
                             <tr>
@@ -52,6 +81,9 @@
                                 <th>Action</th>
                             </tr>
                             </thead>
+                            <tbody id="dataQuiz">
+
+                            </tbody>
                         </table>
                     </div>
                     <!-- /.card-body -->
@@ -75,10 +107,29 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="subject_id">Quiz Exam: </label>
-                                    <select class="form-control" name="quiz_exam_info_id"  required>
+                                    <label for="class_id">Class: </label>
+                                    <select class="form-control" name="class_id" onchange="subject_get(this.value)" id="class_id" required>
                                         <option value="">Please select</option>
-                                        <?php echo getListInOption('','quiz_exam_info_id','quiz_name','quiz_exam_info') ?>
+                                        <?php echo getListInOption('','class_id','name','class') ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="subject_id">Subject: </label>
+                                    <select class="form-control" name="subject_id" id="subject_id" onchange="exam_info(this.value)" required>
+                                        <option value="">Please select</option>
+                                        <?php //echo getListInOption('','subject_id','name','subject') ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="subject_id">Quiz Exam: </label>
+                                    <select class="form-control" name="quiz_exam_info_id" id="quiz_exam_info_id"  required>
+                                        <option value="">Please select</option>
                                     </select>
                                 </div>
                             </div>
@@ -158,6 +209,26 @@
                 <div class="modal-body">
                     <form id="edit-form" class="pl-3 pr-3">
                         <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="class_id">Class: </label>
+                                    <select class="form-control" name="class_id" onchange="subject_get(this.value)" id="class_id" required>
+                                        <option value="">Please select</option>
+                                        <?php echo getListInOption('','class_id','name','class') ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="subject_id">Subject: </label>
+                                    <select class="form-control" name="subject_id" id="subject_id" onchange="exam_info(this.value)" required>
+                                        <option value="">Please select</option>
+                                        <?php echo getListInOption('','subject_id','name','subject') ?>
+                                    </select>
+                                </div>
+                            </div>
+
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="subject_id">Quiz Exam: </label>
@@ -254,12 +325,12 @@
             "info": true,
             "autoWidth": false,
             "responsive": true,
-            "ajax": {
-                "url": '<?php echo base_url($controller . '/getAll') ?>',
-                "type": "POST",
-                "dataType": "json",
-                async: "true"
-            }
+            //"ajax": {
+            //    "url": '<?php //echo base_url($controller . '/getAll') ?>//',
+            //    "type": "POST",
+            //    "dataType": "json",
+            //    async: "true"
+            //}
         });
     });
 
@@ -318,7 +389,7 @@
                                 showConfirmButton: false,
                                 timer: 1500
                             }).then(function () {
-                                $('#data_table').DataTable().ajax.reload(null, false).draw(false);
+                                // $('#data_table').DataTable().ajax.reload(null, false).draw(false);
                                 $('#add-modal').modal('hide');
                             })
 
@@ -374,6 +445,8 @@
 
                 $("#edit-form #quiz_question_id").val(response.quiz_question_id);
                 $("#edit-form #quiz_exam_info_id").val(response.quiz_exam_info_id);
+                $("#edit-form #class_id").val(response.class_id);
+                $("#edit-form #subject_id").val(response.subject_id);
                 $("#edit-form #question").val(response.question);
                 $("#edit-form #one").val(response.one);
                 $("#edit-form #two").val(response.two);
@@ -429,7 +502,7 @@
                                         showConfirmButton: false,
                                         timer: 1500
                                     }).then(function () {
-                                        $('#data_table').DataTable().ajax.reload(null, false).draw(false);
+                                        // $('#data_table').DataTable().ajax.reload(null, false).draw(false);
                                         $('#edit-modal').modal('hide');
                                     })
 
@@ -520,5 +593,48 @@
         })
     }
 
+    function subject_get(class_id){
+        $.ajax({
+            url: '<?php echo base_url($controller . '/subject_get') ?>',
+            type: 'post',
+            data: {
+                class_id: class_id
+            },
+            success: function (val) {
+                $("#subject_id").html(val);
+                $("#subjectId").html(val);
+                $("#edit-form #subject_id").html(val);
+
+            }
+        });
+    }
+    function exam_info(subject_id){
+        $.ajax({
+            url: '<?php echo base_url($controller . '/exam_info') ?>',
+            type: 'post',
+            data: {
+                subject_id: subject_id
+            },
+            success: function (val) {
+                $("#quiz_exam_infoId").html(val);
+                $("#quiz_exam_info_id").html(val);
+                $("#edit-form #quiz_exam_info_id").html(val);
+
+            }
+        });
+    }
+    function quiz_question(quiz_exam_info_id){
+
+        $.ajax({
+            url: '<?php echo base_url($controller . '/quiz_question') ?>',
+            type: 'POST',
+            data: {
+                quiz_exam_info_id: quiz_exam_info_id
+            },
+            success: function (data) {
+                $("#dataQuiz").html(data);
+            }
+        });
+    }
 
 </script>

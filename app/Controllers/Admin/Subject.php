@@ -4,6 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use App\Libraries\Permission;
+use App\Models\Class_group_joinedModel;
 use App\Models\Group_classModel;
 use App\Models\SubjectModel;
 
@@ -14,6 +15,7 @@ class Subject extends BaseController
     protected $session;
     protected $subjectModel;
     protected $group_classModel;
+    protected $class_group_joinedModel;
     protected $crop;
     protected $permission;
     private $module_name = 'Subject';
@@ -21,6 +23,7 @@ class Subject extends BaseController
     public function __construct()
     {
         $this->subjectModel = new SubjectModel();
+        $this->class_group_joinedModel = new Class_group_joinedModel();
         $this->group_classModel = new Group_classModel();
         $this->permission = new Permission();
         $this->validation = \Config\Services::validation();
@@ -214,5 +217,19 @@ class Subject extends BaseController
         return $this->response->setJSON($response);
     }
 
+    public function get_class_group(){
+        $id = $this->request->getPost('class_id');
 
+        $classGroJoin = $this->class_group_joinedModel->where('class_id',$id)->findAll();
+
+        $view = '<option value="">Please select</option>';
+        if (!empty($classGroJoin)){
+            foreach ($classGroJoin as $val) {
+                $clName = get_data_by_id('group_name','class_group','class_group_id',$val->class_group_id);
+
+                $view .='<option value="'.$val->class_group_id.'">'.$clName.'</option>';
+            }
+        }
+        print $view;
+    }
 }

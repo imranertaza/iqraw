@@ -959,6 +959,14 @@ table th{
     top: 30px !important;
 }
 
+.btn-video-count{
+    width: 100%;
+    background-color: #39AA35;
+    color: #FFFFFF;
+    border-radius: 20px;
+    font-size: 20px;
+}
+
 /*@media only screen and (max-width: 425px){*/
 /*    !*Small smartphones [325px -> 425px]*!*/
 /*}*/

@@ -71,7 +71,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="class_id">Class: </label>
-                                    <select class="form-control" name="class_id" required>
+                                    <select class="form-control" name="class_id" onchange="check_class_group(this.value)" required>
                                         <option value="">Please select</option>
                                         <?php echo getListInOption('','class_id','name','class') ?>
                                     </select>
@@ -81,9 +81,8 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="class_group_id">Class Group: </label>
-                                    <select class="form-control" name="class_group_id" >
+                                    <select class="form-control" name="class_group_id" id="class_group_id" >
                                         <option value="">Please select</option>
-                                        <?php echo getListInOption('','class_group_id','group_name','class_group') ?>
                                     </select>
                                 </div>
                             </div>
@@ -128,7 +127,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="class_id">Class: </label>
-                                    <select class="form-control" name="class_id" id="class_id" required>
+                                    <select class="form-control" name="class_id" id="class_id" onchange="check_class_group(this.value)" required>
                                         <option value="">Please select</option>
                                         <?php echo getListInOption('','class_id','name','class') ?>
                                     </select>
@@ -451,5 +450,17 @@
         })
     }
 
-
+    function check_class_group(class_id){
+        $.ajax({
+            url: '<?php echo base_url($controller . '/get_class_group') ?>',
+            type: 'post',
+            data: {
+                class_id: class_id
+            },
+            success: function (val) {
+                $("#class_group_id").html(val);
+                $("#edit-form #class_group_id").html(val);
+            }
+        });
+    }
 </script>

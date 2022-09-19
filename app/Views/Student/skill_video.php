@@ -4,6 +4,9 @@
 
 <section class="content" style="margin-bottom: 90px;">
     <div class="row pt-2 text-capitalize">
+        <div class="col-12 mt-3 mb-3">
+            <button class="btn btn-video-count"><?php echo count($video)?> Video</button>
+        </div>
         <?php if (!empty($video)){ foreach ($video as $val){  ?>
             <div class="col-12">
                 <div class="w-50 float-start p-2">

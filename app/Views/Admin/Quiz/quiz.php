@@ -42,6 +42,7 @@
                             <tr>
                                 <th width="40">Id</th>
                                 <th>Quiz Name</th>
+                                <th>Class</th>
                                 <th>Subject</th>
                                 <th>Total Questions</th>
                                 <th>Status</th>
@@ -71,10 +72,19 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="subject_id">Subject: </label>
-                                    <select class="form-control" name="subject_id"  required>
+                                    <label for="class_id">Class: </label>
+                                    <select class="form-control" name="class_id" onchange="subject_get(this.value)" required>
                                         <option value="">Please select</option>
-                                        <?php echo getListInOption('','subject_id','name','subject') ?>
+                                        <?php echo getListInOption('','class_id','name','class') ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="subject_id">Subject: </label>
+                                    <select class="form-control" name="subject_id" id="subject_id"  required>
+                                        <option value="">Please select</option>
+                                        <?php //echo getListInOption('','subject_id','name','subject') ?>
                                     </select>
                                 </div>
                             </div>
@@ -121,6 +131,15 @@
                 <div class="modal-body">
                     <form id="edit-form" class="pl-3 pr-3">
                         <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="class_id">Class: </label>
+                                    <select class="form-control" name="class_id" id="class_id" onchange="subject_get(this.value)" required>
+                                        <option value="">Please select</option>
+                                        <?php echo getListInOption('','class_id','name','class') ?>
+                                    </select>
+                                </div>
+                            </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="subject_id">Subject: </label>
@@ -303,6 +322,7 @@
 
 
                 $("#edit-form #quiz_exam_info_id").val(response.quiz_exam_info_id);
+                $("#edit-form #class_id").val(response.class_id);
                 $("#edit-form #subject_id").val(response.subject_id);
                 $("#edit-form #quiz_name").val(response.quiz_name);
                 $("#edit-form #total_questions").val(response.total_questions);
@@ -446,5 +466,17 @@
         })
     }
 
-
+    function subject_get(class_id){
+        $.ajax({
+            url: '<?php echo base_url($controller . '/get_subject') ?>',
+            type: 'post',
+            data: {
+                class_id: class_id
+            },
+            success: function (val) {
+                $("#subject_id").html(val);
+                $("#edit-form #subject_id").html(val);
+            }
+        });
+    }
 </script>
