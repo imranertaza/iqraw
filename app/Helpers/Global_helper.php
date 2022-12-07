@@ -94,6 +94,20 @@ function getListInOption($selected, $tblId, $needCol, $table)
     return $options;
 }
 
+function getListInOptionParentIdBySub($selected, $tblId, $needCol, $table,$whereParent,$parentID)
+{
+    $db = \Config\Database::connect();
+    $tabledta = $db->table($table);
+    $query = $tabledta->where($whereParent,$parentID)->get();
+    $options = '';
+    foreach ($query->getResult() as $value) {
+        $options .= '<option value="' . $value->$tblId . '" ';
+        $options .= ($value->$tblId == $selected) ? ' selected="selected"' : '';
+        $options .= '>' . $value->$needCol . '</option>';
+    }
+    return $options;
+}
+
 function isCheck($checked = 0, $match = 1)
 {
     $checked = ($checked);
@@ -176,7 +190,13 @@ function already_join_check($quiz_exam_info_id){
 
 function get_subID_by_exam($subject_id){
     $tabledta = DB()->table('quiz_exam_info');
-    $total = $tabledta->where('subject_id',$subject_id)->countAllResults();
+    $total = $tabledta->where('subject_id',$subject_id)->where('published_date <',date('Y-m-d'))->countAllResults();
+    return $total;
+}
+
+function get_subID_by_upcoming_exam($subject_id){
+    $tabledta = DB()->table('quiz_exam_info');
+    $total = $tabledta->where('subject_id',$subject_id)->where('published_date >',date('Y-m-d'))->countAllResults();
     return $total;
 }
 
@@ -346,5 +366,26 @@ function check_subscribe_by_course_id($course_id){
     }
     return $result;
 
+}
+
+function course_main_category($selected){
+    $table = DB()->table('course_category');
+    $query = $table->where('parent_course_cat_id',null)->where('status','1')->get()->getResult();
+
+    $view = '<option value="" >Please Select</option>';
+    foreach ($query as $item) {
+        $sel = ($item->course_cat_id == $selected)?'selected':'';
+        $view .= '<option value="'.$item->course_cat_id.'" '.$sel.'>'.$item->category_name.'</option>';
+    }
+    return $view;
+
+}
+
+function get_all_array_data_by_id($table, $whereCol, $whereInfo)
+{
+    $db = \Config\Database::connect();
+    $tabledta = $db->table($table);
+    $result = $tabledta->where($whereCol, $whereInfo)->get()->getResult();
+    return $result;
 }
 

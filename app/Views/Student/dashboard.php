@@ -3,20 +3,25 @@
         <div class="col-6 h-p-r">
             <a href="<?php echo base_url() ?>/Student/Subject" class="btn d-block btn-st">My Subject</a>
         </div>
-        <div class="col-6 h-p-r">
-            <a href="<?php echo base_url() ?>/Student/Skill_development" class="btn d-block btn-st">Skill
-                development</a>
-        </div>
+<!--        <div class="col-6 h-p-r">-->
+<!--            <a href="--><?php //echo base_url() ?><!--/Student/Skill_development" class="btn d-block btn-st">Skill-->
+<!--                development</a>-->
+<!--        </div>-->
 
         <div class="col-6 h-p-r">
-            <a href="<?php echo base_url() ?>/Student/Quiz" class="btn d-block btn-st">Quiz</a>
+            <a href="<?php echo base_url() ?>/Student/Quiz" class="btn d-block btn-st">Model Test</a>
+<!--            Quiz-->
         </div>
         <div class="col-6 h-p-r">
             <a href="<?php echo base_url() ?>/Student/Course" class="btn d-block btn-st">Course</a>
         </div>
         <div class="col-6 h-p-r">
-            <a href="<?php echo base_url() ?>/Student/Shopping" class="btn d-block btn-st">Shopping</a>
+            <a href="<?php echo base_url() ?>/Student/Course/my_course" class="btn d-block btn-st">My Course</a>
         </div>
+
+<!--        <div class="col-6 h-p-r">-->
+<!--            <a href="--><?php //echo base_url() ?><!--/Student/Shopping" class="btn d-block btn-st">Shopping</a>-->
+<!--        </div>-->
 
         <div class="col-6 h-p-r">
             <a href="<?php echo base_url() ?>/Student/Ranking" class="btn d-block btn-st">Ranking</a>

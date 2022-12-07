@@ -50,23 +50,89 @@ class Course extends BaseController
         }
     }
 
-    public function video($course_id){
+    public function my_course(){
+        $isLoggedInStudent = $this->session->isLoggedInStudent;
+        if (!isset($isLoggedInStudent) || $isLoggedInStudent != TRUE) {
+            return redirect()->to('/login');
+        } else {
+
+            $data['back_url'] = base_url('/');
+            $data['page_title'] = 'My Course';
+            $data['footer_icon'] = 'Home';
+
+            $classID = get_data_by_id('class_id','student','std_id',$this->session->std_id);
+            $groupID = get_data_by_id('class_group_id','student','std_id',$this->session->std_id);
+
+            $data['course'] = $this->courseModel->where('class_id',$classID)->where('class_group_id',$groupID)->orWhere('class_id',null)->findAll();
+
+
+
+
+            echo view('Student/header',$data);
+            echo view('Student/my_course_list',$data);
+            echo view('Student/footer');
+        }
+    }
+
+    public function category($course_id){
+        $isLoggedInStudent = $this->session->isLoggedInStudent;
+        if (!isset($isLoggedInStudent) || $isLoggedInStudent != TRUE) {
+            return redirect()->to('/login');
+        } else {
+            $courseName = get_data_by_id('course_name','course','course_id',$course_id);
+
+            $data['back_url'] = base_url('/Student/Course/my_course');
+            $data['page_title'] = $courseName.' Category';
+            $data['footer_icon'] = 'Home';
+
+            $data['video'] = $this->course_videoModel->where('course_id',$course_id)->groupBy('course_cat_id')->findAll();
+
+            echo view('Student/header',$data);
+            echo view('Student/course_video_category_list',$data);
+            echo view('Student/footer');
+        }
+    }
+
+    public function video($course_cat_id){
+        $isLoggedInStudent = $this->session->isLoggedInStudent;
+        if (!isset($isLoggedInStudent) || $isLoggedInStudent != TRUE) {
+            return redirect()->to('/login');
+        } else {
+            $courseName = get_data_by_id('category_name','course_category','course_cat_id',$course_cat_id);
+            $catId = $this->course_videoModel->where('course_cat_id',$course_cat_id)->first()->course_id;
+            $data['back_url'] = base_url('/Student/Course/category/'.$catId);
+            $data['page_title'] = $courseName.' Video';
+            $data['footer_icon'] = 'Home';
+
+            $classID = get_data_by_id('class_id','student','std_id',$this->session->std_id);
+            $groupID = get_data_by_id('class_group_id','student','std_id',$this->session->std_id);
+
+            $data['video'] = $this->course_videoModel->where('course_cat_id',$course_cat_id)->findAll();
+
+            echo view('Student/header',$data);
+            echo view('Student/course_video_list',$data);
+            echo view('Student/footer');
+        }
+    }
+
+    public function details($course_id){
         $isLoggedInStudent = $this->session->isLoggedInStudent;
         if (!isset($isLoggedInStudent) || $isLoggedInStudent != TRUE) {
             return redirect()->to('/login');
         } else {
 
             $data['back_url'] = base_url('/Student/Course');
-            $data['page_title'] = 'Course Video';
+            $data['page_title'] = 'Course Details';
             $data['footer_icon'] = 'Home';
 
             $classID = get_data_by_id('class_id','student','std_id',$this->session->std_id);
             $groupID = get_data_by_id('class_group_id','student','std_id',$this->session->std_id);
 
-            $data['video'] = $this->course_videoModel->where('course_id',$course_id)->findAll();
+            $data['course'] = $this->courseModel->where('course_id',$course_id)->first();
+            $data['course_id'] = $course_id;
 
             echo view('Student/header',$data);
-            echo view('Student/course_video_list',$data);
+            echo view('Student/course_details',$data);
             echo view('Student/footer');
         }
     }
@@ -77,7 +143,7 @@ class Course extends BaseController
             return redirect()->to('/login');
         } else {
 
-            $data['back_url'] = base_url('/Student/Course/video/'.$course_id);
+            $data['back_url'] = base_url('/Student/Course/details/'.$course_id);
             $data['page_title'] = 'Course Subscribe';
             $data['footer_icon'] = 'Home';
 
@@ -98,7 +164,7 @@ class Course extends BaseController
 
             $courVid = $this->course_videoModel->where('course_video_id',$course_video_id)->first();
 
-            $data['back_url'] = base_url('/Student/Course/video/'.$courVid->course_id);
+            $data['back_url'] = base_url('/Student/Course/video/'.$courVid->course_cat_id);
             $data['page_title'] = 'Course Video';
             $data['footer_icon'] = 'Home';
 
@@ -111,7 +177,30 @@ class Course extends BaseController
         }
     }
     
+    public function sub_action(){
+        $data['course_id'] = $this->request->getPost('course_id');
+        $data['terms'] = $this->request->getPost('terms');
+        return redirect()->to('/Student/Course/success/'.$data['course_id']);
+    }
 
+    public function success($course_id){
+        $isLoggedInStudent = $this->session->isLoggedInStudent;
+        if (!isset($isLoggedInStudent) || $isLoggedInStudent != TRUE) {
+            return redirect()->to('/login');
+        } else {
+
+            $data['back_url'] = base_url('/Student/Course/video/'.$course_id);
+            $data['page_title'] = 'Course Subscribe success';
+            $data['footer_icon'] = 'Home';
+
+
+            $data['course'] = $this->courseModel->where('course_id',$course_id)->first();
+
+            echo view('Student/header',$data);
+            echo view('Student/success_subscribe',$data);
+            echo view('Student/footer');
+        }
+    }
 
 
 

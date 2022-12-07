@@ -29,7 +29,7 @@
                             </div>
                             <div class="col-md-4">
                                 <button type="button" class="btn btn-block btn-success" onclick="add()" title="Add"><i
-                                        class="fa fa-plus"></i> Add
+                                            class="fa fa-plus"></i> Add
                                 </button>
 
                             </div>
@@ -44,6 +44,7 @@
                                 <th>Quiz Name</th>
                                 <th>Class</th>
                                 <th>Subject</th>
+                                <th>Published Date</th>
                                 <th>Total Questions</th>
                                 <th>Status</th>
                                 <th>Action</th>
@@ -73,16 +74,17 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="class_id">Class: </label>
-                                    <select class="form-control" name="class_id" onchange="subject_get(this.value)" required>
+                                    <select class="form-control" name="class_id" onchange="subject_get(this.value)"
+                                            required>
                                         <option value="">Please select</option>
-                                        <?php echo getListInOption('','class_id','name','class') ?>
+                                        <?php echo getListInOption('', 'class_id', 'name', 'class') ?>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="subject_id">Subject: </label>
-                                    <select class="form-control" name="subject_id" id="subject_id"  required>
+                                    <select class="form-control" name="subject_id" id="subject_id" required>
                                         <option value="">Please select</option>
                                         <?php //echo getListInOption('','subject_id','name','subject') ?>
                                     </select>
@@ -95,6 +97,12 @@
                                     <input type="text" class="form-control" name="quiz_name" required>
                                 </div>
                             </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="published_date">Published date: </label>
+                                    <input type="date" class="form-control" name="published_date" required>
+                                </div>
+                            </div>
 
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -102,7 +110,6 @@
                                     <input type="text" class="form-control" name="total_questions" required>
                                 </div>
                             </div>
-
 
 
                         </div>
@@ -134,18 +141,19 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="class_id">Class: </label>
-                                    <select class="form-control" name="class_id" id="class_id" onchange="subject_get(this.value)" required>
+                                    <select class="form-control" name="class_id" id="class_id"
+                                            onchange="subject_get(this.value)" required>
                                         <option value="">Please select</option>
-                                        <?php echo getListInOption('','class_id','name','class') ?>
+                                        <?php echo getListInOption('', 'class_id', 'name', 'class') ?>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="subject_id">Subject: </label>
-                                    <select class="form-control" name="subject_id" id="subject_id"  required>
+                                    <select class="form-control" name="subject_id" id="subject_id" required>
                                         <option value="">Please select</option>
-                                        <?php echo getListInOption('','subject_id','name','subject') ?>
+                                        <?php echo getListInOption('', 'subject_id', 'name', 'subject') ?>
                                     </select>
                                 </div>
                             </div>
@@ -159,8 +167,16 @@
 
                             <div class="col-md-12">
                                 <div class="form-group">
+                                    <label for="published_date">Published date: </label>
+                                    <input type="date" class="form-control" name="published_date" id="published_date" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
                                     <label for="total_questions">Total Questions: </label>
-                                    <input type="text" class="form-control" name="total_questions" id="total_questions" required>
+                                    <input type="text" class="form-control" name="total_questions" id="total_questions"
+                                           required>
                                 </div>
                             </div>
 
@@ -169,7 +185,7 @@
                                     <label for="status">Status: </label>
                                     <select class="form-control" name="status" id="status" required>
                                         <option value="">please select</option>
-                                        <?php echo globalStatus('')?>
+                                        <?php echo globalStatus('') ?>
                                     </select>
                                 </div>
                             </div>
@@ -179,7 +195,8 @@
 
                         <div class="form-group text-center">
                             <div class="btn-group">
-                                <input type="hidden" class="form-control" name="quiz_exam_info_id" id="quiz_exam_info_id" required>
+                                <input type="hidden" class="form-control" name="quiz_exam_info_id"
+                                       id="quiz_exam_info_id" required>
                                 <button type="submit" class="btn btn-success" id="edit-form-btn">Update</button>
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                             </div>
@@ -326,6 +343,7 @@
                 $("#edit-form #subject_id").val(response.subject_id);
                 $("#edit-form #quiz_name").val(response.quiz_name);
                 $("#edit-form #total_questions").val(response.total_questions);
+                $("#edit-form #published_date").val(response.published_date);
                 $("#edit-form #status").val(response.status);
 
                 // submit the edit from
@@ -466,7 +484,7 @@
         })
     }
 
-    function subject_get(class_id){
+    function subject_get(class_id) {
         $.ajax({
             url: '<?php echo base_url($controller . '/get_subject') ?>',
             type: 'post',

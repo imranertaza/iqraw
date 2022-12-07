@@ -287,7 +287,7 @@ tbody, td, tfoot, th, thead, tr{
     line-height: 32px;
     letter-spacing: -0.019em;
     color: #196017;
-    padding: 12px 0px;
+    padding: 12px;
 }
 .row{
     margin-right: 0px !important;
@@ -795,10 +795,10 @@ input:disabled{
     padding: 0 0 0 16px;
 }
 
-iframe{
-    width: 100% !important;
-    min-height: 250px !important;
-}
+/*iframe{*/
+/*    width: 100% !important;*/
+/*    min-height: 100% !important;*/
+/*}*/
 .btn-join{
     background-color: #eeeeee;
     border-radius: 20px;
@@ -966,7 +966,96 @@ table th{
     border-radius: 20px;
     font-size: 20px;
 }
+.succ-round{
+    background-color: #39AA35;
+    border-radius: 50%;
+    padding: 85px 0px 85px 0px;
+    width: 200px;
 
-/*@media only screen and (max-width: 425px){*/
-/*    !*Small smartphones [325px -> 425px]*!*/
-/*}*/
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 28px;
+    color: #ffffffff;
+    text-align: center;
+}
+.point-vi{
+    background-color: #47484700;
+    padding: 18px 0px;
+    position: absolute;
+    z-index: 10000;
+    right: 0px;
+    top: 0px;
+    width: 100%;
+    text-align: right;
+}
+.point-vi2{
+    padding: 20px 80px;
+    background-color: #47484700;
+    position: absolute;
+    width: 50%;
+    z-index: 10000;
+    right: 0px;
+    bottom: 0px;
+}
+.point-vi3{
+    padding: 20px 80px;
+    background-color: #47484700;
+    position: absolute;
+    width: 50%;
+    z-index: 10000;
+    right: 0px;
+    bottom: 0px;
+}
+
+.mo-cls{
+    width: 100% !important;
+    height: 100% !important;
+}
+.mo-bod{
+    padding: 0px !important;
+}
+iframe{
+    width: 100% !important;
+    height: 100% !important;
+}
+.mo-cont{
+    height: 100%;
+}
+@media only screen and (min-width: 360px) {
+    .mo-cont{
+        height: 400px !important;
+        margin: 0px!important;
+    }
+}
+
+@media only screen and (min-width: 370px) {
+    iframe{
+        height: 500px;
+    }
+    .mo-cont{
+        height: 400px;
+        margin: 0px!important;
+    }
+}
+
+
+@media only screen and (min-width: 576px) {
+    .modal-dialog {
+        /*max-width: 500px;*/
+        max-width: 100%;
+        margin: 0px;
+    }
+}
+
+@media only screen and (max-width: 667px){
+    /*.point-vi2 {*/
+    /*    padding: 20px 106px;*/
+    /*    background-color: #47484700;*/
+    /*    position: absolute;*/
+    /*    width: 15px;*/
+    /*    z-index: 10000;*/
+    /*    right: 0px;*/
+    /*}*/
+}

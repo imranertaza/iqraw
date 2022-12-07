@@ -56,6 +56,25 @@ class Quiz extends BaseController
         }
     }
 
+    public function upcoming_exam(){
+        $isLoggedInStudent = $this->session->isLoggedInStudent;
+        if (!isset($isLoggedInStudent) || $isLoggedInStudent != TRUE) {
+            return redirect()->to('/login');
+        } else {
+
+            $data['back_url'] = base_url('/Student/Quiz');
+            $data['page_title'] = 'Upcoming Exam';
+            $data['footer_icon'] = 'Home';
+
+            $classId = get_data_by_id('class_id','student','std_id',$this->session->std_id);
+            $data['subject'] = $this->subjectModel->where('class_id',$classId)->findAll();
+
+            echo view('Student/header',$data);
+            echo view('Student/upcoming_exam',$data);
+            echo view('Student/footer');
+        }
+    }
+
     public function exam($subject_id){
         $isLoggedInStudent = $this->session->isLoggedInStudent;
         if (!isset($isLoggedInStudent) || $isLoggedInStudent != TRUE) {
@@ -70,7 +89,7 @@ class Quiz extends BaseController
             unset($_SESSION['qe_joined_id']);
             unset($_SESSION['quiz_exam']);
 
-            $data['quiz_exam'] = $this->quiz_examModel->where('subject_id',$subject_id)->findAll();
+            $data['quiz_exam'] = $this->quiz_examModel->where('subject_id',$subject_id)->where('published_date <',date('Y-m-d'))->findAll();
 
             $table = DB()->table('quiz_exam_joined');
             $data['join_quiz_exam'] =$table->select('*')->join('quiz_exam_info','quiz_exam_info.quiz_exam_info_id = quiz_exam_joined.quiz_exam_info_id')->where('quiz_exam_info.subject_id',$subject_id)->get()->getResult();
@@ -78,6 +97,29 @@ class Quiz extends BaseController
 
             echo view('Student/header',$data);
             echo view('Student/quiz_exam',$data);
+            echo view('Student/footer');
+
+        }
+    }
+
+    public function exam_upcoming($subject_id){
+        $isLoggedInStudent = $this->session->isLoggedInStudent;
+        if (!isset($isLoggedInStudent) || $isLoggedInStudent != TRUE) {
+            return redirect()->to('/login');
+        } else {
+
+            $data['back_url'] = base_url('/Student/Quiz');
+            $data['page_title'] = 'Upcoming Quiz Exam';
+            $data['footer_icon'] = 'Home';
+
+            $data['quiz_exam'] = $this->quiz_examModel->where('subject_id',$subject_id)->where('published_date >',date('Y-m-d'))->findAll();
+
+            $table = DB()->table('quiz_exam_joined');
+            $data['join_quiz_exam'] =$table->select('*')->join('quiz_exam_info','quiz_exam_info.quiz_exam_info_id = quiz_exam_joined.quiz_exam_info_id')->where('quiz_exam_info.subject_id',$subject_id)->get()->getResult();
+
+
+            echo view('Student/header',$data);
+            echo view('Student/quiz_exam_upcoming',$data);
             echo view('Student/footer');
 
         }

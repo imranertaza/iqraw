@@ -8,6 +8,7 @@ use App\Models\StudentModel;
 use App\Models\Vocabulary_exam_joinedModel;
 use App\Models\Vocabulary_exam_r_quizModel;
 use App\Models\Vocabulary_examModel;
+use App\Models\Vocabulary_readModel;
 use App\Models\VocabularyModel;
 
 
@@ -22,6 +23,7 @@ class Vocabulary extends BaseController
     protected $vocabulary_exam_joinedModel;
     protected $history_user_point_Model;
     protected $history_user_coin_Model;
+    protected $vocabulary_read_Model;
 
     public function __construct()
     {
@@ -32,6 +34,7 @@ class Vocabulary extends BaseController
         $this->vocabulary_exam_joinedModel = new Vocabulary_exam_joinedModel();
         $this->history_user_point_Model = new History_user_point_Model();
         $this->history_user_coin_Model = new History_user_coin_Model();
+        $this->vocabulary_read_Model = new Vocabulary_readModel();
         $this->validation =  \Config\Services::validation();
         $this->session = \Config\Services::session();
     }
@@ -42,17 +45,53 @@ class Vocabulary extends BaseController
             return redirect()->to('/login');
         } else {
 
+            $std_id = $this->session->std_id;
+
             $data['back_url'] = base_url('/');
             $data['page_title'] = 'Vocabulary';
             $data['footer_icon'] = 'Home';
-
             //session unset
             unset($_SESSION['voc_mcq_joined_id']);
             unset($_SESSION['voc_quiz_exam']);
 
             $vocLimit = get_data_by_id('value','settings','label','vocabulary_quiz_view_frontEnd');
 
-            $data['vocabulary'] = $this->vocabularyModel->orderBy('voc_id', 'RANDOM')->findAll($vocLimit);
+            //insert vocabulary_read data (start)
+            $count = $this->vocabulary_read_Model->where('std_id',$std_id)->countAllResults();
+            if (empty($count)){
+                $vocReData = [
+                    'std_id' => $std_id,
+                    'count' => '0',
+                    'last_seen_date' => date('Y-m-d'),
+                    'createdBy' => $std_id,
+                ];
+                $this->vocabulary_read_Model->insert($vocReData);
+            }
+            //insert vocabulary_read data (end)
+
+
+            //update count daily data (start)
+            $checkSeen = $this->vocabulary_read_Model->where('std_id',$std_id)->first();
+            if ($checkSeen->last_seen_date < date('Y-m-d')){
+                $viewCount = $this->vocabulary_read_Model->where('std_id',$std_id)->first();
+                $total = $viewCount->count + $vocLimit;
+                $vocReData = [
+                    'count' => $total,
+                    'last_seen_date' => date('Y-m-d'),
+                    'updatedBy' => $std_id,
+                ];
+                $idData['voc_read_id'] = $viewCount->voc_read_id;
+                $this->vocabulary_read_Model->update($idData,$vocReData);
+            }
+            //update count daily data (end)
+
+
+            //limit count (start)
+            $viewCount = $this->vocabulary_read_Model->where('std_id',$std_id)->first();
+            //limit count (end)
+
+            $data['vocabulary'] = $this->vocabularyModel->findAll($vocLimit,$viewCount->count);
+
             $data['vocabularyExam'] = $this->vocabulary_examModel->where('status','Published')->where('published_date',date('Y-m-d'))->findAll();
 
 

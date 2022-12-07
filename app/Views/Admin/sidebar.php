@@ -162,6 +162,13 @@
             </li>
 
             <li class="nav-item ">
+                <a href="<?php echo base_url('Admin/Course_category')?>" class="nav-link">
+                    <i class="nav-icon fas fa-user"></i>
+                    <p>Course Category</p>
+                </a>
+            </li>
+
+            <li class="nav-item ">
                 <a href="<?php echo base_url('Admin/Course')?>" class="nav-link">
                     <i class="nav-icon fas fa-user"></i>
                     <p>Course</p>

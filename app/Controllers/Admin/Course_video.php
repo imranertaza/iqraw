@@ -4,6 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use App\Libraries\Permission;
+use App\Models\Course_categoryModel;
 use App\Models\Course_videoModel;
 
 
@@ -12,6 +13,7 @@ class Course_video extends BaseController
     protected $validation;
     protected $session;
     protected $course_videoModel;
+    protected $course_categoryModel;
     protected $group_classModel;
     protected $class_group_joinedModel;
     protected $crop;
@@ -21,6 +23,7 @@ class Course_video extends BaseController
     public function __construct()
     {
         $this->course_videoModel = new Course_videoModel();
+        $this->course_categoryModel = new Course_categoryModel();
         $this->permission = new Permission();
         $this->validation = \Config\Services::validation();
         $this->session = \Config\Services::session();
@@ -76,6 +79,7 @@ class Course_video extends BaseController
             $data['data'][$key] = array(
                 $value->course_video_id,
                 get_data_by_id('course_name','course','course_id',$value->course_id),
+                get_data_by_id('category_name','course_category','course_cat_id',$value->course_cat_id),
                 $value->title,
                 statusView($value->status),
                 $ops,
@@ -115,6 +119,7 @@ class Course_video extends BaseController
 
 
         $fields['course_id'] = $this->request->getPost('course_id');
+        $fields['course_cat_id'] = $this->request->getPost('course_cat_id');
         $fields['title'] = $this->request->getPost('title');
         $fields['author'] = $this->request->getPost('author');
         $fields['URL'] = $this->request->getPost('URL');
@@ -144,6 +149,7 @@ class Course_video extends BaseController
 
         $this->validation->setRules([
             'course_id' => ['label' => 'course_id', 'rules' => 'required'],
+            'course_cat_id' => ['label' => 'course_cat_id', 'rules' => 'required'],
             'title' => ['label' => 'Title', 'rules' => 'required'],
             'author' => ['label' => 'Author', 'rules' => 'required'],
             'URL' => ['label' => 'URL', 'rules' => 'required'],
@@ -182,6 +188,7 @@ class Course_video extends BaseController
 
         $fields['course_video_id'] = $this->request->getPost('course_video_id');
         $fields['course_id'] = $this->request->getPost('course_id');
+        $fields['course_cat_id'] = $this->request->getPost('course_cat_id');
         $fields['title'] = $this->request->getPost('title');
         $fields['author'] = $this->request->getPost('author');
         $fields['URL'] = $this->request->getPost('URL');
@@ -212,6 +219,7 @@ class Course_video extends BaseController
 
         $this->validation->setRules([
             'course_id' => ['label' => 'course_id', 'rules' => 'required'],
+            'course_cat_id' => ['label' => 'course_cat_id', 'rules' => 'required'],
             'title' => ['label' => 'Title', 'rules' => 'required'],
             'author' => ['label' => 'Author', 'rules' => 'required'],
             'URL' => ['label' => 'URL', 'rules' => 'required'],
@@ -269,6 +277,17 @@ class Course_video extends BaseController
         foreach ($data as $val){
             $name = get_data_by_id('group_name','class_group','class_group_id',$val->class_group_id);
             $view .= '<option value="'.$val->class_group_id.'">'.$name.'</option>';
+        }
+
+        print $view;
+    }
+
+    public function get_category(){
+        $id = $this->request->getPost('course_id');
+        $data = $this->course_categoryModel->where('course_id',$id)->findAll();
+        $view = '<option value="">Please select</option>';
+        foreach ($data as $val){
+            $view .= '<option value="'.$val->course_cat_id.'">'.$val->category_name.'</option>';
         }
 
         print $view;

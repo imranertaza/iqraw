@@ -42,6 +42,7 @@
                             <tr>
                                 <th width="60">Id</th>
                                 <th>Course Name</th>
+                                <th>Category</th>
                                 <th>Title</th>
                                 <th>Status</th>
                                 <th>Action</th>
@@ -72,9 +73,18 @@
                             <div class="col-md-12">
                                 <div class="form-group ">
                                     <label for="course_id">Course: </label>
-                                    <select class="form-control text-capitalize" name="course_id" required>
+                                    <select class="form-control text-capitalize" onchange="course_category(this.value)" name="course_id" required>
                                         <option value="">Please select</option>
                                         <?php echo getListInOption('','course_id','course_name','course') ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group ">
+                                    <label for="chapter_id">Category: </label>
+                                    <select class="form-control text-capitalize"  name="course_cat_id" id="courseCatId" required>
+                                        <option value="">Please select</option>
                                     </select>
                                 </div>
                             </div>
@@ -93,6 +103,8 @@
                                     <input type="text" class="form-control" name="author" required>
                                 </div>
                             </div>
+
+
 
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -138,9 +150,19 @@
                             <div class="col-md-12">
                                 <div class="form-group ">
                                     <label for="course_id">Course: </label>
-                                    <select class="form-control text-capitalize" name="course_id" id="course_id" required>
+                                    <select class="form-control text-capitalize" onchange="course_category(this.value)" name="course_id" id="course_id" required>
                                         <option value="">Please select</option>
                                         <?php echo getListInOption('','course_id','course_name','course') ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group ">
+                                    <label for="chapter_id">Category: </label>
+                                    <select class="form-control text-capitalize"  name="course_cat_id" id="course_cat_id" required>
+                                        <option value="">Please select</option>
+                                        <?php echo getListInOption('', 'course_cat_id', 'category_name', 'course_category') ?>
                                     </select>
                                 </div>
                             </div>
@@ -325,6 +347,7 @@
 
                 $("#edit-form #course_video_id").val(response.course_video_id);
                 $("#edit-form #course_id").val(response.course_id);
+                $("#edit-form #course_cat_id").val(response.course_cat_id);
                 $("#edit-form #title").val(response.title);
                 $("#edit-form #author").val(response.author);
                 $("#edit-form #thumb").val(response.thumb);
@@ -489,5 +512,17 @@
         });
     }
 
+    function course_category(val){
+        $.ajax({
+            url: '<?php echo base_url($controller . '/get_category') ?>',
+            type: 'post',
+            data: { course_id: val },
+            success: function (response){
+                $("#courseCatId").html(response);
+                $("#course_cat_id").html(response);
+                // $("#edit-form #groupId").html(response);
+            }
+        });
+    }
 
 </script>

@@ -29,7 +29,7 @@
                             </div>
                             <div class="col-md-4">
                                 <button type="button" class="btn btn-block btn-success" onclick="add()" title="Add"><i
-                                        class="fa fa-plus"></i> Add
+                                            class="fa fa-plus"></i> Add
                                 </button>
 
                             </div>
@@ -44,6 +44,7 @@
                                 <th>Name</th>
                                 <th>Price</th>
                                 <th>Description</th>
+                                <th>Image</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -68,7 +69,6 @@
                 <div class="modal-body text-capitalize">
                     <form id="add-form" class="pl-3 pr-3">
                         <div class="row">
-
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="name">Course name: </label>
@@ -87,9 +87,10 @@
                             <div class="col-md-12">
                                 <div class="form-group ">
                                     <label for="chapter_id">Class: </label>
-                                    <select class="form-control text-capitalize" onchange="get_group(this.value)" name="class_id" >
-                                        <option value="">Please select</option>
-                                        <?php echo getListInOption('','class_id','name','class') ?>
+                                    <select class="form-control text-capitalize" onchange="get_group(this.value)"
+                                            name="class_id">
+                                        <option>Please select</option>
+                                        <?php echo getListInOption('', 'class_id', 'name', 'class') ?>
                                     </select>
                                 </div>
                             </div>
@@ -97,16 +98,23 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="class_group_id">Class Group : </label>
-                                    <select class="form-control"  name="class_group_id" id="groupId" >
-                                        <option value="">Please select</option>
+                                    <select class="form-control" name="class_group_id" id="groupId">
+                                        <option>Please select</option>
                                     </select>
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="form-group">
+                                    <label for="description">Image: </label>
+                                    <input type="file" class="form-control" name="image" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
                                     <label for="description">Description: </label>
-                                    <textarea class="form-control" name="description"  required></textarea>
+                                    <textarea class="form-control" name="description" id="description" required></textarea>
                                 </div>
                             </div>
 
@@ -140,7 +148,8 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="name">Course name: </label>
-                                    <input type="text" class="form-control" name="course_name" id="course_name" required>
+                                    <input type="text" class="form-control" name="course_name" id="course_name"
+                                           required>
                                 </div>
                             </div>
 
@@ -154,9 +163,10 @@
                             <div class="col-md-12">
                                 <div class="form-group ">
                                     <label for="chapter_id">Class: </label>
-                                    <select class="form-control text-capitalize" onchange="get_group(this.value)" name="class_id" id="class_id" >
-                                        <option value="">Please select</option>
-                                        <?php echo getListInOption('','class_id','name','class') ?>
+                                    <select class="form-control text-capitalize" onchange="get_group(this.value)"
+                                            name="class_id" id="class_id">
+                                        <option>Please select</option>
+                                        <?php echo getListInOption('', 'class_id', 'name', 'class') ?>
                                     </select>
                                 </div>
                             </div>
@@ -164,17 +174,25 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="class_group_id">Class Group : </label>
-                                    <select class="form-control"  name="class_group_id" id="class_group_id" >
-                                        <option value="">Please select</option>
-                                        <?php echo getListInOption('','class_group_id','group_name','class_group') ?>
+                                    <select class="form-control" name="class_group_id" id="class_group_id">
+                                        <option>Please select</option>
+                                        <?php echo getListInOption('', 'class_group_id', 'group_name', 'class_group') ?>
                                     </select>
                                 </div>
                             </div>
 
                             <div class="col-md-12">
                                 <div class="form-group">
+                                    <label for="description">Image: </label>
+                                    <input type="file" class="form-control" name="image">
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
                                     <label for="description">Description: </label>
-                                    <textarea class="form-control" name="description" id="description3" required></textarea>
+                                    <textarea class="form-control" name="description" id="description3"
+                                              required></textarea>
                                 </div>
                             </div>
                         </div>
@@ -246,62 +264,63 @@
 
             submitHandler: function (form) {
 
-                var form = $('#add-form');
-                // remove the text-danger
-                $(".text-danger").remove();
+                $('#add-form').on('submit', function (e) {
+                    e.preventDefault();
+                    $.ajax({
+                        url: "<?php echo base_url($controller . '/add') ?>",
+                        method: "POST",
+                        data: new FormData(this),
+                        contentType: false,
+                        cache: false,
+                        processData: false,
+                        dataType: "json",
+                        beforeSend: function () {
+                            $('#add-form-btn').html('<i class="fa fa-spinner fa-spin"></i>');
+                        },
+                        success: function (response) {
 
-                $.ajax({
-                    url: '<?php echo base_url($controller . '/add') ?>',
-                    type: 'post',
-                    data: form.serialize(), // /converting the form data into array and sending it to server
-                    dataType: 'json',
-                    beforeSend: function () {
-                        $('#add-form-btn').html('<i class="fa fa-spinner fa-spin"></i>');
-                    },
-                    success: function (response) {
+                            if (response.success === true) {
 
-                        if (response.success === true) {
-
-                            Swal.fire({
-                                position: 'bottom-end',
-                                icon: 'success',
-                                title: response.messages,
-                                showConfirmButton: false,
-                                timer: 1500
-                            }).then(function () {
-                                $('#data_table').DataTable().ajax.reload(null, false).draw(false);
-                                $('#add-modal').modal('hide');
-                            })
-
-                        } else {
-
-                            if (response.messages instanceof Object) {
-                                $.each(response.messages, function (index, value) {
-                                    var id = $("#" + index);
-
-                                    id.closest('.form-control')
-                                        .removeClass('is-invalid')
-                                        .removeClass('is-valid')
-                                        .addClass(value.length > 0 ? 'is-invalid' : 'is-valid');
-
-                                    id.after(value);
-
-                                });
-                            } else {
                                 Swal.fire({
                                     position: 'bottom-end',
-                                    icon: 'error',
+                                    icon: 'success',
                                     title: response.messages,
                                     showConfirmButton: false,
                                     timer: 1500
+                                }).then(function () {
+                                    $('#data_table').DataTable().ajax.reload(null, false).draw(false);
+                                    $('#add-modal').modal('hide');
                                 })
 
-                            }
-                        }
-                        $('#add-form-btn').html('Add');
-                    }
-                });
+                            } else {
 
+                                if (response.messages instanceof Object) {
+                                    $.each(response.messages, function (index, value) {
+                                        var id = $("#" + index);
+
+                                        id.closest('.form-control')
+                                            .removeClass('is-invalid')
+                                            .removeClass('is-valid')
+                                            .addClass(value.length > 0 ? 'is-invalid' : 'is-valid');
+
+                                        id.after(value);
+
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        position: 'bottom-end',
+                                        icon: 'error',
+                                        title: response.messages,
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    })
+
+                                }
+                            }
+                            $('#add-form-btn').html('Add');
+                        }
+                    });
+                });
                 return false;
             }
         });
@@ -328,6 +347,7 @@
                 $("#edit-form #description3").val(response.description);
                 $("#edit-form #price").val(response.price);
                 $("#edit-form #class_group_id").val(response.class_group_id);
+                $("#edit-form #course_cat_id").val(response.course_cat_id);
                 $("#edit-form #class_id").val(response.class_id);
 
                 // submit the edit from
@@ -356,60 +376,63 @@
                     },
 
                     submitHandler: function (form) {
-                        var form = $('#edit-form');
-                        $(".text-danger").remove();
-                        $.ajax({
-                            url: '<?php echo base_url($controller . '/edit') ?>',
-                            type: 'post',
-                            data: form.serialize(),
-                            dataType: 'json',
-                            beforeSend: function () {
-                                $('#edit-form-btn').html('<i class="fa fa-spinner fa-spin"></i>');
-                            },
-                            success: function (response) {
+                        $('#edit-form').on('submit', function (e) {
+                            e.preventDefault();
+                            $.ajax({
+                                url: "<?php echo base_url($controller . '/edit') ?>",
+                                method: "POST",
+                                data: new FormData(this),
+                                contentType: false,
+                                cache: false,
+                                processData: false,
+                                dataType: "json",
+                                beforeSend: function () {
+                                    $('#edit-form-btn').html('<i class="fa fa-spinner fa-spin"></i>');
+                                },
+                                success: function (response) {
 
-                                if (response.success === true) {
+                                    if (response.success === true) {
 
-                                    Swal.fire({
-                                        position: 'bottom-end',
-                                        icon: 'success',
-                                        title: response.messages,
-                                        showConfirmButton: false,
-                                        timer: 1500
-                                    }).then(function () {
-                                        $('#data_table').DataTable().ajax.reload(null, false).draw(false);
-                                        $('#edit-modal').modal('hide');
-                                    })
-
-                                } else {
-
-                                    if (response.messages instanceof Object) {
-                                        $.each(response.messages, function (index, value) {
-                                            var id = $("#" + index);
-
-                                            id.closest('.form-control')
-                                                .removeClass('is-invalid')
-                                                .removeClass('is-valid')
-                                                .addClass(value.length > 0 ? 'is-invalid' : 'is-valid');
-
-                                            id.after(value);
-
-                                        });
-                                    } else {
                                         Swal.fire({
                                             position: 'bottom-end',
-                                            icon: 'error',
+                                            icon: 'success',
                                             title: response.messages,
                                             showConfirmButton: false,
                                             timer: 1500
+                                        }).then(function () {
+                                            $('#data_table').DataTable().ajax.reload(null, false).draw(false);
+                                            $('#edit-modal').modal('hide');
                                         })
 
-                                    }
-                                }
-                                $('#edit-form-btn').html('Update');
-                            }
-                        });
+                                    } else {
 
+                                        if (response.messages instanceof Object) {
+                                            $.each(response.messages, function (index, value) {
+                                                var id = $("#" + index);
+
+                                                id.closest('.form-control')
+                                                    .removeClass('is-invalid')
+                                                    .removeClass('is-valid')
+                                                    .addClass(value.length > 0 ? 'is-invalid' : 'is-valid');
+
+                                                id.after(value);
+
+                                            });
+                                        } else {
+                                            Swal.fire({
+                                                position: 'bottom-end',
+                                                icon: 'error',
+                                                title: response.messages,
+                                                showConfirmButton: false,
+                                                timer: 1500
+                                            })
+
+                                        }
+                                    }
+                                    $('#edit-form-btn').html('Update');
+                                }
+                            });
+                        });
                         return false;
                     }
                 });
@@ -470,14 +493,14 @@
         })
     }
 
-    function get_group(class_id){
+    function get_group(class_id) {
         $.ajax({
             url: '<?php echo base_url($controller . '/get_group') ?>',
             type: 'post',
             data: {
                 class_id: class_id
             },
-            success: function (response){
+            success: function (response) {
                 $("#groupId").html(response);
                 // $("#edit-form #groupId").html(response);
             }

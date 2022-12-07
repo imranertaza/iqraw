@@ -68,6 +68,8 @@ class Course extends BaseController
         $result = $this->courseModel->findAll();
 
         foreach ($result as $key => $value) {
+            $dim = (!empty($value->image))?$value->image:'noImage.svg';
+            $img = '<img src="'.base_url().'/assets/upload/course/'.$dim.'" alt="" width="100">';
 
             $ops = '<div class="btn-group">';
             if ($perm['update'] ==1) {
@@ -83,6 +85,7 @@ class Course extends BaseController
                 $value->course_name,
                 $value->price,
                 $value->description,
+                $img,
                 $ops,
             );
         }
@@ -123,6 +126,26 @@ class Course extends BaseController
         $fields['class_id'] = $this->request->getPost('class_id');
         $fields['class_group_id'] = $this->request->getPost('class_group_id');
         $fields['createdBy'] = $this->session->user_id;
+        $image = $this->request->getFile('image');
+
+        if (!empty($_FILES['image']['name'])) {
+            // thumb image uploading section (start)
+            $target_dir = FCPATH . 'assets/upload/course/';
+            if(!file_exists($target_dir)){
+                mkdir($target_dir,0777);
+            }
+
+            $name = $image->getRandomName();
+            $image->move($target_dir, $name);
+
+            // Image cropping of the uploaded image
+            $nameimg = 'course_' . $image->getName();
+            $this->crop->withFile($target_dir . '' . $name)->fit(160, 105, 'center')->save($target_dir . '' . $nameimg);
+            $this->crop->withFile($target_dir . '' . $name)->fit(1116 ,600, 'center')->save($target_dir . '' . 'big_'.$nameimg);
+            unlink($target_dir . '' . $name);
+
+            $fields['image'] = $nameimg;
+        }
 
         $this->validation->setRules([
             'course_name' => ['label' => 'Name', 'rules' => 'required'],
@@ -165,7 +188,26 @@ class Course extends BaseController
         $fields['course_name'] = $this->request->getPost('course_name');
         $fields['price'] = $this->request->getPost('price');
         $fields['description'] = $this->request->getPost('description');
+        $image = $this->request->getFile('image');
 
+        if (!empty($_FILES['image']['name'])) {
+            // thumb image uploading section (start)
+            $target_dir = FCPATH . 'assets/upload/course/';
+            if(!file_exists($target_dir)){
+                mkdir($target_dir,0777);
+            }
+
+            $name = $image->getRandomName();
+            $image->move($target_dir, $name);
+
+            // Image cropping of the uploaded image
+            $nameimg = 'course_' . $image->getName();
+            $this->crop->withFile($target_dir . '' . $name)->fit(160, 105, 'center')->save($target_dir . '' . $nameimg);
+            $this->crop->withFile($target_dir . '' . $name)->fit(1116 ,600, 'center')->save($target_dir . '' . 'big_'.$nameimg);
+            unlink($target_dir . '' . $name);
+
+            $fields['image'] = $nameimg;
+        }
 
         $this->validation->setRules([
             'course_id' => ['label' => 'Class', 'rules' => 'required'],
@@ -222,7 +264,7 @@ class Course extends BaseController
     public function get_group(){
         $id = $this->request->getPost('class_id');
         $data = $this->class_group_joinedModel->where('class_id',$id)->findAll();
-        $view = '<option value="">Please select</option>';
+        $view = '<option >Please select</option>';
         foreach ($data as $val){
             $name = get_data_by_id('group_name','class_group','class_group_id',$val->class_group_id);
             $view .= '<option value="'.$val->class_group_id.'">'.$name.'</option>';

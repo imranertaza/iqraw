@@ -79,6 +79,7 @@ class Quiz extends BaseController
                 $value->quiz_name,
                 get_data_by_id('name', 'class', 'class_id', $value->class_id),
                 get_data_by_id('name', 'subject', 'subject_id', $value->subject_id),
+                $value->published_date,
                 $value->total_questions,
                 statusView($value->status),
                 $ops,
@@ -119,6 +120,7 @@ class Quiz extends BaseController
         $fields['subject_id'] = $this->request->getPost('subject_id');
         $fields['quiz_name'] = $this->request->getPost('quiz_name');
         $fields['total_questions'] = $this->request->getPost('total_questions');
+        $fields['published_date'] = $this->request->getPost('published_date');
         $fields['createdBy'] = $this->session->user_id;
 
         $this->validation->setRules([
@@ -126,6 +128,7 @@ class Quiz extends BaseController
             'subject_id' => ['label' => 'subject_id', 'rules' => 'required'],
             'quiz_name' => ['label' => 'quiz_name', 'rules' => 'required'],
             'total_questions' => ['label' => 'total_questions', 'rules' => 'required'],
+            'published_date' => ['label' => 'published_date', 'rules' => 'required'],
         ]);
 
         if ($this->validation->run($fields) == FALSE) {
@@ -162,12 +165,15 @@ class Quiz extends BaseController
         $fields['subject_id'] = $this->request->getPost('subject_id');
         $fields['quiz_name'] = $this->request->getPost('quiz_name');
         $fields['total_questions'] = $this->request->getPost('total_questions');
+        $fields['published_date'] = $this->request->getPost('published_date');
+        $fields['status'] = $this->request->getPost('status');
         $fields['createdBy'] = $this->session->user_id;
 
         $this->validation->setRules([
             'subject_id' => ['label' => 'subject_id', 'rules' => 'required'],
             'quiz_name' => ['label' => 'quiz_name', 'rules' => 'required'],
             'total_questions' => ['label' => 'total_questions', 'rules' => 'required'],
+            'published_date' => ['label' => 'published_date', 'rules' => 'required'],
         ]);
 
         if ($this->validation->run($fields) == FALSE) {

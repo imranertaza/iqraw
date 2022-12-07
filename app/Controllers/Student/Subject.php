@@ -40,7 +40,11 @@ class Subject extends BaseController
             $classId = get_data_by_id('class_id','student','std_id',$this->session->std_id);
             $classGroupId = get_data_by_id('class_group_id','student','std_id',$this->session->std_id);
 
-            $data['subject'] = $this->subjectModel->where('class_id',$classId)->where('class_group_id', NULL)->Orwhere('class_group_id', $classGroupId)->findAll();
+            if (!empty($classGroupId)) {
+                $data['subject'] = $this->subjectModel->where('class_id', $classId)->where('class_group_id', NULL)->Orwhere('class_group_id', $classGroupId)->findAll();
+            }else{
+                $data['subject'] = $this->subjectModel->where('class_id', $classId)->findAll();
+            }
 
             unset($_SESSION['quiz']);
             unset($_SESSION['chapter_joined_id']);

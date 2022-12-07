@@ -17,7 +17,7 @@
                     </div>
                     <label id="phonemessage"></label>
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="password" id="password" placeholder="Password">
+                        <input type="password" class="form-control" name="password" id="password" placeholder="Password">
                     </div>
                     <label id="passmessage"></label><br>
                     <span class="for-pass">Forget Password?</span>

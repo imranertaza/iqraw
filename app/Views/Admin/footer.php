@@ -43,7 +43,10 @@
     $(document).ready(function() {
         $('#description').richText();
         $('#description2').richText();
+        $('#description3').richText();
+        // $('[name="description"]').richText();
     });
+    // CKEDITOR.replace( 'editor' );
 </script>
 
 </body>

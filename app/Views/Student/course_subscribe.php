@@ -3,7 +3,7 @@
 </section>
 
 <section class="content-2" style="margin-bottom: 90px;">
-    <form action="#" method="post">
+    <form action="<?php echo base_url()?>/Student/Course/sub_action" method="post">
     <div class="row pt-2 payment">
 
         <div class="col-4">
@@ -39,10 +39,18 @@
                         <td id="dueData"><?php print $course->price;?>৳</td>
                     </tr>
                     <tr>
+                        <td colspan="2">
+                            <input type="checkbox" id="terms" name="terms" style="width: 13px;" required>
+                            <label for="terms" class="label-tarm">I agree with the <a href="https://iqraw.com/tarmsandcondition.html" target="_blank">terms and conditions</a></label>
+                            <input type="hidden" name="course_id" value="<?php echo $course->course_id ?>">
+                        </td>
+                    </tr>
+                    <tr>
                         <td colspan="2"><button type="submit" class="btn a-btn text-white mt-3">Subscribe</button></td>
                     </tr>
                 </tbody>
             </table>
+
 
 
         </div>

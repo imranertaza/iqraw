@@ -196,4 +196,11 @@ class VideoQuiz extends BaseController
         }
     }
 
+    public function show_video(){
+        $video_id = $this->request->getPost('video_id');
+        $video = $this->chapterVideoModel->where('video_id',$video_id)->first();
+
+        print $video->URL;
+    }
+
 }
