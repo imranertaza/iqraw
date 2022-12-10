@@ -6,7 +6,7 @@
     <div class="row pt-2 text-capitalize">
         <?php if (!empty($subject)){ foreach ($subject as $val){  ?>
         <div class="col-6" style="padding-right: 4px !important;">
-            <a href="<?php echo base_url()?>/Student/Skill_development/video_list/<?php echo $val->skill_subject_id?>" class="btn d-block btn-cl"><?php echo $val->name?></a>
+            <a href="<?php echo base_url()?>/Mobile_app/Skill_development/video_list/<?php echo $val->skill_subject_id?>" class="btn d-block btn-cl"><?php echo $val->name?></a>
         </div>
         <?php } }else{ echo '<div class="col-6 math-p" style="padding-right: 4px !important;"><p>No data available</p> </div>';} ?>
 

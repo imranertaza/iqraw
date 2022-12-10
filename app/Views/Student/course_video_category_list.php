@@ -11,7 +11,7 @@
             ?>
 
             <div class="col-12">
-                <a href="<?php echo base_url()?>/Student/Course/video/<?php echo $val->course_cat_id?>">
+                <a href="<?php echo base_url()?>/Mobile_app/Course/video/<?php echo $val->course_cat_id?>">
                 <div class="w-50 float-start p-2">
                     <img src="<?php echo base_url() ?>/assets/upload/courseCategory/<?php echo $img; ?>" alt="banner" class="skill-img w-100" >
                 </div>

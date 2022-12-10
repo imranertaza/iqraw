@@ -20,7 +20,7 @@
     <div class="header-bac">
         <div style="width: 30%;float: left; margin-top: 10px;">
             <?php $proImg = (empty($student->pic))?'noimage.png':$student->std_id.'/'.$student->pic; ?>
-            <a href="<?php echo base_url()?>/Student/Profile"><img src="<?php base_url();?>/assets/upload/profile/<?php echo $proImg;?>"  alt="banner" class="img-pro"></a>
+            <a href="<?php echo base_url()?>/Mobile_app/Profile"><img src="<?php base_url();?>/assets/upload/profile/<?php echo $proImg;?>"  alt="banner" class="img-pro"></a>
         </div>
         <div style="width: 40%;float: left;text-align: center; margin-top: 10px;color: #ffffff;line-height: 30px; ">
             <p class="c-h">My Coin</p>
@@ -29,9 +29,7 @@
         <div style="width: 30%;float: left;text-align: right; margin-top: 10px;">
             <a href="" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><img src="<?php base_url();?>/assets/image/icon-settings.svg" alt="banner" class="h-ico"></a>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item" href="<?php echo base_url('/SignUp/logout')?>">LogOut</a></li>
-<!--                <li><a class="dropdown-item" href="#">Another action</a></li>-->
-<!--                <li><a class="dropdown-item" href="#">Something else here</a></li>-->
+                <li><a class="dropdown-item" href="<?php echo base_url('/Mobile_app/SignUp/logout')?>">LogOut</a></li>
             </ul>
         </div>
     </div>

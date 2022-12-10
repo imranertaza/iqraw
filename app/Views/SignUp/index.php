@@ -16,7 +16,7 @@
                         <a class="nav-link" data-bs-toggle="tab" href="#menu2" ><i class="fa-solid fa-arrow-left"></i></a>
                     </li>
                 </ul>
-                <form id="signupForm"  method="post" action="<?php echo base_url();?>/SignUp/sign_up_action">
+                <form id="signupForm"  method="post" action="<?php echo base_url();?>/Mobile_app/SignUp/sign_up_action">
                     <div class="tab-content" style="padding: 0px 0px 35px 0px;">
 
                         <div class="tab-pane container  active" id="home" >

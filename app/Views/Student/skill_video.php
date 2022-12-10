@@ -13,7 +13,7 @@
                     <img src="<?php echo base_url() ?>/assets/upload/skillVideo/<?php echo $val->thumb; ?>" alt="banner" class="skill-img w-100" >
                 </div>
                 <div class="w-50 float-start p-2 sch-nd">
-                    <span class="sk-ti"><a href="<?php echo base_url()?>/Student/Skill_development/video/<?php echo $val->skill_video_id; ?>"><?php echo $val->title; ?></a></span><br>
+                    <span class="sk-ti"><a href="<?php echo base_url()?>/Mobile_app/Skill_development/video/<?php echo $val->skill_video_id; ?>"><?php echo $val->title; ?></a></span><br>
                     <span class="sk-n"><?php echo $val->author; ?></span><br>
 <!--                    <span class="sk-n">40+ videos</span><br>-->
                     <img src="<?php echo base_url() ?>/assets/image/star.svg" alt="banner" class="star" >

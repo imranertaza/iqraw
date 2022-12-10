@@ -5,7 +5,7 @@
 <section class="content" style="margin-bottom: 90px;">
     <div class="row pt-2">
         <?php if (!empty($video)){ foreach ($video as $val){
-            $url = base_url().'/Student/Course/video_view/'.$val->course_video_id; ?>
+            $url = base_url().'/Mobile_app/Course/video_view/'.$val->course_video_id; ?>
 
             <div class="col-12">
                 <div class="w-50 float-start p-2">

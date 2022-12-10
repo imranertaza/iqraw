@@ -166,6 +166,15 @@ function get_data_by_id($needCol, $table, $whereCol, $whereInfo)
     return $col;
 }
 
+function get_all_data_by_id($table, $whereCol, $whereInfo){
+    $db = \Config\Database::connect();
+
+    $tabledta = $db->table($table);
+    $findResult = $tabledta->where($whereCol, $whereInfo)->get()->getResult();
+
+    return $findResult;
+}
+
 function numberView($num){
     if (!empty($num)){
         $result = number_format($num);

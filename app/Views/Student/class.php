@@ -8,7 +8,7 @@
         <div class="row pt-2">
             <?php foreach ($subject as $sub){ ?>
             <div class="col-6 cl-p-r" >
-                <a href="<?php echo base_url()?>/Student/Subject/chapter/<?php echo $sub->subject_id?>" class="btn d-block btn-cl"><?php echo $sub->name;?></a>
+                <a href="<?php echo base_url()?>/Mobile_app/Subject/chapter/<?php echo $sub->subject_id?>" class="btn d-block btn-cl"><?php echo $sub->name;?></a>
             </div>
             <?php } ?>
         </div>

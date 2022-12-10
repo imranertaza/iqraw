@@ -8,7 +8,7 @@
             <h3><?php echo $video->title;?></h3>
             <p><?php echo $video->author;?></p>
             <?php if (($check == 0) && (!empty($checkMCQ))) { ?>
-            <center><button onclick="join_exam('<?php echo base_url()?>/Student/Skill_development/join_mcq/<?php echo $video->skill_video_id?>')"  class="btn-down ">Join MCQ</button></center>
+            <center><button onclick="join_exam('<?php echo base_url()?>/Mobile_app/Skill_development/join_mcq/<?php echo $video->skill_video_id?>')"  class="btn-down ">Join MCQ</button></center>
             <?php }  ?>
         </div>
     </div>

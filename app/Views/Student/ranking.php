@@ -22,7 +22,7 @@
         <div class="col-12">
             <table class="table text-capitalize">
                 <tbody>
-                <?php foreach ($student as $val){ $you = ($val->std_id == newSession()->std_id)?'You':''; $url = ($val->std_id == newSession()->std_id)?base_url('Student/Profile'):'#'; $schoolName = get_data_by_id('school_name','student','std_id',$val->std_id);  ?>
+                <?php foreach ($student as $val){ $you = ($val->std_id == newSession()->std_id)?'You':''; $url = ($val->std_id == newSession()->std_id)?base_url('Mobile_app/Profile'):'#'; $schoolName = get_data_by_id('school_name','student','std_id',$val->std_id);  ?>
                     <tr class="<?php echo $you;?>">
                         <td  style="padding-top: 15px;" class="<?php echo $you;?>_p"><a href="<?php echo $url?>"><?php echo $val->name;?><br><?php echo $schoolName;?></a></td>
                         <td style="padding-top: 15px;" class="<?php echo $you;?>_p"><?php echo $val->point;?>p</td>

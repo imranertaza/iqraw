@@ -10,7 +10,7 @@
                     <?php if (!empty($course)){ foreach ($course as $cor){ ?>
                         <tr>
                             <td style="padding: 18px;"><?php echo $cor->course_name;?></td>
-                            <td width="60"><a href="<?php echo base_url()?>/Student/Course/details/<?php echo $cor->course_id?>" class="btn btn-join">Details</a></td>
+                            <td width="60"><a href="<?php echo base_url()?>/Mobile_app/Course/details/<?php echo $cor->course_id?>" class="btn btn-join">Details</a></td>
                         </tr>
                     <?php } }else{ echo '<div class="col-6 math-p" style="padding-right: 4px !important;"><p>No data available</p> </div>';}?>
                     </tbody>

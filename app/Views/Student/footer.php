@@ -7,24 +7,24 @@
             <?php } ?></a>
 
     <?php }else{ ?>
-    <a class="navbar-brand" href="<?php echo base_url() ?>/Student/Shopping"><img src="<?php base_url(); ?>/assets/image/icon-shopping.svg" alt=""></a>
+    <a class="navbar-brand" href="<?php echo base_url() ?>/Mobile_app/Shopping"><img src="<?php base_url(); ?>/assets/image/icon-shopping.svg" alt=""></a>
     <?php } ?>
 
     <?php if ($footer_icon == 'Home'){ ?>
-    <a class="navbar-brand" href="<?php echo base_url() ?>/Student/Dashboard">
+    <a class="navbar-brand" href="<?php echo base_url() ?>/Mobile_app/Dashboard">
         <div class="h-icon-bg"><img src="<?php echo base_url(); ?>/assets/image/icon-home-alt.svg" alt=""
                                     style="margin-top: 11px;"></div>
     </a>
     <?php }else{ ?>
-        <a class="navbar-brand" href="<?php echo base_url() ?>/Student/Dashboard"><img src="<?php base_url(); ?>/assets/image/icon-home-alt-w.svg" alt="">
+        <a class="navbar-brand" href="<?php echo base_url() ?>/Mobile_app/Dashboard"><img src="<?php base_url(); ?>/assets/image/icon-home-alt-w.svg" alt="">
         </a>
     <?php } ?>
     <a class="navbar-brand" href="#"><img src="<?php echo base_url(); ?>/assets/image/icon-notification.svg" alt=""></a>
 
     <?php if ($footer_icon == 'Ranking'){ ?>
-        <a class="navbar-brand" href="<?php echo base_url() ?>/Student/Ranking"><div class="h-icon-bg"><img src="<?php echo base_url(); ?>/assets/image/icon-badge-rank-w.svg" alt="" style="margin-top: 11px;"></div></a>
+        <a class="navbar-brand" href="<?php echo base_url() ?>/Mobile_app/Ranking"><div class="h-icon-bg"><img src="<?php echo base_url(); ?>/assets/image/icon-badge-rank-w.svg" alt="" style="margin-top: 11px;"></div></a>
     <?php }else{ ?>
-        <a class="navbar-brand" href="<?php echo base_url() ?>/Student/Ranking"><img src="<?php echo base_url(); ?>/assets/image/icon-badge-rank.svg" alt=""></a>
+        <a class="navbar-brand" href="<?php echo base_url() ?>/Mobile_app/Ranking"><img src="<?php echo base_url(); ?>/assets/image/icon-badge-rank.svg" alt=""></a>
     <?php } ?>
 </nav>
 
@@ -36,7 +36,7 @@
             $("#mess").html('<p style="color: red;">Please select your answer</p>');
         } else {
             $.ajax({
-                url: '<?php echo base_url('Student/VideoQuiz/sessionUpdate')?>',
+                url: '<?php echo base_url('Mobile_app/VideoQuiz/sessionUpdate')?>',
                 type: "Post",
                 data: {quizId: quizId, ans: ans},
                 success: function (data) {
@@ -62,7 +62,7 @@
         }else{
 
             $.ajax({
-                url: '<?php echo base_url('Student/Quiz/result')?>',
+                url: '<?php echo base_url('Mobile_app/Quiz/result')?>',
                 type: "Post",
                 data: {quizId: quizId, ans: ans},
                 success: function (data) {
@@ -81,7 +81,7 @@
         }else {
 
             $.ajax({
-                url: '<?php echo base_url('Student/Skill_development/ans_quiz')?>',
+                url: '<?php echo base_url('Mobile_app/Skill_development/ans_quiz')?>',
                 type: "Post",
                 data: {quizId: quizId, ans: ans},
                 success: function (data) {
@@ -99,7 +99,7 @@
             $("#mess").html('<p style="color: red;">Please select your answer</p>');
         }else {
             $.ajax({
-                url: '<?php echo base_url('Student/Vocabulary/ans_quiz')?>',
+                url: '<?php echo base_url('Mobile_app/Vocabulary/ans_quiz')?>',
                 type: "Post",
                 data: {quizId: quizId, ans: ans},
                 success: function (data) {
@@ -112,7 +112,7 @@
     function addToCart(id){
         $.ajax({
             type: "POST",
-            url: "<?php echo base_url('/Student/Shopping/addToCart') ?>",
+            url: "<?php echo base_url('/Mobile_app/Shopping/addToCart') ?>",
             dataType: "text",
             data: {proId: id},
 
@@ -145,7 +145,7 @@
     function updatePlus(id){
         $.ajax({
             type: "POST",
-            url: "<?php echo base_url('/Student/Shopping/updatePlus') ?>",
+            url: "<?php echo base_url('/Mobile_app/Shopping/updatePlus') ?>",
             dataType: "text",
             data: {proId: id},
 
@@ -177,7 +177,7 @@
     function updateMinus(id){
         $.ajax({
             type: "POST",
-            url: "<?php echo base_url('/Student/Shopping/updateMinus') ?>",
+            url: "<?php echo base_url('/Mobile_app/Shopping/updateMinus') ?>",
             dataType: "text",
             data: {proId: id},
 
@@ -210,7 +210,7 @@
     function searchPro(keyWord){
         $.ajax({
             type: "POST",
-            url: "<?php echo base_url('/Student/Shopping/search') ?>",
+            url: "<?php echo base_url('/Mobile_app/Shopping/search') ?>",
             dataType: "text",
             data: {keyWord: keyWord},
             beforeSend: function () {
@@ -262,7 +262,7 @@
 
         $.ajax({
             type: "POST",
-            url: "<?php echo base_url('/Student/VideoQuiz/show_video') ?>",
+            url: "<?php echo base_url('/Mobile_app/VideoQuiz/show_video') ?>",
             dataType: "text",
             data: {video_id: video_id},
             beforeSend: function () {

@@ -72,7 +72,7 @@
         <div class="row" id="resultProduct" >
             <?php if (!empty($product)){ foreach ($product as $pro) { ?>
                 <div class="col-6">
-                    <a href="<?php echo base_url('/Student/Shopping/details/' . $pro->prod_id) ?>">
+                    <a href="<?php echo base_url('/Mobile_app/Shopping/details/' . $pro->prod_id) ?>">
                         <img src="<?php echo no_image_view('/assets/upload/product/' . $pro->prod_id . '/' . $pro->picture, '/assets/upload/product/no_img.svg', $pro->picture) ?>"
                              alt="pro-img" class="pro-img">
                         <img src="<?php echo base_url() ?>/assets/image/cart-plus.svg" alt="icon" class="icon">

@@ -30,7 +30,7 @@
                 <p class="c-t-v" ><?php print Cart()->total();?>৳</p>
             </div>
             <?php if (!empty(Cart()->contents())){ ?>
-            <a href="<?php echo base_url('/Student/Shopping/checkout')?>" class="btn a-btn text-white mt-3">Checkout</a>
+            <a href="<?php echo base_url('/Mobile_app/Shopping/checkout')?>" class="btn a-btn text-white mt-3">Checkout</a>
             <?php }else{ ?>
                 <a href="#" class="btn a-btn2 text-white mt-3">Checkout</a>
             <?php } ?>

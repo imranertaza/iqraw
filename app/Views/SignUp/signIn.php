@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-12 ">
 
-            <form id="signIn" method="post" action="<?php echo base_url();?>/SignUp/login_action">
+            <form id="signIn" method="post" action="<?php echo base_url();?>/Mobile_app/SignUp/login_action">
                 <div class="container">
                     <div class="text-center position-relative ">
                         <span class="con-l-1st">পড় তোমার</span><br>
@@ -23,7 +23,7 @@
                     <span class="for-pass">Forget Password?</span>
                     <div class="btn-g ">
                         <center><a class="btn btnSignIn" onclick="signInformValidation()">Sign in</a></center>
-                        <center><span class="cre-sig">Create an account.<a href="<?php echo base_url();?>/SignUp" class="sig">signup</a></span></center>
+                        <center><span class="cre-sig">Create an account.<a href="<?php echo base_url();?>/Mobile_app/SignUp" class="sig">signup</a></span></center>
                     </div>
                 </div>
             </form>

@@ -16,7 +16,7 @@
         </div>
         <div class="col-12 mt-4">
             <?php if (!empty($video->chapter_id)){ $check = already_join_chapter_check($video->chapter_id); if ($check == 0){ ?>
-            <center><button onclick="join_exam('<?php echo base_url()?>/Student/VideoQuiz/join_quiz/<?php echo $video->chapter_id?>')"  class="btn-down ">Join MCQ</button></center>
+            <center><button onclick="join_exam('<?php echo base_url()?>/Mobile_app/VideoQuiz/join_quiz/<?php echo $video->chapter_id?>')"  class="btn-down ">Join MCQ</button></center>
             <?php } } ?>
         </div>
 

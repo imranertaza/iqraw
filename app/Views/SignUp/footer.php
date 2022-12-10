@@ -116,7 +116,7 @@
 
     function viewGroup(class_id){
         $.ajax({
-            url: '<?php echo base_url('SignUp/classGroup') ?>',
+            url: '<?php echo base_url('Mobile_app/SignUp/classGroup') ?>',
             type: 'post',
             data: {class_id:class_id},
             success: function (response) {

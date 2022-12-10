@@ -3,7 +3,7 @@
 </section>
 
 <section class="content-2" style="margin-bottom: 90px;">
-    <form action="<?php echo base_url('/Student/Shopping/buy_action') ?>" method="post">
+    <form action="<?php echo base_url('/Mobile_app/Shopping/buy_action') ?>" method="post">
     <div class="row pt-2 payment">
 
         <div class="col-4">

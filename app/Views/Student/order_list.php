@@ -13,7 +13,7 @@
                 </div>
                 <div class="col-4 text-center">
                     <p class="or-ti"><?php echo invoiceStatusView($view->status);?></p>
-                    <a href="<?php echo base_url()?>/Student/Shopping/invoice/<?php echo $view->order_id;?>" class="btn view-btn-or">View</a>
+                    <a href="<?php echo base_url()?>/Mobile_app/Shopping/invoice/<?php echo $view->order_id;?>" class="btn view-btn-or">View</a>
                 </div>
             </div>
         </div>

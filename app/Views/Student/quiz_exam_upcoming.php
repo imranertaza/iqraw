@@ -9,7 +9,7 @@
                 <tbody>
                 <?php if (!empty($quiz_exam)) {
                     foreach ($quiz_exam as $exam) {
-                            $url = base_url() . '/Student/Quiz/question/' . $exam->quiz_exam_info_id; ?>
+                            $url = base_url() . '/Mobile_app/Quiz/question/' . $exam->quiz_exam_info_id; ?>
                             <tr>
                                 <td style="padding: 18px;"><?php echo $exam->quiz_name; ?></td>
                                 <td style="padding: 18px;"><?php echo $exam->published_date; ?></td>

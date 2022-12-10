@@ -20,7 +20,7 @@
 <section class="header" style="margin-top: 10px;">
     <div class="head">
         <a href="<?php echo $back_url;?>" style="float: left; color: #000000;"><img src="<?php base_url();?>/assets/image/arrow-left.svg" alt="icon"></a>
-        <a href="<?php echo base_url()?>/Student/Shopping/order_list" ><img src="<?php base_url();?>/assets/image/shopping-bag.svg" alt="shopping" class="float-end"></a>
+        <a href="<?php echo base_url()?>/Mobile_app/Shopping/order_list" ><img src="<?php base_url();?>/assets/image/shopping-bag.svg" alt="shopping" class="float-end"></a>
         <form class="search-form float-end" id="search-form" style="margin-right: 35px;">
             <input class="search expandright" oninput="searchPro(this.value)" id="searchright" type="search" name="q" placeholder="Search">
             <label class="button searchbutton" for="searchright"><span class="mglass" style="font-size: 30px;">&#9906;</span></label>

@@ -18,7 +18,7 @@
                 <div class="tab-pane active" id="dhcp">
                     <table class="table text-capitalize">
                         <tbody>
-                        <?php if (!empty($quiz_exam)){ foreach ($quiz_exam as $exam){ if (already_join_check($exam->quiz_exam_info_id) == 0){ $url = base_url().'/Student/Quiz/question/'.$exam->quiz_exam_info_id; ?>
+                        <?php if (!empty($quiz_exam)){ foreach ($quiz_exam as $exam){ if (already_join_check($exam->quiz_exam_info_id) == 0){ $url = base_url().'/Mobile_app/Quiz/question/'.$exam->quiz_exam_info_id; ?>
                             <tr>
                                 <td style="padding: 18px;"><?php echo $exam->quiz_name;?></td>
                                 <td width="60"><a href="javascript:void(0)" onclick="join_exam('<?php echo $url;?>')" class="btn btn-join">Join</a></td>
