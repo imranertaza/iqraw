@@ -37,10 +37,17 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Web\Home::index');
+$routes->get('/mobile_app/SignUp', 'Mobile_app\SignUp::index');
 $routes->get('/Mobile_app/SignUp', 'Mobile_app\SignUp::index');
+
+$routes->get('/mobile_app/register', 'Mobile_app\SignUp::index');
 $routes->get('/Mobile_app/register', 'Mobile_app\SignUp::index');
+
+$routes->get('/mobile_app/login', 'Mobile_app\SignUp::signIn');
 $routes->get('/Mobile_app/login', 'Mobile_app\SignUp::signIn');
+
 $routes->get('/Mobile_app', 'Mobile_app\SignUp::signIn');
+$routes->get('/mobile_app', 'Mobile_app\SignUp::signIn');
 $routes->get('/admin', 'Admin\Login::index');
 
 /*
