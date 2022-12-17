@@ -34,7 +34,7 @@
                         <?php if (!empty($join_quiz_exam)){ foreach ($join_quiz_exam as $join){ ?>
                             <tr>
                                 <td style="padding: 18px;"><?php echo $join->quiz_name;?></td>
-                                <td width="60"><a href="<?php echo base_url()?>/Student/Quiz/exam_result/<?php echo $join->qe_joined_id ?>"  class="btn btn-join">Result</a></td>
+                                <td width="60"><a href="<?php echo base_url()?>/Mobile_app/Quiz/exam_result/<?php echo $join->qe_joined_id ?>"  class="btn btn-join">Result</a></td>
                             </tr>
                         <?php } }else{ echo '<div class="col-6 math-p" style="padding-right: 4px !important;"><p>No Exam available</p> </div>';}?>
                         </tbody>

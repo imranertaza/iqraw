@@ -4,8 +4,7 @@
 
 <section class="content" style="margin-bottom: 90px;">
     <div class="row pt-2">
-        <?php if (!empty($video)){ foreach ($video as $val){
-            $url = base_url().'/Mobile_app/Course/video_view/'.$val->course_video_id; ?>
+        <?php if (!empty($video)){ foreach ($video as $val){ $url = base_url().'/Mobile_app/Course/video_view/'.$val->course_video_id; ?>
 
             <div class="col-12">
                 <div class="w-50 float-start p-2">
@@ -17,7 +16,6 @@
                     <img src="<?php echo base_url() ?>/assets/image/star.svg" alt="banner" class="star" >
                 </div>
             </div>
-
 
         <?php  } }else{ echo '<div class="col-6 math-p" style="padding-right: 4px !important;"><p>No data available</p> </div>';} ?>
     </div>

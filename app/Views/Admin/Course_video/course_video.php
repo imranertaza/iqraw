@@ -29,7 +29,7 @@
                             </div>
                             <div class="col-md-4">
                                 <button type="button" class="btn btn-block btn-success" onclick="add()" title="Add"><i
-                                        class="fa fa-plus"></i> Add
+                                            class="fa fa-plus"></i> Add
                                 </button>
 
                             </div>
@@ -73,9 +73,10 @@
                             <div class="col-md-12">
                                 <div class="form-group ">
                                     <label for="course_id">Course: </label>
-                                    <select class="form-control text-capitalize" onchange="course_category(this.value)" name="course_id" required>
+                                    <select class="form-control text-capitalize" onchange="course_category(this.value)"
+                                            name="course_id" required>
                                         <option value="">Please select</option>
-                                        <?php echo getListInOption('','course_id','course_name','course') ?>
+                                        <?php echo getListInOption('', 'course_id', 'course_name', 'course') ?>
                                     </select>
                                 </div>
                             </div>
@@ -83,7 +84,8 @@
                             <div class="col-md-12">
                                 <div class="form-group ">
                                     <label for="chapter_id">Category: </label>
-                                    <select class="form-control text-capitalize"  name="course_cat_id" id="courseCatId" required>
+                                    <select class="form-control text-capitalize" name="course_cat_id" id="courseCatId"
+                                            required>
                                         <option value="">Please select</option>
                                     </select>
                                 </div>
@@ -103,7 +105,6 @@
                                     <input type="text" class="form-control" name="author" required>
                                 </div>
                             </div>
-
 
 
                             <div class="col-md-12">
@@ -144,15 +145,16 @@
                     <h4 class="modal-title text-white" id="info-header-modalLabel">Update</h4>
                 </div>
                 <div class="modal-body">
-                    <form id="edit-form" class="pl-3 pr-3"  method="post" enctype="multipart/form-data">
+                    <form id="edit-form" class="pl-3 pr-3" method="post" enctype="multipart/form-data">
                         <div class="row">
 
                             <div class="col-md-12">
                                 <div class="form-group ">
                                     <label for="course_id">Course: </label>
-                                    <select class="form-control text-capitalize" onchange="course_category(this.value)" name="course_id" id="course_id" required>
+                                    <select class="form-control text-capitalize" onchange="course_category(this.value)"
+                                            name="course_id" id="course_id" required>
                                         <option value="">Please select</option>
-                                        <?php echo getListInOption('','course_id','course_name','course') ?>
+                                        <?php echo getListInOption('', 'course_id', 'course_name', 'course') ?>
                                     </select>
                                 </div>
                             </div>
@@ -160,7 +162,8 @@
                             <div class="col-md-12">
                                 <div class="form-group ">
                                     <label for="chapter_id">Category: </label>
-                                    <select class="form-control text-capitalize"  name="course_cat_id" id="course_cat_id" required>
+                                    <select class="form-control text-capitalize" name="course_cat_id" id="course_cat_id"
+                                            required>
                                         <option value="">Please select</option>
                                         <?php echo getListInOption('', 'course_cat_id', 'category_name', 'course_category') ?>
                                     </select>
@@ -194,7 +197,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="thumb">thumb: </label>
-                                    <input type="file" class="form-control" name="thumb" >
+                                    <input type="file" class="form-control" name="thumb">
                                 </div>
                             </div>
 
@@ -202,7 +205,8 @@
 
                         <div class="form-group text-center">
                             <div class="btn-group">
-                                <input type="hidden" class="form-control" name="course_video_id" id="course_video_id" required>
+                                <input type="hidden" class="form-control" name="course_video_id" id="course_video_id"
+                                       required>
                                 <button type="submit" class="btn btn-success" id="edit-form-btn">Update</button>
                                 <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                             </div>
@@ -266,62 +270,57 @@
             },
 
             submitHandler: function (form) {
+                $.ajax({
+                    url: "<?php echo base_url($controller . '/add') ?>",
+                    method: "POST",
+                    data: new FormData(form),
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    dataType: "json",
+                    beforeSend: function () {
+                        $('#add-form-btn').html('<i class="fa fa-spinner fa-spin"></i>');
+                    },
+                    success: function (response) {
+                        if (response.success === true) {
+                            Swal.fire({
+                                position: 'bottom-end',
+                                icon: 'success',
+                                title: response.messages,
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then(function () {
+                                $('#data_table').DataTable().ajax.reload(null, false).draw(false);
+                                $('#add-modal').modal('hide');
+                            })
 
-                $('#add-form').on('submit', function (e) {
-                    e.preventDefault();
-                    $.ajax({
-                        url: "<?php echo base_url($controller . '/add') ?>",
-                        method: "POST",
-                        data: new FormData(this),
-                        contentType: false,
-                        cache: false,
-                        processData: false,
-                        dataType: "json",
-                        beforeSend: function () {
-                            $('#add-form-btn').html('<i class="fa fa-spinner fa-spin"></i>');
-                        },
-                        success: function (response) {
-                            if (response.success === true) {
+                        } else {
+
+                            if (response.messages instanceof Object) {
+                                $.each(response.messages, function (index, value) {
+                                    var id = $("#" + index);
+
+                                    id.closest('.form-control')
+                                        .removeClass('is-invalid')
+                                        .removeClass('is-valid')
+                                        .addClass(value.length > 0 ? 'is-invalid' : 'is-valid');
+
+                                    id.after(value);
+
+                                });
+                            } else {
                                 Swal.fire({
                                     position: 'bottom-end',
-                                    icon: 'success',
+                                    icon: 'error',
                                     title: response.messages,
                                     showConfirmButton: false,
                                     timer: 1500
-                                }).then(function() {
-                                    $('#data_table').DataTable().ajax.reload(null, false).draw(false);
-                                    $('#add-modal').modal('hide');
                                 })
 
-                            } else {
-
-                                if (response.messages instanceof Object) {
-                                    $.each(response.messages, function(index, value) {
-                                        var id = $("#" + index);
-
-                                        id.closest('.form-control')
-                                            .removeClass('is-invalid')
-                                            .removeClass('is-valid')
-                                            .addClass(value.length > 0 ? 'is-invalid' : 'is-valid');
-
-                                        id.after(value);
-
-                                    });
-                                } else {
-                                    Swal.fire({
-                                        position: 'bottom-end',
-                                        icon: 'error',
-                                        title: response.messages,
-                                        showConfirmButton: false,
-                                        timer: 1500
-                                    })
-
-                                }
                             }
-                            $('#add-form-btn').html('Add');
                         }
-                    });
-
+                        $('#add-form-btn').html('Add');
+                    }
                 });
 
                 return false;
@@ -334,9 +333,7 @@
         $.ajax({
             url: '<?php echo base_url($controller . '/getOne') ?>',
             type: 'post',
-            data: {
-                course_video_id: course_video_id
-            },
+            data: { course_video_id: course_video_id },
             //dataType: 'json',
             success: function (response) {
                 // reset the form
@@ -380,13 +377,10 @@
 
                     submitHandler: function (form) {
                         $(".text-danger").remove();
-
-                        $('#edit-form').on('submit', function (e) {
-                            e.preventDefault();
-                            $.ajax({
+                        $.ajax({
                                 url: '<?php echo base_url($controller . '/edit') ?>',
                                 method: "POST",
-                                data: new FormData(this),
+                                data: new FormData(form),
                                 contentType: false,
                                 cache: false,
                                 processData: false,
@@ -437,7 +431,6 @@
                                     $('#edit-form-btn').html('Update');
                                 }
                             });
-                        });
                         return false;
                     }
                 });
@@ -498,26 +491,26 @@
         })
     }
 
-    function get_group(class_id){
+    function get_group(class_id) {
         $.ajax({
             url: '<?php echo base_url($controller . '/get_group') ?>',
             type: 'post',
             data: {
                 class_id: class_id
             },
-            success: function (response){
+            success: function (response) {
                 $("#groupId").html(response);
                 // $("#edit-form #groupId").html(response);
             }
         });
     }
 
-    function course_category(val){
+    function course_category(val) {
         $.ajax({
             url: '<?php echo base_url($controller . '/get_category') ?>',
             type: 'post',
-            data: { course_id: val },
-            success: function (response){
+            data: {course_id: val},
+            success: function (response) {
                 $("#courseCatId").html(response);
                 $("#course_cat_id").html(response);
                 // $("#edit-form #groupId").html(response);

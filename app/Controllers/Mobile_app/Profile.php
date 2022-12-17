@@ -56,6 +56,59 @@ class Profile extends BaseController
         }
     }
 
+    public function update(){
+        $isLoggedInStudent = $this->session->isLoggedInStudent;
+        if (!isset($isLoggedInStudent) || $isLoggedInStudent != TRUE) {
+            return redirect()->to('/Mobile_app/login');
+        } else {
+
+            $data['back_url'] = base_url('/Mobile_app/Profile');
+            $data['page_title'] = 'Profile Update';
+            $data['footer_icon'] = 'Home';
+
+            $query = $this->student->where('std_id',$this->session->std_id)->get();
+            $data['student'] = $query->getRow();
+
+            echo view('Student/header',$data);
+            echo view('Student/profile_update',$data);
+            echo view('Student/footer');
+        }
+    }
+
+    public function update_action(){
+        $fields['std_id'] = $this->session->std_id;
+        $fields['name'] = $this->request->getPost('name');
+        $fields['phone'] = $this->request->getPost('phone');
+        $fields['father_name'] = $this->request->getPost('father_name');
+        $fields['address'] = $this->request->getPost('address');
+        $fields['gender'] = $this->request->getPost('gender');
+        $fields['age'] = $this->request->getPost('age');
+        $fields['religion'] = $this->request->getPost('religion');
+        $fields['institute'] = $this->request->getPost('institute');
+        $fields['school_name'] = $this->request->getPost('school_name');
+        $fields['class_id'] = $this->request->getPost('class_id');
+        $fields['class_group_id'] = $this->request->getPost('class_group_id');
+
+        $this->validation->setRules([
+            'name' => ['label' => 'Name', 'rules' => 'required'],
+            'phone' => ['label' => 'Phone', 'rules' => 'required'],
+            'gender' => ['label' => 'Gender', 'rules' => 'required'],
+            'religion' => ['label' => 'Religion', 'rules' => 'required'],
+        ]);
+
+        if ($this->validation->run($fields) == FALSE) {
+
+            $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">This phone number already used!</div>');
+            return redirect()->to('/Mobile_app/Profile/update');
+
+        } else {
+            $this->student->update($fields['std_id'],$fields);
+
+            $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">Update Successfully</div>');
+            return redirect()->to('/Mobile_app/Profile/update');
+        }
+    }
+
 
 
 

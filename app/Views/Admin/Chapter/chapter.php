@@ -137,7 +137,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="chapter_id">Subject: </label>
-                                    <select class="form-control" onchange="get_chapter(this.value)"  id="subject_id" required>
+                                    <select class="form-control" name="subject_id" onchange="get_chapter(this.value)"  id="subject_id" required>
                                         <option value="">Please select</option>
                                         <?php echo getListInOption('','subject_id','name','subject') ?>
                                     </select>

@@ -1,5 +1,6 @@
 <section class="extra-head">
-    <?php echo $video->URL;?>
+    <?php //echo $video->URL;?>
+    <iframe src="https://www.youtube-nocookie.com/embed/<?php echo $video->URL; ?>" title="YouTube video player" frameborder="20" allow="accelerometer; autoplay; clipboard-write;  encrypted-media=0; gyroscope; picture-in-picture" ></iframe>
 </section>
 
 <section class="content" style="margin-bottom: 90px;">

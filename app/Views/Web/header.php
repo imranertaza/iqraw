@@ -45,6 +45,12 @@
                                 <?php }else{ ?>
                                     <a class="nav-link" href="<?php echo base_url()?>/Web/Dashboard">Dashboard</a>
                                     <a class="nav-link" href="<?php echo base_url()?>/Web/Login/logout">Logout</a>
+
+                                    <a class="nav-link" href="<?php echo base_url()?>/Web/Profile">
+                                        <?php $std_id = newSession()->std_id; $image = get_data_by_id('pic','student','std_id',$std_id); $img = (!empty($image))?$image:'../noimage.png'; ?>
+                                        <img src="<?php echo base_url()?>/assets/upload/profile/<?php echo $std_id;?>/<?php echo $img;?>" alt="profile" title="Profile" class="nav-pro-img">
+                                    </a>
+                                    
                                 <?php } ?>
                             </div>
                         </div>

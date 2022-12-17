@@ -141,7 +141,7 @@ class Course extends BaseController
             // Image cropping of the uploaded image
             $nameimg = 'course_' . $image->getName();
             $this->crop->withFile($target_dir . '' . $name)->fit(160, 105, 'center')->save($target_dir . '' . $nameimg);
-            $this->crop->withFile($target_dir . '' . $name)->fit(1116 ,600, 'center')->save($target_dir . '' . 'big_'.$nameimg);
+            $this->crop->withFile($target_dir . '' . $name)->fit(1116 ,500, 'center')->save($target_dir . '' . 'big_'.$nameimg);
             unlink($target_dir . '' . $name);
 
             $fields['image'] = $nameimg;
@@ -203,7 +203,7 @@ class Course extends BaseController
             // Image cropping of the uploaded image
             $nameimg = 'course_' . $image->getName();
             $this->crop->withFile($target_dir . '' . $name)->fit(160, 105, 'center')->save($target_dir . '' . $nameimg);
-            $this->crop->withFile($target_dir . '' . $name)->fit(1116 ,600, 'center')->save($target_dir . '' . 'big_'.$nameimg);
+            $this->crop->withFile($target_dir . '' . $name)->fit(1116 ,500, 'center')->save($target_dir . '' . 'big_'.$nameimg);
             unlink($target_dir . '' . $name);
 
             $fields['image'] = $nameimg;

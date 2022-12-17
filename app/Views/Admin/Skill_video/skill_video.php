@@ -29,7 +29,7 @@
                             </div>
                             <div class="col-md-4">
                                 <button type="button" class="btn btn-block btn-success" onclick="add()" title="Add"><i
-                                        class="fa fa-plus"></i> Add
+                                            class="fa fa-plus"></i> Add
                                 </button>
 
                             </div>
@@ -69,14 +69,14 @@
                     <h4 class="modal-title text-white" id="info-header-modalLabel">Add</h4>
                 </div>
                 <div class="modal-body text-capitalize">
-                    <form id="add-form" class="pl-3 pr-3" method="post" enctype="multipart/form-data" >
+                    <form id="add-form" class="pl-3 pr-3" method="post" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Subject: </label>
                                     <select class="form-control" name="skill_subject_id" id="skill_subject_id" required>
                                         <option value="">please select</option>
-                                        <?php echo getListInOption('','skill_subject_id','name','skill_subject') ?>
+                                        <?php echo getListInOption('', 'skill_subject_id', 'name', 'skill_subject') ?>
                                     </select>
                                 </div>
                             </div>
@@ -90,7 +90,7 @@
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="name">Video  Url: </label>
+                                    <label for="name">Video Url: </label>
                                     <input type="text" class="form-control" name="URL" required>
                                 </div>
                             </div>
@@ -132,30 +132,31 @@
                     <h4 class="modal-title text-white" id="info-header-modalLabel">Update</h4>
                 </div>
                 <div class="modal-body">
-                    <form id="edit-form" class="pl-3 pr-3" method="post" enctype="multipart/form-data" >
+                    <form id="edit-form" class="pl-3 pr-3" method="post" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="name">Skill Subject: </label>
                                     <select class="form-control" name="skill_subject_id" id="skill_subject_id" required>
                                         <option value="">please select</option>
-                                        <?php echo getListInOption('','skill_subject_id','name','skill_subject') ?>
+                                        <?php echo getListInOption('', 'skill_subject_id', 'name', 'skill_subject') ?>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="form-group">
-                                        <label for="name">Video  Name: </label>
+                                        <label for="name">Video Name: </label>
                                         <input type="text" class="form-control" name="title" id="title" required>
                                     </div>
-                                    <input type="hidden" class="form-control" name="skill_video_id" id="skill_video_id" required>
+                                    <input type="hidden" class="form-control" name="skill_video_id" id="skill_video_id"
+                                           required>
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="name">Video  Url: </label>
+                                    <label for="name">Video Url: </label>
                                     <input type="text" class="form-control" name="URL" id="URL" required>
                                 </div>
                             </div>
@@ -179,7 +180,7 @@
                                     <label for="status">Status: </label>
                                     <select class="form-control" name="status" id="status" required>
                                         <option value="">please select</option>
-                                        <?php echo globalStatus('')?>
+                                        <?php echo globalStatus('') ?>
                                     </select>
                                 </div>
                             </div>
@@ -220,7 +221,6 @@
     });
 
 
-
     function add() {
         // reset the form
         $("#add-form")[0].reset();
@@ -252,68 +252,65 @@
 
             submitHandler: function (form) {
 
-                $('#add-form').on('submit', function (e) {
-                    e.preventDefault();
-                    $.ajax({
-                        url: "<?php echo base_url($controller . '/add') ?>",
-                        method: "POST",
-                        data: new FormData(this),
-                        contentType: false,
-                        cache: false,
-                        processData: false,
-                        dataType: "json",
-                        beforeSend: function () {
-                            $('#add-form-btn').html('<i class="fa fa-spinner fa-spin"></i>');
-                        },
-                        success: function (response) {
-                            if (response.success === true) {
+
+                $.ajax({
+                    url: "<?php echo base_url($controller . '/add') ?>",
+                    method: "POST",
+                    data: new FormData(form),
+                    contentType: false,
+                    cache: false,
+                    processData: false,
+                    dataType: "json",
+                    beforeSend: function () {
+                        $('#add-form-btn').html('<i class="fa fa-spinner fa-spin"></i>');
+                    },
+                    success: function (response) {
+                        if (response.success === true) {
+                            Swal.fire({
+                                position: 'bottom-end',
+                                icon: 'success',
+                                title: response.messages,
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then(function () {
+                                $('#data_table').DataTable().ajax.reload(null, false).draw(false);
+                                $('#add-modal').modal('hide');
+                            })
+
+                        } else {
+
+                            if (response.messages instanceof Object) {
+                                $.each(response.messages, function (index, value) {
+                                    var id = $("#" + index);
+
+                                    id.closest('.form-control')
+                                        .removeClass('is-invalid')
+                                        .removeClass('is-valid')
+                                        .addClass(value.length > 0 ? 'is-invalid' : 'is-valid');
+
+                                    id.after(value);
+
+                                });
+                            } else {
                                 Swal.fire({
                                     position: 'bottom-end',
-                                    icon: 'success',
+                                    icon: 'error',
                                     title: response.messages,
                                     showConfirmButton: false,
                                     timer: 1500
-                                }).then(function() {
-                                    $('#data_table').DataTable().ajax.reload(null, false).draw(false);
-                                    $('#add-modal').modal('hide');
                                 })
 
-                            } else {
-
-                                if (response.messages instanceof Object) {
-                                    $.each(response.messages, function(index, value) {
-                                        var id = $("#" + index);
-
-                                        id.closest('.form-control')
-                                            .removeClass('is-invalid')
-                                            .removeClass('is-valid')
-                                            .addClass(value.length > 0 ? 'is-invalid' : 'is-valid');
-
-                                        id.after(value);
-
-                                    });
-                                } else {
-                                    Swal.fire({
-                                        position: 'bottom-end',
-                                        icon: 'error',
-                                        title: response.messages,
-                                        showConfirmButton: false,
-                                        timer: 1500
-                                    })
-
-                                }
                             }
-                            $('#add-form-btn').html('Add');
                         }
-                    });
-
+                        $('#add-form-btn').html('Add');
+                    }
                 });
+
 
                 return false;
             }
         });
         $('#add-form').validate();
-
 
 
     }
@@ -367,63 +364,60 @@
                     },
 
                     submitHandler: function (form) {
-                        $('#edit-form').on('submit', function (e) {
 
-                            e.preventDefault();
-                            $.ajax({
-                                url: "<?php echo base_url($controller . '/edit') ?>",
-                                method: "POST",
-                                data: new FormData(this),
-                                contentType: false,
-                                cache: false,
-                                processData: false,
-                                dataType: "json",
-                                beforeSend: function () {
-                                    $('#edit-form-btn').html('<i class="fa fa-spinner fa-spin"></i>');
-                                },
-                                success: function (response) {
-                                    if (response.success === true) {
+                        $.ajax({
+                            url: "<?php echo base_url($controller . '/edit') ?>",
+                            method: "POST",
+                            data: new FormData(form),
+                            contentType: false,
+                            cache: false,
+                            processData: false,
+                            dataType: "json",
+                            beforeSend: function () {
+                                $('#edit-form-btn').html('<i class="fa fa-spinner fa-spin"></i>');
+                            },
+                            success: function (response) {
+                                if (response.success === true) {
+                                    Swal.fire({
+                                        position: 'bottom-end',
+                                        icon: 'success',
+                                        title: response.messages,
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                    }).then(function () {
+                                        $('#data_table').DataTable().ajax.reload(null, false).draw(false);
+                                        $('#edit-modal').modal('hide');
+                                    })
+
+                                } else {
+
+                                    if (response.messages instanceof Object) {
+                                        $.each(response.messages, function (index, value) {
+                                            var id = $("#" + index);
+
+                                            id.closest('.form-control')
+                                                .removeClass('is-invalid')
+                                                .removeClass('is-valid')
+                                                .addClass(value.length > 0 ? 'is-invalid' : 'is-valid');
+
+                                            id.after(value);
+
+                                        });
+                                    } else {
                                         Swal.fire({
                                             position: 'bottom-end',
-                                            icon: 'success',
+                                            icon: 'error',
                                             title: response.messages,
                                             showConfirmButton: false,
                                             timer: 1500
-                                        }).then(function() {
-                                            $('#data_table').DataTable().ajax.reload(null, false).draw(false);
-                                            $('#edit-modal').modal('hide');
                                         })
 
-                                    } else {
-
-                                        if (response.messages instanceof Object) {
-                                            $.each(response.messages, function(index, value) {
-                                                var id = $("#" + index);
-
-                                                id.closest('.form-control')
-                                                    .removeClass('is-invalid')
-                                                    .removeClass('is-valid')
-                                                    .addClass(value.length > 0 ? 'is-invalid' : 'is-valid');
-
-                                                id.after(value);
-
-                                            });
-                                        } else {
-                                            Swal.fire({
-                                                position: 'bottom-end',
-                                                icon: 'error',
-                                                title: response.messages,
-                                                showConfirmButton: false,
-                                                timer: 1500
-                                            })
-
-                                        }
                                     }
-                                    $('#edit-form-btn').html('Update');
                                 }
-                            });
-
+                                $('#edit-form-btn').html('Update');
+                            }
                         });
+
 
                         return false;
                     }

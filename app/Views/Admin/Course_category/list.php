@@ -225,12 +225,10 @@
 
             submitHandler: function (form) {
 
-                $('#add-form').on('submit', function (e) {
-                    e.preventDefault();
-                    $.ajax({
+                $.ajax({
                         url: "<?php echo base_url($controller . '/add') ?>",
                         method: "POST",
-                        data: new FormData(this),
+                        data: new FormData(form),
                         contentType: false,
                         cache: false,
                         processData: false,
@@ -279,8 +277,6 @@
                             $('#add-form-btn').html('Add');
                         }
                     });
-
-                });
 
                 return false;
             }
@@ -334,12 +330,11 @@
                     },
 
                     submitHandler: function (form) {
-                        $('#edit-form').on('submit', function (e) {
-                            e.preventDefault();
-                            $.ajax({
+
+                        $.ajax({
                                 url: "<?php echo base_url($controller . '/edit') ?>",
                                 method: "POST",
-                                data: new FormData(this),
+                                data: new FormData(form),
                                 contentType: false,
                                 cache: false,
                                 processData: false,
@@ -389,7 +384,6 @@
                                 }
                             });
 
-                        });
 
                         return false;
                     }

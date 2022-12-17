@@ -40,9 +40,9 @@ class Course extends BaseController
             $data['footer_icon'] = 'Home';
 
             $classID = get_data_by_id('class_id','student','std_id',$this->session->std_id);
-            $groupID = get_data_by_id('class_group_id','student','std_id',$this->session->std_id);
-
-            $data['course'] = $this->courseModel->where('class_id',$classID)->where('class_group_id',$groupID)->orWhere('class_id',null)->findAll();
+            $group = get_data_by_id('class_group_id','student','std_id',$this->session->std_id);
+            $groupID = (!empty($group))?$group:'0';
+            $data['course'] = $this->courseModel->where('class_id',$classID)->where('class_group_id',$groupID)->orWhere('class_id','0')->findAll();
 
             echo view('Student/header',$data);
             echo view('Student/course_list',$data);
@@ -63,7 +63,7 @@ class Course extends BaseController
             $classID = get_data_by_id('class_id','student','std_id',$this->session->std_id);
             $groupID = get_data_by_id('class_group_id','student','std_id',$this->session->std_id);
 
-            $data['course'] = $this->courseModel->where('class_id',$classID)->where('class_group_id',$groupID)->orWhere('class_id',null)->findAll();
+            $data['course'] = $this->courseModel->where('class_id',$classID)->where('class_group_id',$groupID)->orWhere('class_id','0')->findAll();
 
 
 
@@ -200,6 +200,14 @@ class Course extends BaseController
             echo view('Student/success_subscribe',$data);
             echo view('Student/footer');
         }
+    }
+
+    public function show_video(){
+        $course_video_id = $this->request->getPost('course_video_id');
+        $video = $this->course_videoModel->where('course_video_id',$course_video_id)->first();
+
+        //print $video->URL;
+        print '<iframe src="https://www.youtube-nocookie.com/embed/'.$video->URL.'" title="YouTube video player" frameborder="20" allow="accelerometer; autoplay; clipboard-write;  encrypted-media=0; gyroscope; picture-in-picture" ></iframe>';
     }
 
 

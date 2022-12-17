@@ -904,6 +904,22 @@ button {
 
     display: flex; flex-direction: column; justify-content: center; align-items: center;
 }
+.nav-pro-img{
+    width: 30px;
+    border-radius: 50%;
+    margin-top: -5px;
+}
+.pro-img-up{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+.bnt-up-profile{
+    background-color: #39AA35;
+    color: #ffffff;
+    width: 109px;
+    border-radius: 20px;
+}
 
 /*============*/
 

@@ -1,11 +1,11 @@
 <section class="extra-head">
     <?php $profileImg = (empty($user->pic))?'noimage.png':$user->std_id.'/'.$user->pic; ?>
     <img src="<?php base_url(); ?>/assets/image/profile-ban.svg" alt="banner" class="bn-cl">
-    <a href="#"><img src="<?php base_url(); ?>/assets/image/edit-pen.svg" alt="profile" class="pro-edit"></a>
+<!--    <a href="#"><img src="--><?php //base_url(); ?><!--/assets/image/edit-pen.svg" alt="profile" class="pro-edit"></a>-->
     <center><img src="<?php base_url(); ?>/assets/upload/profile/<?php echo $profileImg; ?>"
                  alt="profile" class="pro-pic"></center>
-    <center><img src="<?php base_url(); ?>/assets/image/1st.svg" alt="profile" class="pro-lavel"></center>
-    <center><p class="h-t"><?php echo $user->name; ?> <a href="#"><img
+<!--    <center><img src="--><?php //base_url(); ?><!--/assets/image/1st.svg" alt="profile" class="pro-lavel"></center>-->
+    <center><p class="h-t mt-5"><?php echo $user->name; ?> <a href="<?php echo base_url()?>/Mobile_app/Profile/update"><img
                         src="<?php base_url(); ?>/assets/image/edit-pen.svg"></a></p></center>
     <center><p class="h-t">School: <?php echo $user->school_name; ?></p></center>
 </section>

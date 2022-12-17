@@ -42,7 +42,9 @@
                             <p><?php echo $course->price; ?>৳</p>
                         </div>
                         <div class="col-sm-4 col-md-4 col-lg-4">
-                            <button type="submit" class="btn btn-pay-c">Pay</button>
+                            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" required>
+                            <label class="form-check-label" for="flexCheckDefault">I agree with the <br><a href="<?php echo base_url()?>/Web/Home/tarmsandcondition" target="_blank">terms and conditions</label>
+                            <button type="submit" class="btn btn-pay-c mt-2">Pay</button>
                         </div>
                     </div>
 

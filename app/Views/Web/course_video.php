@@ -30,7 +30,7 @@
                                             <div class="tab-pane fade show <?php echo ($key == 0) ? 'active' : ''; ?>" id="nav-sub_<?php echo $l++; ?>" role="tabpanel" aria-labelledby="nav-home-tab">
                                                 <div class="row">
                                                     <div class="col-12">
-                                                        <?php echo $val->URL; ?>
+                                                        <iframe src="https://www.youtube-nocookie.com/embed/<?php echo $val->URL; ?>" title="YouTube video player" frameborder="20" allow="accelerometer; autoplay; clipboard-write;  encrypted-media=0; gyroscope; picture-in-picture" ></iframe>
                                                     </div>
                                                 </div>
                                             </div>

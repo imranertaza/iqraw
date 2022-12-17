@@ -275,6 +275,22 @@
         });
     }
 
+    function video_open_course(course_video_id){
+        $('#exampleModal').modal('show');
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url('/Mobile_app/Course/show_video') ?>",
+            dataType: "text",
+            data: {course_video_id: course_video_id},
+            beforeSend: function () {
+                $('#upazila').html('<img src="<?php print base_url(); ?>/assets/images/loading.gif" width="20" alt="loading"/> Progressing...');
+            },
+            success: function (msg) {
+                $('#videoUrl').html(msg);
+            }
+        });
+    }
+
 </script>
 </body>
 </html>

@@ -5,7 +5,8 @@
 <!--    --><?php //if (!empty($video->URL)){ echo $video->URL;}else{ ?>
 <!--    <img src="--><?php //echo base_url()?><!--/assets/image/video.svg" alt="banner" class="bn-cl" >-->
 <!--    --><?php //}?>
-    <a href="javascript:void(0)" onclick="video_open('<?php echo $video->video_id?>')" > <img src="<?php echo base_url()?>/assets/image/video.svg" alt="banner" class="bn-cl" ></a>
+    <?php $videoID = (!empty($video->video_id))?$video->video_id:''; ?>
+    <a href="javascript:void(0)" onclick="video_open('<?php echo $videoID?>')" > <img src="<?php echo base_url()?>/assets/image/video.svg" alt="banner" class="bn-cl" ></a>
 
 </section>
 

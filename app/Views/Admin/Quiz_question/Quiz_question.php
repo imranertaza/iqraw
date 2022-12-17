@@ -574,7 +574,8 @@
                                 showConfirmButton: false,
                                 timer: 1500
                             }).then(function () {
-                                $('#data_table').DataTable().ajax.reload(null, false).draw(false);
+                                // $('#data_table').DataTable().ajax.reload(null, false).draw(false);
+                                $('.card-body').load(location.href + " .card-body");
                             })
                         } else {
                             Swal.fire({

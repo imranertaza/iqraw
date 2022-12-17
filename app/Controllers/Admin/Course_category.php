@@ -4,7 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use App\Libraries\Permission;
-use App\Models\course_categoryModel;
+use App\Models\Course_categoryModel;
 
 
 class Course_category extends BaseController

@@ -200,7 +200,8 @@ class VideoQuiz extends BaseController
         $video_id = $this->request->getPost('video_id');
         $video = $this->chapterVideoModel->where('video_id',$video_id)->first();
 
-        print $video->URL;
+        //print $video->URL;
+        print '<iframe src="https://www.youtube-nocookie.com/embed/'.$video->URL.'" title="YouTube video player" frameborder="20" allow="accelerometer; autoplay; clipboard-write;  encrypted-media=0; gyroscope; picture-in-picture" ></iframe>';
     }
 
 }
