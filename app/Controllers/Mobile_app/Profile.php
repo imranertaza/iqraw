@@ -87,7 +87,7 @@ class Profile extends BaseController
         $fields['institute'] = $this->request->getPost('institute');
         $fields['school_name'] = $this->request->getPost('school_name');
         $fields['class_id'] = $this->request->getPost('class_id');
-        $fields['class_group_id'] = $this->request->getPost('class_group_id');
+        $fields['class_group_id'] = empty($this->request->getPost('class_group_id')) ? null : $this->request->getPost('class_group_id');
 
         $this->validation->setRules([
             'name' => ['label' => 'Name', 'rules' => 'required'],

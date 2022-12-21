@@ -57,7 +57,6 @@ class VideoQuiz extends BaseController
             $data['footer_icon'] = 'Home';
 
 
-
             $data['video'] = $this->chapterVideoModel->where('chapter_id',$chapterId)->first();
             $data['quiz'] = $this->chapterQuizModel->where('chapter_id',$chapterId)->paginate(1);
             $data['pager'] = $this->chapterQuizModel->pager;

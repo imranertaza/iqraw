@@ -1,5 +1,21 @@
 <?php
 
+// SANDBOX Config for aamarpay information
+define('STORE_ID', 'aamarpaytest');
+define('SIGNATURE_KEY', 'dbb74894e82415a2f7ff0ec3a97e4183');
+define('API_URL', 'https://sandbox.aamarpay.com/index.php');
+
+// LIVE Config for aamarpay information
+//define('STORE_ID', 'iqraw');
+//define('SIGNATURE_KEY', '28db3895e0ea803d84ec03cd4a701a79');
+//define('API_URL', 'https://secure.aamarpay.com/index.php');
+
+
+define('TRANSECTION_PREFIX', 'iqraw_');
+
+
+
+
 /*
  | --------------------------------------------------------------------
  | App Namespace

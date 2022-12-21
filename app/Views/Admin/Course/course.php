@@ -56,6 +56,7 @@
             </div>
             <!-- /.col -->
         </div>
+
         <!-- /.row -->
     </section>
     <!-- Add modal content -->
@@ -89,7 +90,7 @@
                                     <label for="chapter_id">Class: </label>
                                     <select class="form-control text-capitalize" onchange="get_group(this.value)"
                                             name="class_id">
-                                        <option>Please select</option>
+                                        <option value="">Please select</option>
                                         <?php echo getListInOption('', 'class_id', 'name', 'class') ?>
                                     </select>
                                 </div>
@@ -99,7 +100,7 @@
                                 <div class="form-group">
                                     <label for="class_group_id">Class Group : </label>
                                     <select class="form-control" name="class_group_id" id="groupId">
-                                        <option>Please select</option>
+                                        <option value="">Please select</option>
                                     </select>
                                 </div>
                             </div>
@@ -166,7 +167,7 @@
                                     <label for="chapter_id">Class: </label>
                                     <select class="form-control text-capitalize" onchange="get_group(this.value)"
                                             name="class_id" id="class_id">
-                                        <option>Please select</option>
+                                        <option value="">Please select</option>
                                         <?php echo getListInOption('', 'class_id', 'name', 'class') ?>
                                     </select>
                                 </div>
@@ -176,7 +177,7 @@
                                 <div class="form-group">
                                     <label for="class_group_id">Class Group : </label>
                                     <select class="form-control" name="class_group_id" id="class_group_id">
-                                        <option>Please select</option>
+                                        <option value="">Please select</option>
                                         <?php echo getListInOption('', 'class_group_id', 'group_name', 'class_group') ?>
                                     </select>
                                 </div>

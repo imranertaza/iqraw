@@ -123,8 +123,8 @@ class Course extends BaseController
         $fields['course_name'] = $this->request->getPost('course_name');
         $fields['price'] = $this->request->getPost('price');
         $fields['description'] = $this->request->getPost('description');
-        $fields['class_id'] = $this->request->getPost('class_id');
-        $fields['class_group_id'] = $this->request->getPost('class_group_id');
+        $fields['class_id'] = empty($this->request->getPost('class_id')) ? null : $this->request->getPost('class_id');
+        $fields['class_group_id'] = empty($this->request->getPost('class_group_id')) ? null : $this->request->getPost('class_group_id');
         $fields['createdBy'] = $this->session->user_id;
         $image = $this->request->getFile('image');
 
@@ -188,6 +188,8 @@ class Course extends BaseController
         $fields['course_name'] = $this->request->getPost('course_name');
         $fields['price'] = $this->request->getPost('price');
         $fields['description'] = $this->request->getPost('description');
+        $fields['class_id'] = empty($this->request->getPost('class_id')) ? null : $this->request->getPost('class_id');
+        $fields['class_group_id'] = empty($this->request->getPost('class_group_id')) ? null : $this->request->getPost('class_group_id');
         $image = $this->request->getFile('image');
 
         if (!empty($_FILES['image']['name'])) {
@@ -264,7 +266,7 @@ class Course extends BaseController
     public function get_group(){
         $id = $this->request->getPost('class_id');
         $data = $this->class_group_joinedModel->where('class_id',$id)->findAll();
-        $view = '<option >Please select</option>';
+        $view = '<option value="">Please select</option>';
         foreach ($data as $val){
             $name = get_data_by_id('group_name','class_group','class_group_id',$val->class_group_id);
             $view .= '<option value="'.$val->class_group_id.'">'.$name.'</option>';

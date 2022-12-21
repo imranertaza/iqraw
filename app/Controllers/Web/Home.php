@@ -73,7 +73,7 @@ class Home extends BaseController
     public function course(){
 
         $table = DB()->table('course');
-        $data['course'] = $table->where('class_id','0')->where('class_group_id','0')->get()->getResult();
+        $data['course'] = $table->where('class_id',null)->where('class_group_id',null)->get()->getResult();
 
         echo view('Web/header');
         echo view('Web/course',$data);
@@ -87,69 +87,6 @@ class Home extends BaseController
         echo view('Web/header');
         echo view('Web/course_detail',$data);
         echo view('Web/footer');
-    }
-
-    public function payment($course_id){
-        $sessionpay = array(
-            'pay_course_id' => $course_id,
-            'redirect_url' => '/Web/Home/payment/'.$course_id,
-        );
-        $this->session->set($sessionpay);
-
-        $isLoggedInWeb = $this->session->isLoggedInWeb;
-        if (!isset($isLoggedInWeb) || $isLoggedInWeb != TRUE) {
-            return redirect()->to(site_url("/Web/Login"));
-        } else {
-            $check = check_subscribe_by_course_id($course_id);
-            if ($check == 1){
-                unset($_SESSION['pay_course_id']);
-                unset($_SESSION['redirect_url']);
-                return redirect()->to(site_url('/Web/Dashboard/course/'.$course_id));
-            }else {
-
-                $table = DB()->table('course');
-                $data['course'] = $table->where('course_id', $course_id)->get()->getRow();
-
-                echo view('Web/header');
-                echo view('Web/course_pay', $data);
-                echo view('Web/footer');
-            }
-        }
-    }
-
-    public function payment_action(){
-        $isLoggedInWeb = $this->session->isLoggedInWeb;
-        if (!isset($isLoggedInWeb) || $isLoggedInWeb != TRUE) {
-            return redirect()->to(site_url("/Web/Login"));
-        } else {
-//            $data['paument_type'] = $this->request->getPost('paument_type');
-            $data['course_id'] = $this->request->getPost('course_id');
-            $data['std_id'] = $this->session->std_id;
-            $data['subs_time'] = '1';
-            $data['status'] = '1';
-            $data['createdBy'] = $this->session->std_id;
-
-            $table = DB()->table('course_subscribe');
-            $table->insert($data);
-
-            return redirect()->to(site_url('/Web/Home/payment_success/'));
-        }
-    }
-    public function payment_success(){
-        $isLoggedInWeb = $this->session->isLoggedInWeb;
-        if (!isset($isLoggedInWeb) || $isLoggedInWeb != TRUE) {
-            return redirect()->to(site_url("/Web/Login"));
-        } else {
-            unset($_SESSION['pay_course_id']);
-            unset($_SESSION['redirect_url']);
-
-//            $table = DB()->table('course');
-//            $data['course'] = $table->where('course_id',$course_id)->get()->getRow();
-
-            echo view('Web/header');
-            echo view('Web/pay_success');
-            echo view('Web/footer');
-        }
     }
 
 }

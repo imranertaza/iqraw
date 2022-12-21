@@ -119,7 +119,7 @@ class Subject extends BaseController
 
         $fields['name'] = $this->request->getPost('name');
         $fields['class_id'] = $this->request->getPost('class_id');
-        $fields['class_group_id'] = $this->request->getPost('class_group_id');
+        $fields['class_group_id'] = empty($this->request->getPost('class_group_id')) ? null : $this->request->getPost('class_group_id');
         $fields['createdBy'] = $this->session->user_id;
 
         $this->validation->setRules([
@@ -161,7 +161,7 @@ class Subject extends BaseController
         $fields['subject_id'] = $this->request->getPost('subject_id');
         $fields['name'] = $this->request->getPost('name');
         $fields['class_id'] = $this->request->getPost('class_id');
-        $fields['class_group_id'] = $this->request->getPost('class_group_id');
+        $fields['class_group_id'] = empty($this->request->getPost('class_group_id')) ? null : $this->request->getPost('class_group_id');
         $fields['status'] = $this->request->getPost('status');
 
 
