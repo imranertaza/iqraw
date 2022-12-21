@@ -42,7 +42,7 @@ class Course extends BaseController
             $classID = get_data_by_id('class_id','student','std_id',$this->session->std_id);
             $group = get_data_by_id('class_group_id','student','std_id',$this->session->std_id);
             $groupID = (!empty($group))?$group:'0';
-            $data['course'] = $this->courseModel->where('class_id',$classID)->where('class_group_id',$groupID)->orWhere('class_id','0')->findAll();
+            $data['course'] = $this->courseModel->where('class_id',$classID)->where('class_group_id',$groupID)->orWhere('class_id',null)->orWhere('class_group_id',null)->findAll();
 
             echo view('Student/header',$data);
             echo view('Student/course_list',$data);
