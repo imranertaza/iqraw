@@ -16,7 +16,7 @@ class Payment extends BaseController
     public function index($course_id){
         $sessionpay = array(
             'pay_course_id' => $course_id,
-            'redirect_url' => '/Web/Home/payment/'.$course_id,
+            'redirect_url' => '/Web/Payment/index/'.$course_id,
         );
         $this->session->set($sessionpay);
 
