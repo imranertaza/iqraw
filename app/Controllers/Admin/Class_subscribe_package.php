@@ -6,7 +6,7 @@ namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 
 use App\Models\Class_group_joinedModel;
-use App\Models\class_subscribe_packageModel;
+use App\Models\Class_subscribe_packageModel;
 use App\Libraries\Permission;
 
 class Class_subscribe_package extends BaseController
