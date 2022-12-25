@@ -118,7 +118,7 @@ class Course_video extends BaseController
         $response = array();
 
         $fields['course_id'] = $this->request->getPost('course_id');
-        $fields['course_cat_id'] = $this->request->getPost('course_cat_id');
+        $fields['course_cat_id'] = empty($this->request->getPost('course_cat_id')) ? null: $this->request->getPost('course_cat_id');
         $fields['title'] = $this->request->getPost('title');
         $fields['author'] = $this->request->getPost('author');
         $fields['URL'] = $this->request->getPost('URL');
@@ -187,7 +187,7 @@ class Course_video extends BaseController
 
         $fields['course_video_id'] = $this->request->getPost('course_video_id');
         $fields['course_id'] = $this->request->getPost('course_id');
-        $fields['course_cat_id'] = $this->request->getPost('course_cat_id');
+        $fields['course_cat_id'] = empty($this->request->getPost('course_cat_id')) ? null : $this->request->getPost('course_cat_id');
         $fields['title'] = $this->request->getPost('title');
         $fields['author'] = $this->request->getPost('author');
         $fields['URL'] = $this->request->getPost('URL');
