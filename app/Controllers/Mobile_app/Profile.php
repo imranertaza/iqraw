@@ -3,6 +3,7 @@
 namespace App\Controllers\Mobile_app;
 use App\Controllers\BaseController;
 use App\Models\Chapter_exam_joinedModel;
+use App\Models\Class_group_joinedModel;
 use App\Models\Mcq_exam_joinedModel;
 use App\Models\Quiz_exam_joinedModel;
 use App\Models\StudentModel;
@@ -15,6 +16,7 @@ class Profile extends BaseController
     protected $session;
     protected $student;
     protected $chapter_exam_joinedModel;
+    protected $class_group_joinedModel;
     protected $mcq_exam_joinedModel;
     protected $vocabulary_exam_joinedModel;
     protected $quiz_exam_joinedModel;
@@ -23,6 +25,7 @@ class Profile extends BaseController
     {
         $this->student = new StudentModel();
         $this->chapter_exam_joinedModel = new Chapter_exam_joinedModel();
+        $this->class_group_joinedModel = new Class_group_joinedModel();
         $this->mcq_exam_joinedModel = new Mcq_exam_joinedModel();
         $this->vocabulary_exam_joinedModel = new Vocabulary_exam_joinedModel();
         $this->quiz_exam_joinedModel = new Quiz_exam_joinedModel();
@@ -86,7 +89,7 @@ class Profile extends BaseController
         $fields['religion'] = $this->request->getPost('religion');
         $fields['institute'] = $this->request->getPost('institute');
         $fields['school_name'] = $this->request->getPost('school_name');
-        $fields['class_id'] = $this->request->getPost('class_id');
+        $fields['class_id'] = empty($this->request->getPost('class_id')) ? null : $this->request->getPost('class_id');;
         $fields['class_group_id'] = empty($this->request->getPost('class_group_id')) ? null : $this->request->getPost('class_group_id');
 
         $this->validation->setRules([
@@ -107,6 +110,20 @@ class Profile extends BaseController
             $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">Update Successfully</div>');
             return redirect()->to('/Mobile_app/Profile/update');
         }
+    }
+
+    public function groupCheck(){
+        $class_id = $this->request->getPost('class_id');
+
+        $query = $this->class_group_joinedModel->where('class_id',$class_id)->findAll();
+        $view ='<option value="">Class Group</option>';
+        if (!empty($query)){
+            foreach ($query as $val){
+                $groupName = get_data_by_id('group_name','class_group','class_group_id',$val->class_group_id);
+                $view.='<option value="'.$val->class_group_id.'">'.$groupName.'</option>';
+            }
+        }
+        print $view;
     }
 
 

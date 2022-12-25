@@ -70,6 +70,20 @@
             </li>
 
             <li class="nav-item ">
+                <a href="<?php echo base_url('Admin/Class_subscribe_package')?>" class="nav-link">
+                    <i class="nav-icon fas fa-book"></i>
+                    <p>Class Subscribe Package</p>
+                </a>
+            </li>
+
+            <li class="nav-item ">
+                <a href="<?php echo base_url('Admin/Class_subscribe')?>" class="nav-link">
+                    <i class="nav-icon fas fa-book"></i>
+                    <p>Class Subscribe List</p>
+                </a>
+            </li>
+
+            <li class="nav-item ">
                 <a href="<?php echo base_url('Admin/Quiz')?>" class="nav-link">
                     <i class="nav-icon fas fa-book"></i>
                     <p>Quiz Exam</p>

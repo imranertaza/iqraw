@@ -143,6 +143,20 @@
             $('#sign_up_form').submit();
         }
     }
+
+    function groupCheck(class_id){
+        $.ajax({
+            url: '<?php echo base_url('Web/Profile/groupCheck') ?>',
+            type: 'post',
+            data: {
+                class_id: class_id
+            },
+            success: function (val) {
+                $("#class_group_id").html(val);
+                // alert(val);
+            }
+        });
+    }
 </script>
 
 </body>

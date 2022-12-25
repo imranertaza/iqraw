@@ -174,6 +174,7 @@
 
         });
     }
+
     function updateMinus(id){
         $.ajax({
             type: "POST",
@@ -287,6 +288,20 @@
             },
             success: function (msg) {
                 $('#videoUrl').html(msg);
+            }
+        });
+    }
+
+    function groupCheck(class_id){
+        $.ajax({
+            url: '<?php echo base_url('Mobile_app/Profile/groupCheck') ?>',
+            type: 'post',
+            data: {
+                class_id: class_id
+            },
+            success: function (val) {
+                $("#class_group_id").html(val);
+                // alert(val);
             }
         });
     }

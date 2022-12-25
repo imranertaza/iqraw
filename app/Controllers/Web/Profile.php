@@ -3,6 +3,7 @@
 namespace App\Controllers\Web;
 
 use App\Controllers\BaseController;
+use App\Models\Class_group_joinedModel;
 use App\Models\StudentModel;
 
 class Profile extends BaseController
@@ -10,10 +11,12 @@ class Profile extends BaseController
     protected $validation;
     protected $session;
     protected $studentModel;
+    protected $class_group_joinedModel;
     protected $crop;
 
     public function __construct(){
         $this->studentModel = new StudentModel();
+        $this->class_group_joinedModel = new Class_group_joinedModel();
         $this->validation = \Config\Services::validation();
         $this->session = \Config\Services::session();
         $this->crop = \Config\Services::image();
@@ -35,6 +38,7 @@ class Profile extends BaseController
             echo view('Web/footer');
         }
     }
+
     public function update_action(){
         $fields['std_id'] = $this->session->std_id;
         $fields['name'] = $this->request->getPost('name');
@@ -47,7 +51,7 @@ class Profile extends BaseController
         $fields['institute'] = $this->request->getPost('institute');
         $fields['school_name'] = $this->request->getPost('school_name');
         $fields['class_id'] = empty($this->request->getPost('class_id')) ? null : $this->request->getPost('class_id');
-        $fields['class_group_id'] = $this->request->getPost('class_group_id');
+        $fields['class_group_id'] = empty($this->request->getPost('class_group_id')) ? null : $this->request->getPost('class_group_id');
 
 
         $image = $this->request->getFile('pic');
@@ -90,6 +94,20 @@ class Profile extends BaseController
         }
     }
 
+    public function groupCheck(){
+        $class_id = $this->request->getPost('class_id');
+
+        $query = $this->class_group_joinedModel->where('class_id',$class_id)->findAll();
+        $view ='<option value="">Class Group</option>';
+        if (!empty($query)){
+            foreach ($query as $val){
+                $groupName = get_data_by_id('group_name','class_group','class_group_id',$val->class_group_id);
+                $view.='<option value="'.$val->class_group_id.'">'.$groupName.'</option>';
+            }
+        }
+
+        print $view;
+    }
 
 
 

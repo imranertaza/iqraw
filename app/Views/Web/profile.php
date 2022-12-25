@@ -101,7 +101,7 @@
                             </div>
 
                             <div class="input-group mt-2">
-                                <select class="form-control" name="class_id" id="class_id" >
+                                <select class="form-control" onchange="groupCheck(this.value)" name="class_id" id="class_id" >
                                     <option value="">Class</option>
                                     <?php echo getListInOption($student->class_id, 'class_id', 'name', 'class'); ?>
                                 </select>
@@ -110,7 +110,7 @@
                             <div class="input-group mt-2">
                                 <select class="form-control" name="class_group_id" id="class_group_id">
                                     <option value="">Class Group</option>
-                                    <?php echo getListInOption($student->class_group_id, 'class_group_id', 'group_name', 'class_group'); ?>
+                                    <?php echo getClassIdByGroupListInOption($student->class_group_id, $student->class_id); ?>
                                 </select>
                             </div>
 

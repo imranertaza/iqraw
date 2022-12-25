@@ -398,3 +398,20 @@ function get_all_array_data_by_id($table, $whereCol, $whereInfo)
     return $result;
 }
 
+
+function getClassIdByGroupListInOption($selected,$classId)
+{
+    $db = \Config\Database::connect();
+    $tabledta = $db->table('class_group_joined');
+    $tabledta->join('class_group', 'class_group.class_group_id = class_group_joined.class_group_id');
+    $query = $tabledta->where('class_group_joined.class_id',$classId)->get();
+
+    $options = '';
+    foreach ($query->getResult() as $value) {
+        $options .= '<option value="' . $value->class_group_id . '" ';
+        $options .= ($value->class_group_id == $selected) ? ' selected="selected"' : '';
+        $options .= '>' . $value->group_name . '</option>';
+    }
+    return $options;
+}
+

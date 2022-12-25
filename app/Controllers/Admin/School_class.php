@@ -168,16 +168,15 @@ class School_class extends BaseController
         $fields['class_id'] = $this->request->getPost('class_id');
         $fields['name'] = $this->request->getPost('name');
         $group_id = $this->request->getPost('group_id[]');
-        if (!empty($group_id)) {
-            $this->class_group_joinedModel->where('class_id', $class_id)->delete();
+        $this->class_group_joinedModel->where('class_id', $class_id)->delete();
 
+        if (!empty($group_id)) {
             foreach ($group_id as $v) {
                 $dat['class_id'] = $class_id;
                 $dat['class_group_id'] = $v;
                 $dat['createdBy'] = $this->session->user_id;
                 $this->class_group_joinedModel->insert($dat);
             }
-
         }
         $fields['status'] = $this->request->getPost('status');
 

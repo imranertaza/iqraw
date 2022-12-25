@@ -2,16 +2,9 @@
 
 namespace App\Controllers\Mobile_app;
 use App\Controllers\BaseController;
+use App\Models\Course_subscribeModel;
 use App\Models\Course_videoModel;
 use App\Models\CourseModel;
-use App\Models\History_user_coin_Model;
-use App\Models\History_user_point_Model;
-use App\Models\Quiz_exam_joinedModel;
-use App\Models\Quiz_questionModel;
-use App\Models\QuizModel;
-use App\Models\StudentModel;
-use App\Models\SubjectModel;
-use CodeIgniter\Database\RawSql;
 
 
 class Course extends BaseController
@@ -19,12 +12,14 @@ class Course extends BaseController
     protected $validation;
     protected $session;
     protected $courseModel;
+    protected $course_subscribeModel;
     protected $course_videoModel;
 
     public function __construct()
     {
         $this->courseModel = new CourseModel();
         $this->course_videoModel = new Course_videoModel();
+        $this->course_subscribeModel = new Course_subscribeModel();
         $this->validation =  \Config\Services::validation();
         $this->session = \Config\Services::session();
     }
@@ -176,8 +171,28 @@ class Course extends BaseController
     
     public function sub_action(){
         $data['course_id'] = $this->request->getPost('course_id');
-        $data['terms'] = $this->request->getPost('terms');
-        return redirect()->to('/Mobile_app/Course/success/'.$data['course_id']);
+        $data['std_id'] = $this->session->std_id;
+        $data['subs_time'] = '1';
+        $data['status'] = '1';
+        $terms = $this->request->getPost('terms');
+
+        $this->validation->setRules([
+            'course_id' => ['label' => 'Course', 'rules' => 'required'],
+        ]);
+
+        if ($this->validation->run($data) == FALSE) {
+            $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">' . $this->validation->listErrors() . '</div>');
+            return redirect()->to('/Course/subscribe/'.$data['course_id']);
+        } else {
+            if (!empty($terms)) {
+                $this->course_subscribeModel->insert($data);
+                return redirect()->to('/Mobile_app/Course/success/' . $data['course_id']);
+            }else{
+                $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Terms fields required!</div>');
+                return redirect()->to('/Course/subscribe/'.$data['course_id']);
+            }
+        }
+
     }
 
     public function success($course_id){
@@ -186,12 +201,10 @@ class Course extends BaseController
             return redirect()->to('/Mobile_app/login');
         } else {
 
-            $data['back_url'] = base_url('/Mobile_app/Course/video/'.$course_id);
+            $data['back_url'] = base_url('/Mobile_app/Course/my_course/');
             $data['page_title'] = 'Course Subscribe success';
             $data['footer_icon'] = 'Home';
 
-
-            $data['course'] = $this->courseModel->where('course_id',$course_id)->first();
 
             echo view('Student/header',$data);
             echo view('Student/success_subscribe',$data);
