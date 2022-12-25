@@ -21,7 +21,7 @@
                         <div class="col-12 mt-4">
                             <div class="d-flex flex-column">
                                 <?php foreach ($vocabulary as $val) { ?>
-                                    <div class="d-flex justify-content-around">
+                                    <div class="d-flex justify-content-between">
                                         <p class="vo-t"><?php echo $val->english ?></p>
                                         <p class="vo-t"><?php echo $val->bangla ?></p>
                                     </div>
@@ -35,7 +35,7 @@
                         <div class="col-12 mt-4">
                             <div class="d-flex flex-column">
                                 <?php foreach ($vocabulary as $val2) { ?>
-                                    <div class="d-flex justify-content-around">
+                                    <div class="d-flex justify-content-between ">
                                         <p class="vo-t"><?php echo $val2->bangla ?></p>
                                         <p class="vo-t"><?php echo $val2->english ?></p>
                                     </div>

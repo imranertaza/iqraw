@@ -139,7 +139,6 @@
                                     <label for="chapter_id">Subject: </label>
                                     <select class="form-control" name="subject_id" onchange="get_chapter(this.value)"  id="subject_id" required>
                                         <option value="">Please select</option>
-                                        <?php echo getListInOption('','subject_id','name','subject') ?>
                                     </select>
                                 </div>
                             </div>
@@ -310,7 +309,7 @@
 
                 $("#edit-form #chapter_id").val(response.chapter_id);
                 $("#edit-form #class_id").val(response.class_id);
-                $("#edit-form #subject_id").val(response.subject_id);
+                $("#edit-form #subject_id").html(response.subject_id2);
                 $("#edit-form #name").val(response.name);
                 $("#edit-form #status").val(response.status);
 

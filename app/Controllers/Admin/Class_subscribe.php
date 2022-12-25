@@ -78,7 +78,7 @@ class Class_subscribe extends BaseController
                 get_data_by_id('name','student','std_id',$value->std_id),
                 get_data_by_id('name','class','class_id',$class),
                 get_data_by_id('group_name','class_group','class_group_id',$class_group_id),
-                $value->subs_time,
+                $value->subs_end_date,
                 statusView($value->status),
 //                $ops,
             );

@@ -41,7 +41,7 @@
                                 <th>Student</th>
                                 <th>Class</th>
                                 <th>Class Group</th>
-                                <th>Subscribe time</th>
+                                <th>Subscribe End Date</th>
                                 <th>status</th>
 <!--                                <th>Action</th>-->
                             </tr>

@@ -97,6 +97,7 @@ class Chapter extends BaseController
             $data = $this->chapterModel->where('chapter_id', $id)->first();
             $class_id = get_data_by_id('class_id','subject','subject_id',$data->subject_id);
             $data->class_id = $class_id;
+            $data->subject_id2 = getListInOptionParentIdBySub($data->subject_id, 'subject_id', 'name', 'subject','class_id',$class_id);
 
             return $this->response->setJSON($data);
 

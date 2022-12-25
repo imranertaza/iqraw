@@ -52,9 +52,12 @@ class Class_subscribe extends BaseController
     }
 
     public function sub_action(){
+        $endDate = date( "Y-m-d", strtotime( "+30 days" ));
+
         $data['class_subscription_package_id'] = $this->request->getPost('class_subscription_package_id');
         $data['std_id'] = $this->session->std_id;
         $data['subs_time'] = '1';
+        $data['subs_end_date'] = $endDate;
         $data['status'] = '1';
         $data['createdBy'] = $this->session->std_id;
 

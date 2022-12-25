@@ -10,7 +10,7 @@ class Class_subscribeModel extends Model {
 	protected $primaryKey = 'class_subscribe_id';
 	protected $returnType = 'object';
 	protected $useSoftDeletes = false;
-	protected $allowedFields = ['class_subscribe_id','std_id','class_subscription_package_id','subs_time','status','createdDtm', 'createdBy', 'updateDtm', 'updatedBy', 'deleted', 'deletedRole'];
+	protected $allowedFields = ['class_subscribe_id','std_id','class_subscription_package_id','subs_time','subs_end_date','status','createdDtm', 'createdBy', 'updateDtm', 'updatedBy', 'deleted', 'deletedRole'];
 	protected $useTimestamps = false;
 	protected $createdField  = 'created_at';
 	protected $updatedField  = 'updated_at';

@@ -45,11 +45,13 @@ class Subject extends BaseController
 
             $classId = get_data_by_id('class_id','student','std_id',$this->session->std_id);
             $classGroupId = get_data_by_id('class_group_id','student','std_id',$this->session->std_id);
-//            $subscribePackageId = $this->class_subscribe_packageModel->where('class_id', $classId)->where('class_group_id', $classGroupId)->first();
-//            print $subscribePackageId->class_subscription_package_id;
 
+            // SELECT * FROM `subject` WHERE `class_id` = '15' AND ((`class_group_id` IS NULL) OR (`class_group_id` = '1'))
             if (!empty($classGroupId)) {
-                $data['subject'] = $this->subjectModel->where('class_id', $classId)->where('class_group_id', NULL)->Orwhere('class_group_id', $classGroupId)->findAll();
+                $wArray =  "(`class_group_id` IS NULL OR `class_group_id` = '$classGroupId')";
+                $data['subject'] = $this->subjectModel->where('class_id', $classId)->where($wArray)->findAll();
+//                print $this->subjectModel->getLastQuery();
+//                die();
             }else{
                 $data['subject'] = $this->subjectModel->where('class_id', $classId)->findAll();
             }
@@ -83,8 +85,11 @@ class Subject extends BaseController
             $subscribePackageId = $this->class_subscribe_packageModel->where('class_id', $classId)->where('class_group_id', $classGroupId)->first();
 
             if (!empty($subscribePackageId)){
-                $subscrib = $this->class_subscribeModel->where('std_id',$this->session->std_id)->where('class_subscription_package_id',$subscribePackageId->class_subscription_package_id)->countAllResults();
+                $subscrib = $this->class_subscribeModel->where('std_id',$this->session->std_id)->where('class_subscription_package_id',$subscribePackageId->class_subscription_package_id)->where('subs_end_date >=',date('Y-m-d'))->countAllResults();
                 if (empty($subscrib)){
+
+                    $this->class_subscribeModel->where('std_id',$this->session->std_id)->where('class_subscription_package_id',$subscribePackageId->class_subscription_package_id)->delete();
+                    
                     return redirect()->to(site_url('/Mobile_app/Class_subscribe/index/'.$subscribePackageId->class_subscription_package_id));
                 }
             }

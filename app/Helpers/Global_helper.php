@@ -29,10 +29,9 @@ function statusView($selected = '1')
     return $row;
 }
 
-function globalStatus($selected = 'sel')
+function globalStatus($selected = '')
 {
     $status = [
-        'sel' => '--Select--',
         '1' => 'Active',
         '0' => 'Inactive',
     ];
