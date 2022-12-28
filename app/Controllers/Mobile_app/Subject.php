@@ -46,12 +46,9 @@ class Subject extends BaseController
             $classId = get_data_by_id('class_id','student','std_id',$this->session->std_id);
             $classGroupId = get_data_by_id('class_group_id','student','std_id',$this->session->std_id);
 
-            // SELECT * FROM `subject` WHERE `class_id` = '15' AND ((`class_group_id` IS NULL) OR (`class_group_id` = '1'))
             if (!empty($classGroupId)) {
                 $wArray =  "(`class_group_id` IS NULL OR `class_group_id` = '$classGroupId')";
                 $data['subject'] = $this->subjectModel->where('class_id', $classId)->where($wArray)->findAll();
-//                print $this->subjectModel->getLastQuery();
-//                die();
             }else{
                 $data['subject'] = $this->subjectModel->where('class_id', $classId)->findAll();
             }

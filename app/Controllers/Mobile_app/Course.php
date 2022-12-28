@@ -36,8 +36,9 @@ class Course extends BaseController
 
             $classID = get_data_by_id('class_id','student','std_id',$this->session->std_id);
             $group = get_data_by_id('class_group_id','student','std_id',$this->session->std_id);
-            $groupID = (!empty($group))?$group:'0';
-            $data['course'] = $this->courseModel->where('class_id',$classID)->where('class_group_id',$groupID)->orWhere('class_id',null)->orWhere('class_group_id',null)->findAll();
+
+            $wArray =  "(`class_group_id` IS NULL OR `class_group_id` = '$group')";
+            $data['course'] = $this->courseModel->where('class_id',$classID)->where($wArray)->orWhere('class_id',null)->findAll();
 
             echo view('Student/header',$data);
             echo view('Student/course_list',$data);
@@ -58,7 +59,8 @@ class Course extends BaseController
             $classID = get_data_by_id('class_id','student','std_id',$this->session->std_id);
             $groupID = get_data_by_id('class_group_id','student','std_id',$this->session->std_id);
 
-            $data['course'] = $this->courseModel->where('class_id',$classID)->where('class_group_id',$groupID)->orWhere('class_id',null)->orwhere('class_group_id',null)->findAll();
+            $wArray =  "(`class_group_id` IS NULL OR `class_group_id` = '$groupID')";
+            $data['course'] = $this->courseModel->where('class_id',$classID)->where($wArray)->orWhere('class_id',null)->findAll();
 
             echo view('Student/header',$data);
             echo view('Student/my_course_list',$data);

@@ -89,7 +89,7 @@ class Quiz extends BaseController
             unset($_SESSION['qe_joined_id']);
             unset($_SESSION['quiz_exam']);
 
-            $data['quiz_exam'] = $this->quiz_examModel->where('subject_id',$subject_id)->where('published_date <',date('Y-m-d'))->findAll();
+            $data['quiz_exam'] = $this->quiz_examModel->where('subject_id',$subject_id)->where('published_date <=',date('Y-m-d'))->findAll();
 
             $table = DB()->table('quiz_exam_joined');
             $data['join_quiz_exam'] =$table->select('*')->join('quiz_exam_info','quiz_exam_info.quiz_exam_info_id = quiz_exam_joined.quiz_exam_info_id')->where('quiz_exam_info.subject_id',$subject_id)->get()->getResult();

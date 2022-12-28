@@ -146,7 +146,7 @@
 
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="name">Class Name: </label>
+                                    <label for="name">Subject Name: </label>
                                     <input type="text" class="form-control" name="name" id="name" required>
                                     <input type="hidden" class="form-control" name="subject_id" id="subject_id" required>
                                 </div>
