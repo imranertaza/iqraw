@@ -87,7 +87,7 @@ class Class_subscribe extends BaseController
         } else {
             //Checking if it checks our terms and condition.
             if (!empty($terms)) {
-                $this->db->transStart();
+                DB()->transStart();
                 // Inserting data to class_subscribe table
                 $endDate = date("Y-m-d", strtotime("+30 days"));
                 //$data['class_subscription_package_id'] = $this->request->getPost('class_subscription_package_id');
@@ -113,9 +113,10 @@ class Class_subscribe extends BaseController
                 $table2 = DB()->table('payment');
                 $table2->insert($data2);
                 // Inserting into payment table (End)
-                $this->db->transComplete();
+                DB()->transComplete();
 
-                if ($this->db->transStatus() === false) {
+                // If sql transaction failed.
+                if (DB()->transStatus() === false) {
                     $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Transection Failed!</div>');
                     return redirect()->to('/Mobile_app/Class_subscribe/canceled/');
                 }
@@ -141,6 +142,46 @@ class Class_subscribe extends BaseController
             echo view('Student/header',$data);
             echo view('Student/class_subscribe_success',$data);
             echo view('Student/footer');
+        }
+    }
+
+    public function failed_action(){
+        // Checking if the payment status is success (Start)
+        $pay_status = $this->request->getPost('pay_status');
+        $data['std_id'] = $this->request->getPost('opt_b');
+        $data['std_name'] = $this->request->getPost('cus_name');
+        if (!empty($pay_status == 'Failed')) {
+            $sessionArray = array(
+                'std_id' => $data['std_id'],
+                'name' => $data['std_name'],
+                'isLoggedInStudent' => TRUE
+            );
+            $this->session->set($sessionArray);
+        }
+        // Checking if the payment status is success (Start)
+
+
+        // Check login status before execution
+        $isLoggedInStudent = $this->session->isLoggedInStudent;
+        if (!isset($isLoggedInStudent) || $isLoggedInStudent != TRUE) {
+            return redirect()->to('/Mobile_app/login');
+        } else {
+
+            // Inserting into payment table as history(Start)
+            $data2['class_subscribe_id'] = null;
+            $data2['std_id'] = empty($this->session->std_id) ? null : $this->session->std_id;
+            $data2['aam_service_charge'] = $this->request->getPost('pg_service_charge_bdt');
+            $data2['amount_original'] = $this->request->getPost('amount_original');
+            $data2['pay_status'] = $this->request->getPost('pay_status');
+            $data2['aam_txnid'] = $this->request->getPost('pg_txnid');
+            $data2['mer_txnid'] = $this->request->getPost('mer_txnid');
+            $data2['store_amount'] = $this->request->getPost('store_amount');
+
+            $table2 = DB()->table('payment');
+            $table2->insert($data2);
+            // Inserting into payment table (End)
+
+            return redirect()->to('Mobile_app/Class_subscribe/failed/');
         }
     }
 

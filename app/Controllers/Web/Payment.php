@@ -75,6 +75,7 @@ class Payment extends BaseController
         if (!isset($isLoggedInWeb) || $isLoggedInWeb != TRUE) {
             return redirect()->to(site_url("/Web/Login"));
         } else {
+            DB()->transStart();
             // Inserting into course_subscribe table (Start)
             // $data['paument_type'] = $this->request->getPost('paument_type');
             $data['course_id'] = $course_id;
@@ -101,6 +102,13 @@ class Payment extends BaseController
             $table2 = DB()->table('payment');
             $table2->insert($data2);
             // Inserting into payment table (End)
+            DB()->transComplete();
+
+            // If sql transaction failed.
+            if (DB()->transStatus() === false) {
+                $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Transection Failed!</div>');
+                return redirect()->to('/Web/Payment/payment_cancel/');
+            }
 
             return redirect()->to(site_url('/Web/Payment/payment_success/'));
         }

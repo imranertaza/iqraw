@@ -41,7 +41,7 @@
                     <tr>
                         <td colspan="2">
                             <input type="checkbox" id="terms" name="opt_c" style="width: 13px;" required>
-                            <label for="terms" class="label-tarm">I agree with the <a href="https://iqraw.com/tarmsandcondition.html" target="_blank">terms and conditions</a></label>
+                            <label for="terms" class="label-tarm">I agree with the <a style="color:#39aa35;" href="<?php print base_url(); ?>/Web/Home/tarmsandcondition" target="_blank">terms and conditions</a></label>
                             <input type="hidden" name="class_subscription_package_id" value="<?php echo $pack->class_subscription_package_id ?>">
                         </td>
                     </tr>
@@ -61,7 +61,7 @@
                         <input type="hidden" readonly class="form-control" value="<?php print $std_info->phone; ?>" name="cus_phone">
                         <input type="hidden" readonly class="form-control" value="<?php print SIGNATURE_KEY; ?>" name="signature_key">
                         <input type="hidden" readonly class="form-control" value="<?php echo base_url()?>/Mobile_app/Class_subscribe/sub_action" name="success_url">
-                        <input type="hidden" readonly class="form-control" value="<?php echo base_url()?>/Mobile_app/Class_subscribe/failed" name="fail_url">
+                        <input type="hidden" readonly class="form-control" value="<?php echo base_url()?>/Mobile_app/Class_subscribe/failed_action" name="fail_url">
                         <input type="hidden" readonly class="form-control" value="<?php echo base_url()?>/Mobile_app/Class_subscribe/canceled" name="cancel_url">
                         <input type="hidden" readonly class="form-control" value="Class Subscription Enroll" name="desc">
                         <input type="hidden" name="opt_a" value="<?php echo $pack->class_subscription_package_id ?>">
