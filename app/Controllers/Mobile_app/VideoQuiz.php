@@ -51,6 +51,7 @@ class VideoQuiz extends BaseController
 
             $pager = \Config\Services::pager();
             $chapter = get_data_by_id('name','chapter','chapter_id',$chapterId);
+            $data['hand_note'] = get_data_by_id('hand_note','chapter','chapter_id',$chapterId);
             $subjectId = get_data_by_id('subject_id','chapter','chapter_id',$chapterId);
             $data['back_url'] = base_url('/Mobile_app/Subject/chapter/'.$subjectId);
             $data['page_title'] = $chapter;

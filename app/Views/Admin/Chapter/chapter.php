@@ -41,8 +41,10 @@
                             <thead>
                             <tr>
                                 <th width="60">Id</th>
-                                <th>Name</th>
+                                <th>Class</th>
                                 <th>Subject</th>
+                                <th>Name</th>
+                                <th>Hand Note</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -58,15 +60,14 @@
         <!-- /.row -->
     </section>
     <!-- Add modal content -->
-    <div id="add-modal" class="modal fade" tabindex="-1" role="dialog"
-         aria-hidden="true">
+    <div id="add-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-md">
             <div class="modal-content">
                 <div class="text-center bg-info p-3">
                     <h4 class="modal-title text-white" id="info-header-modalLabel">Add</h4>
                 </div>
                 <div class="modal-body text-capitalize">
-                    <form id="add-form" class="pl-3 pr-3">
+                    <form id="add-form" class="pl-3 pr-3" method="post" enctype="multipart/form-data" >
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group ">
@@ -87,9 +88,6 @@
                                 </div>
                             </div>
 
-
-
-
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="name">Chapter Name: </label>
@@ -97,9 +95,14 @@
                                 </div>
                             </div>
 
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="name">Hand  Note: </label>
+                                    <input type="file" accept=".pdf," class="form-control" name="hand_note" >
+                                </div>
+                            </div>
 
                         </div>
-
 
                         <div class="form-group text-center">
                             <div class="btn-group">
@@ -122,7 +125,7 @@
                     <h4 class="modal-title text-white" id="info-header-modalLabel">Update</h4>
                 </div>
                 <div class="modal-body">
-                    <form id="edit-form" class="pl-3 pr-3">
+                    <form id="edit-form" class="pl-3 pr-3" method="post" enctype="multipart/form-data" >
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group ">
@@ -152,7 +155,6 @@
                             </div>
 
 
-
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label for="status">Status: </label>
@@ -160,6 +162,13 @@
                                         <option value="">please select</option>
                                         <?php echo globalStatus('')?>
                                     </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="name">Hand  Note: </label>
+                                    <input type="file" accept=".pdf," class="form-control" name="hand_note" >
                                 </div>
                             </div>
                         </div>
@@ -230,14 +239,17 @@
 
             submitHandler: function (form) {
 
-                var form = $('#add-form');
+                // var form = $('#add-form');
                 // remove the text-danger
                 $(".text-danger").remove();
 
                 $.ajax({
                     url: '<?php echo base_url($controller . '/add') ?>',
                     type: 'post',
-                    data: form.serialize(), // /converting the form data into array and sending it to server
+                    data: new FormData(form), // /converting the form data into array and sending it to server
+                    contentType: false,
+                    cache: false,
+                    processData: false,
                     dataType: 'json',
                     beforeSend: function () {
                         $('#add-form-btn').html('<i class="fa fa-spinner fa-spin"></i>');
@@ -339,12 +351,15 @@
                     },
 
                     submitHandler: function (form) {
-                        var form = $('#edit-form');
+                        // var form = $('#edit-form');
                         $(".text-danger").remove();
                         $.ajax({
                             url: '<?php echo base_url($controller . '/edit') ?>',
                             type: 'post',
-                            data: form.serialize(),
+                            data: new FormData(form),
+                            contentType: false,
+                            cache: false,
+                            processData: false,
                             dataType: 'json',
                             beforeSend: function () {
                                 $('#edit-form-btn').html('<i class="fa fa-spinner fa-spin"></i>');
