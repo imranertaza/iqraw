@@ -63,7 +63,8 @@ class Chapter extends BaseController
         $result = $this->chapterModel->findAll();
 
         foreach ($result as $key => $value) {
-
+            $class_id = get_data_by_id('class_id','subject','subject_id',$value->subject_id);
+            $down = '<a href="'.base_url('assets/upload/chapter/'.$value->hand_note).'" download="'.$value->name.'"  class="btn btn-success" id="edit-form-btn">Download</a>';
             $ops = '<div class="btn-group">';
             if ($perm['update'] ==1) {
                 $ops .= '	<button type="button" class="btn btn-sm btn-info" onclick="edit(' . $value->chapter_id . ')"><i class="fa fa-edit"></i></button>';
@@ -75,8 +76,10 @@ class Chapter extends BaseController
 
             $data['data'][$key] = array(
                 $value->chapter_id,
-                $value->name,
+                get_data_by_id('name', 'class', 'class_id', $class_id),
                 get_data_by_id('name', 'subject', 'subject_id', $value->subject_id),
+                $value->name,
+                !empty($value->hand_note)?$down:'',
                 statusView($value->status),
                 $ops,
             );
@@ -118,6 +121,22 @@ class Chapter extends BaseController
         $fields['name'] = $this->request->getPost('name');
         $fields['subject_id'] = $this->request->getPost('subject_id');
         $fields['createdBy'] = $this->session->user_id;
+        $hand_note = $this->request->getFile('hand_note');
+
+        // thumb image uploading section (start)
+        $target_dir = FCPATH . 'assets/upload/chapter/';
+        if(!file_exists($target_dir)){
+            mkdir($target_dir,0777);
+        }
+        if (!empty($_FILES['hand_note']['name'])) {
+            $name = 'hand_note_' . $hand_note->getRandomName();
+            $hand_note->move($target_dir, $name);
+
+            $fields['hand_note'] = $name;
+        }
+        // thumb image uploading section (End)
+
+
 
         $this->validation->setRules([
             'name' => ['label' => 'Name', 'rules' => 'required'],
@@ -159,6 +178,25 @@ class Chapter extends BaseController
         $fields['name'] = $this->request->getPost('name');
         $fields['subject_id'] = $this->request->getPost('subject_id');
         $fields['status'] = $this->request->getPost('status');
+        $hand_note = $this->request->getFile('hand_note');
+
+        $oldimg = get_data_by_id('hand_note','chapter','chapter_id',$chapter_id);
+        // thumb image uploading section (start)
+        $target_dir = FCPATH . 'assets/upload/chapter/';
+        if(!file_exists($target_dir)){
+            mkdir($target_dir,0777);
+        }
+        if (!empty($_FILES['hand_note']['name'])) {
+            if(!empty($oldimg)) {
+                unlink($target_dir . '' . $oldimg);
+            }
+
+            $name = 'hand_note_' . $hand_note->getRandomName();
+            $hand_note->move($target_dir, $name);
+
+            $fields['hand_note'] = $name;
+        }
+        // thumb image uploading section (End)
 
 
         $this->validation->setRules([
@@ -176,9 +214,12 @@ class Chapter extends BaseController
 
                 $response['success'] = true;
                 $response['messages'] = 'Successfully updated';
+
             } else {
+
                 $response['success'] = false;
                 $response['messages'] = 'Update error!';
+
             }
         }
         return $this->response->setJSON($response);
