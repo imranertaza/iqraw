@@ -921,6 +921,19 @@ button {
     border-radius: 20px;
 }
 
+.app-dow-text{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 28px;
+    /*color: #ffffffff;*/
+}
+.dow-btn{
+    background-color: #39AA35;
+    color: #FFFFFF;
+}
+
 /*============*/
 
 @media (max-width: 992px) {

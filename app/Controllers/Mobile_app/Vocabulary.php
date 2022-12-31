@@ -176,7 +176,7 @@ class Vocabulary extends BaseController
             //point history create
             $point_history = array(
                 'std_id' => $this->session->std_id,
-                'mcq_joined_id' => $this->session->voc_mcq_joined_id,
+                'voc_mcq_joined_id' => $this->session->voc_mcq_joined_id,
                 'particulars' => 'Vocabulary quiz point get',
                 'trangaction_type' => 'Cr.',
                 'amount' => $points_vocabulary_mcq,
@@ -189,7 +189,7 @@ class Vocabulary extends BaseController
             //coin history create
             $coin_history = array(
                 'std_id' => $this->session->std_id,
-                'mcq_joined_id' => $this->session->voc_mcq_joined_id,
+                'voc_mcq_joined_id' => $this->session->voc_mcq_joined_id,
                 'particulars' => 'Vocabulary quiz coin get',
                 'trangaction_type' => 'Cr.',
                 'amount' => $points_vocabulary_mcq,
