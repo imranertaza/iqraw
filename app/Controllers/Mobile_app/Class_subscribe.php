@@ -87,6 +87,7 @@ class Class_subscribe extends BaseController
         } else {
             //Checking if it checks our terms and condition.
             if (!empty($terms)) {
+                $this->db->transStart();
                 // Inserting data to class_subscribe table
                 $endDate = date("Y-m-d", strtotime("+30 days"));
                 //$data['class_subscription_package_id'] = $this->request->getPost('class_subscription_package_id');
@@ -112,6 +113,12 @@ class Class_subscribe extends BaseController
                 $table2 = DB()->table('payment');
                 $table2->insert($data2);
                 // Inserting into payment table (End)
+                $this->db->transComplete();
+
+                if ($this->db->transStatus() === false) {
+                    $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Transection Failed!</div>');
+                    return redirect()->to('/Mobile_app/Class_subscribe/canceled/');
+                }
 
                 return redirect()->to('/Mobile_app/Class_subscribe/success/');
             }else {
