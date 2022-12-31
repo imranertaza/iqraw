@@ -73,7 +73,7 @@ class Home extends BaseController
     public function course(){
 
         $table = DB()->table('course');
-        $data['course'] = $table->where('class_id',null)->where('class_group_id',null)->get()->getResult();
+        $data['course'] = $table->get()->getResult();
 
         echo view('Web/header');
         echo view('Web/course',$data);

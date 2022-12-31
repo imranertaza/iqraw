@@ -9,10 +9,11 @@
         <?php $i=1; foreach (newSession()->voc_quiz_exam as $key => $qu){
             $quiztable = DB()->table('vocabulary_quiz');
             $quiz = $quiztable->where('voc_quiz_id',$qu['quizId'])->get()->getRow();
+            if (!empty($quiz)){
             ?>
 
             <div class="col-12 mt-4" >
-                <span class="m-qu"> <?php echo $i++ ?>) <?php echo $quiz->question?></span>
+                <span class="m-qu"> <?php echo $i++ ?>) <?php echo $quiz->question;?></span>
                 <span id="mess"></span>
             </div>
 
@@ -28,7 +29,7 @@
 
             </div>
 
-        <?php } ?>
+        <?php } } ?>
 
 
         <div class="col-12 mt-5 border-top pt-5 ">

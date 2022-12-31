@@ -35,6 +35,8 @@
         if (ans == undefined) {
             $("#mess").html('<p style="color: red;">Please select your answer</p>');
         } else {
+            $(".sub-btn").removeAttr("onclick");
+            $('.sub-btn').html('<i class="fa fa-spinner fa-spin"></i>');
             $.ajax({
                 url: '<?php echo base_url('Mobile_app/VideoQuiz/sessionUpdate')?>',
                 type: "Post",
@@ -61,6 +63,9 @@
             $("#mess").html('<p style="color: red;">Please select your answer</p>');
         }else{
 
+            $(".sub-btn").removeAttr("onclick");
+            $('.sub-btn').html('<i class="fa fa-spinner fa-spin"></i>');
+
             $.ajax({
                 url: '<?php echo base_url('Mobile_app/Quiz/result')?>',
                 type: "Post",
@@ -80,6 +85,9 @@
             $("#mess").html('<p style="color: red;">Please select your answer</p>');
         }else {
 
+            $(".sub-btn").removeAttr("onclick");
+            $('.sub-btn').html('<i class="fa fa-spinner fa-spin"></i>');
+
             $.ajax({
                 url: '<?php echo base_url('Mobile_app/Skill_development/ans_quiz')?>',
                 type: "Post",
@@ -98,6 +106,8 @@
         if (ans == undefined) {
             $("#mess").html('<p style="color: red;">Please select your answer</p>');
         }else {
+            $(".sub-btn").removeAttr("onclick");
+            $('.sub-btn').html('<i class="fa fa-spinner fa-spin"></i>');
             $.ajax({
                 url: '<?php echo base_url('Mobile_app/Vocabulary/ans_quiz')?>',
                 type: "Post",
