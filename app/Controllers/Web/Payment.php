@@ -48,7 +48,11 @@ class Payment extends BaseController
         // Checking if the payment status is success (Start)
         $pay_status = $this->request->getPost('pay_status');
         $std_id = $this->request->getPost('opt_b');
+        $course_id = $this->request->getPost('opt_a');
         $std_name = $this->request->getPost('cus_name');
+        $paid_amount = (float) $this->request->getPost('amount');
+        $course_amount = (float) get_data_by_id('price', 'course', 'course_id', $course_id);
+
         if (!empty($pay_status == 'Successful')) {
             $sessionArray = array(
                 'std_id' => $std_id,
@@ -60,14 +64,21 @@ class Payment extends BaseController
         // Checking if the payment status is success (End)
 
 
+        // Checking if the paid amount is correct with course amount
+        if ($paid_amount !== $course_amount){
+            return redirect()->to('Web/Payment/index/'.$course_id);
+        }
+
+
         // Check login status before execution
         $isLoggedInWeb = $this->session->isLoggedInWeb;
         if (!isset($isLoggedInWeb) || $isLoggedInWeb != TRUE) {
             return redirect()->to(site_url("/Web/Login"));
         } else {
+            DB()->transStart();
             // Inserting into course_subscribe table (Start)
             // $data['paument_type'] = $this->request->getPost('paument_type');
-            $data['course_id'] = $this->request->getPost('opt_a');
+            $data['course_id'] = $course_id;
             $data['std_id'] = $this->session->std_id;
             $data['subs_time'] = '1';
             $data['status'] = '1';
@@ -91,6 +102,13 @@ class Payment extends BaseController
             $table2 = DB()->table('payment');
             $table2->insert($data2);
             // Inserting into payment table (End)
+            DB()->transComplete();
+
+            // If sql transaction failed.
+            if (DB()->transStatus() === false) {
+                $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Transection Failed!</div>');
+                return redirect()->to('/Web/Payment/payment_cancel/');
+            }
 
             return redirect()->to(site_url('/Web/Payment/payment_success/'));
         }
