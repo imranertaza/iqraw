@@ -44,8 +44,7 @@ class Login extends BaseController
 
             $result = $this->loginMe($email, $password);
 
-            if(!empty($result))
-            {
+            if(!empty($result)){
 
                 // Remember me (Remembering the user email and password) Start
                 if (!empty($this->request->getPost("remember"))) {
@@ -86,7 +85,7 @@ class Login extends BaseController
     }
 
     private function loginMe($email, $password){
-        $table = DB()->table('admin');
+        $table = DB()->table('users');
         $query = $table->where('email', $email)->get();
         $user = $query->getRow();
 
