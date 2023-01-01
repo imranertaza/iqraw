@@ -149,9 +149,13 @@ class Brand extends BaseController
 
 
         if (!empty($_FILES['logo']['name'])) {
+            $target_dir = FCPATH . 'assets/upload/brand/';
+            if (!file_exists($target_dir)) {
+                mkdir($target_dir, 0777);
+            }
             $logo = $this->request->getFile('logo');
             $name = $logo->getRandomName();
-            $logo->move(FCPATH . '\assets\upload\brand',$name);
+            $logo->move($target_dir,$name);
             $fields['logo'] = $name;
         }
 
