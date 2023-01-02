@@ -7,7 +7,8 @@
             <?php } ?></a>
 
     <?php }else{ ?>
-    <a class="navbar-brand" href="<?php echo base_url() ?>/Mobile_app/Shopping"><img src="<?php base_url(); ?>/assets/image/icon-shopping.svg" alt=""></a>
+<!--    <a class="navbar-brand" href="--><?php //echo base_url() ?><!--/Mobile_app/Shopping"><img src="--><?php //base_url(); ?><!--/assets/image/icon-shopping.svg" alt=""></a>-->
+    <a class="navbar-brand" href="#"><img src="<?php base_url(); ?>/assets/image/icon-shopping.svg" alt=""></a>
     <?php } ?>
 
     <?php if ($footer_icon == 'Home'){ ?>

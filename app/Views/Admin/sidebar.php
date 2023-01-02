@@ -97,26 +97,26 @@
                 </a>
             </li>
 
-            <li class="nav-item ">
-                <a href="<?php echo base_url('Admin/Skill_subject')?>" class="nav-link">
-                    <i class="nav-icon fas fa-book"></i>
-                    <p>Skill Subject</p>
-                </a>
-            </li>
-
-            <li class="nav-item ">
-                <a href="<?php echo base_url('Admin/Skill_video')?>" class="nav-link">
-                    <i class="nav-icon fas fa-book"></i>
-                    <p>Skill Video</p>
-                </a>
-            </li>
-
-            <li class="nav-item ">
-                <a href="<?php echo base_url('Admin/Skill_quiz')?>" class="nav-link">
-                    <i class="nav-icon fas fa-book"></i>
-                    <p>Skill Quiz</p>
-                </a>
-            </li>
+<!--            <li class="nav-item ">-->
+<!--                <a href="--><?php //echo base_url('Admin/Skill_subject')?><!--" class="nav-link">-->
+<!--                    <i class="nav-icon fas fa-book"></i>-->
+<!--                    <p>Skill Subject</p>-->
+<!--                </a>-->
+<!--            </li>-->
+<!---->
+<!--            <li class="nav-item ">-->
+<!--                <a href="--><?php //echo base_url('Admin/Skill_video')?><!--" class="nav-link">-->
+<!--                    <i class="nav-icon fas fa-book"></i>-->
+<!--                    <p>Skill Video</p>-->
+<!--                </a>-->
+<!--            </li>-->
+<!---->
+<!--            <li class="nav-item ">-->
+<!--                <a href="--><?php //echo base_url('Admin/Skill_quiz')?><!--" class="nav-link">-->
+<!--                    <i class="nav-icon fas fa-book"></i>-->
+<!--                    <p>Skill Quiz</p>-->
+<!--                </a>-->
+<!--            </li>-->
 
             <li class="nav-item ">
                 <a href="<?php echo base_url('Admin/Vocabulary')?>" class="nav-link">
@@ -139,41 +139,41 @@
                 </a>
             </li>
 
-            <li class="nav-item ">
-                <a href="<?php echo base_url('Admin/Product')?>" class="nav-link">
-                    <i class="nav-icon fas fa-user"></i>
-                    <p>Product</p>
-                </a>
-            </li>
-
-            <li class="nav-item ">
-                <a href="<?php echo base_url('Admin/ProductCategory')?>" class="nav-link">
-                    <i class="nav-icon fas fa-user"></i>
-                    <p>Product Category</p>
-                </a>
-            </li>
-
-            <li class="nav-item ">
-                <a href="<?php echo base_url('Admin/Brand')?>" class="nav-link">
-                    <i class="nav-icon fas fa-user"></i>
-                    <p>Brand</p>
-                </a>
-            </li>
-
-
-            <li class="nav-item ">
-                <a href="<?php echo base_url('Admin/Store')?>" class="nav-link">
-                    <i class="nav-icon fas fa-user"></i>
-                    <p>Store</p>
-                </a>
-            </li>
-
-            <li class="nav-item ">
-                <a href="<?php echo base_url('Admin/Order')?>" class="nav-link">
-                    <i class="nav-icon fas fa-user"></i>
-                    <p>Order</p>
-                </a>
-            </li>
+<!--            <li class="nav-item ">-->
+<!--                <a href="--><?php //echo base_url('Admin/Product')?><!--" class="nav-link">-->
+<!--                    <i class="nav-icon fas fa-user"></i>-->
+<!--                    <p>Product</p>-->
+<!--                </a>-->
+<!--            </li>-->
+<!---->
+<!--            <li class="nav-item ">-->
+<!--                <a href="--><?php //echo base_url('Admin/ProductCategory')?><!--" class="nav-link">-->
+<!--                    <i class="nav-icon fas fa-user"></i>-->
+<!--                    <p>Product Category</p>-->
+<!--                </a>-->
+<!--            </li>-->
+<!---->
+<!--            <li class="nav-item ">-->
+<!--                <a href="--><?php //echo base_url('Admin/Brand')?><!--" class="nav-link">-->
+<!--                    <i class="nav-icon fas fa-user"></i>-->
+<!--                    <p>Brand</p>-->
+<!--                </a>-->
+<!--            </li>-->
+<!---->
+<!---->
+<!--            <li class="nav-item ">-->
+<!--                <a href="--><?php //echo base_url('Admin/Store')?><!--" class="nav-link">-->
+<!--                    <i class="nav-icon fas fa-user"></i>-->
+<!--                    <p>Store</p>-->
+<!--                </a>-->
+<!--            </li>-->
+<!---->
+<!--            <li class="nav-item ">-->
+<!--                <a href="--><?php //echo base_url('Admin/Order')?><!--" class="nav-link">-->
+<!--                    <i class="nav-icon fas fa-user"></i>-->
+<!--                    <p>Order</p>-->
+<!--                </a>-->
+<!--            </li>-->
 
             <li class="nav-item ">
                 <a href="<?php echo base_url('Admin/Course_category')?>" class="nav-link">

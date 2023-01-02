@@ -67,7 +67,7 @@
                 <div class="text-center bg-info p-3">
                     <h4 class="modal-title text-white" id="info-header-modalLabel">Add</h4>
                 </div>
-                <div class="modal-body text-capitalize">
+                <div class="modal-body ">
                     <form id="add-form" class="pl-3 pr-3">
                         <div class="row">
                             <div class="col-md-12">
