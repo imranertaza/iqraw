@@ -77,7 +77,7 @@ class Subscribe extends BaseController
                 get_data_by_id('name','student','std_id',$value->std_id),
                 get_data_by_id('course_name','course','course_id',$value->course_id),
                 statusView($value->status),
-                $ops,
+//                $ops,
             );
         }
 

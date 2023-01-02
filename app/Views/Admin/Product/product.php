@@ -389,6 +389,7 @@
 
     function add() {
         $("#add-form")[0].reset();
+        $(".richText-editor").html('');
         // reset the form
         $(".form-control").removeClass('is-invalid').removeClass('is-valid');
         $('#add-modal').modal('show');

@@ -238,6 +238,7 @@
     function add() {
         // reset the form
         $("#add-form")[0].reset();
+        $(".richText-editor").html('');
         $(".form-control").removeClass('is-invalid').removeClass('is-valid');
         $('#add-modal').modal('show');
         // submit the add from
@@ -343,7 +344,7 @@
 
                 $("#edit-form #course_id").val(response.course_id);
                 $("#edit-form #course_name").val(response.course_name);
-                $("#edit-form #description3").val(response.description);
+                $("#edit-form .richText-editor").html(response.description);
                 $("#edit-form #price").val(response.price);
                 $("#edit-form #class_group_id").val(response.class_group_id);
                 $("#edit-form #course_cat_id").val(response.course_cat_id);
