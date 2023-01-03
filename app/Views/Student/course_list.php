@@ -19,7 +19,7 @@
             </a>
         </div>
 
-        <?php } }else{ echo '<div class="col-6 math-p" style="padding-right: 4px !important;"><p>No data available</p> </div>';}?>
+        <?php } }else{ echo '<div class="col-12 math-p"><p class="noDataMsg">No data available</p> </div>';}?>
 
     </div>
 </section>

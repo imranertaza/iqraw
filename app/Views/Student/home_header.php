@@ -23,8 +23,8 @@
             <a href="<?php echo base_url()?>/Mobile_app/Profile"><img src="<?php base_url();?>/assets/upload/profile/<?php echo $proImg;?>"  alt="banner" class="img-pro"></a>
         </div>
         <div style="width: 40%;float: left;text-align: center; margin-top: 10px;color: #ffffff;line-height: 30px; ">
-            <p class="c-h">My Coin</p>
-            <p class="c-t" style="margin-top: -5px;"><?php echo numberView($student->coin);?></p>
+            <p class="c-h">My Point</p>
+            <p class="c-t" style="margin-top: -5px;"><?php echo numberView($student->point);?></p>
         </div>
         <div style="width: 30%;float: left;text-align: right; margin-top: 10px;">
             <a href="" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><img src="<?php base_url();?>/assets/image/icon-settings.svg" alt="banner" class="h-ico"></a>
@@ -33,5 +33,5 @@
             </ul>
         </div>
     </div>
-    <img src="<?php base_url();?>/assets/image/home-img.svg" alt="banner" class="home-banner">
+    <img src="<?php base_url();?>/assets/image/porasona vari moja.png" alt="banner" class="home-banner">
 </section>

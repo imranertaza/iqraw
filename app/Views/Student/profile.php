@@ -24,10 +24,10 @@
             <p class="num-p"><?php echo get_data_by_id('name', 'class', 'class_id', $user->class_id); ?></p>
             <p class="text-p">Class</p>
         </div>
-        <div class="col-6 text-center mt-4">
-            <p class="num-p"><?php echo numberView($user->coin); ?></p>
-            <p class="text-p">Total Coin</p>
-        </div>
+<!--        <div class="col-6 text-center mt-4">-->
+<!--            <p class="num-p">--><?php //echo numberView($user->coin); ?><!--</p>-->
+<!--            <p class="text-p">Total Coin</p>-->
+<!--        </div>-->
         <div class="col-6 text-center mt-4">
             <p class="num-p">2</p>
             <p class="text-p">Total Skill</p>

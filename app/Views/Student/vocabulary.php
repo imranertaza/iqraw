@@ -54,6 +54,7 @@
             <table class="table text-capitalize mt-3">
                 <tbody>
                 <?php
+                    if (!empty($vocabularyExam)){
                     foreach ($vocabularyExam as $ex){
                     $table = DB()->table('vocabulary_exam_joined');
                     $data = $table->where('voc_exam_id',$ex->voc_exam_id)->where('std_id',newSession()->std_id)->get()->getRow();
@@ -63,7 +64,7 @@
                         <td style="padding: 18px;"><?php echo $ex->title?></td>
                         <td width="40"><a href="javascript:void(0)" onclick="join_exam('<?php base_url()?>/Mobile_app/Vocabulary/exam_join/<?php echo $ex->voc_exam_id?>')" class="btn btn-join"  >Join</a></td>
                     </tr>
-                <?php } } ?>
+                <?php } }  }else{ echo '<div class="col-12 math-p"><p class="noDataMsg">No Exam available</p> </div>';}?>
 
                 </tbody>
             </table>

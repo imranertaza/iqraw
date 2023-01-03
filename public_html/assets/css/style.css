@@ -1012,6 +1012,7 @@ table th{
 .mo-cls{
     width: 100% !important;
     height: 100% !important;
+    margin: 0px !important;
 }
 .mo-bod{
     padding: 0px !important;
@@ -1066,4 +1067,11 @@ iframe{
     /*    z-index: 10000;*/
     /*    right: 0px;*/
     /*}*/
+}
+
+.noDataMsg {
+    font-size: 18px;
+    text-align: center;
+    margin-top: 100px;
+    width: 100%;
 }
