@@ -44,6 +44,7 @@
                                 <th>Course Name</th>
                                 <th>Category</th>
                                 <th>Title</th>
+                                <th>Hand Note</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -111,6 +112,13 @@
                                 <div class="form-group">
                                     <label for="URL">URL: </label>
                                     <input type="text" class="form-control" name="URL" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="name">Hand  Note: </label>
+                                    <input type="file" accept=".pdf," class="form-control" name="hand_note" >
                                 </div>
                             </div>
 
@@ -189,6 +197,13 @@
                                 <div class="form-group">
                                     <label for="URL">URL: </label>
                                     <input type="text" class="form-control" name="URL" id="URL" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="name">Hand  Note: </label>
+                                    <input type="file" accept=".pdf," class="form-control" name="hand_note" >
                                 </div>
                             </div>
 

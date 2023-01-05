@@ -99,9 +99,10 @@ class Class_subscribe extends BaseController
 
                 $this->class_subscribeModel->insert($data);
 
+                $class_subscribe_id = $this->class_subscribeModel->getInsertID();
 
                 // Inserting into payment table as history(Start)
-                $data2['class_subscribe_id'] = empty(DB()->insertID()) ? null : DB()->insertID();
+                $data2['class_subscribe_id'] = empty($class_subscribe_id) ? null : $class_subscribe_id;
                 $data2['std_id'] = empty($this->session->std_id) ? null : $this->session->std_id;
                 $data2['aam_service_charge'] = $this->request->getPost('pg_service_charge_bdt');
                 $data2['amount_original'] = $this->request->getPost('amount_original');

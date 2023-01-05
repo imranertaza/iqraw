@@ -10,7 +10,7 @@ class Course_videoModel extends Model {
 	protected $primaryKey = 'course_video_id';
 	protected $returnType = 'object';
 	protected $useSoftDeletes = false;
-	protected $allowedFields = ['course_video_id','course_id','course_cat_id','title','URL','thumb','author','total_views','status','createdDtm', 'createdBy', 'updateDtm', 'updatedBy', 'deleted', 'deletedRole'];
+	protected $allowedFields = ['course_video_id','course_id','course_cat_id','title','URL','hand_note','thumb','author','total_views','status','createdDtm', 'createdBy', 'updateDtm', 'updatedBy', 'deleted', 'deletedRole'];
 	protected $useTimestamps = false;
 	protected $createdField  = 'created_at';
 	protected $updatedField  = 'updated_at';

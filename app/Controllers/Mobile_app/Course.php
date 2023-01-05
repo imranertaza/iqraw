@@ -224,9 +224,10 @@ class Course extends BaseController
                     // Inserting into course_subscription table
                     $this->course_subscribeModel->insert($data);
 
+                    $course_subscribe_id = $this->course_subscribeModel->getInsertID();
 
                     // Inserting into payment table (Start)
-                    $data2['course_subscribe_id'] = empty(DB()->insertID()) ? null : DB()->insertID();
+                    $data2['course_subscribe_id'] = empty($course_subscribe_id) ? null : $course_subscribe_id;
                     $data2['std_id'] = empty($this->session->std_id) ? null : $this->session->std_id;
                     $data2['aam_service_charge'] = $this->request->getPost('pg_service_charge_bdt');
                     $data2['amount_original'] = $this->request->getPost('amount_original');

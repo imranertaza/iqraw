@@ -21,7 +21,7 @@
                         <?php if (!empty($quiz_exam)){ foreach ($quiz_exam as $exam){ if (already_join_check($exam->quiz_exam_info_id) == 0){ $url = base_url().'/Mobile_app/Quiz/question/'.$exam->quiz_exam_info_id; ?>
                             <tr>
                                 <td style="padding: 18px;"><?php echo $exam->quiz_name;?></td>
-                                <td width="60"><a href="javascript:void(0)" onclick="join_exam('<?php echo $url;?>')" class="btn btn-join">Join</a></td>
+                                <td width="60"><a href="<?php echo $url;?>" class="btn btn-join">Join</a></td>
                             </tr>
                         <?php } } }else{ echo '<div class="col-6 math-p" style="padding-right: 4px !important;"><p>No Exam available</p> </div>';}?>
                         </tbody>

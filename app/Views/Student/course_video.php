@@ -8,6 +8,11 @@
 
 <section class="content" style="margin-bottom: 90px;">
     <div class="row pt-2 text-capitalize">
+        <div class="col-12 text-center mt-2" >
+            <?php if(!empty($video->hand_note)){ ?>
+                <span class="fc-ti-1">Hand Note <i class="fa-solid fa-arrow-right-long" style="margin-left: 15px;" ></i></span> <a href="<?php echo base_url('assets/upload/courseVideo/'.$video->hand_note);?>" download="course_hand_note" class="btn-down" style="margin-left: 15px; color: #ffffff;">Download</a>
+            <?php } ?>
+        </div>
     </div>
 </section>
 

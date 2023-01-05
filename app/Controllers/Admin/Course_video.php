@@ -66,7 +66,7 @@ class Course_video extends BaseController
         $result = $this->course_videoModel->findAll();
 
         foreach ($result as $key => $value) {
-
+            $down = '<a href="'.base_url('assets/upload/courseVideo/'.$value->hand_note).'" download="course_hand_note"  class="btn btn-success" id="edit-form-btn">Download</a>';
             $ops = '<div class="btn-group">';
             if ($perm['update'] ==1) {
                 $ops .= '	<button type="button" class="btn btn-sm btn-info" onclick="edit(' . $value->course_video_id . ')"><i class="fa fa-edit"></i></button>';
@@ -81,6 +81,7 @@ class Course_video extends BaseController
                 get_data_by_id('course_name','course','course_id',$value->course_id),
                 get_data_by_id('category_name','course_category','course_cat_id',$value->course_cat_id),
                 $value->title,
+                !empty($value->hand_note)?$down:'',
                 statusView($value->status),
                 $ops,
             );
@@ -145,6 +146,16 @@ class Course_video extends BaseController
             $fields['thumb'] = $thumb_nameimg;
         }
         // thumb image uploading section (End)
+
+        $hand_note = $this->request->getFile('hand_note');
+        if (!empty($_FILES['hand_note']['name'])) {
+            $name = 'hand_note_' . $hand_note->getRandomName();
+            $hand_note->move($target_dir, $name);
+
+            $fields['hand_note'] = $name;
+        }
+
+
 
         $this->validation->setRules([
             'course_id' => ['label' => 'course_id', 'rules' => 'required'],
@@ -215,6 +226,19 @@ class Course_video extends BaseController
         }
         // thumb image uploading section (End)
 
+        $hand_note = $this->request->getFile('hand_note');
+
+        $oldnot = get_data_by_id('hand_note','course_video','course_video_id',$course_video_id);
+        if (!empty($_FILES['hand_note']['name'])) {
+            if(!empty($oldnot)) {
+                unlink($target_dir . '' . $oldnot);
+            }
+
+            $name = 'hand_note_' . $hand_note->getRandomName();
+            $hand_note->move($target_dir, $name);
+
+            $fields['hand_note'] = $name;
+        }
 
         $this->validation->setRules([
             'course_id' => ['label' => 'course_id', 'rules' => 'required'],
