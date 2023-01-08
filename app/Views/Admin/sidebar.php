@@ -189,10 +189,19 @@
                 </a>
             </li>
 
+
+
             <li class="nav-item ">
                 <a href="<?php echo base_url('Admin/Course_video')?>" class="nav-link">
                     <i class="nav-icon fas fa-user"></i>
                     <p>Course Video</p>
+                </a>
+            </li>
+
+            <li class="nav-item ">
+                <a href="<?php echo base_url('Admin/Course_quiz')?>" class="nav-link">
+                    <i class="nav-icon fas fa-user"></i>
+                    <p>Course Quiz</p>
                 </a>
             </li>
 

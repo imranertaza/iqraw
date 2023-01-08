@@ -120,6 +120,32 @@
         }
     }
 
+    function courseanscatculate(url){
+        var quizId = $("#course_quiz_id").val();
+        var ans = $('input[name="btnradio"]:checked').val();
+
+        if (ans == undefined) {
+            $("#mess").html('<p style="color: red;">Please select your answer</p>');
+        }else {
+            $(".sub-btn").removeAttr("onclick");
+            $('.sub-btn').html('<i class="fa fa-spinner fa-spin"></i>');
+            $.ajax({
+                url: '<?php echo base_url('Mobile_app/Course/point_calculet')?>',
+                type: "Post",
+                data: {quizId: quizId, ans: ans},
+                success: function (data) {
+                    location.replace(url);
+                }
+            });
+        }
+    }
+
+
+
+
+
+
+
     function addToCart(id){
         $.ajax({
             type: "POST",

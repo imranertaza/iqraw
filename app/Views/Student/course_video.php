@@ -13,6 +13,12 @@
                 <span class="fc-ti-1">Hand Note <i class="fa-solid fa-arrow-right-long" style="margin-left: 15px;" ></i></span> <a href="<?php echo base_url('assets/upload/courseVideo/'.$video->hand_note);?>" download="course_hand_note" class="btn-down" style="margin-left: 15px; color: #ffffff;">Download</a>
             <?php } ?>
         </div>
+
+        <div class="col-12 mt-4">
+            <?php if ($checkExam != 0){ $check = already_join_course_exam_check($video->course_video_id); if($check == 0){  ?>
+                <center><a href="<?php echo base_url()?>/Mobile_app/Course/join_quiz/<?php echo $video->course_video_id?>" class="btn-down ">Join MCQ</a></center>
+            <?php } } ?>
+        </div>
     </div>
 </section>
 

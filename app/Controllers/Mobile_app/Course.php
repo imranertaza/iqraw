@@ -2,9 +2,13 @@
 
 namespace App\Controllers\Mobile_app;
 use App\Controllers\BaseController;
+use App\Models\Course_quizModel;
 use App\Models\Course_subscribeModel;
 use App\Models\Course_videoModel;
 use App\Models\CourseModel;
+use App\Models\History_user_coin_Model;
+use App\Models\History_user_point_Model;
+use App\Models\StudentModel;
 
 
 class Course extends BaseController
@@ -14,11 +18,19 @@ class Course extends BaseController
     protected $courseModel;
     protected $course_subscribeModel;
     protected $course_videoModel;
+    protected $course_quizModel;
+    protected $studentModel;
+    protected $history_user_point_Model;
+    protected $history_user_coin_Model;
 
     public function __construct()
     {
         $this->courseModel = new CourseModel();
         $this->course_videoModel = new Course_videoModel();
+        $this->studentModel = new StudentModel();
+        $this->history_user_point_Model = new History_user_point_Model();
+        $this->history_user_coin_Model = new History_user_coin_Model();
+        $this->course_quizModel = new Course_quizModel();
         $this->course_subscribeModel = new Course_subscribeModel();
         $this->validation =  \Config\Services::validation();
         $this->session = \Config\Services::session();
@@ -61,7 +73,9 @@ class Course extends BaseController
 
             $wArray =  "(`class_group_id` IS NULL OR `class_group_id` = '$groupID')";
             $data['course'] = $this->courseModel->where('class_id',$classID)->where($wArray)->orWhere('class_id',null)->findAll();
-
+            //session unset
+            unset($_SESSION['course_exam_joined_id']);
+            unset($_SESSION['quizCourse']);
             echo view('Student/header',$data);
             echo view('Student/my_course_list',$data);
             echo view('Student/footer');
@@ -164,6 +178,11 @@ class Course extends BaseController
             $data['back_url'] = base_url('/Mobile_app/Course/video/'.$courVid->course_cat_id);
             $data['page_title'] = 'Course Video';
             $data['footer_icon'] = 'Home';
+            $std_id = $this->session->std_id;
+
+            $table = DB()->table('course_quiz');
+//            $data['checkExam'] = $table->join('course_exam_joined', 'course_exam_joined.course_video_id = course_quiz.course_video_id')->where('course_quiz.course_video_id',$course_video_id)->where('course_exam_joined.std_id', $std_id)->countAllResults();
+            $data['checkExam'] = $table->where('course_video_id',$course_video_id)->countAllResults();
 
 
             $data['video'] = $courVid;
@@ -173,6 +192,134 @@ class Course extends BaseController
             echo view('Student/footer');
         }
     }
+
+    public function join_quiz($course_video_id){
+        $isLoggedInStudent = $this->session->isLoggedInStudent;
+        if (!isset($isLoggedInStudent) || $isLoggedInStudent != TRUE) {
+            return redirect()->to('/Mobile_app/login');
+        } else {
+
+            $data['back_url'] = base_url('/Mobile_app/Course/video_view/'.$course_video_id);
+            $data['page_title'] = 'Course Video Quiz';
+            $data['footer_icon'] = 'Home';
+            $std_id = $this->session->std_id;
+
+            $data['quiz'] = $this->course_quizModel->where('course_video_id',$course_video_id)->paginate(1);
+            $data['pager'] = $this->course_quizModel->pager;
+
+            $check = already_join_course_exam_check($course_video_id);
+            if ($check == 0) {
+                $joinData = array(
+                    'course_video_id' => $course_video_id,
+                    'std_id' => $this->session->std_id,
+                    'createdBy' => $this->session->std_id,
+                );
+                $table = DB()->table('course_exam_joined');
+                $table->insert($joinData);
+                $insertId = DB()->insertID();
+                $this->session->set('course_exam_joined_id',$insertId);
+            }
+
+            echo view('Student/header',$data);
+            echo view('Student/course_video_quiz',$data);
+            echo view('Student/footer');
+        }
+    }
+
+    public function point_calculet(){
+        $allCoursequiz = empty($this->session->quizCourse) ? array() : $this->session->quizCourse;
+        $qId = $this->request->getPost('quizId');
+        $ans = $this->request->getPost('ans');
+
+        $quizans = [
+            'quizId'=>$qId,
+            'quizAns'=>$ans,
+        ];
+        array_push($allCoursequiz,$quizans);
+
+        $this->session->set('quizCourse',$allCoursequiz);
+
+
+        $corAns = get_data_by_id('correct_answer','course_quiz','course_quiz_id',$qId);
+        if ($corAns == $ans){
+
+            $oldCorAns = get_data_by_id('correct_answers','course_exam_joined','course_exam_joined_id',$this->session->course_exam_joined_id);
+
+            $oldPoints = get_data_by_id('earn_points','course_exam_joined','course_exam_joined_id',$this->session->course_exam_joined_id);
+            $oldCoins = get_data_by_id('earn_coins','course_exam_joined','course_exam_joined_id',$this->session->course_exam_joined_id);
+
+            $points_quiz = get_data_by_id('value','settings','label','points_course_mcq');
+
+            $course_exam_joined_id = $this->session->course_exam_joined_id;
+
+            $data['correct_answers'] = $oldCorAns + 1;
+            $data['earn_points'] = $oldPoints + $points_quiz;
+            $data['earn_coins'] = $oldCoins + $points_quiz;
+
+            $table = DB()->table('course_exam_joined');
+            $table->where('course_exam_joined_id',$course_exam_joined_id)->update($data);
+
+
+            $myOldPoint = get_data_by_id('point','student','std_id',$this->session->std_id);
+            $myOldCoin = get_data_by_id('coin','student','std_id',$this->session->std_id);
+            $stData['std_id'] = $this->session->std_id;
+            $stData['point'] = $myOldPoint + $points_quiz;
+            $stData['coin'] = $myOldCoin + $points_quiz;
+            $this->studentModel->update($stData['std_id'],$stData);
+
+
+            //point history create
+            $point_history = array(
+                'std_id' => $this->session->std_id,
+                'course_exam_joined_id' => $this->session->course_exam_joined_id,
+                'particulars' => 'Course quiz point get',
+                'trangaction_type' => 'Cr.',
+                'amount' => $points_quiz,
+                'rest_balance' => $myOldPoint + $points_quiz,
+            );
+            $this->history_user_point_Model->insert($point_history);
+
+
+
+            //coin history create
+            $coin_history = array(
+                'std_id' => $this->session->std_id,
+                'course_exam_joined_id' => $this->session->course_exam_joined_id,
+                'particulars' => 'Video quiz coin get',
+                'trangaction_type' => 'Cr.',
+                'amount' => $points_quiz,
+                'rest_balance' => $myOldCoin + $points_quiz,
+            );
+            $this->history_user_coin_Model->insert($coin_history);
+
+        }else{
+            $oldInCorAns = get_data_by_id('incorrect_answers','course_exam_joined','course_exam_joined_id',$this->session->course_exam_joined_id);
+//            $data2['course_exam_joined_id'] = $this->session->course_exam_joined_id;
+            $data2['incorrect_answers'] = $oldInCorAns + 1;
+            $tabCor = DB()->table('course_exam_joined');
+            $tabCor->where('course_exam_joined_id',$this->session->course_exam_joined_id)->update($data2);
+        }
+    }
+
+    public function result_view(){
+        $isLoggedInStudent = $this->session->isLoggedInStudent;
+        if (!isset($isLoggedInStudent) || $isLoggedInStudent != TRUE) {
+            return redirect()->to('/Mobile_app/login');
+        } else {
+
+            $data['back_url'] = base_url('/Mobile_app/Course/my_course');
+            $data['page_title'] = 'Course Result';
+            $data['footer_icon'] = 'Home';
+
+            $tabCor = DB()->table('course_exam_joined');
+            $data['result'] = $tabCor->where('course_exam_joined_id',$this->session->course_exam_joined_id)->get()->getRow();
+
+            echo view('Student/header',$data);
+            echo view('Student/course_quiz_result',$data);
+            echo view('Student/footer');
+        }
+    }
+
     
     public function sub_action(){
         // Checking if the payment status is success (Start)

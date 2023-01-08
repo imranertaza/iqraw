@@ -254,6 +254,19 @@ function already_join_voc_exam_check($voc_exam_id){
     return $result;
 }
 
+function already_join_course_exam_check($course_video_id){
+    $tabledta = DB()->table('course_exam_joined');
+    $data = $tabledta->where('std_id',newSession()->std_id)->where('course_video_id',$course_video_id)->get()->getRow();
+
+    if (!empty($data)){
+        $result = 1;
+    }else{
+        $result = 0;
+    }
+
+    return $result;
+}
+
 function pro_parent_category_by_category_id($id)
 {
     $session = newSession();

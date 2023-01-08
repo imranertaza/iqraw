@@ -121,6 +121,13 @@ class Pager implements PagerInterface
         return $this->displayLinks($group, $template);
     }
 
+    public function coursecustomLinks(string $group = 'default', string $template = 'custom_course'): string
+    {
+        $this->ensureGroup($group);
+
+        return $this->displayLinks($group, $template);
+    }
+
     /**
      * Allows for a simple, manual, form of pagination where all of the data
      * is provided by the user. The URL is the current URI.
