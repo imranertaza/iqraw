@@ -9,7 +9,14 @@
 <!--    --><?php //}else{ ?>
 <!--    <a class="navbar-brand" href="--><?php //echo base_url() ?><!--/Mobile_app/Shopping"><img src="--><?php //base_url(); ?><!--/assets/image/icon-shopping.svg" alt=""></a>-->
 <!--    --><?php //} ?>
-    <a class="navbar-brand" href="#"><img src="<?php echo base_url(); ?>/assets/image/icon-notification.svg" alt=""></a>
+<!--    <a class="navbar-brand" href="--><?php //echo base_url() ?><!--/Mobile_app/Notice"><img src="--><?php //echo base_url(); ?><!--/assets/image/icon-notification.svg" alt="">--><?php //if (noticeCount() != 0){ ?><!-- <span class="badge">--><?php //echo noticeCount();?><!--</span>--><?php //} ?><!-- </a>-->
+
+    <?php if ($footer_icon == 'Notice'){ ?>
+        <a class="navbar-brand" href="<?php echo base_url() ?>/Mobile_app/Notice"><img src="<?php echo base_url(); ?>/assets/image/notification.svg" alt="" style="margin-top: 11px;"><?php if (noticeCount() != 0){ ?> <span class="badge"><?php echo noticeCount();?></span><?php } ?> </a>
+    <?php }else{ ?>
+        <a class="navbar-brand" href="<?php echo base_url() ?>/Mobile_app/Notice"><img src="<?php echo base_url(); ?>/assets/image/icon-notification.svg" alt=""><?php if (noticeCount() != 0){ ?> <span class="badge"><?php echo noticeCount();?></span><?php } ?> </a>
+    <?php } ?>
+
 
     <?php if ($footer_icon == 'Home'){ ?>
     <a class="navbar-brand" href="<?php echo base_url() ?>/Mobile_app/Dashboard">

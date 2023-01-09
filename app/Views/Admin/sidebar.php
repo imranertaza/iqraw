@@ -212,6 +212,13 @@
                 </a>
             </li>
 
+            <li class="nav-item ">
+                <a href="<?php echo base_url('Admin/Notice')?>" class="nav-link">
+                    <i class="nav-icon fas fa-bell"></i>
+                    <p>Notice</p>
+                </a>
+            </li>
+
 
             <li class="nav-item ">
                 <a href="<?php echo base_url('Admin/User')?>" class="nav-link">

@@ -1075,3 +1075,28 @@ iframe{
     margin-top: 100px;
     width: 100%;
 }
+.badge{
+    background-color: #ff0000;
+    border-radius: 50% !important;
+    position: absolute;
+    left: 18px;
+    top: 17px;
+    font-size: 11px;
+}
+.note-ti a{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 20px;
+    color: #393939;
+}
+.cl-text p{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 17px;
+    line-height: 20px;
+    color: #393939;
+
+}

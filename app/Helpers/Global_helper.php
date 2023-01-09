@@ -427,3 +427,12 @@ function getClassIdByGroupListInOption($selected,$classId)
     return $options;
 }
 
+function noticeCount(){
+    $std_id = newSession()->std_id;
+    $table = DB()->table('notice_send');
+    $table->where('receiver_std_id', $std_id);
+    $data = $table->countAllResults();
+
+    return $data;
+
+}
