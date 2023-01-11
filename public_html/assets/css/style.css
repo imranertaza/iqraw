@@ -1098,5 +1098,10 @@ iframe{
     font-size: 17px;
     line-height: 20px;
     color: #393939;
-
+}
+.bold-data a{
+    font-family: 'Roboto';
+    font-size: 17px;
+    font-weight: bold !important;
+    color: #393939;
 }

@@ -28,7 +28,7 @@ class Notice extends BaseController
             $data['page_title'] = 'Notification';
             $data['footer_icon'] = 'Notice';
 
-            $data['notice'] = $this->noticeModel->findAll(20);
+            $data['notice'] = $this->noticeModel->orderBy('notice_id','DESC')->findAll(20);
 
             echo view('Student/header',$data);
             echo view('Student/notice_list',$data);

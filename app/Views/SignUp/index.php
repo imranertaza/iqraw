@@ -85,7 +85,7 @@
                             </div>
                             <div class="input-group mb-3">
                                 <select class="form-control" name="class_id" id="class_id" onchange="viewGroup(this.value)" required>
-                                    <option>Please select</option>
+                                    <option value="">Class Select</option>
                                     <?php echo getListInOption('', 'class_id', 'name', 'class');?>
                                 </select>
                             </div>

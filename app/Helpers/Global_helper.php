@@ -436,3 +436,15 @@ function noticeCount(){
     return $data;
 
 }
+function check_unread_notice($notice_id){
+    $std_id = newSession()->std_id;
+    $table = DB()->table('notice_send');
+    $table->where('notice_id', $notice_id)->where('receiver_std_id', $std_id);
+    $data = $table->get()->getRow();
+
+    if (!empty($data)){
+        return true;
+    }else{
+        return false;
+    }
+}
