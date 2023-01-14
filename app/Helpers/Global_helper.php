@@ -204,7 +204,7 @@ function get_subID_by_exam($subject_id){
 
 function get_subID_by_upcoming_exam($subject_id){
     $tabledta = DB()->table('quiz_exam_info');
-    $total = $tabledta->where('subject_id',$subject_id)->where('published_date >',date('Y-m-d'))->countAllResults();
+    $total = $tabledta->where('subject_id',$subject_id)->where('published_date >=',date('Y-m-d'))->countAllResults();
     return $total;
 }
 

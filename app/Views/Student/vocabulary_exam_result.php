@@ -55,10 +55,10 @@
                         <td><?php echo $result->earn_points;?></td>
                     </tr>
 
-                    <tr>
-                        <td>Earn Coins</td>
-                        <td><?php echo $result->earn_coins;?></td>
-                    </tr>
+<!--                    <tr>-->
+<!--                        <td>Earn Coins</td>-->
+<!--                        <td>--><?php //echo $result->earn_coins;?><!--</td>-->
+<!--                    </tr>-->
                 </tbody>
             </table>
 

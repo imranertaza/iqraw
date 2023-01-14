@@ -5,7 +5,7 @@
 <section class="content" style="margin-bottom: 90px;">
     <div class="row pt-2">
         <div class="col-12"  style="text-align: center;padding: 20px;">
-            <a href="<?php echo base_url()?>/Mobile_app/Quiz/upcoming_exam/" class="btn-down ">Upcoming Exam</a>
+            <a href="<?php echo base_url()?>/Mobile_app/Quiz/upcoming_exam/" class="btn-down ">Upcoming Exam </a>
         </div>
         <?php if (!empty($subject)){ foreach ($subject as $sub){ $totalExamPending = get_subID_by_exam($sub->subject_id) - get_subID_by_done_exam($sub->subject_id); ?>
             <div class="col-6 cl-p-r" >

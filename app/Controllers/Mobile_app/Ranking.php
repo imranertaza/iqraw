@@ -39,7 +39,8 @@ class Ranking extends BaseController
             $data['footer_icon'] = 'Ranking';
             $classId = get_data_by_id('class_id','student','std_id',$this->session->std_id);
             $classGroupId = get_data_by_id('class_group_id','student','std_id',$this->session->std_id);
-            $data['student'] = $this->studentModel->where('class_id',$classId)->where('class_group_id',$classGroupId)->limit(50)->findAll();
+            $wArray =  "(`class_group_id` IS NULL OR `class_group_id` = '$classGroupId')";
+            $data['student'] = $this->studentModel->where('class_id',$classId)->where($wArray)->orderBy('point','DESC')->limit(50)->findAll();
 
             $table = DB()->table('student');
             $hpoint = $table->selectMax('point' )->get()->getRow()->point;
