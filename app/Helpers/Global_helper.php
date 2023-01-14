@@ -198,19 +198,19 @@ function already_join_check($quiz_exam_info_id){
 
 function get_subID_by_exam($subject_id){
     $tabledta = DB()->table('quiz_exam_info');
-    $total = $tabledta->where('subject_id',$subject_id)->where('published_date <',date('Y-m-d'))->countAllResults();
+    $total = $tabledta->where('subject_id',$subject_id)->where('published_date <=',date('Y-m-d'))->countAllResults();
     return $total;
 }
 
 function get_subID_by_upcoming_exam($subject_id){
     $tabledta = DB()->table('quiz_exam_info');
-    $total = $tabledta->where('subject_id',$subject_id)->where('published_date >=',date('Y-m-d'))->countAllResults();
+    $total = $tabledta->where('subject_id',$subject_id)->where('published_date >',date('Y-m-d'))->countAllResults();
     return $total;
 }
 
 function get_subID_by_done_exam($subject_id){
     $tabledta = DB()->table('quiz_exam_joined');
-    $total = $tabledta->select('*')->join('quiz_exam_info','quiz_exam_info.quiz_exam_info_id = quiz_exam_joined.quiz_exam_info_id')->where('quiz_exam_info.subject_id',$subject_id)->countAllResults();
+    $total = $tabledta->select('*')->join('quiz_exam_info','quiz_exam_info.quiz_exam_info_id = quiz_exam_joined.quiz_exam_info_id')->where('quiz_exam_joined.std_id',newSession()->std_id)->where('quiz_exam_info.subject_id',$subject_id)->countAllResults();
     return $total;
 }
 
@@ -436,6 +436,7 @@ function noticeCount(){
     return $data;
 
 }
+
 function check_unread_notice($notice_id){
     $std_id = newSession()->std_id;
     $table = DB()->table('notice_send');

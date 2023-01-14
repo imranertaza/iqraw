@@ -46,12 +46,8 @@ class Subject extends BaseController
             $classId = get_data_by_id('class_id','student','std_id',$this->session->std_id);
             $classGroupId = get_data_by_id('class_group_id','student','std_id',$this->session->std_id);
 
-            if (!empty($classGroupId)) {
                 $wArray =  "(`class_group_id` IS NULL OR `class_group_id` = '$classGroupId')";
                 $data['subject'] = $this->subjectModel->where('class_id', $classId)->where($wArray)->findAll();
-            }else{
-                $data['subject'] = $this->subjectModel->where('class_id', $classId)->findAll();
-            }
 
             unset($_SESSION['quiz']);
             unset($_SESSION['chapter_joined_id']);
@@ -79,7 +75,8 @@ class Subject extends BaseController
             $classId = get_data_by_id('class_id','student','std_id',$this->session->std_id);
             $classGroupId = get_data_by_id('class_group_id','student','std_id',$this->session->std_id);
 
-            $subscribePackageId = $this->class_subscribe_packageModel->where('class_id', $classId)->where('class_group_id', $classGroupId)->first();
+            $wArray =  "(`class_group_id` IS NULL OR `class_group_id` = '$classGroupId')";
+            $subscribePackageId = $this->class_subscribe_packageModel->where('class_id', $classId)->where($wArray)->first();
 
             if (!empty($subscribePackageId)){
                 $subscrib = $this->class_subscribeModel->where('std_id',$this->session->std_id)->where('class_subscription_package_id',$subscribePackageId->class_subscription_package_id)->where('subs_end_date >=',date('Y-m-d'))->countAllResults();
