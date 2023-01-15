@@ -344,7 +344,7 @@
                 class_id: class_id
             },
             success: function (val) {
-                $("#class_group_id").html(val);
+                $("#group").html(val);
                 // alert(val);
             }
         });

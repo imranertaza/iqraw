@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers\Mobile_app;
+
 use App\Controllers\BaseController;
 use App\Models\Chapter_exam_joinedModel;
 use App\Models\Class_group_joinedModel;
@@ -29,9 +30,10 @@ class Profile extends BaseController
         $this->mcq_exam_joinedModel = new Mcq_exam_joinedModel();
         $this->vocabulary_exam_joinedModel = new Vocabulary_exam_joinedModel();
         $this->quiz_exam_joinedModel = new Quiz_exam_joinedModel();
-        $this->validation =  \Config\Services::validation();
+        $this->validation = \Config\Services::validation();
         $this->session = \Config\Services::session();
     }
+
     public function index()
     {
         $isLoggedInStudent = $this->session->isLoggedInStudent;
@@ -43,23 +45,24 @@ class Profile extends BaseController
             $data['page_title'] = 'Profile';
             $data['footer_icon'] = 'Home';
 
-            $query = $this->student->where('std_id',$this->session->std_id)->get();
+            $query = $this->student->where('std_id', $this->session->std_id)->get();
             $data['user'] = $query->getRow();
 
-            $chapExam = $this->chapter_exam_joinedModel->where('std_id',$this->session->std_id)->countAllResults();
-            $mcqExam = $this->mcq_exam_joinedModel->where('std_id',$this->session->std_id)->countAllResults();
-            $vocExam = $this->vocabulary_exam_joinedModel->where('std_id',$this->session->std_id)->countAllResults();
-            $quizExam = $this->quiz_exam_joinedModel->where('std_id',$this->session->std_id)->countAllResults();
+            $chapExam = $this->chapter_exam_joinedModel->where('std_id', $this->session->std_id)->countAllResults();
+            $mcqExam = $this->mcq_exam_joinedModel->where('std_id', $this->session->std_id)->countAllResults();
+            $vocExam = $this->vocabulary_exam_joinedModel->where('std_id', $this->session->std_id)->countAllResults();
+            $quizExam = $this->quiz_exam_joinedModel->where('std_id', $this->session->std_id)->countAllResults();
 
-            $data['totalExamJoin']= $chapExam + $mcqExam + $vocExam + $quizExam;
+            $data['totalExamJoin'] = $chapExam + $mcqExam + $vocExam + $quizExam;
 
-            echo view('Student/header',$data);
-            echo view('Student/profile',$data);
+            echo view('Student/header', $data);
+            echo view('Student/profile', $data);
             echo view('Student/footer');
         }
     }
 
-    public function update(){
+    public function update()
+    {
         $isLoggedInStudent = $this->session->isLoggedInStudent;
         if (!isset($isLoggedInStudent) || $isLoggedInStudent != TRUE) {
             return redirect()->to('/Mobile_app/login');
@@ -69,16 +72,17 @@ class Profile extends BaseController
             $data['page_title'] = 'Profile Update';
             $data['footer_icon'] = 'Home';
 
-            $query = $this->student->where('std_id',$this->session->std_id)->get();
+            $query = $this->student->where('std_id', $this->session->std_id)->get();
             $data['student'] = $query->getRow();
 
-            echo view('Student/header',$data);
-            echo view('Student/profile_update',$data);
+            echo view('Student/header', $data);
+            echo view('Student/profile_update', $data);
             echo view('Student/footer');
         }
     }
 
-    public function update_action(){
+    public function update_action()
+    {
         $fields['std_id'] = $this->session->std_id;
         $fields['name'] = $this->request->getPost('name');
         $fields['phone'] = $this->request->getPost('phone');
@@ -92,41 +96,53 @@ class Profile extends BaseController
         $fields['class_id'] = empty($this->request->getPost('class_id')) ? null : $this->request->getPost('class_id');;
         $fields['class_group_id'] = empty($this->request->getPost('class_group_id')) ? null : $this->request->getPost('class_group_id');
 
-        $this->validation->setRules([
+
+        $rules = [
             'name' => ['label' => 'Name', 'rules' => 'required'],
             'phone' => ['label' => 'Phone', 'rules' => 'required'],
             'gender' => ['label' => 'Gender', 'rules' => 'required'],
             'religion' => ['label' => 'Religion', 'rules' => 'required'],
-        ]);
+        ];
+
+        if (checkClassIdByGroup($fields['class_id']) == 1) {
+            $rules['class_id'] = ['label' => 'Class', 'rules' => 'required'];
+            $rules['class_group_id'] = ['label' => 'Class Group', 'rules' => 'required'];
+        }
+
+        $this->validation->setRules($rules);
 
         if ($this->validation->run($fields) == FALSE) {
-
-            $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">This phone number already used!</div>');
+            $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">'.$this->validation->listErrors().'</div>');
             return redirect()->to('/Mobile_app/Profile/update');
 
         } else {
-            $this->student->update($fields['std_id'],$fields);
+            $this->student->update($fields['std_id'], $fields);
 
             $this->session->setFlashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">Update Successfully</div>');
             return redirect()->to('/Mobile_app/Profile/update');
+
         }
     }
 
-    public function groupCheck(){
+    public function groupCheck()
+    {
         $class_id = $this->request->getPost('class_id');
 
-        $query = $this->class_group_joinedModel->where('class_id',$class_id)->findAll();
-        $view ='<option value="">Class Group</option>';
-        if (!empty($query)){
-            foreach ($query as $val){
-                $groupName = get_data_by_id('group_name','class_group','class_group_id',$val->class_group_id);
-                $view.='<option value="'.$val->class_group_id.'">'.$groupName.'</option>';
+        $query = $this->class_group_joinedModel->where('class_id', $class_id)->findAll();
+        $view = '';
+        if (!empty($query)) {
+            $view .= '<select class="form-control" name="class_group_id" id="class_group_id" required>';
+            $view .= '<option value="">Class Group</option>';
+            foreach ($query as $val) {
+                $groupName = get_data_by_id('group_name', 'class_group', 'class_group_id', $val->class_group_id);
+                $view .= '<option value="' . $val->class_group_id . '">' . $groupName . '</option>';
             }
+            $view .= '</select>';
         }
+
+
         print $view;
     }
-
-
 
 
 }

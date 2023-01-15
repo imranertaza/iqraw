@@ -449,3 +449,16 @@ function check_unread_notice($notice_id){
         return false;
     }
 }
+
+function checkClassIdByGroup($classId)
+{
+    $db = \Config\Database::connect();
+    $tabledta = $db->table('class_group_joined');
+    $query = $tabledta->where('class_id',$classId)->countAllResults();
+
+    if (!empty($query)){
+        return 1;
+    }else{
+        return 0;
+    }
+}

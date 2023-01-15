@@ -51,6 +51,7 @@
                     <input type="text" class="form-control" placeholder="age" name="age"
                            value="<?php echo $student->age; ?>">
                 </div>
+
                 <div class="input-group mt-2">
                     <select class="form-control" name="religion" id="religion" required>
                         <option value="">Religion</option>
@@ -68,6 +69,7 @@
                         </option>
                     </select>
                 </div>
+
                 <div class="input-group mt-2">
                     <select class="form-control" name="institute" id="institute" required>
                         <option value="">Institute</option>
@@ -92,11 +94,13 @@
                     </select>
                 </div>
 
-                <div class="input-group mt-2">
-                    <select class="form-control" name="class_group_id" id="class_group_id">
+                <div class="input-group mt-2" id="group">
+                    <?php if(checkClassIdByGroup($student->class_id) == 1){?>
+                    <select class="form-control" name="class_group_id" id="class_group_id" required>
                         <option value="">Class Group</option>
                         <?php echo getClassIdByGroupListInOption($student->class_group_id, $student->class_id); ?>
                     </select>
+                    <?php } ?>
                 </div>
 
                 <div class="input-group mt-4">
