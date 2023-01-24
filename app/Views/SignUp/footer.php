@@ -114,6 +114,63 @@
         }
     }
 
+    function forgetformValidation(){
+        var result = 0;
+        if ($('#phone').val() == ''){
+            $('#phonemessage').html('<p style="color: red;">Phone field is required </p>');
+            result = 1;
+        }else {
+            $('#phonemessage').html('<p style="color: green;">success</p>');
+        }
+
+        if (result == 1){
+            // $('#message').html('<p style="color: red;">All field is required </p>');
+        }else{
+            $('#forgetPass').submit();
+        }
+    }
+
+    function otpValidation(){
+        var result = 0;
+        if ($('#otp').val() == ''){
+            $('#otpmessage').html('<p style="color: red;">Otp field is required </p>');
+            result = 1;
+        }else {
+            $('#otpmessage').html('<p style="color: green;">success</p>');
+        }
+
+
+
+        if (result == 1){
+            // $('#message').html('<p style="color: red;">All field is required </p>');
+        }else{
+            $('#signIn').submit();
+        }
+    }
+    function passValidation(){
+        var result = 0;
+        if ($('#password').val() == ''){
+            $('#passmessage').html('<p style="color: red;">Password field is required </p>');
+            result = 1;
+        }else {
+            $('#passmessage').html('<p style="color: green;">success</p>');
+        }
+
+        if ($('#con_password').val() == ''){
+            $('#conPasswordmessage').html('<p style="color: red;">Confirm Password field is required </p>');
+            result = 1;
+        }else {
+            $('#conPasswordmessage').html('<p style="color: green;">success</p>');
+        }
+
+        if (result == 1){
+            // $('#message').html('<p style="color: red;">All field is required </p>');
+        }else{
+            $('#conPass').submit();
+        }
+    }
+
+
     function viewGroup(class_id){
         $.ajax({
             url: '<?php echo base_url('Mobile_app/SignUp/classGroup') ?>',

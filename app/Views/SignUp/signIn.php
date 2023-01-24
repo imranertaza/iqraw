@@ -20,7 +20,7 @@
                         <input type="password" class="form-control" name="password" id="password" placeholder="Password">
                     </div>
                     <label id="passmessage"></label><br>
-                    <span class="for-pass">Forget Password?</span>
+                    <span class="for-pass"><a href="<?php echo base_url();?>/Mobile_app/SignUp/forget_password/">Forget Password?</a></span>
                     <div class="btn-g ">
                         <center><a class="btn btnSignIn" onclick="signInformValidation()">Sign in</a></center>
                         <center><span class="cre-sig">Create an account.<a href="<?php echo base_url();?>/Mobile_app/SignUp" class="sig">signup</a></span></center>

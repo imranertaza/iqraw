@@ -76,10 +76,18 @@ class SignUp extends BaseController
             $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">' . $this->validation->listErrors() . '</div>');
             return redirect()->to('/');
         } else {
-            $this->student->insert($data);
+
+            $check = $this->checkUser($data['phone'], $data['password']);
+            if (empty($check)){
+                $this->student->insert($data);
+            }else{
+                $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Phone number already in use</div>');
+                return redirect()->to(site_url("/Mobile_app/SignUp"));
+            }
 
             $result = $this->checkUser($data['phone'], $data['password']);
             if (!empty($result)) {
+
                 $sessionArray = array(
                     'std_id' => $result->std_id,
                     'name' => $result->name,
@@ -187,4 +195,118 @@ class SignUp extends BaseController
         print $view;
     }
 
+
+
+    public function forget_password(){
+        $isLoggedInStudent = $this->session->isLoggedInStudent;
+        if (!isset($isLoggedInStudent) || $isLoggedInStudent != TRUE) {
+            echo view('SignUp/header');
+            echo view('SignUp/forget_password');
+            echo view('SignUp/footer');
+        } else {
+            return redirect()->to(site_url("/Mobile_app/Dashboard"));
+        }
+    }
+
+    public function send_otp(){
+        $phone = $this->request->getPost('phone');
+
+        $table = DB()->table('student');
+        $query = $table->where('phone', $phone)->get();
+        $user = $query->getRow();
+
+        if (!empty($user)){
+            $otp_code = substr((rand()),0, 4);
+
+            setcookie('forget_phone',$phone,time()+ (60 * 2), "/");
+            setcookie('forget_otp',$otp_code,time()+ (60 * 2), "/");
+
+//            http://bulksmsbd.net/api/smsapi?api_key=Yyl7HcfrZAEclh1KhnMG&type=text&number=(Receiver)&senderid=8809617611058&message=(Message Content)
+
+            return redirect()->to('Mobile_app/SignUp/otp_submit');
+        }else{
+            $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Enter correct phone number!</div>');
+            return redirect()->to('Mobile_app/SignUp/forget_password');
+        }
+
+    }
+
+    public function otp_submit(){
+        $isLoggedInStudent = $this->session->isLoggedInStudent;
+        if (!isset($isLoggedInStudent) || $isLoggedInStudent != TRUE) {
+            echo view('SignUp/header');
+            echo view('SignUp/otp_submit');
+            echo view('SignUp/footer');
+        } else {
+            return redirect()->to(site_url("/Mobile_app/Dashboard"));
+        }
+    }
+
+    public function otp_submit_action(){
+        $otp = $this->request->getPost('otp');
+        if (isset($_COOKIE['forget_otp'])){
+            if($_COOKIE['forget_otp'] == $otp){
+                return redirect()->to(site_url("/Mobile_app/SignUp/enter_new_password"));
+            }else{
+                $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Please enter correct otp</div>');
+                return redirect()->to(site_url("/Mobile_app/SignUp/otp_submit"));
+            }
+
+        }else{
+            $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Your session is expired </div>');
+            return redirect()->to(site_url("/Mobile_app/SignUp/forget_password"));
+        }
+
+
+
+//        return redirect()->to(site_url("/Mobile_app/SignUp/enter_new_password"));
+    }
+
+    public function enter_new_password(){
+        $isLoggedInStudent = $this->session->isLoggedInStudent;
+        if (!isset($isLoggedInStudent) || $isLoggedInStudent != TRUE) {
+            echo view('SignUp/header');
+            echo view('SignUp/pass_submit');
+            echo view('SignUp/footer');
+        } else {
+            return redirect()->to(site_url("/Mobile_app/Dashboard"));
+        }
+    }
+
+    public function reset_password_action(){
+        $data['password'] = $this->request->getPost('password');
+        $data['con_password'] = $this->request->getPost('con_password');
+
+        $this->validation->setRules([
+            'password' => ['label' => 'Password', 'rules' => 'required|max_length[155]'],
+            'con_password' => ['label' => 'Confirm Password', 'rules' => 'required|matches[password]'],
+        ]);
+
+        if ($this->validation->run($data) == FALSE) {
+            $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">' . $this->validation->listErrors() . '</div>');
+            return redirect()->to('/Mobile_app/SignUp/enter_new_password');
+        } else {
+            if (isset($_COOKIE['forget_phone'])) {
+                $updateData['password'] = SHA1($data['password']);
+                $table = DB()->table('student');
+                $table->where('phone', $_COOKIE['forget_phone'])->update($updateData);
+                return redirect()->to('/Mobile_app/SignUp/success');
+            }else{
+                $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Your session is expired </div>');
+                return redirect()->to(site_url("/Mobile_app/SignUp/forget_password"));
+            }
+        }
+    }
+
+    public function success(){
+        $isLoggedInStudent = $this->session->isLoggedInStudent;
+        if (!isset($isLoggedInStudent) || $isLoggedInStudent != TRUE) {
+            $data['head'] = 'soccess';
+            echo view('SignUp/header',$data);
+            echo view('SignUp/pass_success');
+            echo view('SignUp/footer');
+        } else {
+            return redirect()->to(site_url("/Mobile_app/Dashboard"));
+        }
+    }
 }

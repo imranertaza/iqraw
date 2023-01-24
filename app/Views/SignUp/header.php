@@ -19,7 +19,7 @@
 <body>
 
 <div class="container-fluid">
-
+    <?php if (!isset($head)){ ?>
     <section class="header">
         <div class="row">
             <div class="col-12 text-center d-logo">
@@ -31,3 +31,4 @@
             </div>
         </div>
     </section>
+    <?php } ?>
