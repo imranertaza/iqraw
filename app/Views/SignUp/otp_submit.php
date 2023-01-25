@@ -11,10 +11,10 @@
                         <span class="con-l-2nd">প্রভুর <span style="color: #000000;">নামে</span></span>
                     </div>
                     <br>
-                    <span class="title-1">Otp Submit <?php print $_COOKIE['forget_otp']?></span>
-                    <?php if (session()->getFlashdata('message') !== NULL) : echo session()->getFlashdata('message'); endif; ?>
+                    <p><?php print (session()->getFlashdata('otp_sent_message') !== NULL) ? session()->getFlashdata('otp_sent_message') : ''; ?></p>
+                    <span class="title-1">Please Input the OTP </span>
                     <div class="input-group mb-3 mt-3">
-                        <input type="number" class="form-control" name="otp" id="otp" placeholder="Otp">
+                        <input type="number" class="form-control" name="otp" id="otp" placeholder="OTP">
                     </div>
                     <label id="otpmessage"></label>
                     <div class="btn-g ">

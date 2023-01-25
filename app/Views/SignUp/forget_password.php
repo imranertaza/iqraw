@@ -10,11 +10,12 @@
                         <span class="con-l-2nd">প্রভুর <span style="color: #000000;">নামে</span></span>
                     </div>
                     <br>
-                    <span class="title-1">Forget Password</span>
+                    <span class="title-1">Input your phone number(without 88)</span>
                     <?php if (session()->getFlashdata('message') !== NULL) : echo session()->getFlashdata('message'); endif; ?>
                     <div class="input-group mb-3 mt-3">
-                        <input type="number" class="form-control" name="phone" id="phone" placeholder="Phone">
+                        <input type="number" class="form-control" name="phone" id="phone" placeholder="phone">
                     </div>
+                    <p style="font-size: 10px;padding-top: 0;">example: 01700000000</p>
                     <label id="phonemessage"></label>
                     <div class="btn-g ">
                         <center><a class="btn btnSignIn" onclick="forgetformValidation()">Send otp</a></center>
