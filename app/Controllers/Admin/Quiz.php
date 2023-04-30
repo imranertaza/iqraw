@@ -235,4 +235,31 @@ class Quiz extends BaseController
         print $view;
     }
 
+    public function filter(){
+        $subject_id = $this->request->getPost('subject_id');
+        $class_id = $this->request->getPost('class_id');
+        $data = $this->quizModel->like('subject_id' ,$subject_id)->like('class_id' ,$class_id)->findAll();
+        $view ='no data available';
+        foreach ($data as $val) {
+
+            $view .= '<tr>
+                    <td>'.$val->quiz_exam_info_id.'</td>
+                    <td>'.$val->quiz_name.'</td>
+                    <td>'.get_data_by_id('name', 'class', 'class_id', $val->class_id).'</td>
+                    <td>'.get_data_by_id('name', 'subject', 'subject_id', $val->subject_id).'</td>
+                    <td>'.$val->published_date.'</td>
+                    <td>'.$val->total_questions.'</td>
+                    <td>'.statusView($val->status).'</td>
+                    <td>
+                    <div class="btn-group">	
+                    <button type="button" class="btn btn-sm btn-info" onclick="edit(' . $val->quiz_exam_info_id . ')"><i class="fa fa-edit"></i></button>
+                    <button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $val->quiz_exam_info_id . ')"><i class="fa fa-trash"></i></button>
+                    </div>
+                    </td>
+            </tr>';
+        }
+
+        print $view;
+    }
+
 }

@@ -227,5 +227,33 @@ class Class_subscribe_package extends BaseController
 
         print $view;
     }
+
+    public function filter(){
+        $class_group_id = $this->request->getPost('class_group_id');
+        $class_id = $this->request->getPost('class_id');
+        if (!empty($class_group_id)) {
+            $this->class_subscribe_packageModel->like('class_group_id', $class_group_id);
+        }
+        $data = $this->class_subscribe_packageModel->like('class_id' ,$class_id)->findAll();
+
+        $view ='no data available';
+        foreach ($data as $val) {
+
+            $view .= '<tr>
+                    <td>'.$val->class_subscription_package_id.'</td>
+                    <td>'.get_data_by_id('name','class','class_id',$val->class_id).'</td>
+                    <td>'.get_data_by_id('group_name','class_group','class_group_id',$val->class_group_id).'</td>
+                    <td>'.$val->m_fee.'</td>
+                    <td>
+                    <div class="btn-group">	
+                    <button type="button" class="btn btn-sm btn-info" onclick="edit(' . $val->class_subscription_package_id . ')"><i class="fa fa-edit"></i></button>
+                    <button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $val->class_subscription_package_id . ')"><i class="fa fa-trash"></i></button>
+                    </div>
+                    </td>
+            </tr>';
+        }
+
+        print $view;
+    }
 		
 }	

@@ -380,7 +380,33 @@ class Student extends BaseController
         print $view;
     }
 
+    public function filter(){
+        $st_name = $this->request->getPost('st_name');
+        $class_id = $this->request->getPost('class_id');
+        $data = $this->student->like('name' ,$st_name)->like('class_id' ,$class_id)->findAll();
+        $view ='no data available';
+        foreach ($data as $val) {
 
+            $view .= '<tr>
+                    <td>'.$val->std_id.'</td>
+                    <td>'.$val->name.'</td>
+                    <td>'.$val->phone.'</td>
+                    <td>'.$val->school_name.'</td>
+                    <td>'.get_data_by_id('name','class','class_id',$val->class_id).'</td>
+                    <td>'.statusView($val->status).'</td>
+                    <td>
+                    <div class="btn-group">	
+                    <a href="' . base_url() . '/Admin/Student/view/' . $val->std_id . '" type="button" class="btn btn-sm btn-primary"><i class="fa fa-eye"></i></a>	
+                    <a href="' . base_url() . '/Admin/Student/update/' . $val->std_id . '" type="button" class="btn btn-sm btn-info"><i class="fa fa-edit"></i></a>	
+                    <button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $val->std_id . ')"><i class="fa fa-trash"></i></button>
+                    </div>
+                    </td>
+            </tr>';
+        }
+
+        print $view;
+
+    }
 
 
 }

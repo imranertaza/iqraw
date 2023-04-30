@@ -265,5 +265,32 @@ class Chapter extends BaseController
         print $view;
     }
 
+    public function filter(){
+        $subject_id = $this->request->getPost('subject_id');
+        $data = $this->chapterModel->like('subject_id' ,$subject_id)->findAll();
+
+        $view ='no data available';
+        foreach ($data as $val) {
+            $class_id = get_data_by_id('class_id','subject','subject_id',$val->subject_id);
+            $down = '<a href="'.base_url('assets/upload/chapter/'.$val->hand_note).'" download="'.$val->name.'"  class="btn btn-success" id="edit-form-btn">Download</a>';
+            $h = !empty($val->hand_note)?$down:"";
+            $view .= '<tr>
+                    <td>'.$val->chapter_id.'</td>
+                    <td>'.get_data_by_id('name', 'class', 'class_id', $class_id).'</td>
+                    <td>'.get_data_by_id('name', 'subject', 'subject_id', $val->subject_id).'</td>
+                    <td>'.$val->name.'</td>
+                    <td>'.$h.'</td>
+                    <td>'.statusView($val->status).'</td>
+                    <td>
+                    <div class="btn-group">	
+                    <button type="button" class="btn btn-sm btn-info" onclick="edit(' . $val->chapter_id . ')"><i class="fa fa-edit"></i></button>
+                    <button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $val->chapter_id . ')"><i class="fa fa-trash"></i></button>
+                    </div>
+                    </td>
+            </tr>';
+        }
+
+        print $view;
+    }
 
 }

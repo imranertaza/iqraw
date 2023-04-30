@@ -37,6 +37,28 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
+                        <div class="row" >
+                            <div class="col-md-3">
+                                <div class="form-group ">
+                                    <label for="chapter_id">Class: </label>
+                                    <select class="form-control text-capitalize" onchange="group(this.value)" id="class_id_search" required>
+                                        <option value="">Please select</option>
+                                        <?php echo getListInOption('','class_id','name','class') ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="chapter_id">Class Group: </label>
+                                    <select class="form-control"  id="class_group_search" >
+                                        <option value="">Class Group</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn-primary btn-sm filter" onclick="subscribe_package_Filter()" style="margin-top: 35px;">Filter</button>
+                            </div>
+                        </div>
                         <table id="data_table" class="table table-bordered table-striped text-capitalize ">
                             <thead>
                             <tr>
@@ -459,8 +481,36 @@
             success: function (response){
                 $("#class_group").html(response);
                 $("#edit-form #class_group").html(response);
+                $("#class_group_search").html(response);
             }
         });
+    }
+
+    function subscribe_package_Filter(){
+        var classId = $("#class_id_search").val();
+        var class_group = $("#class_group_search").val();
+
+        if(classId == ''){
+            $("#class_id_search").css('border','1px solid #ff0000');
+        }else{
+            $("#class_id_search").css('border','1px solid #ced4da');
+
+            $.ajax({
+                url: '<?php echo base_url($controller . '/filter') ?>',
+                type: 'post',
+                data: {class_id:classId,class_group_id:class_group},
+                beforeSend: function () {
+                    $('#filter').html('<i class="fa fa-spinner fa-spin"></i>');
+                },
+                success: function (date) {
+                    $('#data_table').html(date);
+                    $('#data_table_filter').hide();
+                    $('#data_table_info').hide();
+                    $('#data_table_paginate').hide();
+
+                }
+            });
+        }
     }
 
 

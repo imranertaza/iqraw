@@ -37,6 +37,32 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group ">
+                                    <label for="course_id">Course: </label>
+                                    <select class="form-control text-capitalize" onchange="course_category(this.value)"
+                                            id="course_id_search" required>
+                                        <option value="">Please select</option>
+                                        <?php echo getListInOption('', 'course_id', 'course_name', 'course') ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="form-group ">
+                                    <label for="chapter_id">Category: </label>
+                                    <select class="form-control text-capitalize" id="courseCatId_search"
+                                            required>
+                                        <option value="">Please select</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3" >
+                                <button class="btn btn-primary btn-sm filter" onclick="course_video_Filter()" style="margin-top: 35px;">Filter</button>
+                            </div>
+                            <div class="col-md-3" ></div>
+                        </div>
                         <table id="data_table" class="table table-bordered table-striped text-capitalize ">
                             <thead>
                             <tr>
@@ -528,9 +554,43 @@
             success: function (response) {
                 $("#courseCatId").html(response);
                 $("#course_cat_id").html(response);
+                $("#courseCatId_search").html(response);
                 // $("#edit-form #groupId").html(response);
             }
         });
+    }
+
+    function course_video_Filter(){
+        var course_id = $("#course_id_search").val();
+        var courseCatId = $("#courseCatId_search").val();
+
+        if(course_id == ''){
+            $("#course_id_search").css('border','1px solid #ff0000');
+        }else{
+            $("#course_id_search").css('border','1px solid #ced4da');
+        }
+
+        if(courseCatId == ''){
+            $("#courseCatId_search").css('border','1px solid #ff0000');
+        }else{
+            $("#courseCatId_search").css('border','1px solid #ced4da');
+
+            $.ajax({
+                url: '<?php echo base_url($controller . '/filter') ?>',
+                type: 'post',
+                data: {course_id:course_id,course_cat_id:courseCatId},
+                beforeSend: function () {
+                    $('.filter').html('<i class="fa fa-spinner fa-spin"></i>');
+                },
+                success: function (date) {
+                    $('#data_table').html(date);
+                    $('#data_table_filter').hide();
+                    $('#data_table_info').hide();
+                    $('#data_table_paginate').hide();
+                    $('.filter').html('Filter');
+                }
+            });
+        }
     }
 
 </script>

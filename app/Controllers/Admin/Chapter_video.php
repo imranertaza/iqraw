@@ -243,5 +243,28 @@ class Chapter_video extends BaseController
         print $view;
     }
 
+    public function filter(){
+        $chapter_id = $this->request->getPost('chapter_id');
+        $data = $this->chapterVideoModel->like('chapter_id' ,$chapter_id)->findAll();
+        $view ='no data available';
+        foreach ($data as $val) {
+
+            $view .= '<tr>
+                    <td>'.$val->video_id.'</td>
+                    <td>'.get_data_by_id('name', 'chapter', 'chapter_id', $val->chapter_id).'</td>
+                    <td>'.$val->name.'</td>
+                    <td>'.statusView($val->status).'</td>
+                    <td>
+                    <div class="btn-group">	
+                    <button type="button" class="btn btn-sm btn-info" onclick="edit(' . $val->video_id . ')"><i class="fa fa-edit"></i></button>
+                    <button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $val->video_id . ')"><i class="fa fa-trash"></i></button>
+                    </div>
+                    </td>
+            </tr>';
+        }
+
+        print $view;
+    }
+
 
 }

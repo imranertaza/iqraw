@@ -316,5 +316,32 @@ class Course_video extends BaseController
         print $view;
     }
 
+    public function filter(){
+        $course_id = $this->request->getPost('course_id');
+        $course_cat_id = $this->request->getPost('course_cat_id');
+        $data = $this->course_videoModel->where('course_id' ,$course_id)->where('course_cat_id' ,$course_cat_id)->findAll();
+        $view ='no data available';
+        foreach ($data as $val) {
+            $down = '<a href="'.base_url('assets/upload/courseVideo/'.$val->hand_note).'" download="course_hand_note"  class="btn btn-success" id="edit-form-btn">Download</a>';
+            $btn = !empty($value->hand_note)?$down:'';
+            $view .= '<tr>
+                    <td>'.$val->course_video_id.'</td>
+                    <td>'.get_data_by_id('course_name','course','course_id',$val->course_id).'</td>
+                    <td>'.get_data_by_id('category_name','course_category','course_cat_id',$val->course_cat_id).'</td>
+                    <td>'.$val->title.'</td>
+                    <td>'.$btn.'</td>
+                    <td>'.statusView($val->status).'</td>
+                    <td>
+                    <div class="btn-group">	
+                    <button type="button" class="btn btn-sm btn-info" onclick="edit(' . $val->course_video_id . ')"><i class="fa fa-edit"></i></button>
+                    <button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $val->course_video_id . ')"><i class="fa fa-trash"></i></button>
+                    </div>
+                    </td>
+            </tr>';
+        }
+
+        print $view;
+    }
+
 
 }

@@ -37,6 +37,28 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group ">
+                                    <label for="chapter_id">Class: </label>
+                                    <select class="form-control text-capitalize" id="class_id" onchange="get_subject(this.value)"  required>
+                                        <option value="">Please select</option>
+                                        <?php echo getListInOption('','class_id','name','class') ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="chapter_id">Subject: </label>
+                                    <select class="form-control"  id="subject_id_search" required>
+                                        <option value="">Please select</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-3"><button class="btn btn-primary btn-sm filter" onclick="chapterFilter()" style="margin-top: 35px;">Filter</button></div>
+                            <div class="col-md-3"></div>
+                        </div>
+
                         <table id="data_table" class="table table-bordered table-striped text-capitalize ">
                             <thead>
                             <tr>
@@ -476,8 +498,44 @@
             success: function (response){
                 $("#subject_id").html(response);
                 $("#edit-form #subject_id").html(response);
+                $("#subject_id_search").html(response);
             }
         });
+    }
+
+    function chapterFilter(){
+        var subject_id_search = $("#subject_id_search").val();
+        var classId = $("#class_id").val();
+
+        if(classId == ''){
+            $("#class_id").css('border','1px solid #ff0000');
+        }else{
+            $("#class_id").css('border','1px solid #ced4da');
+        }
+
+        if(subject_id_search == ''){
+            $("#subject_id_search").css('border','1px solid #ff0000');
+        }else{
+            $("#subject_id_search").css('border','1px solid #ced4da');
+
+            $.ajax({
+                url: '<?php echo base_url($controller . '/filter') ?>',
+                type: 'post',
+                data: {subject_id:subject_id_search},
+                beforeSend: function () {
+                    $('#filter').html('<i class="fa fa-spinner fa-spin"></i>');
+                },
+                success: function (date) {
+                    $('#data_table').html(date);
+                    $('#data_table_filter').hide();
+                    $('#data_table_info').hide();
+                    $('#data_table_paginate').hide();
+
+                }
+            });
+        }
+
+
     }
 
 
