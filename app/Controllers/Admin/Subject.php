@@ -232,4 +232,28 @@ class Subject extends BaseController
         }
         print $view;
     }
+
+    public function filter(){
+        $class_group_id = $this->request->getPost('class_group_id');
+        $class_id = $this->request->getPost('class_id');
+        $data = $this->subjectModel->like('class_group_id' ,$class_group_id)->like('class_id' ,$class_id)->findAll();
+        $view ='';
+        foreach ($data as $val) {
+
+            $view .= '<tr>
+                    <td>'.$val->subject_id.'</td>
+                    <td>'.$val->name.'</td>
+                    <td>'.get_data_by_id('name','class','class_id',$val->class_id).'</td>
+                    <td>'.statusView($val->status).'</td>
+                    <td>
+                    <div class="btn-group">	
+                    <button type="button" onclick="edit(' . $val->subject_id . ')" type="button" class="btn btn-sm btn-info"><i class="fa fa-edit"></i></a>	
+                    <button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $val->subject_id . ')"><i class="fa fa-trash"></i></button>
+                    </div>
+                    </td>
+            </tr>';
+        }
+
+        print $view;
+    }
 }

@@ -34,6 +34,24 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
+                        <div class="row" >
+                            <div class="col-md-3">
+                                <div class="form-group ">
+                                    <label for="course_id">Start Date: </label>
+                                    <input type="date" id="st_date" class="form-control" >
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group ">
+                                    <label for="course_id">End Date: </label>
+                                    <input type="date" id="end_date" class="form-control" >
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <button class="btn btn-primary btn-sm filter" onclick="class_sub_Filter()" style="margin-top: 35px;">Filter</button>
+                            </div>
+                            <div class="col-md-3"></div>
+                        </div>
                         <table id="data_table" class="table table-bordered table-striped">
                             <thead>
                             <tr>
@@ -77,5 +95,40 @@
             }
         });
     });
+
+    function class_sub_Filter(){
+        var st_date = $("#st_date").val();
+        var end_date = $("#end_date").val();
+
+        if(st_date == ''){
+            $("#st_date").css('border','1px solid #ff0000');
+        }else{
+            $("#st_date").css('border','1px solid #ced4da');
+        }
+
+        if(end_date == ''){
+            $("#end_date").css('border','1px solid #ff0000');
+        }else{
+            $("#end_date").css('border','1px solid #ced4da');
+
+            $.ajax({
+                url: '<?php echo base_url($controller . '/filter') ?>',
+                type: 'post',
+                data: {st_date:st_date,end_date:end_date},
+                beforeSend: function () {
+                    $('#filter').html('<i class="fa fa-spinner fa-spin"></i>');
+                },
+                success: function (date) {
+                    $('#data_table').html(date);
+                    $('#data_table_filter').hide();
+                    $('#data_table_info').hide();
+                    $('#data_table_paginate').hide();
+
+                }
+            });
+        }
+
+
+    }
 
 </script>

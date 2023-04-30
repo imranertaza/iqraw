@@ -225,5 +225,22 @@ class Subscribe extends BaseController
         print $view;
     }
 
+    public function filter(){
+        $course_id = $this->request->getPost('course_id');
+        $data = $this->course_subscribeModel->where('course_id' ,$course_id)->findAll();
+        $view ='no data available';
+        foreach ($data as $val) {
+
+            $view .= '<tr>
+                    <td>'.$val->course_subscribe_id.'</td>
+                    <td>'.get_data_by_id('name','student','std_id',$val->std_id).'</td>
+                    <td>'.get_data_by_id('course_name','course','course_id',$val->course_id).'</td>
+                    <td>'.statusView($val->status).'</td>                    
+            </tr>';
+        }
+
+        print $view;
+    }
+
 
 }

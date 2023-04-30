@@ -79,11 +79,19 @@ class Subject extends BaseController
             $subscribePackageId = $this->class_subscribe_packageModel->where('class_id', $classId)->where($wArray)->first();
 
             if (!empty($subscribePackageId)){
-                $subscrib = $this->class_subscribeModel->where('std_id',$this->session->std_id)->where('class_subscription_package_id',$subscribePackageId->class_subscription_package_id)->where('subs_end_date >=',date('Y-m-d'))->countAllResults();
+                $subscrib = $this->class_subscribeModel->where('std_id',$this->session->std_id)->where('class_subscription_package_id',$subscribePackageId->class_subscription_package_id)->where('status','1')->where('subs_end_date >=',date('Y-m-d'))->countAllResults();
                 if (empty($subscrib)){
 
-                    $this->class_subscribeModel->where('std_id',$this->session->std_id)->where('class_subscription_package_id',$subscribePackageId->class_subscription_package_id)->delete();
-                    
+//                    $this->class_subscribeModel->where('std_id',$this->session->std_id)->where('class_subscription_package_id',$subscribePackageId->class_subscription_package_id)->delete();
+
+                    // Checking if subscription expires or not, if expire, status is updating
+                    $oldSubscrib = $this->class_subscribeModel->where('std_id',$this->session->std_id)->where('class_subscription_package_id',$subscribePackageId->class_subscription_package_id)->where('status','1')->where('subs_end_date <',date('Y-m-d'))->countAllResults();
+                    if(!empty($oldSubscrib)){
+                        $statusData['status'] = '0';
+                        $table = DB()->table('class_subscribe');
+                        $table->where('std_id',$this->session->std_id)->where('class_subscription_package_id',$subscribePackageId->class_subscription_package_id)->where('status','1')->update($statusData);
+                    }
+
                     return redirect()->to(site_url('/Mobile_app/Class_subscribe/index/'.$subscribePackageId->class_subscription_package_id));
                 }
             }
