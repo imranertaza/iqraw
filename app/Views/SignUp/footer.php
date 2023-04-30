@@ -133,11 +133,12 @@
     function otpValidation(){
         var result = 0;
         if ($('#otp').val() == ''){
-            $('#otpmessage').html('<p style="color: red;">Otp field is required </p>');
+            $('#otpmessage').html('<p style="color: red;">OTP field is required </p>');
             result = 1;
-        }else {
-            $('#otpmessage').html('<p style="color: green;">success</p>');
         }
+        // else {
+        //     $('#otpmessage').html('<p style="color: green;">success</p>');
+        // }
 
 
 

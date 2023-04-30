@@ -1,0 +1,4 @@
+*.jpg
+*.png
+*.pdf
+!no_img.svg

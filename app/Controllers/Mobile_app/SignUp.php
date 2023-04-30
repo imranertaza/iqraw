@@ -77,8 +77,8 @@ class SignUp extends BaseController
             return redirect()->to('/');
         } else {
 
-            $check = $this->checkUser($data['phone'], $data['password']);
-            if (empty($check)){
+            $check = $this->is_exist($data['phone']);
+            if ($check == true){
                 $this->student->insert($data);
             }else{
                 $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Phone number already in use</div>');
@@ -151,7 +151,6 @@ class SignUp extends BaseController
         $table = DB()->table('student');
         $query = $table->where('phone', $phone)->get();
         $user = $query->getRow();
-
         if (!empty($user)) {
             if ($pass == $user->password) {
                 return $user;
@@ -162,6 +161,20 @@ class SignUp extends BaseController
             return array();
         }
     }
+
+
+    private function is_exist($phone)
+    {
+        $table = DB()->table('student');
+        $query = $table->where('phone', $phone)->get();
+        $user = $query->getRow();
+        if (empty($user)) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 
     public function logout()
     {
@@ -208,6 +221,24 @@ class SignUp extends BaseController
         }
     }
 
+    private function sms_send($number, $message) {
+        $data = [
+            "api_key" => SMS_API_KEY,
+            "senderid" => SMS_SENDER_ID,
+            "number" => $number,
+            "message" => $message
+        ];
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, SMS_URL);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $response = curl_exec($ch);
+        curl_close($ch);
+        return $response;
+    }
+
     public function send_otp(){
         $phone = $this->request->getPost('phone');
 
@@ -216,12 +247,20 @@ class SignUp extends BaseController
         $user = $query->getRow();
 
         if (!empty($user)){
-            $otp_code = substr((rand()),0, 4);
+            $otp_code = substr((rand()),0, 5);
 
             setcookie('forget_phone',$phone,time()+ (60 * 2), "/");
             setcookie('forget_otp',$otp_code,time()+ (60 * 2), "/");
 
-//            http://bulksmsbd.net/api/smsapi?api_key=Yyl7HcfrZAEclh1KhnMG&type=text&number=(Receiver)&senderid=8809617611058&message=(Message Content)
+
+            //Sending OTP Start
+            $msg = 'Your iqraw OTP is: '.$otp_code;
+            $send = $this->sms_send($phone, $msg);
+            $report = json_decode($send);
+            if(($report->success_message == 'SMS Submitted Successfully 1') || ($report->response_code == 202)){
+                $this->session->setFlashdata('otp_sent_message', 'An OTP has been sent to this number '.$phone);
+            }
+            //Sending OTP End
 
             return redirect()->to('Mobile_app/SignUp/otp_submit');
         }else{
@@ -248,7 +287,7 @@ class SignUp extends BaseController
             if($_COOKIE['forget_otp'] == $otp){
                 return redirect()->to(site_url("/Mobile_app/SignUp/enter_new_password"));
             }else{
-                $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Please enter correct otp</div>');
+                $this->session->setFlashdata('otp_sent_message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Please enter correct OTP</div>');
                 return redirect()->to(site_url("/Mobile_app/SignUp/otp_submit"));
             }
 

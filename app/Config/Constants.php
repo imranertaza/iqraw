@@ -11,6 +11,12 @@ define('API_URL', 'https://sandbox.aamarpay.com/index.php');
 //define('API_URL', 'https://secure.aamarpay.com/index.php');
 
 
+// SMS Config
+define('SMS_URL', 'http://bulksmsbd.net/api/smsapi');
+define('SMS_API_KEY', 'Yyl7HcfrZAEclh1KhnMG');
+define('SMS_SENDER_ID', '8809617611058');
+
+
 define('TRANSECTION_PREFIX', 'iqraw_');
 
 
