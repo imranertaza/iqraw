@@ -19,26 +19,18 @@ use PHPUnit\Util\Test as TestUtil;
  * An object representation of the TestCase class-string.
  *
  * @internal
+ *
  * @coversNothing
  */
 final class TestCase
 {
     /**
-     * @var string
-     *
      * @phpstan-var class-string
      */
-    private $class;
+    private string $class;
 
-    /**
-     * @var string
-     */
-    private $name;
-
-    /**
-     * @var string
-     */
-    private $dataname;
+    private string $name;
+    private string $dataname;
 
     /**
      * The annotations array provided by \PHPUnit\Util\Test::parseMethodAnnotations.
@@ -47,7 +39,7 @@ final class TestCase
      *
      * @phpstan-var array{'method'?: null|array<string, array<int, string>>, 'class'?:array<string, array<int, string>>}
      */
-    private $annotations = [];
+    private array $annotations = [];
 
     /**
      * @phpstan-param class-string $class
@@ -67,7 +59,7 @@ final class TestCase
     public function getName(bool $withDataname = false): string
     {
         if ($withDataname) {
-            return $this->name . $this->dataname;
+            return $this->name.$this->dataname;
         }
 
         return $this->name;
@@ -96,9 +88,9 @@ final class TestCase
     }
 
     /**
-     * @throws \InvalidArgumentException
-     *
      * @return array<int, string>
+     *
+     * @throws \InvalidArgumentException
      */
     public function getClassAnnotation(string $key): array
     {
@@ -115,9 +107,9 @@ final class TestCase
     }
 
     /**
-     * @throws \InvalidArgumentException
-     *
      * @return array<int, string>
+     *
+     * @throws \InvalidArgumentException
      */
     public function getMethodAnnotation(string $key): array
     {

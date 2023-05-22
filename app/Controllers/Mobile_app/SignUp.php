@@ -135,6 +135,8 @@ class SignUp extends BaseController
                 $sessionArray = array(
                     'std_id' => $result->std_id,
                     'name' => $result->name,
+                    'class_id' => isset($result->class_id) ? $result->class_id : null,
+                    'class_group_id' => isset($result->class_group_id) ? $result->class_group_id : null,
                     'isLoggedInStudent' => TRUE
                 );
                 $this->session->set($sessionArray);

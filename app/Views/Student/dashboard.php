@@ -29,5 +29,10 @@
         <div class="col-6 h-p-r">
             <a href="<?php echo base_url() ?>/Mobile_app/Vocabulary" class="btn d-block btn-st">Vocabulary</a>
         </div>
+        <?php if($live_video_status == 1) { ?>
+        <div class="col-6 h-p-r">
+            <a href="<?php echo base_url() ?>/Mobile_app/Live" class="btn d-block btn-st">Live Class Runing</a>
+        </div>
+        <?php } ?>
     </div>
 </section>
