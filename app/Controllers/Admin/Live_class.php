@@ -28,7 +28,8 @@ class Live_class extends BaseController
        	$this->class_group_joinedModel = new Class_group_joinedModel();
 
 	}
-	
+
+
 	public function index()
 	{
         $isLoggedIAdmin = $this->session->isLoggedIAdmin;
@@ -71,12 +72,15 @@ class Live_class extends BaseController
                 $ops .= '	<button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $value->live_id . ')"><i class="fa fa-trash"></i></button>';
             }
 			$ops .= '</div>';
+
+            $viewLink = '<a href="'.base_url().'/Admin/Live_class/Manage/'.$value->class_id.'/'.$value->class_group_id.'">View</a>';
 			
 			$data['data'][$key] = array(
                 get_data_by_id('name','class','class_id',$value->class_id),
                 get_data_by_id('group_name','class_group','class_group_id',$value->class_group_id),
                 $value->youtube_code,
                 $value->live_status,
+                $viewLink,
 				$ops,
 			);
 		} 
@@ -163,6 +167,29 @@ class Live_class extends BaseController
         }
 
         print $view;
+    }
+
+    public function Manage($class_id, $classGroupId=null){
+        $isLoggedIAdmin = $this->session->isLoggedIAdmin;
+        if (!isset($isLoggedIAdmin) || $isLoggedIAdmin != TRUE) {
+            return redirect()->to(site_url("/admin"));
+        } else {
+            $data['controller'] = 'Admin/Live_class';
+            $data['classId'] = $class_id;
+            $data['classGroupId'] = $classGroupId;
+
+            $role = $this->session->admin_role;
+            //[mod_access] [create] [read] [update] [delete]
+            $perm = $this->permission->module_permission_list($role, $this->module_name);
+            echo view('Admin/header');
+            echo view('Admin/sidebar');
+            if ($perm['mod_access'] == 1) {
+                echo view('Admin/Live_class/manage', $data);
+            } else {
+                echo view('no_permission');
+            }
+            echo view('Admin/footer');
+        }
     }
 		
 }	

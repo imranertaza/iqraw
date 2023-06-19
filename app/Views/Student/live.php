@@ -81,13 +81,15 @@
 
     // Chat option Script (Start)
     // This is for accessing web socket
-    var conn = new WebSocket('ws://localhost:8081');
+    var conn = new WebSocket('ws://localhost:8081?class_id=<?php print $classId; ?>&grp_id=<?php print $classGroupId; ?>&std_id=<?php print $std_id; ?>');
     conn.onopen = function(e) {
-        console.log("Connection established!");
+        console.log("Connection Established!");
+        console.log(e);
+        // otherMessage(e);
     };
 
     conn.onmessage = function(e) {
-        //console.log(e.data);
+        //console.log(e);
         otherMessage(e.data);
     };
 
@@ -97,6 +99,7 @@
         if (msg.trim() == ''){
             return false;
         }
+        // conn.send(JSON.stringify({command: "message", from:"9", to: "1", message: "Hello"}));
         conn.send(msg);
         myMessage(msg);
         $("#chattext").val('');
@@ -120,6 +123,8 @@
         viewChatBox.scrollTop = viewChatBox.scrollHeight;
     }
     // Chat option Script (End)
+
+
 
     // This is for Youtube API and script (Start)
     // 2. This code loads the IFrame Player API code asynchronously.

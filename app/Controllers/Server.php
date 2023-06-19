@@ -9,7 +9,7 @@ use App\Libraries\Chat;
 
 class Server extends BaseController
 {
-    public function index()
+    public function index($port=8081)
     {
     if (!is_cli()) {
         die('You are at the wrong place!');
@@ -20,7 +20,7 @@ class Server extends BaseController
                     new Chat()
                 )
             ),
-            8081
+            $port
         );
 
     $server->run();

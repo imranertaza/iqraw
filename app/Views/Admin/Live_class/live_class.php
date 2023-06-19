@@ -42,6 +42,7 @@
                                 <th>Group</th>
                                 <th>Youtube Code</th>
                                 <th>Live Status</th>
+                                <th>View details</th>
                                 <th>Action</th>
                             </tr>
                             </thead>

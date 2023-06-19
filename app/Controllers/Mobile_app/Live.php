@@ -44,15 +44,16 @@ class Live extends BaseController
         if (!isset($isLoggedInStudent) || $isLoggedInStudent != TRUE) {
             return redirect()->to('/Mobile_app/login');
         } else {
-            $classId = get_data_by_id('class_id','student','std_id',$this->session->std_id);
-            $classGroupId = get_data_by_id('class_group_id','student','std_id',$this->session->std_id);
+            $data['std_id'] = $this->session->std_id;
+            $data['classId'] = get_data_by_id('class_id','student','std_id',$this->session->std_id);
+            $data['classGroupId'] = get_data_by_id('class_group_id','student','std_id',$this->session->std_id);
             $data['back_url'] = base_url('/Mobile_app/Dashboard');
             $data['page_title'] = 'Live Class';
             $data['footer_icon'] = 'Home';
-            $data['result'] = $this->Live_class_Model->select('youtube_code')->where('class_id', $classId)->where('class_group_id', $classGroupId)->first();
+            $data['result'] = $this->Live_class_Model->where('class_id', $data['classId'])->where('class_group_id', $data['classGroupId'])->first();
 
             // Check if this class has live class running
-            $live_video_status = $this->Live_class_Model->select('youtube_code')->where('class_id', $classId)->where('class_group_id', $classGroupId)->countAllResults();
+            $live_video_status = $this->Live_class_Model->select('youtube_code')->where('class_id', $data['classId'])->where('class_group_id', $data['classGroupId'])->countAllResults();
             if ($live_video_status != 1) {
                 // Redirect to Dashboard
                 return redirect()->to(site_url("/Mobile_app/Dashboard"));
