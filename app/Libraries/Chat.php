@@ -1,38 +1,31 @@
 <?php namespace App\Libraries;
-use App\Models\ChatRoom;
+use App\Models\ChatRoomModel;
+use App\Models\LiveChatHistoryModel;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 
 class Chat implements MessageComponentInterface {
     protected $clients;
     protected $chatRoom;
+    protected $liveChatHistory;
 
     public function __construct() {
         $this->clients = new \SplObjectStorage;
-        $this->chatRoom = new ChatRoom();
+        $this->chatRoom = new ChatRoomModel();
+        $this->liveChatHistory = new LiveChatHistoryModel();
     }
 
     public function onOpen(ConnectionInterface $conn) {
-        // User details
-//        $studentModel = new StudentModel();
-//        $student = $studentModel->find(4);
-//        $conn->user = $student;
-//        $conn->Session->get(4);
 
-        //Store data into database
-        // ws://localhost:8081?class_id=2&&grp_id=2
-        $uriQuery = $conn->httpRequest->getUri()->getQuery(); //class_id=2&grp_id=2
-        $classGroupArray = explode('&', $uriQuery); //$classGroupArray return class_id=2 and grp_id=2
-        $classArray = explode('=', $classGroupArray[0]); //$classArray[1]
-        $groupArray = explode('=', $classGroupArray[1]); //$groupArray[1]
-        $stdArray = explode('=', $classGroupArray[2]); //$stdArray[1]
+        $uriQuery = $conn->httpRequest->getUri()->getQuery(); //live_id=2&std_id=2
+        $dataToArray = explode('&', $uriQuery); //$dataToArray[0] = 'live_id=2',$dataToArray[1] = 'std_id=2'
+        $liveArray = explode('=', $dataToArray[0]); //$liveArray[1]
+        $stdArray = explode('=', $dataToArray[1]); //$stdArray[1]
 
         $data = array(
             'resource_id' => $conn->resourceId,
-            'class_id' => $classArray[1],
+            'live_id' => $liveArray[1],
             'std_id' => empty($stdArray[1]) ? null : $stdArray[1],
-//            'value' => json_encode($classGroupArray[0]),
-            'group_id' => empty($groupArray[1]) ? null : $groupArray[1],
         );
         $this->chatRoom->insert($data);
 
@@ -47,28 +40,45 @@ class Chat implements MessageComponentInterface {
         echo sprintf('Connection %d sending message "%s" to %d other connection%s' . "\n"
             , $from->resourceId, $msg, $numRecv, $numRecv == 1 ? '' : 's');
 
+
+        if ($this->isStudent($from->resourceId) == true){
+            $from_info = $this->queryBuilderWithJoin($from->resourceId);
+            $sender = $from_info->name;
+        }else {
+            $from_info = $this->queryBuilder($from->resourceId);
+            $sender = "Admin";
+        }
+
         //$msg = json_encode($this->clients);
         foreach ($this->clients as $client) {
-            if ($from !== $client) {
-                $fromBuilder = DB()->table('chat_room');
-                $fromBuilder->where('resource_id', $from->resourceId);
-                $from_info = $fromBuilder->get()->getRow();
 
-                $clientBuilder = DB()->table('chat_room');
-                $clientBuilder->where('resource_id', $client->resourceId);
-                $client_info = $clientBuilder->get()->getRow();
+            if ($this->isStudent($client->resourceId) == true){
+                $client_info = $this->queryBuilderWithJoin($client->resourceId);;
+            }else {
+                $client_info = $this->queryBuilder($client->resourceId);
+            }
+
+            if (($from !== $client) && ($from_info->std_id !== $client_info->std_id)) {
+
+                // Store to database
+                $historyData = array(
+                    'live_id' => $from_info->live_id,
+                    'std_id' => empty($from_info->std_id) ? null : $from_info->std_id,
+                    'text' => $msg,
+                    'time' => date('h:m'),
+                );
+                $this->liveChatHistory->insert($historyData);
+
 
 //                $lastQuery = DB()->getLastQuery();
-                //$from_info = $this->chatRoom->where('resource_id', $from->resourceId)->findAll();
-                //$client_info = $this->chatRoom->where('resource_id', $client->resourceId)->findAll();
-                if (($from_info->class_id == $client_info->class_id) && ($from_info->group_id == $client_info->group_id)) {
+                if ($from_info->live_id == $client_info->live_id) {
+                    $info['sender'] = $sender;
+                    $info['message'] = $msg;
+                    $info = json_encode($info);
                     // The sender is not the receiver, send to each client connected
-                    $client->send("Client $from->resourceId said $msg");
+                    $client->send($info);
                 }
 //                $client->send($msg);
-//                $client->send("Client $from->resourceId to $client->resourceId And Last Query is : $lastQuery");
-//                $client->send("Client $from->resourceId to $client->resourceId And fromclassid $from_info->class_id And fromgroupid $from_info->group_id");
-//                $client->send("Client $from->resourceId to $client->resourceId And clientclassid $client_info->class_id And clientgroupid $client_info->group_id");
             }
         }
     }
@@ -88,4 +98,26 @@ class Chat implements MessageComponentInterface {
 
         $conn->close();
     }
+
+    private function isStudent(int $resource_id) : bool {
+        $Builder = DB()->table('chat_room');
+        $Builder->select('std_id');
+        $Builder->where('resource_id', $resource_id);
+        $Builder->where('std_id !=', null);
+        return ($Builder->countAllResults(true) > 0) ? true : false;
+    }
+
+    private function queryBuilderWithJoin(int $resourceId) : \stdClass {
+        $Builder = DB()->table('chat_room');
+        $Builder->select('*');
+        $Builder->join('student', 'student.std_id = chat_room.std_id');
+        $Builder->where('resource_id', $resourceId);
+        return $Builder->get()->getRow();
+    }
+    private function queryBuilder(int $resourceId) : \stdClass {
+        $Builder = DB()->table('chat_room');
+        $Builder->where('resource_id', $resourceId);
+        return $Builder->get()->getRow();
+    }
+
 }

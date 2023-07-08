@@ -5,9 +5,11 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 
+use App\Models\ChatRoomModel;
 use App\Models\Live_class_Model;
 use App\Models\Class_group_joinedModel;
 use App\Libraries\Permission;
+use App\Models\LiveChatHistoryModel;
 
 class Live_class extends BaseController
 {
@@ -18,6 +20,8 @@ class Live_class extends BaseController
     protected $permission;
     private $module_name = 'Liveclass';
     private $class_group_joinedModel;
+    protected $liveChatHistoryModel;
+    protected $chatRoomModel;
 
     public function __construct()
 	{
@@ -26,6 +30,8 @@ class Live_class extends BaseController
        	$this->session = \Config\Services::session();
        	$this->permission = new Permission();
        	$this->class_group_joinedModel = new Class_group_joinedModel();
+        $this->liveChatHistoryModel = new LiveChatHistoryModel();
+        $this->chatRoomModel = new ChatRoomModel();
 
 	}
 
@@ -73,8 +79,8 @@ class Live_class extends BaseController
             }
 			$ops .= '</div>';
 
-            $viewLink = '<a href="'.base_url().'/Admin/Live_class/Manage/'.$value->class_id.'/'.$value->class_group_id.'">View</a>';
-			
+            $viewLink = '<a href="'.base_url().'/Admin/Live_class/Manage/'.$value->live_id.'">View</a>';
+
 			$data['data'][$key] = array(
                 get_data_by_id('name','class','class_id',$value->class_id),
                 get_data_by_id('group_name','class_group','class_group_id',$value->class_group_id),
@@ -135,7 +141,10 @@ class Live_class extends BaseController
 			throw new \CodeIgniter\Exceptions\PageNotFoundException();
 			
 		} else {	
-		
+		    // Delete all chat history of this live
+            $this->liveChatHistoryModel->where('live_id', $id)->delete();
+            $this->chatRoomModel->where('live_id', $id)->delete();
+
 			if ($this->Live_class_Model->delete($id)) {
 								
 				$response['success'] = true;
@@ -169,14 +178,15 @@ class Live_class extends BaseController
         print $view;
     }
 
-    public function Manage($class_id, $classGroupId=null){
+//    public function Manage($class_id, $classGroupId=null){
+    public function Manage($live_id){
         $isLoggedIAdmin = $this->session->isLoggedIAdmin;
         if (!isset($isLoggedIAdmin) || $isLoggedIAdmin != TRUE) {
             return redirect()->to(site_url("/admin"));
         } else {
             $data['controller'] = 'Admin/Live_class';
-            $data['classId'] = $class_id;
-            $data['classGroupId'] = $classGroupId;
+            $data['live_id'] = $live_id;
+            $data['chats'] = $this->liveChatHistoryModel->where('live_id', $data['live_id'])->findAll();
 
             $role = $this->session->admin_role;
             //[mod_access] [create] [read] [update] [delete]

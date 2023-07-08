@@ -7,11 +7,16 @@
     <div class="layer_bottom"></div>
 </section>
 <section class="viewChatMessage" id="viewChatMessage">
-    <div class="otherMsg">Message will be here<br><span class="showName">(Name)</span></div>
-    <div class="otherMsg">Message will be here<br><span class="showName">(Name)</span></div>
-    <div class="otherMsg">Message will be here<br><span class="showName">(Name)</span></div>
-    <div class="myMsg">Message will be here<br><span class="showName">(Name)</span></div>
-    <div class="otherMsg">Message will be here<br><span class="showName">(Name)</span></div><div class="otherMsg">Message will be here<br><span class="showName">(Name)</span></div><div class="otherMsg">Message will be here<br><span class="showName">(Name)</span></div>
+    <?php foreach ($chats as $chat) {
+        $styleClass = ($std_id == $chat->std_id) ? "myMsg" : "otherMsg";
+        if ($chat->std_id == null){
+            $sender = "Admin";
+        }else {
+            $sender = ($std_id == $chat->std_id) ? "Me" : get_data_by_id('name', 'student', 'std_id', $chat->std_id);
+        }
+    ?>
+    <div class="<?php print $styleClass; ?>"><?php print $sender; ?> : <?php print $chat->text; ?><br><span class="showName">(<?php print $chat->time; ?>)</span></div>
+    <?php } ?>
 </section>
 <footer>
     <textarea class="chatarea" name="chattext" id="chattext"></textarea>
@@ -81,7 +86,7 @@
 
     // Chat option Script (Start)
     // This is for accessing web socket
-    var conn = new WebSocket('ws://localhost:8081?class_id=<?php print $classId; ?>&grp_id=<?php print $classGroupId; ?>&std_id=<?php print $std_id; ?>');
+    var conn = new WebSocket('ws://localhost:8081?live_id=<?php print $result->live_id; ?>&std_id=<?php print $std_id; ?>');
     conn.onopen = function(e) {
         console.log("Connection Established!");
         console.log(e);
@@ -106,13 +111,18 @@
     });
 
     function myMessage(msg){
-        var html = '<div class="myMsg">'+ msg +'<br><span class="showName">(Name)</span></div>';
+        var today = new Date();
+        var time = today.getHours() + ":" + today.getMinutes();
+        var html = '<div class="myMsg">Me : '+ msg +'<br><span class="showName">('+ time +')</span></div>';
         $(".viewChatMessage").append(html);
         scrollToBottom();
     }
 
     function otherMessage(msg){
-        var html = '<div class="otherMsg">'+ msg +'<br><span class="showName">(Name)</span></div>';
+        var details = JSON.parse(msg);
+        var today = new Date();
+        var time = today.getHours() + ":" + today.getMinutes();
+        var html = '<div class="otherMsg">'+ details.sender +' : '+ details.message +'<br><span class="showName">('+ time +')</span></div>';
         $(".viewChatMessage").append(html);
         scrollToBottom();
     }

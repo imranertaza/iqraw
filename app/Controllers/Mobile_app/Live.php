@@ -6,6 +6,7 @@ use App\Models\ChapterModel;
 use App\Models\Class_subscribe_packageModel;
 use App\Models\Class_subscribeModel;
 use App\Models\Group_classModel;
+use App\Models\LiveChatHistoryModel;
 use App\Models\School_classModel;
 use App\Models\SubjectModel;
 use mysql_xdevapi\Table;
@@ -24,6 +25,7 @@ class Live extends BaseController
     protected $chapterModel;
     protected $group_classModel;
     protected $Live_class_Model;
+    protected $liveChatHistoryModel;
 
     public function __construct()
     {
@@ -36,6 +38,7 @@ class Live extends BaseController
         $this->validation =  \Config\Services::validation();
         $this->session = \Config\Services::session();
         $this->Live_class_Model = new Live_class_Model();
+        $this->liveChatHistoryModel = new LiveChatHistoryModel();
 
     }
     public function index()
@@ -54,10 +57,12 @@ class Live extends BaseController
 
             // Check if this class has live class running
             $live_video_status = $this->Live_class_Model->select('youtube_code')->where('class_id', $data['classId'])->where('class_group_id', $data['classGroupId'])->countAllResults();
-            if ($live_video_status != 1) {
+            if ($live_video_status != 1 || !$data['result']->live_id) {
                 // Redirect to Dashboard
                 return redirect()->to(site_url("/Mobile_app/Dashboard"));
             }
+
+            $data['chats'] = $this->liveChatHistoryModel->where('live_id', $data['result']->live_id)->findAll();
 
             echo view('Student/header_live',$data);
             echo view('Student/live',$data);
