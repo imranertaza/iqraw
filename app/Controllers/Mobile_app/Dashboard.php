@@ -26,6 +26,8 @@ class Dashboard extends BaseController
             $data['footer_icon'] = 'Home';
             unset($_SESSION['quiz']);
             unset($_SESSION['result_submit']);
+            unset($_SESSION['packId']);
+            unset($_SESSION['redi_url']);
             $query = $this->student->where('std_id',$this->session->std_id)->get();
             $data['student'] = $query->getRow();
 

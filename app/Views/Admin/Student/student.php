@@ -180,14 +180,12 @@
                             <div class="col-md-12">
                                 <!-- Nav tabs -->
                                 <ul class="nav nav-tabs nav-fill sut-t">
-                                    <li class="nav-item ">
-                                        <input type="radio" class="d-none"  name="institute" id="btnr1"   value="School" />
-                                        <a class="nav-link active" data-toggle="tab" onclick="checkInst()" href="#home">School</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <input type="radio" class="d-none" name="institute" id="btnr2"   value="Madrasha" />
-                                        <a class="nav-link " data-toggle="tab" onclick="checkInst2()" href="#menu1">Madrasah</a>
-                                    </li>
+                                    <?php foreach ($education as $key => $val){ ?>
+                                        <li class="nav-item ">
+                                            <input type="radio" class="d-none"  name="institute" <?php echo ($key == 0)?'id="btnr1"':'id="btnr2"';?>   value="<?php echo $val->edu_type_id;?>" />
+                                            <a class="nav-link <?php echo ($key == 0)?'active':'';?>" data-toggle="tab" <?php echo ($key == 0)?'onclick="checkInst()"':'onclick="checkInst2()"';?> href="#home"><?php echo $val->type_name;?></a>
+                                        </li>
+                                    <?php } ?>
 
                                 </ul>
 

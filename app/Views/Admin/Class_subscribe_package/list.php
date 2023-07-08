@@ -5,12 +5,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Class Subscribe</h1>
+                    <h1>Class Subscribe Package</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Class Subscribe</li>
+                        <li class="breadcrumb-item active">Class Subscribe Package</li>
                     </ol>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-8 mt-2">
-                                <h3 class="card-title">Class Subscribe List</h3>
+                                <h3 class="card-title">Class Subscribe Package List</h3>
                             </div>
                             <div class="col-md-4">
                                 <button type="button" class="btn btn-block btn-success" onclick="add()" title="Add"><i
@@ -63,9 +63,13 @@
                             <thead>
                             <tr>
                                 <th width="60">Id</th>
+                                <th>Name</th>
                                 <th>Class</th>
                                 <th>Group</th>
+                                <th>Education Type</th>
                                 <th>Fee</th>
+                                <th>Start date</th>
+                                <th>End date</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -92,6 +96,13 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group ">
+                                    <label for="chapter_id">Name: </label>
+                                    <input type="text" class="form-control text-capitalize" name="name" placeholder="Name" required >
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group ">
                                     <label for="chapter_id">Class: </label>
                                     <select class="form-control text-capitalize" onchange="group(this.value)" name="class_id" required>
                                         <option value="">Please select</option>
@@ -111,8 +122,39 @@
 
                             <div class="col-md-12">
                                 <div class="form-group">
+                                    <label for="class_id">Education Type: </label>
+                                    <select class="form-control" name="edu_type_id" required>
+                                        <option value="">Please select</option>
+                                        <?php echo getListInOption('','edu_type_id','type_name','education_type') ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
                                     <label for="name">Fee: </label>
-                                    <input type="number" class="form-control" name="m_fee" required>
+                                    <input type="number" class="form-control" name="m_fee" placeholder="Fee" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group ">
+                                    <label for="chapter_id">Start Date: </label>
+                                    <input type="date" class="form-control text-capitalize" name="start_date" placeholder="Start Date" required >
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group ">
+                                    <label for="chapter_id">End Date: </label>
+                                    <input type="date" class="form-control text-capitalize" name="end_date" placeholder="End Date" required >
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="name">Short Description: </label>
+                                    <textarea class="form-control" name="short_description" placeholder="Short Description"></textarea>
                                 </div>
                             </div>
 
@@ -145,6 +187,12 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group ">
+                                    <label for="chapter_id">Name: </label>
+                                    <input type="text" class="form-control text-capitalize" name="name" id="name" placeholder="Name" required >
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group ">
                                     <label for="chapter_id">Class: </label>
                                     <select class="form-control text-capitalize" onchange="group(this.value)" name="class_id" id="class_id" required>
                                         <option value="">Please select</option>
@@ -165,9 +213,33 @@
 
                             <div class="col-md-12">
                                 <div class="form-group">
+                                    <label for="class_id">Education Type: </label>
+                                    <select class="form-control" name="edu_type_id" id="edu_type_id" required>
+                                        <option value="">Please select</option>
+                                        <?php echo getListInOption('','edu_type_id','type_name','education_type') ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
                                     <label for="name">Fee: </label>
                                     <input type="number" class="form-control" name="m_fee" id="m_fee" required>
                                     <input type="hidden" class="form-control" name="class_subscription_package_id" id="class_subscription_package_id" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group ">
+                                    <label for="chapter_id">Start Date: </label>
+                                    <input type="date" class="form-control text-capitalize" name="start_date" id="start_date" placeholder="Start Date" required >
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group ">
+                                    <label for="chapter_id">End Date: </label>
+                                    <input type="date" class="form-control text-capitalize" name="end_date" id="end_date" placeholder="End Date" required >
                                 </div>
                             </div>
 
@@ -180,6 +252,13 @@
                                         <option value="">please select</option>
                                         <?php echo globalStatus('')?>
                                     </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="name">Short Description: </label>
+                                    <textarea class="form-control" name="short_description" id="short_description" placeholder="Short Description"></textarea>
                                 </div>
                             </div>
                         </div>
@@ -328,10 +407,15 @@
 
 
                 $("#edit-form #class_subscription_package_id").val(response.class_subscription_package_id);
+                $("#edit-form #name").val(response.name);
                 $("#edit-form #class_id").val(response.class_id);
                 $("#edit-form #class_group").val(response.class_group_id);
+                $("#edit-form #edu_type_id").val(response.edu_type_id);
                 $("#edit-form #m_fee").val(response.m_fee);
+                $("#edit-form #start_date").val(response.start_date);
+                $("#edit-form #end_date").val(response.end_date);
                 $("#edit-form #status").val(response.status);
+                $("#edit-form #short_description").val(response.short_description);
 
                 // submit the edit from
                 $.validator.setDefaults({

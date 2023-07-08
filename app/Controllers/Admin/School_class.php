@@ -117,12 +117,14 @@ class School_class extends BaseController
 
 
         $fields['name'] = $this->request->getPost('name');
+        $fields['edu_type_id'] = $this->request->getPost('edu_type_id');
         $fields['createdBy'] = $this->session->user_id;
         $group_id = $this->request->getPost('group_id[]');
 
 
         $this->validation->setRules([
             'name' => ['label' => 'Name', 'rules' => 'required'],
+            'edu_type_id' => ['label' => 'Education Type', 'rules' => 'required'],
         ]);
 
         if ($this->validation->run($fields) == FALSE) {
@@ -138,9 +140,15 @@ class School_class extends BaseController
                     foreach ($group_id as $v) {
                         $dat['class_id'] = $classId;
                         $dat['class_group_id'] = $v;
+                        $dat['edu_type_id'] = $fields['edu_type_id'];
                         $dat['createdBy'] = $this->session->user_id;
                         $this->class_group_joinedModel->insert($dat);
                     }
+                }else{
+                    $dat['class_id'] = $classId;
+                    $dat['edu_type_id'] = $fields['edu_type_id'];
+                    $dat['createdBy'] = $this->session->user_id;
+                    $this->class_group_joinedModel->insert($dat);
                 }
 
                 $response['success'] = true;
@@ -167,15 +175,50 @@ class School_class extends BaseController
 
         $fields['class_id'] = $this->request->getPost('class_id');
         $fields['name'] = $this->request->getPost('name');
+        $fields['edu_type_id'] = $this->request->getPost('edu_type_id');
+
         $group_id = $this->request->getPost('group_id[]');
-        $this->class_group_joinedModel->where('class_id', $class_id)->delete();
 
         if (!empty($group_id)) {
-            foreach ($group_id as $v) {
+            $this->class_group_joinedModel->where('class_id',$class_id)->where('class_group_id',null);
+            $this->class_group_joinedModel->delete();
+
+            foreach ($group_id as  $g2){
+                $check =  $this->class_group_joinedModel->where('class_id',$class_id)->where('class_group_id',$g2)->countAllResults();
+                if (!empty($check)) {
+                    $updat['edu_type_id'] = $fields['edu_type_id'];
+                    $table = DB()->table('class_group_joined');
+                    $table->where('class_id',$class_id)->where('class_group_id',$g2)->update($updat);
+                }else{
+                    $dat['class_id'] = $class_id;
+                    $dat['class_group_id'] = $g2;
+                    $dat['edu_type_id'] = $fields['edu_type_id'];
+                    $dat['createdBy'] = $this->session->user_id;
+                    $this->class_group_joinedModel->insert($dat);
+                }
+
+            }
+
+            $this->class_group_joinedModel->where('class_id',$class_id);
+            foreach ($group_id as $key => $v) {
+                $this->class_group_joinedModel->where('class_group_id !=',$v);
+            }
+            $this->class_group_joinedModel->delete();
+
+
+        }else{
+            $this->class_group_joinedModel->where('class_id',$class_id)->where('class_group_id !=', NULL);
+            $this->class_group_joinedModel->delete();
+            $check =  $this->class_group_joinedModel->where('class_id',$class_id)->where('class_group_id', NULL)->countAllResults();
+            if (empty($check)) {
                 $dat['class_id'] = $class_id;
-                $dat['class_group_id'] = $v;
+                $dat['edu_type_id'] = $fields['edu_type_id'];
                 $dat['createdBy'] = $this->session->user_id;
                 $this->class_group_joinedModel->insert($dat);
+            }else{
+                $updat['edu_type_id'] = $fields['edu_type_id'];
+                $table = DB()->table('class_group_joined');
+                $table->where('class_id',$class_id)->update($updat);
             }
         }
         $fields['status'] = $this->request->getPost('status');
@@ -241,6 +284,7 @@ class School_class extends BaseController
             $data['group'] = $this->group_classModel->findAll();
             $data['class'] = $this->classModel->where('class_id', $id)->first();
             $data['classGroup'] = $this->class_group_joinedModel->where('class_id', $id)->findAll();
+            $data['edu'] = $this->class_group_joinedModel->where('class_id', $id)->first();
 
             $role = $this->session->admin_role;
             //[mod_access] [create] [read] [update] [delete]

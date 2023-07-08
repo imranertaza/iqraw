@@ -11,7 +11,12 @@
     <script src="<?php echo base_url()?>/assets_web/js/bootstrap.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/b4655c4a4e.js" crossorigin="anonymous"></script>
 
+    <!-- Owl Stylesheets -->
+    <link rel="stylesheet" href="<?php echo base_url()?>/assets_web/owlcarousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="<?php echo base_url()?>/assets_web/owlcarousel/owl.theme.default.min.css">
+
     <script src="<?php echo base_url()?>/assets_web/js/jquery.min.js"></script>
+    <script src="<?php echo base_url()?>/assets_web/owlcarousel/owl.carousel.js"></script>
 
 </head>
 <body>

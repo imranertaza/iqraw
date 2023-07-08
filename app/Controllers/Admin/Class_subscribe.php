@@ -4,6 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use App\Libraries\Permission;
+use App\Models\Class_subscribe_packageModel;
 use App\Models\Class_subscribeModel;
 
 
@@ -12,6 +13,7 @@ class Class_subscribe extends BaseController
     protected $validation;
     protected $session;
     protected $class_subscribeModel;
+    protected $class_subscribe_packageModel;
     protected $crop;
     protected $permission;
     private $module_name = 'Class_subscribe';
@@ -20,6 +22,7 @@ class Class_subscribe extends BaseController
     {
 
         $this->class_subscribeModel = new Class_subscribeModel();
+        $this->class_subscribe_packageModel = new Class_subscribe_packageModel();
         $this->permission = new Permission();
         $this->validation = \Config\Services::validation();
         $this->session = \Config\Services::session();
@@ -62,6 +65,8 @@ class Class_subscribe extends BaseController
         $result = $this->class_subscribeModel->findAll();
 
         foreach ($result as $key => $value) {
+
+            $pack = $this->class_subscribe_packageModel->where('class_subscription_package_id',$value->class_subscription_package_id)->first();
             $class = get_data_by_id('class_id','class_subscribe_package','class_subscription_package_id',$value->class_subscription_package_id);
             $class_group_id = get_data_by_id('class_group_id','class_subscribe_package','class_subscription_package_id',$value->class_subscription_package_id);
             $ops = '<div class="btn-group">';
@@ -78,7 +83,9 @@ class Class_subscribe extends BaseController
                 get_data_by_id('name','student','std_id',$value->std_id),
                 get_data_by_id('name','class','class_id',$class),
                 get_data_by_id('group_name','class_group','class_group_id',$class_group_id),
-                $value->subs_end_date,
+                $pack->name,
+                $pack->m_fee,
+                $pack->end_date,
                 statusView($value->status),
 //                $ops,
             );

@@ -107,6 +107,16 @@
 
                             <div class="col-md-12">
                                 <div class="form-group">
+                                    <label for="class_id">Education Type: </label>
+                                    <select class="form-control" name="edu_type_id" >
+                                        <option value="">Please select</option>
+                                        <?php echo getListInOption('','edu_type_id','type_name','education_type') ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
                                     <label for="description">Image: </label>
                                     <input type="file" class="form-control" name="image" required>
                                     <small>Size: 1116x500</small>
@@ -179,6 +189,16 @@
                                     <select class="form-control" name="class_group_id" id="class_group_id">
                                         <option value="">Please select</option>
                                         <?php echo getListInOption('', 'class_group_id', 'group_name', 'class_group') ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="class_id">Education Type: </label>
+                                    <select class="form-control" name="edu_type_id" id="edu_type_id" >
+                                        <option value="">Please select</option>
+                                        <?php echo getListInOption('','edu_type_id','type_name','education_type') ?>
                                     </select>
                                 </div>
                             </div>
@@ -347,6 +367,7 @@
                 $("#edit-form .richText-editor").html(response.description);
                 $("#edit-form #price").val(response.price);
                 $("#edit-form #class_group_id").val(response.class_group_id);
+                $("#edit-form #edu_type_id").val(response.edu_type_id);
                 $("#edit-form #course_cat_id").val(response.course_cat_id);
                 $("#edit-form #class_id").val(response.class_id);
 

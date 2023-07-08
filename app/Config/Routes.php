@@ -46,8 +46,8 @@ $routes->get('/Mobile_app/register', 'Mobile_app\SignUp::index');
 $routes->get('/mobile_app/login', 'Mobile_app\SignUp::signIn');
 $routes->get('/Mobile_app/login', 'Mobile_app\SignUp::signIn');
 
-$routes->get('/Mobile_app', 'Mobile_app\SignUp::signIn');
-$routes->get('/mobile_app', 'Mobile_app\SignUp::signIn');
+$routes->get('/Mobile_app', 'Mobile_app\My_class::index');
+$routes->get('/mobile_app', 'Mobile_app\My_class::index');
 $routes->get('/admin', 'Admin\Login::index');
 
 /*

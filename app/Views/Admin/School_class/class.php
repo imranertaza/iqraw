@@ -76,6 +76,16 @@
 
                             <div class="col-md-12">
                                 <div class="form-group">
+                                    <label for="class_id">Education Type: </label>
+                                    <select class="form-control" name="edu_type_id" required>
+                                        <option value="">Please select</option>
+                                        <?php echo getListInOption('','edu_type_id','type_name','education_type') ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
                                     <label for="name">Class Group: </label>
                                 </div>
                             </div>

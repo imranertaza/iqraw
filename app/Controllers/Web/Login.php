@@ -49,7 +49,7 @@ class Login extends BaseController
                 $this->session->set($sessionArray);
 
                 $pay_course_id = $this->session->pay_course_id;
-                if (!isset($pay_course_id)){
+                if (!isset($this->session->redirect_url)){
                     return redirect()->to(site_url("/Web/Dashboard"));
                 }else{
                     return redirect()->to( site_url($this->session->redirect_url));
@@ -78,6 +78,7 @@ class Login extends BaseController
     }
 
     public function sign_up_action(){
+
         $data['name'] = $this->request->getPost('name');
         $data['phone'] = $this->request->getPost('phone');
         $data['status'] = '1';
@@ -96,37 +97,83 @@ class Login extends BaseController
             return redirect()->to('/Web/Login/sign_up');
         } else {
             $result = $this->checkUserAvailable($data['phone']);
+
             if (!empty($result)){
                 $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">This phone number already used!</div>');
                 return redirect()->to('/Web/Login/sign_up');
             }else{
+
+
                 if ($data['password'] == $con_password){
 
-                    $table = DB()->table('student');
-                    $table->insert($data);
+                    $receiver = $data['phone'];
+                    $otp = rand(100000,999999);
+                    $message = str_replace(" ", "%20", 'Your iQraw registration otp is : '.$otp);
+                    $url = "http://bulksmsbd.net/api/smsapi?api_key=Yyl7HcfrZAEclh1KhnMG&type=text&number=$receiver&senderid=8809617611058&message=$message";
+                    file_get_contents($url, true);
 
-                    $result = $this->checkUser($data['phone'], $data['password']);
-                    if (!empty($result)) {
-                        $sessionArray = array(
-                            'std_id' => $result->std_id,
-                            'name' => $result->name,
-                            'isLoggedInWeb' => TRUE
-                        );
-                        $this->session->set($sessionArray);
-
-                        $pay_course_id = $this->session->pay_course_id;
-                        if (!isset($pay_course_id)){
-                            return redirect()->to(site_url("/Web/Dashboard"));
-                        }else{
-                            return redirect()->to( site_url($this->session->redirect_url));
-                        }
-                    }
-
+                    $sessionReg = array(
+                        'name' => $data['name'],
+                        'phone' => $data['phone'],
+                        'password' => $data['password'],
+                        'reg_otp' => $otp,
+                    );
+                    $this->session->set($sessionReg);
+                    return redirect()->to('/Web/Login/otp_check');
                 }else{
                     $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Password Or conform password not match!</div>');
                     return redirect()->to('/Web/Login/sign_up');
                 }
+
             }
+        }
+    }
+
+    public function otp_check(){
+
+        echo view('Web/header');
+        echo view('Web/otp_check');
+        echo view('Web/footer');
+    }
+
+    public function otp_submit(){
+        $otp = $this->request->getPost('otp');
+        if($this->session->reg_otp == $otp){
+            return redirect()->to('/Web/Login/register_success');
+        }else{
+            $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">The verification code is incorrect!</div>');
+            return redirect()->to('/Web/Login/otp_check');
+        }
+
+    }
+
+    public function register_success(){
+
+        $data['name'] = $this->session->name;
+        $data['phone'] = $this->session->phone;
+        $data['status'] = '1';
+        $data['createdBy'] = '1';
+        $data['password'] = $this->session->password;
+
+        $table = DB()->table('student');
+        $table->insert($data);
+
+        $result = $this->checkUser($this->session->phone, $this->session->password);
+        if (!empty($result)) {
+            $sessionArray = array(
+                'std_id' => $result->std_id,
+                'name' => $result->name,
+                'isLoggedInWeb' => TRUE
+            );
+            $this->session->set($sessionArray);
+
+            unset($_SESSION['name']);
+            unset($_SESSION['phone']);
+            unset($_SESSION['password']);
+            unset($_SESSION['reg_otp']);
+
+            return redirect()->to(site_url("/Web/Dashboard"));
+
         }
     }
 

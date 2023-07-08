@@ -18,8 +18,8 @@ function newSession()
 function statusView($selected = '1')
 {
     $status = [
-        '0' => 'Inactive',
-        '1' => 'Active',
+        '0' => '<span class="text-danger">Inactive</span>',
+        '1' => '<span class="text-success">Active</span>',
     ];
 
     $row = '';
@@ -147,6 +147,15 @@ function invoiceDateFormat($datetime = '0000-00-00 00:00:00')
         return 'Unknown';
     }
     return date('d M Y h:i A ', strtotime($datetime));
+}
+
+function simpleDateFormat($datetime = '0000-00-00 00:00:00')
+{
+
+    if ($datetime == '0000-00-00 00:00:00' or $datetime == '0000-00-00' or $datetime == '') {
+        return 'Unknown';
+    }
+    return date('Y-m-d', strtotime($datetime));
 }
 
 function get_data_by_id($needCol, $table, $whereCol, $whereInfo)
@@ -461,4 +470,15 @@ function checkClassIdByGroup($classId)
     }else{
         return 0;
     }
+}
+function get_settings_value_by_label($label){
+
+    $tabledta = DB()->table('settings');
+    $query = $tabledta->where('label',$label)->get()->getRow();
+    if (!empty($query)){
+        return $query->value;
+    }else{
+        return '';
+    }
+
 }

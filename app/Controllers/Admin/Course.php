@@ -124,6 +124,7 @@ class Course extends BaseController
         $fields['price'] = $this->request->getPost('price');
         $fields['description'] = $this->request->getPost('description');
         $fields['class_id'] = empty($this->request->getPost('class_id')) ? null : $this->request->getPost('class_id');
+        $fields['edu_type_id'] = empty($this->request->getPost('edu_type_id')) ? null : $this->request->getPost('edu_type_id');
         $fields['class_group_id'] = empty($this->request->getPost('class_group_id')) ? null : $this->request->getPost('class_group_id');
         $fields['createdBy'] = $this->session->user_id;
         $image = $this->request->getFile('image');
@@ -190,6 +191,7 @@ class Course extends BaseController
         $fields['description'] = $this->request->getPost('description');
         $fields['class_id'] = empty($this->request->getPost('class_id')) ? null : $this->request->getPost('class_id');
         $fields['class_group_id'] = empty($this->request->getPost('class_group_id')) ? null : $this->request->getPost('class_group_id');
+        $fields['edu_type_id'] = empty($this->request->getPost('edu_type_id')) ? null : $this->request->getPost('edu_type_id');
         $image = $this->request->getFile('image');
 
         if (!empty($_FILES['image']['name'])) {

@@ -76,25 +76,24 @@ class Subject extends BaseController
             $classGroupId = get_data_by_id('class_group_id','student','std_id',$this->session->std_id);
 
             $wArray =  "(`class_group_id` IS NULL OR `class_group_id` = '$classGroupId')";
-            $subscribePackageId = $this->class_subscribe_packageModel->where('class_id', $classId)->where($wArray)->first();
+            $subscribePackage = $this->class_subscribe_packageModel->where('class_id', $classId)->where($wArray)->countAllResults();
 
-            if (!empty($subscribePackageId)){
-                $subscrib = $this->class_subscribeModel->where('std_id',$this->session->std_id)->where('class_subscription_package_id',$subscribePackageId->class_subscription_package_id)->where('status','1')->where('subs_end_date >=',date('Y-m-d'))->countAllResults();
+
+            if (!empty($subscribePackage)){
+//                $subscrib = $this->class_subscribeModel->where('std_id',$this->session->std_id)->where('status','1')->where('subs_end_date >=',date('Y-m-d'))->countAllResults();
+
+                $subscrib = $this->class_subscribeModel->join('class_subscribe_package', 'class_subscribe_package.class_subscription_package_id = class_subscribe.class_subscription_package_id')->where('class_subscribe.std_id',$this->session->std_id)->where('class_subscribe.status','1')->where('class_subscribe_package.end_date >=',date('Y-m-d'))->countAllResults();
+
                 if (empty($subscrib)){
-
-//                    $this->class_subscribeModel->where('std_id',$this->session->std_id)->where('class_subscription_package_id',$subscribePackageId->class_subscription_package_id)->delete();
-
                     // Checking if subscription expires or not, if expire, status is updating
-                    $oldSubscrib = $this->class_subscribeModel->where('std_id',$this->session->std_id)->where('class_subscription_package_id',$subscribePackageId->class_subscription_package_id)->where('status','1')->where('subs_end_date <',date('Y-m-d'))->countAllResults();
-                    if(!empty($oldSubscrib)){
-                        $statusData['status'] = '0';
-                        $table = DB()->table('class_subscribe');
-                        $table->where('std_id',$this->session->std_id)->where('class_subscription_package_id',$subscribePackageId->class_subscription_package_id)->where('status','1')->update($statusData);
-                    }
-
-                    return redirect()->to(site_url('/Mobile_app/Class_subscribe/index/'.$subscribePackageId->class_subscription_package_id));
+                    $statusData['status'] = '0';
+                    $table = DB()->table('class_subscribe');
+                    $table->where('std_id',$this->session->std_id)->where('status','1')->update($statusData);
+                    return redirect()->to(site_url('/Mobile_app/Class_subscribe'));
                 }
             }
+
+
 
             echo view('Student/header', $data);
             echo view('Student/chapter', $data);

@@ -1,7 +1,39 @@
 <section class="content-three con-mr">
     <div class="container">
         <div class="row ">
-            <div class="col-12 text-center" style="margin-bottom: 100px;">
+            <div class="col-12 text-center" style="margin-bottom: 50px;">
+                <p class="cor-title"> আমার প্যাকেজ </p>
+            </div>
+
+            <div class="col-12" style="margin-bottom: 50px;">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Sl</th>
+                            <th>Name</th>
+                            <th>Join Date</th>
+                            <th>End Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php $i=1; foreach ($pack as $val){ ?>
+                        <tr>
+                            <td><?php echo $i++;?></td>
+                            <td><?php echo get_data_by_id('name','class_subscribe_package','class_subscription_package_id',$val->class_subscription_package_id);?></td>
+                            <td><?php echo simpleDateFormat($val->createdDtm) ;?></td>
+                            <td><?php echo get_data_by_id('end_date','class_subscribe_package','class_subscription_package_id',$val->class_subscription_package_id);?></td>
+                            <td><?php echo statusView($val->status);?></td>
+                        </tr>
+                    <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+        <div class="row ">
+            <div class="col-12 text-center" style="margin-bottom: 50px;">
                 <p class="cor-title"> আমার কোর্স </p>
             </div>
             <?php foreach ($couSub as $row){
