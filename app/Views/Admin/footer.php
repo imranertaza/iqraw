@@ -49,6 +49,8 @@
         // $('[name="description"]').richText();
     });
     // CKEDITOR.replace( 'editor' );
+
+
 </script>
 
 </body>

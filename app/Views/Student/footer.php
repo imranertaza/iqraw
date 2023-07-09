@@ -359,6 +359,14 @@
         $("#dp").html('<b>'+price+'৳ </b>');
     }
 
+    function paymentmethod(url){
+        $('#subscribe_form').attr('action', url);
+    }
+
+    function paymentmethodcourse(url){
+        $('#course_form').attr('action', url);
+    }
+
 
 </script>
 </body>

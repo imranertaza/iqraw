@@ -7,7 +7,7 @@
 
 
         <div class="col-12">
-            <form class="form-inline" action="<?php print API_URL; ?>" method="POST">
+            <form id="subscribe_form" class="form-inline" action="<?php print API_URL; ?>" method="POST">
                 <?= csrf_field() ?>
                 <?php foreach ($pack as $key => $pa){ ?>
                 <div class="form-check box mt-3">
@@ -34,6 +34,20 @@
                 <tr>
                     <td><b>Due</b></td>
                     <td id="dp"></td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">
+                        <div class="form-check box mt-3" style="padding-top: 0px;">
+                            <input class="form-check-input" type="radio" onclick="paymentmethod('<?php print API_URL; ?>')"  name="payment_met" id="payment_amarPay" value="1" checked >
+                            <label class="form-check-label d-flex justify-content-between" style="margin-top: 12px;" for="payment_amarPay" >Aamarpay</label>
+                        </div>
+
+                        <div class="form-check box mt-3" style="padding-top: 0px;">
+                            <input class="form-check-input" type="radio" onclick="paymentmethod('<?php print base_url('/Mobile_app/Class_subscribe/sub_manual_action'); ?>')"  name="payment_met" id="payment_genarel" value="2"  >
+                            <label class="form-check-label d-flex justify-content-between" style="margin-top: 12px;" for="payment_genarel" >Manual pay</label>
+                        </div>
+                    </td>
                 </tr>
                     <tr>
                         <td colspan="2">

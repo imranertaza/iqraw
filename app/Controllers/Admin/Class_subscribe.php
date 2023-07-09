@@ -70,12 +70,13 @@ class Class_subscribe extends BaseController
             $class = get_data_by_id('class_id','class_subscribe_package','class_subscription_package_id',$value->class_subscription_package_id);
             $class_group_id = get_data_by_id('class_group_id','class_subscribe_package','class_subscription_package_id',$value->class_subscription_package_id);
             $ops = '<div class="btn-group">';
-            if ($perm['update'] ==1) {
-                $ops .= '	<button type="button" class="btn btn-sm btn-info" onclick="edit(' . $value->class_subscribe_id . ')"><i class="fa fa-edit"></i></button>';
-            }
-            if ($perm['delete'] ==1) {
-                $ops .= '	<button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $value->class_subscribe_id . ')"><i class="fa fa-trash"></i></button>';
-            }
+            $ops .= '<select class="form-control" onchange="subscribeStatusChange(this.value,'.$value->class_subscribe_id.')" name="status">'.globalStatus($value->status).'</select>';
+//            if ($perm['update'] ==1) {
+//                $ops .= '	<button type="button" class="btn btn-sm btn-info" onclick="edit(' . $value->class_subscribe_id . ')"><i class="fa fa-edit"></i></button>';
+//            }
+//            if ($perm['delete'] ==1) {
+//                $ops .= '	<button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $value->class_subscribe_id . ')"><i class="fa fa-trash"></i></button>';
+//            }
             $ops .= '</div>';
 
             $data['data'][$key] = array(
@@ -86,8 +87,7 @@ class Class_subscribe extends BaseController
                 $pack->name,
                 $pack->m_fee,
                 $pack->end_date,
-                statusView($value->status),
-//                $ops,
+                $ops,
             );
         }
 
@@ -295,6 +295,42 @@ class Class_subscribe extends BaseController
         }
 
         print $view;
+    }
+
+    public function subscribe_status(){
+        $response = array();
+
+        $status = $this->request->getPost('status');
+        $subscribe_id = $this->request->getPost('subscribe_id');
+
+        if ($status == 1) {
+            $data['status'] = '1';
+            $table = DB()->table('class_subscribe');
+            $table->where('class_subscribe_id',$subscribe_id)->update($data);
+
+
+            $dataPay['pay_status'] = 'Successful';
+            $tablePay = DB()->table('payment');
+            $tablePay->where('class_subscribe_id',$subscribe_id)->update($dataPay);
+
+            $response['success'] = true;
+            $response['messages'] = 'Successfully Active';
+        }else{
+            $data['status'] = '0';
+            $table = DB()->table('class_subscribe');
+            $table->where('class_subscribe_id',$subscribe_id)->update($data);
+
+            $response['success'] = true;
+            $response['messages'] = 'Successfully Inactive';
+        }
+
+
+
+
+        return $this->response->setJSON($response);
+
+
+
     }
 
 

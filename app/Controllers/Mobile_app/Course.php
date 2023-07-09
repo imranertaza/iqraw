@@ -403,6 +403,67 @@ class Course extends BaseController
         }
     }
 
+    public function sub_manual_action(){
+
+        // Check login status before execution
+        $isLoggedInStudent = $this->session->isLoggedInStudent;
+        if (!isset($isLoggedInStudent) || $isLoggedInStudent != TRUE) {
+            return redirect()->to('/Mobile_app/login');
+        } else {
+
+            $data['course_id'] = $this->request->getPost('opt_a');
+            $data['std_id'] = $this->request->getPost('opt_b');
+            $data['std_name'] = $this->request->getPost('cus_name');
+            $data['subs_time'] = '1';
+            $data['status'] = '0';
+            $terms = $this->request->getPost('opt_c');
+            $paid_amount = (float) $this->request->getPost('amount');
+
+            // Checking the validation
+            $this->validation->setRules([
+                'course_id' => ['label' => 'Course', 'rules' => 'required'],
+            ]);
+
+            if ($this->validation->run($data) == FALSE) {
+                $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">' . $this->validation->listErrors() . '</div>');
+                return redirect()->to('/Mobile_app/Course/subscribe/' . $data['course_id']);
+            } else {
+
+                //Checking if it checks our terms and condition.
+                if (!empty($terms)) {
+                    DB()->transStart();
+                    // Inserting into course_subscription table
+                    $this->course_subscribeModel->insert($data);
+
+                    $course_subscribe_id = $this->course_subscribeModel->getInsertID();
+
+                    // Inserting into payment table (Start)
+                    $data2['course_subscribe_id'] = empty($course_subscribe_id) ? null : $course_subscribe_id;
+                    $data2['std_id'] = empty($this->session->std_id) ? null : $this->session->std_id;
+                    $data2['amount_original'] = $paid_amount;
+                    $data2['pay_status'] = 'Pending';
+                    $data2['store_amount'] = $paid_amount;
+
+                    $table2 = DB()->table('payment');
+                    $table2->insert($data2);
+                    // Inserting into payment table (End)
+                    DB()->transComplete();
+
+                    // If sql transaction failed.
+                    if (DB()->transStatus() === false) {
+                        $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Transection Failed!</div>');
+                        return redirect()->to('/Mobile_app/Course/canceled/');
+                    }
+
+                    return redirect()->to('/Mobile_app/Course/success/' . $data['course_id']);
+                } else {
+                    $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Terms fields required!</div>');
+                    return redirect()->to('/Mobile_app/Course/subscribe/' . $data['course_id']);
+                }
+            }
+        }
+    }
+
     public function success($course_id){
         $isLoggedInStudent = $this->session->isLoggedInStudent;
         if (!isset($isLoggedInStudent) || $isLoggedInStudent != TRUE) {
