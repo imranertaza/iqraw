@@ -14,7 +14,7 @@ declare(strict_types=1);
 use Nexus\CsConfig\Factory;
 use Nexus\CsConfig\Fixer;
 use Nexus\CsConfig\FixerGenerator;
-use Nexus\CsConfig\Ruleset\Nexus73;
+use Nexus\CsConfig\Ruleset\Nexus74;
 use PhpCsFixer\Finder;
 
 $finder = Finder::create()
@@ -31,11 +31,10 @@ $options = [
     'customFixers' => FixerGenerator::create('vendor/nexusphp/cs-config/src/Fixer', 'Nexus\\CsConfig\\Fixer'),
     'customRules' => [
         Fixer\Comment\NoCodeSeparatorCommentFixer::name() => true,
-        Fixer\Comment\SpaceAfterCommentStartFixer::name() => true,
     ],
 ];
 
-return Factory::create(new Nexus73(), $overrides, $options)->forLibrary(
+return Factory::create(new Nexus74(), $overrides, $options)->forLibrary(
     'Nexus Tachycardia',
     'John Paul E. Balandan, CPA',
     'paulbalandan@gmail.com',
