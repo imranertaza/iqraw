@@ -49,6 +49,17 @@ class Chat implements MessageComponentInterface {
             $sender = "Admin";
         }
 
+        if ($this->liveStatus($from_info->live_id) > 0) {
+            // Store to database
+            $historyData = array(
+                'live_id' => $from_info->live_id,
+                'std_id' => empty($from_info->std_id) ? null : $from_info->std_id,
+                'text' => $msg,
+                'time' => date('h:m'),
+            );
+            $this->liveChatHistory->insert($historyData);
+        }
+
         //$msg = json_encode($this->clients);
         foreach ($this->clients as $client) {
 
@@ -59,16 +70,6 @@ class Chat implements MessageComponentInterface {
             }
 
             if (($from !== $client) && ($from_info->std_id !== $client_info->std_id)) {
-
-                // Store to database
-                $historyData = array(
-                    'live_id' => $from_info->live_id,
-                    'std_id' => empty($from_info->std_id) ? null : $from_info->std_id,
-                    'text' => $msg,
-                    'time' => date('h:m'),
-                );
-                $this->liveChatHistory->insert($historyData);
-
 
 //                $lastQuery = DB()->getLastQuery();
                 if ($from_info->live_id == $client_info->live_id) {
@@ -114,10 +115,18 @@ class Chat implements MessageComponentInterface {
         $Builder->where('resource_id', $resourceId);
         return $Builder->get()->getRow();
     }
-    private function queryBuilder(int $resourceId) : \stdClass {
+    private function queryBuilder(int $resourceId) : ?\stdClass {
         $Builder = DB()->table('chat_room');
         $Builder->where('resource_id', $resourceId);
         return $Builder->get()->getRow();
+    }
+
+    private function liveStatus(int $liveId) : int {
+        $Builder = DB()->table('live_class');
+        $Builder->select('live_status');
+        $Builder->where('live_id', $liveId);
+        $Builder->where('live_status', "Runing");
+        return $Builder->countAllResults();
     }
 
 }
