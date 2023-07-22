@@ -96,7 +96,7 @@ class SignUp extends BaseController
 
             }else{
                 $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Phone number already in use</div>');
-                return redirect()->to(site_url("/Mobile_app/SignUp/reg_otp_submit"));
+                return redirect()->to(site_url("/Mobile_app/SignUp"));
             }
 
 
