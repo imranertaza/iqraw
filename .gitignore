@@ -1,5 +1,5 @@
-/.idea/*
+.idea
 access.log
 error.log
 /vendor
-
+composer.lock
