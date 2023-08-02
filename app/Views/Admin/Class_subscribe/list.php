@@ -55,10 +55,12 @@
                         <table id="data_table" class="table table-bordered table-striped">
                             <thead>
                             <tr>
-                                <th>Class Subscribe id</th>
+                                <th>Id</th>
                                 <th>Student</th>
                                 <th>Class</th>
                                 <th>Class Group</th>
+                                <th>Package</th>
+                                <th>Price</th>
                                 <th>Subscribe End Date</th>
                                 <th>status</th>
 <!--                                <th>Action</th>-->
@@ -129,6 +131,30 @@
         }
 
 
+    }
+
+    function subscribeStatusChange(status,subscribe_id){
+        $.ajax({
+            url: '<?php echo base_url('Admin/Class_subscribe/subscribe_status') ?>',
+            method: 'post',
+            dataType: "json",
+            data: {
+                status: status,subscribe_id:subscribe_id
+            },
+            success: function (response) {
+                if (response.success === true) {
+                    Swal.fire({
+                        position: 'bottom-end',
+                        icon: 'success',
+                        title: response.messages,
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(function () {
+                        $('#data_table').DataTable().ajax.reload(null, false).draw(false);
+                    })
+                }
+            }
+        });
     }
 
 </script>

@@ -80,8 +80,10 @@ class Subject extends BaseController
 
             $data['data'][$key] = array(
                 $value->subject_id,
-                $value->name,
                 get_data_by_id('name', 'class', 'class_id', $value->class_id),
+                get_data_by_id('group_name', 'class_group', 'class_group_id', $value->class_group_id),
+                get_data_by_id('type_name', 'education_type', 'edu_type_id', $value->edu_type_id),
+                $value->name,
                 statusView($value->status),
                 $ops,
             );
@@ -119,6 +121,7 @@ class Subject extends BaseController
 
         $fields['name'] = $this->request->getPost('name');
         $fields['class_id'] = $this->request->getPost('class_id');
+        $fields['edu_type_id'] = $this->request->getPost('edu_type_id');
         $fields['class_group_id'] = empty($this->request->getPost('class_group_id')) ? null : $this->request->getPost('class_group_id');
         $fields['createdBy'] = $this->session->user_id;
 
@@ -161,6 +164,7 @@ class Subject extends BaseController
         $fields['subject_id'] = $this->request->getPost('subject_id');
         $fields['name'] = $this->request->getPost('name');
         $fields['class_id'] = $this->request->getPost('class_id');
+        $fields['edu_type_id'] = $this->request->getPost('edu_type_id');
         $fields['class_group_id'] = empty($this->request->getPost('class_group_id')) ? null : $this->request->getPost('class_group_id');
         $fields['status'] = $this->request->getPost('status');
 
@@ -169,6 +173,7 @@ class Subject extends BaseController
             'subject_id' => ['label' => 'Class', 'rules' => 'required'],
             'name' => ['label' => 'Name', 'rules' => 'required'],
             'class_id' => ['label' => 'Class', 'rules' => 'required'],
+            'edu_type_id' => ['label' => 'edu_type_id', 'rules' => 'required'],
             'status' => ['label' => 'Status', 'rules' => 'required'],
         ]);
 

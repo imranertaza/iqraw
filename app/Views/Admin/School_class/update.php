@@ -49,6 +49,16 @@
 
                                 <div class="col-md-6">
                                     <div class="form-group">
+                                        <label for="class_id">Education Type: </label>
+                                        <select class="form-control" name="edu_type_id" required>
+                                            <option value="">Please select</option>
+                                            <?php $edu_type_id = !empty($edu->edu_type_id)?$edu->edu_type_id:''; echo getListInOption($edu_type_id,'edu_type_id','type_name','education_type') ?>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
                                         <label for="status">Status: </label>
                                         <select class="form-control" name="status" id="status" required>
                                             <option value="">please select</option>
@@ -65,10 +75,9 @@
                                 <?php $i = 1; $j = 1;  foreach ($group as $key => $val) { ?>
                                     <div class="col-md-4">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="group_id[]"
-                                                   value="<?php echo $val->class_group_id ?>" <?php if (!empty($classGroup)){ foreach ($classGroup as $gr){ echo ($val->class_group_id == $gr->class_group_id)?'checked':''; }} ?> id="flexCheckDefault_<?php echo $i++ ?>">
-                                            <label class="form-check-label"
-                                                   for="flexCheckDefault_<?php echo $j++ ?>"><?php echo $val->group_name ?></label>
+
+                                            <input class="form-check-input" type="checkbox" name="group_id[]" value="<?php echo $val->class_group_id ?>" <?php if (!empty($classGroup)){ foreach ($classGroup as $gr){ echo ($val->class_group_id == $gr->class_group_id)?'checked':''; }} ?> id="flexCheckDefault_<?php echo $i++ ?>" >
+                                            <label class="form-check-label" for="flexCheckDefault_<?php echo $j++ ?>"><?php echo $val->group_name ?></label>
                                         </div>
                                     </div>
                                 <?php } ?>

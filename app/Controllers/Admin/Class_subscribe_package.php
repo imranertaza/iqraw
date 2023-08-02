@@ -77,9 +77,13 @@ class Class_subscribe_package extends BaseController
 			
 			$data['data'][$key] = array(
 				$value->class_subscription_package_id,
+				$value->name,
                 get_data_by_id('name','class','class_id',$value->class_id),
                 get_data_by_id('group_name','class_group','class_group_id',$value->class_group_id),
+                get_data_by_id('type_name','education_type','edu_type_id',$value->edu_type_id),
 				$value->m_fee,
+				$value->start_date,
+				$value->end_date,
 				$ops,
 			);
 		} 
@@ -113,14 +117,22 @@ class Class_subscribe_package extends BaseController
         $response = array();
 
 
+        $fields['name'] = $this->request->getPost('name');
         $fields['class_id'] = $this->request->getPost('class_id');
         $fields['class_group_id'] = empty($this->request->getPost('class_group_id')) ? null : $this->request->getPost('class_group_id');
+        $fields['edu_type_id'] = empty($this->request->getPost('edu_type_id')) ? null : $this->request->getPost('edu_type_id');
         $fields['m_fee'] = $this->request->getPost('m_fee');
+        $fields['start_date'] = $this->request->getPost('start_date');
+        $fields['end_date'] = $this->request->getPost('end_date');
+        $fields['short_description'] = $this->request->getPost('short_description');
         $fields['createdBy'] = $this->session->user_id;
 
         $this->validation->setRules([
+            'name' => ['label' => 'Name', 'rules' => 'required'],
             'class_id' => ['label' => 'Class', 'rules' => 'required'],
             'm_fee' => ['label' => 'Fee', 'rules' => 'required'],
+            'start_date' => ['label' => 'Start date', 'rules' => 'required'],
+            'end_date' => ['label' => 'End date', 'rules' => 'required'],
         ]);
 
         if ($this->validation->run($fields) == FALSE) {
@@ -150,14 +162,22 @@ class Class_subscribe_package extends BaseController
         $response = array();
 		
         $fields['class_subscription_package_id'] = $this->request->getPost('class_subscription_package_id');
+        $fields['name'] = $this->request->getPost('name');
         $fields['class_id'] = $this->request->getPost('class_id');
         $fields['class_group_id'] = empty($this->request->getPost('class_group_id')) ? null : $this->request->getPost('class_group_id');
+        $fields['edu_type_id'] = empty($this->request->getPost('edu_type_id')) ? null : $this->request->getPost('edu_type_id');
         $fields['m_fee'] = $this->request->getPost('m_fee');
+        $fields['start_date'] = $this->request->getPost('start_date');
+        $fields['short_description'] = $this->request->getPost('short_description');
+        $fields['end_date'] = $this->request->getPost('end_date');
 
 
         $this->validation->setRules([
+            'name' => ['label' => 'Name', 'rules' => 'required'],
             'class_id' => ['label' => 'Class', 'rules' => 'required'],
             'm_fee' => ['label' => 'Fee', 'rules' => 'required'],
+            'start_date' => ['label' => 'Start date', 'rules' => 'required'],
+            'end_date' => ['label' => 'End date', 'rules' => 'required'],
         ]);
 
         if ($this->validation->run($fields) == FALSE) {

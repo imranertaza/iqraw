@@ -20,10 +20,16 @@ class Dashboard extends BaseController
         if (!isset($isLoggedInWeb) || $isLoggedInWeb != TRUE) {
             return redirect()->to(site_url("/Web/Login"));
         } else {
+            unset($_SESSION['packId']);
+            unset($_SESSION['redirect_url']);
+
             $std_id = $this->session->std_id;
 
             $table = DB()->table('course_subscribe');
             $data['couSub'] = $table->where('std_id',$std_id)->get()->getResult();
+
+            $tablePack = DB()->table('class_subscribe');
+            $data['pack'] = $tablePack->where('std_id',$std_id)->get()->getResult();
 
             echo view('Web/header');
             echo view('Web/dashboard',$data);

@@ -41,6 +41,21 @@
                 </a>
             </li>
 
+
+            <li class="nav-item ">
+                <a href="<?php echo base_url('Admin/Live_class')?>" class="nav-link">
+                    <i class="nav-icon fas fa-school"></i>
+                    <p>Live Class</p>
+                </a>
+            </li>
+
+            <li class="nav-item ">
+                <a href="<?php echo base_url('Admin/Class_description')?>" class="nav-link">
+                    <i class="nav-icon fas fa-school"></i>
+                    <p>Class Description</p>
+                </a>
+            </li>
+
             <li class="nav-item ">
                 <a href="<?php echo base_url('Admin/Subject')?>" class="nav-link">
                     <i class="nav-icon fas fa-book"></i>

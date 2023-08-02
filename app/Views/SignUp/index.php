@@ -91,14 +91,21 @@
                             </div>
                             <!-- Tabs navs -->
                             <ul class="nav nav-tabs card-header-tabs sc-sel" role="group" aria-label="Basic radio toggle button group" data-bs-tabs="tabs">
-                                <li class="nav-item">
-                                    <input type="radio" class="btn-check" name="institute" id="btnr2" autocomplete="off" value="School"  checked>
-                                    <a class="nav-link active" data-bs-toggle="tab" onclick="checkInst2()" href="#static">School</a>
-                                </li>
-                                <li class="nav-item">
-                                    <input type="radio" class="btn-check" name="institute" id="btnr1" autocomplete="off" value="Madrasha" >
-                                    <a class="nav-link " aria-current="true" data-bs-toggle="tab" onclick="checkInst()" href="#dhcp">Madrasah</a>
-                                </li>
+                                <?php foreach ($education as $key => $val){ ?>
+                                    <li class="nav-item">
+                                        <input type="radio" class="btn-check" name="institute"  <?php echo ($key == 0)?'id="btnr2"':'id="btnr1"';?> autocomplete="off" value="<?php echo $val->edu_type_id?>"  <?php echo ($key == 0)?'checked':'';?>>
+                                        <a class="nav-link <?php echo ($key == 0)?'active':'';?>" data-bs-toggle="tab" <?php echo ($key == 0)?'onclick="checkInst2()"':'onclick="checkInst()"';?> onclick="checkInst2()" href="#static"><?php echo $val->type_name?></a>
+                                    </li>
+                                <?php } ?>
+
+<!--                                <li class="nav-item">-->
+<!--                                    <input type="radio" class="btn-check" name="institute" id="btnr2" autocomplete="off" value="School"  checked>-->
+<!--                                    <a class="nav-link active" data-bs-toggle="tab" onclick="checkInst2()" href="#static">School</a>-->
+<!--                                </li>-->
+<!--                                <li class="nav-item">-->
+<!--                                    <input type="radio" class="btn-check" name="institute" id="btnr1" autocomplete="off" value="Madrasha" >-->
+<!--                                    <a class="nav-link " aria-current="true" data-bs-toggle="tab" onclick="checkInst()" href="#dhcp">Madrasah</a>-->
+<!--                                </li>-->
                             </ul>
                             <!-- Tabs navs -->
 

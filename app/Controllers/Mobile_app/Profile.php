@@ -91,7 +91,7 @@ class Profile extends BaseController
         $fields['gender'] = $this->request->getPost('gender');
         $fields['age'] = $this->request->getPost('age');
         $fields['religion'] = $this->request->getPost('religion');
-        $fields['institute'] = $this->request->getPost('institute');
+        $fields['edu_type_id'] = $this->request->getPost('institute');
         $fields['school_name'] = $this->request->getPost('school_name');
         $fields['class_id'] = empty($this->request->getPost('class_id')) ? null : $this->request->getPost('class_id');;
         $fields['class_group_id'] = empty($this->request->getPost('class_group_id')) ? null : $this->request->getPost('class_group_id');

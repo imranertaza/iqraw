@@ -10,7 +10,7 @@ class Class_group_joinedModel extends Model {
     protected $primaryKey = 'class_group_jnt_id';
     protected $returnType = 'object';
     protected $useSoftDeletes = false;
-    protected $allowedFields = ['class_group_jnt_id','class_id','class_group_id', 'createdBy', 'createdDtm', 'updatedBy', 'updatedDtm', 'deleted', 'deletedRole'];
+    protected $allowedFields = ['class_group_jnt_id','class_id','class_group_id','edu_type_id', 'createdBy', 'createdDtm', 'updatedBy', 'updatedDtm', 'deleted', 'deletedRole'];
     protected $useTimestamps = false;
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';

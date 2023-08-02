@@ -32,8 +32,11 @@ class SignUp extends BaseController
     {
         $isLoggedInStudent = $this->session->isLoggedInStudent;
         if (!isset($isLoggedInStudent) || $isLoggedInStudent != TRUE) {
+            $edu = DB()->table('education_type');
+            $data['education'] = $edu->get()->getResult();
+
             echo view('SignUp/header');
-            echo view('SignUp/index');
+            echo view('SignUp/index',$data);
             echo view('SignUp/footer');
         } else {
             return redirect()->to(site_url("/Mobile_app/Dashboard"));
@@ -52,7 +55,7 @@ class SignUp extends BaseController
         $data['phone'] = $this->request->getPost('phone');
         $data['password'] = SHA1($this->request->getPost('password'));
         $data['class_id'] = $this->request->getPost('class_id');
-        $data['institute'] = $this->request->getPost('institute');
+        $data['edu_type_id'] = $this->request->getPost('institute');
         $data['class_group_id'] = $this->request->getPost('class_group');
         $data['createdBy'] = 1;
 
@@ -68,7 +71,7 @@ class SignUp extends BaseController
             'religion' => ['label' => 'Religion', 'rules' => 'required'],
             'age' => ['label' => 'Age', 'rules' => 'required|numeric'],
             'class_id' => ['label' => 'Class', 'rules' => 'required'],
-            'institute' => ['label' => 'Institute', 'rules' => 'required'],
+            'edu_type_id' => ['label' => 'Institute', 'rules' => 'required'],
 
         ]);
 
@@ -79,13 +82,63 @@ class SignUp extends BaseController
 
             $check = $this->is_exist($data['phone']);
             if ($check == true){
-                $this->student->insert($data);
+
+                $receiver = $data['phone'];
+                $otp = rand(100000,999999);
+                $message = str_replace(" ", "%20", 'Your iQraw registration otp is : '.$otp);
+                $url = "http://bulksmsbd.net/api/smsapi?api_key=Yyl7HcfrZAEclh1KhnMG&type=text&number=$receiver&senderid=8809617611058&message=$message";
+                file_get_contents($url, true);
+
+                $data['reg_mo_otp'] = $otp;
+
+                $this->session->set($data);
+                return redirect()->to(site_url("/Mobile_app/SignUp/reg_otp_submit"));
+
             }else{
                 $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Phone number already in use</div>');
                 return redirect()->to(site_url("/Mobile_app/SignUp"));
             }
 
-            $result = $this->checkUser($data['phone'], $data['password']);
+
+        }
+
+
+    }
+
+    public function reg_otp_submit(){
+        $isLoggedInStudent = $this->session->isLoggedInStudent;
+        if (!isset($isLoggedInStudent) || $isLoggedInStudent != TRUE) {
+
+            echo view('SignUp/header');
+            echo view('SignUp/reg_otp_submit');
+            echo view('SignUp/footer');
+
+        } else {
+            return redirect()->to(site_url("/Mobile_app/Dashboard"));
+        }
+    }
+
+    public function otp_reg_submit_action(){
+        $otp = $this->request->getPost('otp');
+        if ($otp == $this->session->reg_mo_otp){
+
+            $data['name'] = $this->session->name;
+            $data['father_name'] = $this->session->father_name;
+            $data['address'] = $this->session->address;
+            $data['school_name'] = $this->session->school_name;
+            $data['gender'] = $this->session->gender;
+            $data['religion'] = $this->session->religion;
+            $data['age'] = $this->session->age;
+            $data['phone'] = $this->session->phone;
+            $data['password'] = $this->session->password;
+            $data['class_id'] = $this->session->class_id;
+            $data['edu_type_id'] = $this->session->edu_type_id;
+            $data['class_group_id'] = $this->session->class_group_id;
+            $data['createdBy'] = 1;
+
+            $this->student->insert($data);
+
+            $result = $this->checkUser($this->session->phone, $this->session->password);
             if (!empty($result)) {
 
                 $sessionArray = array(
@@ -94,12 +147,35 @@ class SignUp extends BaseController
                     'isLoggedInStudent' => TRUE
                 );
                 $this->session->set($sessionArray);
+
+                unset($_SESSION['name']);
+                unset($_SESSION['father_name']);
+                unset($_SESSION['address']);
+                unset($_SESSION['school_name']);
+                unset($_SESSION['gender']);
+                unset($_SESSION['religion']);
+                unset($_SESSION['age']);
+                unset($_SESSION['phone']);
+                unset($_SESSION['password']);
+                unset($_SESSION['class_id']);
+                unset($_SESSION['edu_type_id']);
+                unset($_SESSION['class_group_id']);
+                unset($_SESSION['createdBy']);
+                unset($_SESSION['reg_mo_otp']);
+
                 return redirect()->to(site_url("/Mobile_app/Dashboard"));
             }
+
+        }else{
+            $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">The verification code is incorrect!</div>');
+            return redirect()->to(site_url("/Mobile_app/SignUp/reg_otp_submit"));
         }
-
-
     }
+
+
+
+
+
 
     public function signIn()
     {
@@ -135,10 +211,17 @@ class SignUp extends BaseController
                 $sessionArray = array(
                     'std_id' => $result->std_id,
                     'name' => $result->name,
+                    'class_id' => isset($result->class_id) ? $result->class_id : null,
+                    'class_group_id' => isset($result->class_group_id) ? $result->class_group_id : null,
                     'isLoggedInStudent' => TRUE
                 );
                 $this->session->set($sessionArray);
-                return redirect()->to(site_url("/Mobile_app/Dashboard"));
+                if (!isset($this->session->redi_url)) {
+                    return redirect()->to(site_url("/Mobile_app/Dashboard"));
+                }else{
+                    return redirect()->to($this->session->redi_url);
+                }
+
             } else {
                 $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Phone or password mismatch</div>');
                 return redirect()->to('/Mobile_app/login');
@@ -183,6 +266,9 @@ class SignUp extends BaseController
         unset($_SESSION['name']);
         unset($_SESSION['isLoggedInStudent']);
 
+        unset($_SESSION['packId']);
+        unset($_SESSION['redi_url']);
+
 //        $this->session->destroy();
         return redirect()->to('/Mobile_app/login');
     }
@@ -207,8 +293,6 @@ class SignUp extends BaseController
 
         print $view;
     }
-
-
 
     public function forget_password(){
         $isLoggedInStudent = $this->session->isLoggedInStudent;

@@ -256,7 +256,29 @@
         }
     }
 
-
+    function statusUpdate(status,subscribe_id){
+        $.ajax({
+            url: '<?php echo base_url($controller . '/statusUpdate') ?>',
+            method: 'post',
+            dataType: "json",
+            data: {
+                status: status,subscribe_id:subscribe_id
+            },
+            success: function (response) {
+                if (response.success === true) {
+                    Swal.fire({
+                        position: 'bottom-end',
+                        icon: 'success',
+                        title: response.messages,
+                        showConfirmButton: false,
+                        timer: 1500
+                    }).then(function () {
+                        $('#data_table').DataTable().ajax.reload(null, false).draw(false);
+                    })
+                }
+            }
+        });
+    }
 
 
 </script>

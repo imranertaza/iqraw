@@ -73,12 +73,8 @@
                 <div class="input-group mt-2">
                     <select class="form-control" name="institute" id="institute" required>
                         <option value="">Institute</option>
-                        <option value="School" <?php echo ($student->institute == 'School') ? 'selected' : ''; ?> >
-                            School
-                        </option>
-                        <option value="Madrasha" <?php echo ($student->institute == 'Madrasha') ? 'selected' : ''; ?> >
-                            Madrasha
-                        </option>
+                        <?php echo getListInOption($student->edu_type_id, 'edu_type_id', 'type_name', 'education_type')?>
+
                     </select>
                 </div>
 

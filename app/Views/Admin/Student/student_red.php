@@ -29,7 +29,8 @@
                             </div>
                             <div class="col-md-4">
 
-                                <a href="<?php echo base_url($controller . '/test/'.$student->std_id) ?>" type="button" class="btn btn-block btn-primary" title="Test">Test </a>
+                                <a href="<?php echo base_url($controller . '/payment/'.$student->std_id) ?>" type="button" class="btn btn-primary" title="Payment">Payment </a>
+                                <a href="<?php echo base_url($controller . '/test/'.$student->std_id) ?>" type="button" class="btn btn-primary" title="Test">Test </a>
 
                             </div>
                         </div>

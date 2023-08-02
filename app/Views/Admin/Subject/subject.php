@@ -67,8 +67,10 @@
                             <thead>
                             <tr>
                                 <th width="60">Id</th>
-                                <th>Name</th>
                                 <th>Class</th>
+                                <th>Class</th>
+                                <th>Education Type</th>
+                                <th>Name</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -109,6 +111,16 @@
                                     <label for="class_group_id">Class Group: </label>
                                     <select class="form-control" name="class_group_id" id="class_group_id" >
                                         <option value="">Please select</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="class_id">Education Type: </label>
+                                    <select class="form-control" name="edu_type_id" required>
+                                        <option value="">Please select</option>
+                                        <?php echo getListInOption('','edu_type_id','type_name','education_type') ?>
                                     </select>
                                 </div>
                             </div>
@@ -166,6 +178,16 @@
                                     <select class="form-control" name="class_group_id" id="class_group_id" >
                                         <option value="">Please select</option>
                                         <?php echo getListInOption('','class_group_id','group_name','class_group') ?>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="class_id">Education Type: </label>
+                                    <select class="form-control" name="edu_type_id" id="edu_type_id" required>
+                                        <option value="">Please select</option>
+                                        <?php echo getListInOption('','edu_type_id','type_name','education_type') ?>
                                     </select>
                                 </div>
                             </div>
@@ -335,6 +357,7 @@
                 $("#edit-form #subject_id").val(response.subject_id);
                 $("#edit-form #class_id").val(response.class_id);
                 $("#edit-form #class_group_id").val(response.class_group_id);
+                $("#edit-form #edu_type_id").val(response.edu_type_id);
                 $("#edit-form #name").val(response.name);
                 $("#edit-form #status").val(response.status);
 

@@ -977,3 +977,331 @@ button {
         padding: 60px;
     }
 }
+
+
+
+/*new css*/
+.ban-bak{
+    background-color: #000000;
+    padding-bottom: 60px;
+}
+.ban-title{
+    font-family: 'Hind Siliguri';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 42px;
+    line-height: 68px;
+    text-align: center;
+    color: #FFFFFF;
+}
+.ban-text{
+    font-family: 'Hind Siliguri';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 32px;
+    text-align: center;
+    color: #FFFFFF;
+}
+.ban-icon{
+    position: absolute;
+    right: 50px;
+    bottom: 30px;
+}
+.btn-bn-t{
+    background-color: #39AA35;
+    border-radius: 5px;
+    width: 120px;
+    color: #ffffff;
+}
+.sc-mt{
+    margin-top: 80px;
+}
+.btnrow{
+    padding: 20px 115px;
+}
+.imgrow{
+    padding: 10px 115px;
+}
+.custom-css .owl-nav{
+    position: relative;
+}
+.custom-css .owl-nav .owl-prev{
+    position: absolute;
+    position: absolute;
+    left: -35px;
+    bottom: 60px;
+    color: #ffffff !important;
+}
+.custom-css .owl-nav .owl-next{
+    position: absolute;
+    position: absolute;
+    right: -35px;
+    bottom: 60px;
+    color: #ffffff !important;
+}
+.owl-theme .owl-nav [class*=owl-]{
+    font-size: 40px !important;
+}
+.owl-theme .owl-nav [class*=owl-]:hover {
+    background: initial !important;
+}
+.box-class {
+    background-color: #FFFFFF;
+    padding: 10px;
+    border-radius: 20px;
+}
+.bn-icon{
+    border-right: 1px solid #AEAEAE;
+    padding-right: 5px;
+    margin-right: 5px;
+}
+.bn-box-text{
+    font-family: 'Hind Siliguri';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    color: #747474;
+}
+.bn-box-text-2{
+    font-family: 'Hind Siliguri';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 36px;
+    text-align: center;
+    color: #373737;
+
+}
+.bn-left-icon{
+    position: absolute;
+    left: -500px;
+    bottom: 345px;
+}
+.video-det{
+    border: 3px solid #39AA35;
+    border-radius: 12px;
+}
+.btn-det{
+    background-color: #39AA35;
+    border-radius: 5px;
+    color:#ffffff !important;
+}
+.dte-main-title{
+    font-family: 'Hind Siliguri';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 49px;
+    color: #000000;
+}
+.dte-main-text{
+    font-family: 'Hind Siliguri';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 26px;
+    color: #919191;
+}
+.dte-con-title{
+    font-family: 'Hind Siliguri';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 39px;
+    color: #000000;
+}
+.con-dt{
+    font-family: 'Hind Siliguri';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 23px;
+    color: #434343;
+}
+.dte-con-title-sub{
+    font-family: 'Hind Siliguri';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 29px;
+    color: #000000;
+
+}
+.li-det{
+    font-family: 'Hind Siliguri';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 28px;
+    color: #636363;
+}
+.ul-det{
+    padding-left: 15px !important;
+}
+.hr-del{
+    border: 1px dashed #D2D2D2;
+}
+.big-title-sub-2{
+    font-family: 'Hind Siliguri';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 28px;
+    color: #434343;
+}
+.big-text{
+    font-family: 'Hind Siliguri';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 28px;
+    color: #3A3A3A;
+}
+.mod-title-det{
+    font-family: 'Hind Siliguri';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 36px;
+    color: #000000;
+}
+.mod-text-det{
+    font-family: 'Hind Siliguri';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 28px;
+    color: #000000;
+}
+
+.box{
+    background: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    border-radius: 7px;
+    padding: 10px 40px;
+}
+
+.text-1-t{
+    font-family: 'Hind Vadodara';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 28px;
+    color: #000000;
+}
+.text-1-t-2{
+    font-family: 'Hind Siliguri';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 18px;
+    color: #656565;
+}
+.box input{
+    margin-top: 15px;
+}
+
+.form-check-input:checked[type=radio]{
+    background-color: #39AA35;
+}
+.box:has(.form-check-input:checked[type=radio]){
+    border: 1px solid #39AA35 !important;
+    border-radius: 7px;
+}
+.btn-agiea{
+    background-color: #39AA35;
+    border-radius: 5px;
+    width: 135px;
+    color: #ffffff;
+}
+.bor-red{
+    border-radius: 20px !important;
+}
+.text-1{
+    margin-left: 10px;
+}
+.imgrow .box-class{
+    min-height: 155px !important;
+}
+
+
+.con-css-cust ul{
+    margin-top: 0px;
+    margin-bottom: 1rem;
+    color: rgb(33, 37, 41);
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    padding-left: 15px !important;
+}
+.con-css-cust li{
+    font-family: "Hind Siliguri";
+    line-height: 28px;
+    color: rgb(99, 99, 99);
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    margin-top: 0.25rem!important;
+}
+.con-css-cust div{
+    font-family: 'Hind Siliguri';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 28px;
+    color: #434343;
+}
+
+.con-css-cust p{
+    font-family: 'Hind Siliguri';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 28px;
+    color: #434343;
+}
+.custom-selabas ul{
+    list-style-type: none;
+}
+.custom-selabas li{
+    width: 47%;
+    float: left;
+    font-family: 'Hind Siliguri';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 23px;
+    color: #434343;
+    background: url(arr.svg) top left no-repeat;
+    background-position: 0px 12px;
+    padding-left: 25px;
+    padding-bottom: 20px;
+    padding-top: 10px;
+}
+.a-btn{
+    background: #39AA35;
+    border-radius: 24.5px;
+    width: 100%;
+    height: 49px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    padding: 15px;
+}
+.succ-round{
+    border-radius: 50%;
+    padding: 123px 22px;
+    background-color: green;
+    color: #ffffff;
+    font-size: 16px;
+}
+.cancel-round{
+    border-radius: 50%;
+    padding: 113px 22px;
+    background-color: red;
+    color: #ffffff;
+    font-size: 16px;
+}

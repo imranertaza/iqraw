@@ -23,7 +23,7 @@
     <section class="header">
         <div class="row">
             <div class="col-12 text-center d-logo">
-                <a class="btnPrevious" style="float: left; display: none !important;" ><img src="assets/image/arrow-left.svg" alt="icon"></a>
+                <a class="btnPrevious" style="float: left; display: none !important;" ><img src="<?php echo base_url() ?>/assets/image/arrow-left.svg" alt="icon"></a>
                 <a href="<?php echo base_url() ?>/Mobile_app/login"><img src="<?php echo base_url() ?>/assets/image/logo.svg" alt="logo"></a>
             </div>
             <div class="col-12 ">
