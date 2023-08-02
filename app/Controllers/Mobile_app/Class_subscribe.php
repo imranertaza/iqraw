@@ -33,28 +33,45 @@ class Class_subscribe extends BaseController
         $this->validation =  \Config\Services::validation();
         $this->session = \Config\Services::session();
     }
-    public function index($subscribePackageId)
+    public function index()
     {
         $isLoggedInStudent = $this->session->isLoggedInStudent;
         if (!isset($isLoggedInStudent) || $isLoggedInStudent != TRUE) {
             return redirect()->to('/Mobile_app/login');
         } else {
-            $data['back_url'] = base_url('/Mobile_app/Subject');
-            $data['page_title'] = 'Subject Subscribe';
-            $data['footer_icon'] = 'Home';
 
-            $data['pack'] = $this->class_subscribe_packageModel->where('class_subscription_package_id',$subscribePackageId)->first();
+            $subscrib = $this->class_subscribeModel->join('class_subscribe_package', 'class_subscribe_package.class_subscription_package_id = class_subscribe.class_subscription_package_id')->where('class_subscribe.std_id',$this->session->std_id)->where('class_subscribe.status','1')->where('class_subscribe_package.end_date >=',date('Y-m-d'))->countAllResults();
 
-            $table2 = DB()->table('student');
-            $data['std_info'] = $table2->where('std_id', $this->session->std_id)->get()->getRow();
+            if (empty($subscrib)) {
+                $data['back_url'] = base_url('/Mobile_app/Subject');
+                $data['page_title'] = 'Subject Subscribe';
+                $data['footer_icon'] = 'Home';
 
-            echo view('Student/header',$data);
-            echo view('Student/class_subscribe',$data);
-            echo view('Student/footer');
+                $classId = get_data_by_id('class_id', 'student', 'std_id', $this->session->std_id);
+                $classGroupId = get_data_by_id('class_group_id', 'student', 'std_id', $this->session->std_id);
+
+                $wArray = "(`class_group_id` IS NULL OR `class_group_id` = '$classGroupId')";
+
+                $data['pack'] = $this->class_subscribe_packageModel->where('class_id', $classId)->where($wArray)->where('end_date >=', date('Y-m-d'))->findAll();
+
+                $table2 = DB()->table('student');
+                $data['std_info'] = $table2->where('std_id', $this->session->std_id)->get()->getRow();
+
+                echo view('Student/header', $data);
+                echo view('Student/class_subscribe', $data);
+                echo view('Student/footer');
+            }else{
+                return redirect()->to(site_url("/Mobile_app/Dashboard"));
+            }
         }
     }
 
     public function sub_action(){
+
+        unset($_SESSION['packId']);
+        unset($_SESSION['redi_url']);
+
+
         // Checking if the payment status is success (Start)
         $pay_status = $this->request->getPost('pay_status');
         $data['class_subscription_package_id'] = $this->request->getPost('opt_a');
@@ -126,6 +143,62 @@ class Class_subscribe extends BaseController
             }else {
                 $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Terms fields required!</div>');
                 return redirect()->to('Mobile_app/Class_subscribe/index/'.$data['class_subscription_package_id']);
+            }
+        }
+    }
+
+    public function sub_manual_action(){
+        $isLoggedInStudent = $this->session->isLoggedInStudent;
+        if (!isset($isLoggedInStudent) || $isLoggedInStudent != TRUE) {
+            return redirect()->to('/Mobile_app/login');
+        } else {
+
+            unset($_SESSION['packId']);
+            unset($_SESSION['redi_url']);
+
+            $terms = $this->request->getPost('opt_c');
+            $paid_amount = (float) $this->request->getPost('amount');
+
+            //Checking if it checks our terms and condition.
+            if (!empty($terms)) {
+                DB()->transStart();
+                // Inserting data to class_subscribe table
+                $endDate = date("Y-m-d", strtotime("+30 days"));
+                //$data['class_subscription_package_id'] = $this->request->getPost('class_subscription_package_id');
+                $data['std_id'] = $this->session->std_id;
+                $data['class_subscription_package_id'] = $this->request->getPost('opt_a');
+                $data['subs_time'] = '1';
+                $data['subs_end_date'] = $endDate;
+                $data['status'] = '0';
+                $data['createdBy'] = $this->session->std_id;
+
+                $this->class_subscribeModel->insert($data);
+
+                $class_subscribe_id = $this->class_subscribeModel->getInsertID();
+
+                // Inserting into payment table as history(Start)
+                $data2['class_subscribe_id'] = empty($class_subscribe_id) ? null : $class_subscribe_id;
+                $data2['std_id'] = empty($this->session->std_id) ? null : $this->session->std_id;
+                $data2['amount_original'] = $paid_amount;
+                $data2['pay_status'] = 'Pending';
+                $data2['store_amount'] = $paid_amount;
+                $table2 = DB()->table('payment');
+                $table2->insert($data2);
+                // Inserting into payment table (End)
+                DB()->transComplete();
+
+
+
+                // If sql transaction failed.
+                if (DB()->transStatus() === false) {
+                    $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Transection Failed!</div>');
+                    return redirect()->to('/Mobile_app/Class_subscribe/canceled/');
+                }
+
+                return redirect()->to('/Mobile_app/Class_subscribe/success/');
+            }else {
+                $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Terms fields required!</div>');
+                return redirect()->to('Mobile_app/Class_subscribe/index/'.$this->request->getPost('opt_a'));
             }
         }
     }

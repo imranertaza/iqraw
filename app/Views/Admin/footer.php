@@ -44,9 +44,13 @@
         $('#description').richText();
         $('#description2').richText();
         $('#description3').richText();
+        $('#description4').richText();
+        $('#description5').richText();
         // $('[name="description"]').richText();
     });
     // CKEDITOR.replace( 'editor' );
+
+
 </script>
 
 </body>

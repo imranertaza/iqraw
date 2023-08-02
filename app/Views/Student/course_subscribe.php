@@ -3,32 +3,17 @@
 </section>
 
 <section class="content-2" style="margin-bottom: 90px;">
-<!--    <form action="--><?php //echo base_url()?><!--/Mobile_app/Course/sub_action" method="post">-->
+
     <div class="row pt-2 payment">
 
-<!--        <div class="col-4">-->
-<!--            <img src="--><?php //echo base_url() ?><!--/assets/image/bkash.svg" alt="wallet" class="wallet">-->
-<!--            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" value="bkash" >-->
-<!--            <label class="btn btn-outline-success d-block mt-3 shadow-none disabled" for="btnradio1">Select</label>-->
-<!--        </div>-->
-<!--        <div class="col-4">-->
-<!--            <img src="--><?php //echo base_url() ?><!--/assets/image/roket.svg" alt="wallet" class="wallet">-->
-<!--            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" value="roket" >-->
-<!--            <label class="btn btn-outline-success d-block mt-3 shadow-none disabled" for="btnradio2">Select</label>-->
-<!--        </div>-->
-<!--        <div class="col-4">-->
-<!--            <img src="--><?php //echo base_url() ?><!--/assets/image/nogod.svg" alt="wallet" class="wallet">-->
-<!--            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" value="nogod" >-->
-<!--            <label class="btn btn-outline-success d-block mt-3 shadow-none disabled" for="btnradio3">Select</label>-->
-<!--        </div>-->
-
-
-
         <div class="col-12">
-            <form class="form-inline" action="<?php print API_URL; ?>" method="POST">
+            <form id="course_form" class="form-inline" action="<?php print API_URL; ?>" method="POST">
                 <?= csrf_field() ?>
                 <table class="table mt-5 text-center">
                 <tbody>
+                    <tr>
+                        <td colspan="2"><h4 class="text-capitalize"><?php print $course->course_name;?></h4></td>
+                    </tr>
                     <tr>
                         <td>Total</td>
                         <td><?php print $course->price;?>৳</td>
@@ -37,6 +22,19 @@
                     <tr>
                         <td>Due</td>
                         <td id="dueData"><?php print $course->price;?>৳</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="form-check box mt-3" style="padding-top: 0px;">
+                                <input class="form-check-input" type="radio" onclick="paymentmethodcourse('<?php print API_URL; ?>')"  name="payment_met" id="payment_amarPay" value="1" checked >
+                                <label class="form-check-label d-flex justify-content-between" style="margin-top: 12px;" for="payment_amarPay" >Aamarpay</label>
+                            </div>
+
+                            <div class="form-check box mt-3" style="padding-top: 0px;">
+                                <input class="form-check-input" type="radio" onclick="paymentmethodcourse('<?php print base_url('/Mobile_app/Course/sub_manual_action'); ?>')"  name="payment_met" id="payment_genarel" value="2"  >
+                                <label class="form-check-label d-flex justify-content-between" style="margin-top: 12px;" for="payment_genarel" >Manual pay</label>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <td colspan="2">

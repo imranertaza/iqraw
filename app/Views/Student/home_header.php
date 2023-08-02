@@ -29,6 +29,7 @@
         <div style="width: 30%;float: left;text-align: right; margin-top: 10px;">
             <a href="" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><img src="<?php base_url();?>/assets/image/icon-settings.svg" alt="banner" class="h-ico"></a>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><a class="dropdown-item" href="<?php echo base_url('/Mobile_app/Payment')?>">My Payment</a></li>
                 <li><a class="dropdown-item" href="<?php echo base_url('/Mobile_app/SignUp/logout')?>">LogOut</a></li>
             </ul>
         </div>

@@ -114,6 +114,52 @@ class Payment extends BaseController
         }
     }
 
+    public function payment_manual_success_action(){
+
+        // Check login status before execution
+        $isLoggedInWeb = $this->session->isLoggedInWeb;
+        if (!isset($isLoggedInWeb) || $isLoggedInWeb != TRUE) {
+            return redirect()->to(site_url("/Web/Login"));
+        } else {
+            DB()->transStart();
+            $paid_amount = (float) $this->request->getPost('amount');
+            $course_id = $this->request->getPost('opt_a');
+
+            // Inserting into course_subscribe table (Start)
+            $data['course_id'] = $course_id;
+            $data['std_id'] = $this->session->std_id;
+            $data['subs_time'] = '1';
+            $data['status'] = '0';
+            $data['createdBy'] = $this->session->std_id;
+
+            $table = DB()->table('course_subscribe');
+            $table->insert($data);
+            // Inserting into course_subscribe table (Start)
+
+
+            // Inserting into payment table (Start)
+            $data2['course_subscribe_id'] = empty(DB()->insertID()) ? null : DB()->insertID();
+            $data2['std_id'] = empty($this->session->std_id) ? null : $this->session->std_id;
+            $data2['amount_original'] = $paid_amount;
+            $data2['pay_status'] = 'Pending';
+            $data2['store_amount'] = $paid_amount;
+
+            $table2 = DB()->table('payment');
+            $table2->insert($data2);
+            // Inserting into payment table (End)
+            DB()->transComplete();
+
+
+            // If sql transaction failed.
+            if (DB()->transStatus() === false) {
+                $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Transection Failed!</div>');
+                return redirect()->to('/Web/Payment/payment_cancel/');
+            }
+
+            return redirect()->to(site_url('/Web/Payment/payment_success/'));
+        }
+    }
+
     public function payment_success(){
         $isLoggedInWeb = $this->session->isLoggedInWeb;
         if (!isset($isLoggedInWeb) || $isLoggedInWeb != TRUE) {

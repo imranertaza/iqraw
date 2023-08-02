@@ -64,20 +64,21 @@ class Subscribe extends BaseController
         foreach ($result as $key => $value) {
 
             $ops = '<div class="btn-group">';
-            if ($perm['update'] ==1) {
-                $ops .= '	<button type="button" class="btn btn-sm btn-info" onclick="edit(' . $value->course_subscribe_id . ')"><i class="fa fa-edit"></i></button>';
-            }
-            if ($perm['delete'] ==1) {
-                $ops .= '	<button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $value->course_subscribe_id . ')"><i class="fa fa-trash"></i></button>';
-            }
+//            if ($perm['update'] ==1) {
+//                $ops .= '	<button type="button" class="btn btn-sm btn-info" onclick="edit(' . $value->course_subscribe_id . ')"><i class="fa fa-edit"></i></button>';
+//            }
+//            if ($perm['delete'] ==1) {
+//                $ops .= '	<button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $value->course_subscribe_id . ')"><i class="fa fa-trash"></i></button>';
+//            }
+            $ops .='<select name="status" onchange="statusUpdate(this.value,'.$value->course_subscribe_id.')" class="form-control">'.globalStatus($value->status).'</select>';
             $ops .= '</div>';
 
             $data['data'][$key] = array(
                 $value->course_subscribe_id,
                 get_data_by_id('name','student','std_id',$value->std_id),
                 get_data_by_id('course_name','course','course_id',$value->course_id),
-                statusView($value->status),
-//                $ops,
+//                statusView($value->status),
+                $ops,
             );
         }
 
@@ -240,6 +241,40 @@ class Subscribe extends BaseController
         }
 
         print $view;
+    }
+
+    public function statusUpdate(){
+        $response = array();
+
+        $status = $this->request->getPost('status');
+        $subscribe_id = $this->request->getPost('subscribe_id');
+
+        if ($status == 1) {
+            $data['status'] = '1';
+            $table = DB()->table('course_subscribe');
+            $table->where('course_subscribe_id',$subscribe_id)->update($data);
+
+
+            $dataPay['pay_status'] = 'Successful';
+            $tablePay = DB()->table('payment');
+            $tablePay->where('course_subscribe_id',$subscribe_id)->update($dataPay);
+
+            $response['success'] = true;
+            $response['messages'] = 'Successfully Active';
+        }else{
+            $data['status'] = '0';
+            $table = DB()->table('course_subscribe');
+            $table->where('course_subscribe_id',$subscribe_id)->update($data);
+
+            $response['success'] = true;
+            $response['messages'] = 'Successfully Inactive';
+        }
+
+
+
+
+        return $this->response->setJSON($response);
+
     }
 
 

@@ -4,6 +4,8 @@ namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 use App\Libraries\Permission;
 use App\Models\Chapter_exam_joinedModel;
+use App\Models\Class_subscribeModel;
+use App\Models\Course_subscribeModel;
 use App\Models\Group_classModel;
 use App\Models\Mcq_exam_joinedModel;
 use App\Models\Quiz_exam_joinedModel;
@@ -23,6 +25,8 @@ class Student extends BaseController
     protected $quiz_exam_joinedModel;
     protected $school_classModel;
     protected $group_classModel;
+    protected $course_subscribeModel;
+    protected $class_subscribeModel;
     protected $crop;
     protected $permission;
     private $module_name = 'Student';
@@ -35,6 +39,8 @@ class Student extends BaseController
         $this->quiz_exam_joinedModel = new Quiz_exam_joinedModel();
         $this->school_classModel = new School_classModel();
         $this->group_classModel = new Group_classModel();
+        $this->course_subscribeModel = new Course_subscribeModel();
+        $this->class_subscribeModel = new Class_subscribeModel();
         $this->permission = new Permission();
         $this->validation =  \Config\Services::validation();
         $this->session = \Config\Services::session();
@@ -47,6 +53,9 @@ class Student extends BaseController
             return redirect()->to(site_url("/admin"));
         }else {
             $data['controller'] = 'Admin/Student';
+
+            $table = DB()->table('education_type');
+            $data['education'] = $table->get()->getResult();
 
             //[mod_access] [create] [read] [update] [delete]
             $perm = $this->permission->module_permission_list($role,$this->module_name);
@@ -140,7 +149,7 @@ class Student extends BaseController
         $fields['age'] = $this->request->getPost('age');
         $fields['phone'] = $this->request->getPost('phone');
         $fields['password'] = SHA1($this->request->getPost('password'));
-        $fields['institute'] = $this->request->getPost('institute');
+        $fields['edu_type_id'] = $this->request->getPost('institute');
         $fields['class_group_id'] = $this->request->getPost('class_group');
         $fields['createdBy'] = '1';
 
@@ -155,7 +164,7 @@ class Student extends BaseController
             'age' => ['label' => 'Age', 'rules' => 'required'],
             'phone' => ['label' => 'Phone', 'rules' => 'required'],
             'password' => ['label' => 'Password', 'rules' => 'required'],
-            'institute' => ['label' => 'Institute', 'rules' => 'required'],
+            'edu_type_id' => ['label' => 'Institute', 'rules' => 'required'],
 
         ]);
 
@@ -220,6 +229,9 @@ class Student extends BaseController
             $data['controller'] = 'Admin/Student';
             $data['group'] = $this->group_classModel->findAll();
 
+            $table = DB()->table('education_type');
+            $data['education'] = $table->get()->getResult();
+
             $role = $this->session->admin_role;
             //[mod_access] [create] [read] [update] [delete]
             $perm = $this->permission->module_permission_list($role,$this->module_name);
@@ -252,7 +264,7 @@ class Student extends BaseController
         $fields['class_id'] = $this->request->getPost('class_id');
         $fields['age'] = $this->request->getPost('age');
         $fields['phone'] = $this->request->getPost('phone');
-        $fields['institute'] = $this->request->getPost('institute');
+        $fields['edu_type_id'] = $this->request->getPost('institute');
         $fields['class_group_id'] = $this->request->getPost('class_group');
         $fields['status'] = $this->request->getPost('status');
 
@@ -290,7 +302,7 @@ class Student extends BaseController
             'class_id' => ['label' => 'Class', 'rules' => 'required'],
             'age' => ['label' => 'Age', 'rules' => 'required'],
             'phone' => ['label' => 'Phone', 'rules' => 'required'],
-            'institute' => ['label' => 'Institute', 'rules' => 'required'],
+            'edu_type_id' => ['label' => 'Institute', 'rules' => 'required'],
 
         ]);
 
@@ -359,6 +371,33 @@ class Student extends BaseController
             echo view('Admin/footer');
         }
     }
+
+    public function payment($id){
+        $isLoggedIAdmin = $this->session->isLoggedIAdmin;
+        if (!isset($isLoggedIAdmin) || $isLoggedIAdmin != TRUE) {
+            return redirect()->to(site_url("/admin"));
+        }else {
+            $data['student'] = $this->student->where('std_id' ,$id)->first();
+            $data['controller'] = 'Admin/Student';
+
+            $data['courseSubscribe'] = $this->course_subscribeModel->where('std_id',$id)->findAll();
+            $data['classSubscribe'] = $this->class_subscribeModel->where('std_id',$id)->findAll();
+
+
+            $role = $this->session->admin_role;
+            //[mod_access] [create] [read] [update] [delete]
+            $perm = $this->permission->module_permission_list($role,$this->module_name);
+            echo view('Admin/header');
+            echo view('Admin/sidebar');
+            if ($perm['read'] ==1) {
+                echo view('Admin/Student/student_payment',$data);
+            }else{
+                echo view('no_permission');
+            }
+            echo view('Admin/footer');
+        }
+    }
+
 
     public function classGroup(){
         $classId = $this->request->getPost('class_id');

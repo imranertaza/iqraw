@@ -2,37 +2,13 @@
     <div class="container">
 <!--        <form action="--><?php //echo base_url()?><!--/Web/Home/payment_action" method="post">-->
             <div class="row ">
-                <div class="col-12 text-center" style="margin-bottom: 85px;">
+                <div class="col-12 text-center" style="margin-bottom: 65px;">
                     <p class="cor-title"> পেমেন্ট</p>
                 </div>
 
-                <div class="col-sm-6 col-md-6 col-lg-6">
-                    <div class="row">
-                        <div class="col-sm-4 col-md-4 col-lg-4 bkash">
-                            <img src="<?php echo base_url() ?>/assets_web/image/bkash.svg" alt="" width="100%">
 
-                            <input type="radio" class="btn-check" name="paument_type" id="option1" autocomplete="off" checked
-                                   value="amarpay"/>
-                            <label class="btn btn-outline-primary btn-pay-web" for="option1">select</label>
-                        </div>
-<!--                        <div class="col-sm-4 col-md-4 col-lg-4 roket">-->
-<!--                            <img src="--><?php //echo base_url() ?><!--/assets_web/image/roket.svg" alt="" width="100%">-->
-<!---->
-<!--                            <input type="radio" class="btn-check" name="paument_type" id="option2" autocomplete="off"-->
-<!--                                   value="roket"/>-->
-<!--                            <label class="btn btn-outline-primary btn-pay-web" for="option2">select</label>-->
-<!--                        </div>-->
-<!--                        <div class="col-sm-4 col-md-4 col-lg-4 nagad">-->
-<!--                            <img src="--><?php //echo base_url() ?><!--/assets_web/image/nogod.svg" alt="" width="100%">-->
-<!---->
-<!--                            <input type="radio" class="btn-check" name="paument_type" id="option3" autocomplete="off"-->
-<!--                                   value="nagad"/>-->
-<!--                            <label class="btn btn-outline-primary btn-pay-web" for="option3">select</label>-->
-<!--                        </div>-->
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-6 ">
-                    <form class="form-inline" action="<?php print API_URL; ?>" method="POST">
+                <div class="col-12 " style="margin-bottom: 85px;">
+                    <form id="course_form" class="form-inline" action="<?php print API_URL; ?>" method="POST">
                         <?= csrf_field() ?>
                     <div class="row h-100 justify-content-center align-items-center text-capitalize" style="height: 200px !important;">
                         <input type="hidden" readonly class="form-control" value="<?php print STORE_ID; ?>" name="store_id">
@@ -53,19 +29,32 @@
                         <input type="hidden" readonly class="form-control" value="<?php echo base_url()?>/Web/Payment/payment_fail_action" name="fail_url">
                         <input type="hidden" readonly class="form-control" value="<?php echo base_url()?>/Web/Payment/payment_cancel" name="cancel_url">
                         <input type="hidden" readonly class="form-control" value="Course Enroll" name="desc">
-                        <div class="col-sm-4 col-md-4 col-lg-4">
-                           <p style="margin-left: 10px;"> <?php echo $course->course_name; ?></p>
+                        <div class="col-4"></div><div class="col-4 text-center">
+                           <h4 style="margin-left: 10px;"> <?php echo $course->course_name; ?></h4>
                             <input type="hidden" name="opt_a" value="<?php echo $course->course_id; ?>">
                             <input type="hidden" name="opt_b" value="<?php print $std_info->std_id; ?>">
-                        </div>
-                        <div class="col-sm-4 col-md-4 col-lg-4">
-                            <p><input type="text" readonly class="form-control" value="<?php echo $course->price; ?>" name="amount">৳</p>
-                        </div>
-                        <div class="col-sm-4 col-md-4 col-lg-4">
+                        </div><div class="col-4"></div>
+                        <div class="col-4"></div><div class="col-4 text-center">
+                            <p><input type="hidden" readonly class="form-control" value="<?php echo $course->price; ?>" name="amount"> <?php echo $course->price; ?> ৳</p>
+                        </div><div class="col-4"></div>
+
+                        <div class="col-4"></div><div class="col-4 text-center">
+                            <div class="form-check box mt-3" style="padding-top: 0px;">
+                                <input class="form-check-input" type="radio" onclick="paymentmethodcourse('<?php print API_URL; ?>')"  name="payment_met" id="payment_amarPay" value="1" checked >
+                                <label class="form-check-label d-flex justify-content-between" style="margin-top: 12px;" for="payment_amarPay" >Aamarpay</label>
+                            </div>
+
+                            <div class="form-check box mt-3" style="padding-top: 0px;">
+                                <input class="form-check-input" type="radio" onclick="paymentmethodcourse('<?php print base_url('/Web/Payment/payment_manual_success_action'); ?>')"  name="payment_met" id="payment_genarel" value="2"  >
+                                <label class="form-check-label d-flex justify-content-between" style="margin-top: 12px;" for="payment_genarel" >Manual pay</label>
+                            </div>
+                        </div><div class="col-4"></div>
+                        <div class="col-4"></div><div class="col-4 text-center mt-4">
                             <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" required>
-                            <label class="form-check-label" for="flexCheckDefault">I agree with the <br><a href="<?php echo base_url()?>/Web/Home/tarmsandcondition" target="_blank">terms and conditions</label>
-                            <button type="submit" class="btn btn-pay-c mt-2">Pay</button>
-                        </div>
+                            <label class="form-check-label" for="flexCheckDefault">I agree with the <a href="<?php echo base_url()?>/Web/Home/tarmsandcondition" target="_blank">terms and conditions</label>
+                            <br><button type="submit" class="btn btn-pay-c mt-2">Pay</button>
+                        </div><div class="col-4"></div>
+
                     </div>
                     </form>
                 </div>

@@ -148,11 +148,6 @@
     }
 
 
-
-
-
-
-
     function addToCart(id){
         $.ajax({
             type: "POST",
@@ -349,6 +344,29 @@
             }
         });
     }
+
+    $(document).ready(function () {
+        pack_sub_calculate();
+    });
+
+    function pack_sub_calculate(){
+        var package_id = $('input[name="class_subscription_package_id"]:checked').val();
+        var price = $('input[name="class_subscription_package_id"]:checked').attr('data-price');
+
+        $("#opt_a").val(package_id);
+        $("#amount").val(price);
+        $("#tp").html('<b>'+price+'৳ </b>');
+        $("#dp").html('<b>'+price+'৳ </b>');
+    }
+
+    function paymentmethod(url){
+        $('#subscribe_form').attr('action', url);
+    }
+
+    function paymentmethodcourse(url){
+        $('#course_form').attr('action', url);
+    }
+
 
 </script>
 </body>
