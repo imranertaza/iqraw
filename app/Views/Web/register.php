@@ -14,7 +14,7 @@
                     <span class="con-l-1st">পড় তোমার</span><br>
                     <span class="con-l-2nd">প্রভুর <span style="color: #000000;">নামে</span></span>
                 </div>
-                <form id="sign_up_form" action="<?php base_url() ?>/Web/Login/sign_up_action" method="post">
+                <form id="sign_up_form" action="<?php echo base_url() ?>/Web/Login/sign_up_action" method="post">
                     <span class="title-1">Sign Up</span>
                     <div class="message mt-2" >
                         <?php if (session()->getFlashdata('message') !== NULL) : echo session()->getFlashdata('message'); endif; ?>

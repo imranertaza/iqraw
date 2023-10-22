@@ -52,7 +52,8 @@ class Login extends BaseController
                 if (!isset($this->session->redirect_url)){
                     return redirect()->to(site_url("/Web/Dashboard"));
                 }else{
-                    return redirect()->to( site_url($this->session->redirect_url));
+
+                    return redirect()->to( $this->session->redirect_url);
                 }
             } else {
                 $this->session->setFlashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Phone or password mismatch</div>');

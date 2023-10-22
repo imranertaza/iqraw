@@ -28,9 +28,10 @@
                                 <h3 class="card-title">Course Video List</h3>
                             </div>
                             <div class="col-md-4">
-                                <button type="button" class="btn btn-block btn-success" onclick="add()" title="Add"><i
+                                <!-- <button type="button" class="btn btn-block btn-success" onclick="add()" title="Add"><i
                                             class="fa fa-plus"></i> Add
-                                </button>
+                                </button> -->
+                                <a href="<?php echo base_url($controller) ?>/create" class="btn btn-block btn-success"><i class="fa fa-plus"></i> Add</a>
 
                             </div>
                         </div>

@@ -268,6 +268,20 @@ class Chapter_quiz extends BaseController
         $chapter_id = $this->request->getPost('chapter_id');
         $data = $this->chapterQuizModel->like('chapter_id' ,$chapter_id)->findAll();
         $view ='no data available';
+        $view ='<thead>
+            <tr>
+                <th width="40">Id</th>
+                <th>Chapter</th>
+                <th>Question</th>
+                <th>One</th>
+                <th>Two</th>
+                <th>Three</th>
+                <th>Four</th>
+                <th>Answer</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+            </thead>';
         foreach ($data as $val) {
 
             $view .= '<tr>

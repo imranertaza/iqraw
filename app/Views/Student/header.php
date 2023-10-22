@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>iqraw</title>
     <meta charset="utf-8">
@@ -16,10 +17,12 @@
     <script src="<?php echo base_url()?>/assets/js/sweetalert2@11.js"></script>
 
 </head>
+
 <body>
-<section class="header" style="margin-top: 10px;">
-    <div class="head">
-        <a href="<?php echo $back_url;?>" style="float: left; color: #000000;"><img src="<?php base_url();?>/assets/image/arrow-left.svg" alt="icon"></a>
-        <center><span><?php echo $page_title;?></span></center>
-    </div>
-</section>
+    <section class="header" style="margin-top: 10px;">
+        <div class="head">
+            <a href="<?php echo $back_url;?>" style="float: left; color: #000000;"><img
+                    src="<?php echo base_url();?>/assets/image/arrow-left.svg" alt="icon"></a>
+            <center><span><?php echo $page_title;?></span></center>
+        </div>
+    </section>

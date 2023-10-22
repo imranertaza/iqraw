@@ -281,6 +281,18 @@ class Class_subscribe extends BaseController
         $end_date = $this->request->getPost('end_date');
         $data = $this->class_subscribeModel->like('createdDtm' ,$st_date)->like('subs_end_date' ,$end_date)->findAll();
         $view ='no data available';
+        $view ='<thead>
+            <tr>
+                <th>Id</th>
+                <th>Student</th>
+                <th>Class</th>
+                <th>Class Group</th>
+                <th>Package</th>
+                <th>Price</th>
+                <th>Subscribe End Date</th>
+                <th>status</th>
+            </tr>
+            </thead>';
         foreach ($data as $val) {
             $class = get_data_by_id('class_id','class_subscribe_package','class_subscription_package_id',$val->class_subscription_package_id);
             $class_group_id = get_data_by_id('class_group_id','class_subscribe_package','class_subscription_package_id',$val->class_subscription_package_id);

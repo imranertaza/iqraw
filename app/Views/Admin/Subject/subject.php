@@ -67,10 +67,10 @@
                             <thead>
                             <tr>
                                 <th width="60">Id</th>
+                                <th>Subject Name</th>
                                 <th>Class</th>
-                                <th>Class</th>
-                                <th>Education Type</th>
-                                <th>Name</th>
+                                <th>Class Group</th>
+                                <th>Education Type</th>                                
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -232,7 +232,8 @@
             "paging": true,
             "lengthChange": false,
             "searching": true,
-            "ordering": true,
+            // "ordering": true,
+            "order": [[ 0, "desc" ]],
             "info": true,
             "autoWidth": false,
             "responsive": true,
