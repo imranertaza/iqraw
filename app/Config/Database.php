@@ -35,7 +35,7 @@ class Database extends Config
         'hostname' => 'localhost',
         'username' => 'root',
         'password' => '',
-        'database' => 'iqraw_2',
+        'database' => 'iqraw',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,
