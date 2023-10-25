@@ -301,3 +301,70 @@ input:checked + .slider:before {
   margin-right: 50px;
   margin-left: 3px;
 }
+
+/*live class css*/
+body{
+  padding: 0;
+  margin: 0;
+}
+.contenter {
+  position: relative;
+  height:200px;
+}
+.layer_top {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 25%;
+}
+.layer_bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 75%;
+  width: 100%;
+  height: 25%;
+}
+footer{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+.chatarea{
+  float: left;
+  height: 40px;
+  width: 75%;
+  min-height: 53px;
+  border-radius: 5px;
+}
+.chatSendBtn{
+  padding: 13px 0px;
+  width: 22%;
+  border-radius: 5px;
+}
+.viewChatMessage{
+  height: 300px;
+  overflow: scroll;
+}
+.otherMsg{
+  background: #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 15px !important;
+  width: 60%;
+  float: left;
+}
+.myMsg{
+  text-align: right;
+  padding: 10px;
+  background: #9dd7ad;
+  margin-bottom: 10px;
+  border-radius: 15px !important;
+  width: 60%;
+  float: right;
+}
+.showName{
+  font-size: 12px;
+}
