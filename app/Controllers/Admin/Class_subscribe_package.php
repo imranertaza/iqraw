@@ -257,13 +257,30 @@ class Class_subscribe_package extends BaseController
         $data = $this->class_subscribe_packageModel->like('class_id' ,$class_id)->findAll();
 
         $view ='no data available';
+        $view ='<thead>
+            <tr>
+                <th width="60">Id</th>
+                <th>Name</th>
+                <th>Class</th>
+                <th>Group</th>
+                <th>Education Type</th>
+                <th>Fee</th>
+                <th>Start date</th>
+                <th>End date</th>
+                <th>Action</th>
+            </tr>
+            </thead>';
         foreach ($data as $val) {
 
             $view .= '<tr>
                     <td>'.$val->class_subscription_package_id.'</td>
+                    <td>'.$val->name.'</td>
                     <td>'.get_data_by_id('name','class','class_id',$val->class_id).'</td>
                     <td>'.get_data_by_id('group_name','class_group','class_group_id',$val->class_group_id).'</td>
+                    <td>'.get_data_by_id('type_name','education_type','edu_type_id',$val->edu_type_id).'</td>
                     <td>'.$val->m_fee.'</td>
+                    <td>'.$val->start_date.'</td>
+				    <td>'.$val->end_date.'</td>
                     <td>
                     <div class="btn-group">	
                     <button type="button" class="btn btn-sm btn-info" onclick="edit(' . $val->class_subscription_package_id . ')"><i class="fa fa-edit"></i></button>
