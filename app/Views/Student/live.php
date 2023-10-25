@@ -7,16 +7,16 @@
     <div class="layer_bottom"></div>
 </section>
 <section class="viewChatMessage" id="viewChatMessage">
-    <?php foreach ($chats as $chat) {
+    <?php $iconSvg = '<svg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 24 24" role="img" aria-labelledby="personIconTitle" stroke="#000000" stroke-width="1" stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#000000"> <title id="personIconTitle">Person</title> <path d="M4,20 C4,17 8,17 10,15 C11,14 8,14 8,9 C8,5.667 9.333,4 12,4 C14.667,4 16,5.667 16,9 C16,14 13,14 14,15 C16,17 20,17 20,20"/> </svg>';
+    foreach ($chats as $chat) {
         $styleClass = ($std_id == $chat->std_id) ? "myMsg" : "otherMsg";
-        if ($chat->std_id == null){
-            $sender = "Admin";
-        }else {
-            $sender = ($std_id == $chat->std_id) ? "Me" : get_data_by_id('name', 'student', 'std_id', $chat->std_id);
-        }
-    ?>
-    <div class="<?php print $styleClass; ?>"><?php print $sender; ?> : <?php print $chat->text; ?><br><span class="showName">(<?php print $chat->time; ?>)</span></div>
-    <?php } ?>
+        if ($chat->std_id == null){ $sender = "Admin"; ?>
+            <div class="<?php print $styleClass; ?> d-flex justify-content-start "> <div style="padding: 0 10px;text-align: center; border-right: 1px solid #bfbfbf;" ><?php echo $iconSvg;?> <p><?php print $sender; ?></p> </div> <div style="margin-bottom: auto; margin-top: auto;padding-left: 10px;" ><span class="showName">(<?php print $chat->time; ?>)</span> <br><?php print $chat->text; ?></div></div>
+        <?php }else {  $sender = ($std_id == $chat->std_id) ? "Me" : get_data_by_id('name', 'student', 'std_id', $chat->std_id);?>
+
+            <div class="<?php print $styleClass; ?> d-flex justify-content-end"> <div style="margin-bottom: auto; margin-top: auto;padding-right: 10px;" ><span class="showName">(<?php print $chat->time; ?>)</span> <br><?php print $chat->text; ?> </div> <div style="text-align: center;padding: 0 10px;border-left: 1px solid #01782d;"> <?php echo $iconSvg;?> <p><?php print $sender; ?> </p></div></div>
+
+        <?php } } ?>
 </section>
 <footer>
     <textarea class="chatarea" name="chattext" id="chattext"></textarea>
@@ -55,28 +55,36 @@
     }
     .chatarea{
         float: left;
-        height: 40px;
+        height: 55px;
         width: 75%;
+        border-radius: 5px;
     }
     .chatSendBtn{
         padding: 13px 0px;
-        width: 22%;
+        width: 24%;
+        border-radius: 5px;
     }
     .viewChatMessage{
         height: 300px;
         overflow: scroll;
+        padding-top: 15px;
     }
     .otherMsg{
         background: #ccc;
         padding: 10px;
-        /* border-bottom: 1px solid #ccc; */
-        /*width: 90%;*/
+        margin-bottom: 10px;
+        border-radius: 15px !important;
+        width: 90%;
+        float: left;
     }
     .myMsg{
         text-align: right;
         padding: 10px;
-        background: #3aa357;
-        /*width: 90%;*/
+        background: #9dd7ad;
+        margin-bottom: 10px;
+        border-radius: 15px !important;
+        width: 90%;
+        float: right;
     }
     .showName{
         font-size: 12px;

@@ -80,10 +80,10 @@ class Subject extends BaseController
 
             $data['data'][$key] = array(
                 $value->subject_id,
+                $value->name,
                 get_data_by_id('name', 'class', 'class_id', $value->class_id),
                 get_data_by_id('group_name', 'class_group', 'class_group_id', $value->class_group_id),
-                get_data_by_id('type_name', 'education_type', 'edu_type_id', $value->edu_type_id),
-                $value->name,
+                get_data_by_id('type_name', 'education_type', 'edu_type_id', $value->edu_type_id),                
                 statusView($value->status),
                 $ops,
             );
@@ -239,16 +239,31 @@ class Subject extends BaseController
     }
 
     public function filter(){
-        $class_group_id = $this->request->getPost('class_group_id');
+        
+        $groupWhere = empty($this->request->getPost('class_group_id')) ? '1=1' : array('class_group_id' => $this->request->getPost('class_group_id'));
         $class_id = $this->request->getPost('class_id');
-        $data = $this->subjectModel->like('class_group_id' ,$class_group_id)->like('class_id' ,$class_id)->findAll();
+
+        $data = $this->subjectModel->where('class_id' ,$class_id)->where($groupWhere)->findAll();
         $view ='';
+        $view .='<thead>
+        <tr>
+            <th width="60">Id</th>
+            <th>Subject Name</th>
+            <th>Class</th>
+            <th>Class Group</th>
+            <th>Education Type</th>                                
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        </thead>';
         foreach ($data as $val) {
 
             $view .= '<tr>
                     <td>'.$val->subject_id.'</td>
                     <td>'.$val->name.'</td>
                     <td>'.get_data_by_id('name','class','class_id',$val->class_id).'</td>
+                    <td>'.get_data_by_id('group_name', 'class_group', 'class_group_id', $val->class_group_id).'</td>
+                    <td>'.get_data_by_id('type_name', 'education_type', 'edu_type_id', $val->edu_type_id).'</td>
                     <td>'.statusView($val->status).'</td>
                     <td>
                     <div class="btn-group">	

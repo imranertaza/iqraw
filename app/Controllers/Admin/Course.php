@@ -5,6 +5,8 @@ namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 use App\Libraries\Permission;
 use App\Models\Class_group_joinedModel;
+use App\Models\Course_categoryModel;
+use App\Models\Course_videoModel;
 use App\Models\CourseModel;
 use App\Models\Group_classModel;
 use App\Models\SubjectModel;
@@ -16,6 +18,8 @@ class Course extends BaseController
     protected $session;
     protected $courseModel;
     protected $group_classModel;
+    protected $course_videoModel;
+    protected $course_categoryModel;
     protected $class_group_joinedModel;
     protected $crop;
     protected $permission;
@@ -26,6 +30,8 @@ class Course extends BaseController
         $this->courseModel = new CourseModel();
         $this->group_classModel = new Group_classModel();
         $this->class_group_joinedModel = new Class_group_joinedModel();
+        $this->course_videoModel = new Course_videoModel();
+        $this->course_categoryModel = new Course_categoryModel();
         $this->permission = new Permission();
         $this->validation = \Config\Services::validation();
         $this->session = \Config\Services::session();
@@ -74,6 +80,7 @@ class Course extends BaseController
             $ops = '<div class="btn-group">';
             if ($perm['update'] ==1) {
                 $ops .= '	<button type="button" class="btn btn-sm btn-info" onclick="edit(' . $value->course_id . ')"><i class="fa fa-edit"></i></button>';
+                // $ops .= '<a href="'.base_url('Admin/Course/update/'.$value->course_id).'" class="btn btn-sm btn-info" ><i class="fa fa-edit"></i></a>';
             }
             if ($perm['delete'] ==1) {
                 $ops .= '	<button type="button" class="btn btn-sm btn-danger" onclick="remove(' . $value->course_id . ')"><i class="fa fa-trash"></i></button>';
@@ -93,7 +100,30 @@ class Course extends BaseController
         return $this->response->setJSON($data);
     }
 
+    public function update($id){
+        $isLoggedIAdmin = $this->session->isLoggedIAdmin;
+        if (!isset($isLoggedIAdmin) || $isLoggedIAdmin != TRUE) {
+            return redirect()->to(site_url("/admin"));
+        } else {
+            $data['controller'] = 'Admin/Course';
 
+            $data['course'] = $this->courseModel->where('course_id', $id)->first();
+            $data['courseVideo'] = $this->course_videoModel->where('course_id', $id)->first();
+
+
+            $role = $this->session->admin_role;
+            //[mod_access] [create] [read] [update] [delete]
+            $perm = $this->permission->module_permission_list($role, $this->module_name);
+            echo view('Admin/header');
+            echo view('Admin/sidebar');
+            if ($perm['mod_access'] == 1) {
+                echo view('Admin/Course/update', $data);
+            } else {
+                echo view('no_permission');
+            }
+            echo view('Admin/footer');
+        }
+    }
     public function getOne()
     {
         $response = array();

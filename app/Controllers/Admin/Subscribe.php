@@ -230,6 +230,14 @@ class Subscribe extends BaseController
         $course_id = $this->request->getPost('course_id');
         $data = $this->course_subscribeModel->where('course_id' ,$course_id)->findAll();
         $view ='no data available';
+        $view ='<thead>
+            <tr>
+                <th width="60">Id</th>
+                <th>Student Name</th>
+                <th>Course Name</th>
+                <th>Status</th>
+            </tr>
+            </thead>';
         foreach ($data as $val) {
 
             $view .= '<tr>

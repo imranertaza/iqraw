@@ -421,9 +421,20 @@ class Student extends BaseController
 
     public function filter(){
         $st_name = $this->request->getPost('st_name');
-        $class_id = $this->request->getPost('class_id');
-        $data = $this->student->like('name' ,$st_name)->like('class_id' ,$class_id)->findAll();
+        $class_id = empty($this->request->getPost('class_id'))?'1=1':array('class_id' => $this->request->getPost('class_id'));
+        $data = $this->student->like('name' ,$st_name)->where($class_id)->findAll();
         $view ='no data available';
+        $view .='<thead>
+        <tr>
+            <th width="60">Id</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>School Name</th>
+            <th>Class</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        </thead>';
         foreach ($data as $val) {
 
             $view .= '<tr>

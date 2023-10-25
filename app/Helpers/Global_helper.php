@@ -411,6 +411,19 @@ function course_main_category($selected){
 
 }
 
+function course_category_by_course_id($selected,$course_id){
+    $table = DB()->table('course_category');
+    $query = $table->where('course_id',$course_id)->where('status','1')->get()->getResult();
+
+    $view = '<option value="" >Please Select</option>';
+    foreach ($query as $item) {
+        $sel = ($item->course_cat_id == $selected)?'selected':'';
+        $view .= '<option value="'.$item->course_cat_id.'" '.$sel.'>'.$item->category_name.'</option>';
+    }
+    return $view;
+
+}
+
 function get_all_array_data_by_id($table, $whereCol, $whereInfo)
 {
     $db = \Config\Database::connect();

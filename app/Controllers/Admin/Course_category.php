@@ -5,6 +5,7 @@ namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 use App\Libraries\Permission;
 use App\Models\Course_categoryModel;
+use App\Models\Course_videoModel;
 
 
 class Course_category extends BaseController
@@ -12,6 +13,7 @@ class Course_category extends BaseController
     protected $validation;
     protected $session;
     protected $course_categoryModel;
+    protected $course_videoModel;
     protected $crop;
     protected $permission;
     private $module_name = 'Course';
@@ -19,6 +21,7 @@ class Course_category extends BaseController
     public function __construct()
     {
         $this->course_categoryModel = new Course_categoryModel();
+        $this->course_videoModel = new Course_videoModel();
         $this->permission = new Permission();
         $this->validation = \Config\Services::validation();
         $this->session = \Config\Services::session();
@@ -71,6 +74,7 @@ class Course_category extends BaseController
 
             $ops = '<div class="btn-group">';
             if ($perm['update'] ==1) {
+                $ops .= '	<a  href="'.base_url('Admin/Course_category/video_add/'.$value->course_cat_id).'" class="btn btn-sm btn-primary" >Video</a>';
                 $ops .= '	<button type="button" class="btn btn-sm btn-info" onclick="edit(' . $value->course_cat_id . ')"><i class="fa fa-edit"></i></button>';
             }
             if ($perm['delete'] ==1) {
@@ -91,6 +95,131 @@ class Course_category extends BaseController
         return $this->response->setJSON($data);
     }
 
+    public function video_add($course_cat_id){
+        $isLoggedIAdmin = $this->session->isLoggedIAdmin;
+        if (!isset($isLoggedIAdmin) || $isLoggedIAdmin != TRUE) {
+            return redirect()->to(site_url("/admin"));
+        } else {
+            $data['controller'] = 'Admin/Course_category';
+
+            $data['courseVideo'] = $this->course_videoModel->where('course_cat_id',$course_cat_id)->findAll();
+            $data['course_cat_id'] = $course_cat_id;
+
+            $role = $this->session->admin_role;
+            //[mod_access] [create] [read] [update] [delete]
+            $perm = $this->permission->module_permission_list($role, $this->module_name);
+            echo view('Admin/header');
+            echo view('Admin/sidebar');
+            if ($perm['mod_access'] == 1) {
+                echo view('Admin/Course_category/Video_add', $data);
+            } else {
+                echo view('no_permission');
+            }
+            echo view('Admin/footer');
+        }
+    }
+
+    public function video_add_action(){
+        $response = array();
+
+        $fields['course_cat_id'] = $this->request->getPost('course_cat_id');
+
+        $course_cat_id = $this->request->getPost('course_cat_id');
+        $course_id = get_data_by_id('course_id','course_category','course_cat_id',$course_cat_id);
+
+
+        $course_video_id = $this->request->getPost('course_video_id[]');
+        $title = $this->request->getPost('title[]');
+        $author = $this->request->getPost('author[]');
+        $URL = $this->request->getPost('URL[]');
+        $createdBy = $this->session->user_id;
+
+        $thumb = $this->request->getFileMultiple('thumb');
+        $target_dir = FCPATH . 'assets/upload/courseVideo/';
+        if(!file_exists($target_dir)){
+            mkdir($target_dir,0777);
+        } 
+
+        $this->validation->setRules([
+            'course_cat_id' => ['label' => 'course_cat_id', 'rules' => 'required'],
+        ]);
+
+        if ($this->validation->run($fields) == FALSE) {
+
+            $response['success'] = false;
+            $response['messages'] = $this->validation->listErrors();
+
+        } else {
+
+            foreach($title as $key => $val){
+
+                $fields['title'] = $title[$key];
+                $fields['author'] = $author[$key];
+                $fields['URL'] = $URL[$key];
+                $fields['createdBy'] = $createdBy;        
+    
+                
+                // Image upload
+                if(!empty($thumb[$key]->getName())){
+                    $name = $thumb[$key]->getRandomName();
+                    $thumb[$key]->move($target_dir, $name);                
+                    // Image cropping of the uploaded image
+                    $thumb_nameimg = 'thumb_' . $thumb[$key]->getName();
+                    $this->crop->withFile($target_dir . '' . $name)->fit(160, 105, 'center')->save($target_dir . '' . $thumb_nameimg);
+                    unlink($target_dir . '' . $name);    
+                    $fields['thumb'] = $thumb_nameimg; 
+                }
+
+                if(!empty($course_video_id[$key])){
+                    $this->course_videoModel->update($this->request->getPost('course_video_id[]')[$key],$fields);
+                }else{
+                    $fields['course_id'] = $course_id;
+                    $fields['course_cat_id'] = $course_cat_id;
+
+                    $this->course_videoModel->insert($fields);
+                }                    
+    
+            }
+           
+
+            $response['success'] = true;
+            $response['messages'] = 'Data has been inserted successfully';
+
+            
+
+        }
+
+        return $this->response->setJSON($response);
+    }
+
+
+    public function deletVideo()
+    {
+        $response = array();
+
+        $id = $this->request->getPost('course_video_id');
+
+        if (!$this->validation->check($id, 'required|numeric')) {
+
+            throw new \CodeIgniter\Exceptions\PageNotFoundException();
+
+        } else {
+
+            if ($this->course_videoModel->where('course_video_id', $id)->delete()) {
+
+                $response['success'] = true;
+                $response['messages'] = 'Deletion succeeded';
+
+            } else {
+
+                $response['success'] = false;
+                $response['messages'] = 'Deletion error!';
+
+            }
+        }
+
+        return $this->response->setJSON($response);
+    }
 
     public function getOne()
     {
